@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RequestsViewController: UIViewController {
+class RequestsViewController: UIViewController { //JWR need to add request view
     
     var usersRecived = [User]() { didSet { self.tableView.reloadData() } }
     var usersSent    = [User]() { didSet { self.tableView.reloadData() } }

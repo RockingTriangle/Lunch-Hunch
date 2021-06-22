@@ -11,7 +11,7 @@ import UIKit
 class ChatingViewModel {
     
     public  var friend             : UserViewModel? { didSet { updateUserInfoClouser?() }}
-    public  var friend_image       : UIImage? { didSet { updateUserImageoClouser?() }}
+    public  var friend_image       : UIImage? { didSet { updateUserImageClouser?() }}
     public  var messageViewModel   = [MessageViewModel]() { didSet { reloadTableViewClouser?() }}
     public  var countOfCells       : Int { return messageViewModel.count}
     
@@ -26,11 +26,11 @@ class ChatingViewModel {
     public  var isNew           = false
     public  var isTyping        = false { didSet { updateFriendStatusClouser?() }}
     public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
-    public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
+    public  var areYouBlocked    = false { didSet { updateBottomViewClouser?() }}
     
     
     var updateUserInfoClouser      : (()->())?
-    var updateUserImageoClouser    : (()->())?
+    var updateUserImageClouser    : (()->())?
     var reloadTableViewClouser     : (()->())?
     var updateTableViewClouser     : (()->())?
     var updateFriendStatusClouser  : (()->())?
@@ -62,7 +62,7 @@ class ChatingViewModel {
         let name = user.first! + " " + user.last!
         let lastOnlineDate = user.lastOnlineDate!.getDays() == "Just now" ? "Just now": "Active \(user.lastOnlineDate!.getDays()) ago"
         let availability = DefaultSettings.shared.availability()
-        let status = isYouBlocked || isFriendBlocked || !availability ? "" : user.isOnline! ? "Online" : lastOnlineDate
+        let status = areYouBlocked || isFriendBlocked || !availability ? "" : user.isOnline! ? "Online" : lastOnlineDate
         return UserViewModel(name: name, username: user.username!, email: user.email!, imageURL: user.imageURL!, uid: user.id!, status: status)
     }
     
@@ -272,10 +272,10 @@ class ChatingViewModel {
         
         if FBNetworkRequest.shared.blockedByList.isEmpty {
             FBNetworkRequest.shared.fetchBlockedByList { [unowned self] (_) in
-                self.isYouBlocked = FBNetworkRequest.shared.blockedByList.contains(uid)
+                self.areYouBlocked = FBNetworkRequest.shared.blockedByList.contains(uid)
             }
         } else {
-            self.isYouBlocked = FBNetworkRequest.shared.blockedByList.contains(uid)
+            self.areYouBlocked = FBNetworkRequest.shared.blockedByList.contains(uid)
         }
     }
     

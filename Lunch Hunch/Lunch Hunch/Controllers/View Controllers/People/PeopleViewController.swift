@@ -134,7 +134,7 @@ extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         vm.pressedCell(at: indexPath)
-        performSegue(withIdentifier: "PeopleToChating", sender: self)
+        performSegue(withIdentifier: "PeopleToAbout", sender: self) //JWR Changed withIdentifier from PeopleToChatting -> PeopleToAbout
         return indexPath
     }
     

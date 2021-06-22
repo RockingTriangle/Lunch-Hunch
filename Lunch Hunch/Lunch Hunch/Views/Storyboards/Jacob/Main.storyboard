@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CEF-dH-gbo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +13,7 @@
         <!--Signin View Controller-->
         <scene sceneID="BIY-k5-w2H">
             <objects>
-                <viewController id="sMm-f3-kCg" customClass="SigninViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sMm-f3-kCg" customClass="SigninViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mff-au-SRy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,7 +201,7 @@
         <!--Forget Password View Controller-->
         <scene sceneID="dGs-5D-6sz">
             <objects>
-                <viewController id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pe4-3v-roK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -275,7 +277,7 @@
         <!--Signup View Controller-->
         <scene sceneID="dEh-Np-QL6">
             <objects>
-                <viewController id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QcU-6Y-CvA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -476,8 +478,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iFh-rJ-azq" kind="relationship" relationship="viewControllers" id="XYO-Gz-Sg5"/>
-                        <segue destination="qpc-23-nky" kind="relationship" relationship="viewControllers" id="qDe-9q-dC3"/>
-                        <segue destination="Vuf-4W-7Ku" kind="relationship" relationship="viewControllers" id="yeh-Jn-9u1"/>
+                        <segue destination="hID-jP-SKW" kind="relationship" relationship="viewControllers" id="acq-aR-6vi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51N-FE-rMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -526,12 +527,26 @@
         <!--Settings-->
         <scene sceneID="khO-sx-Y52">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OXG-bc-TFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Settings" id="Vuf-4W-7Ku" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="qWG-gv-kIM"/>
+                    <navigationItem key="navigationItem" id="kz3-Wz-rJ9"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OXG-bc-TFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2818" y="267"/>
+        </scene>
+        <!--Restaurant-->
+        <scene sceneID="SUV-SD-USV">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Restaurant" storyboardName="Restaurant" id="hID-jP-SKW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Restaurants" id="Bxk-g8-fpd">
+                        <imageReference key="image" image="r.circle.fill" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="r.circle" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nne-IJ-C80" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2830" y="390"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -541,6 +556,8 @@
         <image name="Logo" width="183" height="183"/>
         <image name="People" width="33" height="33"/>
         <image name="Settings" width="33" height="33"/>
+        <image name="r.circle" catalog="system" width="128" height="121"/>
+        <image name="r.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
