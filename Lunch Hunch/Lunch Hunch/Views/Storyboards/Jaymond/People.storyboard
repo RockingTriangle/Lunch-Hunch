@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w18-n9-jT6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -32,13 +33,13 @@
         <!--Add Friend-->
         <scene sceneID="CWL-lR-9lK">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="C6E-de-dFQ" customClass="AddFriendTableViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="C6E-de-dFQ" customClass="AddFriendTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tIU-uc-GyY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addCell" rowHeight="93" id="9cj-7Q-UTc" customClass="AddFriendCell" customModule="Message_Now" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addCell" rowHeight="93" id="9cj-7Q-UTc" customClass="AddFriendCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="93"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9cj-7Q-UTc" id="mHw-OW-GyR">
@@ -126,7 +127,7 @@
         <!--People-->
         <scene sceneID="eKY-DN-LN3">
             <objects>
-                <viewController id="BXx-8u-g2h" customClass="PeopleViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BXx-8u-g2h" customClass="PeopleViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zN-5L-LbW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -199,7 +200,7 @@
         <!--Maps View Controller-->
         <scene sceneID="K4s-bZ-84z">
             <objects>
-                <viewController storyboardIdentifier="map" id="uIM-wN-XpF" customClass="MapsViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" id="uIM-wN-XpF" customClass="MapsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k1F-9n-tnx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +300,7 @@
         <!--Photo Detail View Controller-->
         <scene sceneID="qNk-uE-kLB">
             <objects>
-                <viewController storyboardIdentifier="toPhoto" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="zX2-PN-83T" customClass="PhotoDetailViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="toPhoto" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="zX2-PN-83T" customClass="PhotoDetailViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uYa-ix-rdQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -341,7 +342,7 @@
         <!--Chating View Controller-->
         <scene sceneID="wz0-ck-kxR">
             <objects>
-                <viewController storyboardIdentifier="chating" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="kWk-ig-V47" customClass="ChatingViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chating" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="kWk-ig-V47" customClass="ChatingViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bkc-OB-xZf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +351,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToCell" rowHeight="148" id="9Zh-T6-2El" customClass="ToCell" customModule="Message_Now" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToCell" rowHeight="148" id="9Zh-T6-2El" customClass="ToCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="148"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Zh-T6-2El" id="ilZ-4O-RNa">
@@ -418,7 +419,7 @@
                                             <outlet property="userImage" destination="I3t-eZ-6sR" id="2Ee-oT-WgL"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FromCell" rowHeight="117" id="0VY-rW-Cmt" customClass="FromCell" customModule="Message_Now" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FromCell" rowHeight="117" id="0VY-rW-Cmt" customClass="FromCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="172.5" width="414" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0VY-rW-Cmt" id="EsC-TP-XMe">
@@ -498,7 +499,7 @@
                                             <outlet property="userImage" destination="qqT-VX-hq2" id="8N3-Nh-6v0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photoCell" rowHeight="94" id="s4H-ZH-rqe" customClass="PhotoTableViewCell" customModule="Message_Now" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="photoCell" rowHeight="94" id="s4H-ZH-rqe" customClass="PhotoTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="289.5" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s4H-ZH-rqe" id="5Cl-tm-MuS">
@@ -576,7 +577,7 @@
                                             <outlet property="timeLabel" destination="54U-fN-ew7" id="OWn-Ss-BdH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="94" id="UB4-sr-QWn" customClass="LocationTableViewCell" customModule="Message_Now" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="94" id="UB4-sr-QWn" customClass="LocationTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="383.5" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UB4-sr-QWn" id="sbg-yc-Mef">
@@ -654,7 +655,7 @@
                                             <outlet property="timeLabel" destination="cH7-TV-Z8c" id="oMs-0j-AUg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="voiceCell" rowHeight="87" id="1hm-YA-tl2" customClass="VoiceTableViewCell" customModule="Message_Now" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="voiceCell" rowHeight="87" id="1hm-YA-tl2" customClass="VoiceTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="477.5" width="414" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1hm-YA-tl2" id="we8-Zb-F70">
@@ -964,7 +965,7 @@
         <!--About Table View Controller-->
         <scene sceneID="t0H-Xc-wC8">
             <objects>
-                <tableViewController storyboardIdentifier="about" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Message_Now" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="about" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9zc-dz-yY7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
