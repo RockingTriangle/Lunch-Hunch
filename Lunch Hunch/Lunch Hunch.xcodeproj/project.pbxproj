@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		108733C3E051D1A23D78A154 /* Pods_Lunch_Hunch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */; };
 		1366001D2682B3DE00935D8D /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1366001C2682B3DE00935D8D /* Restaurant.storyboard */; };
-		136600222682BB1500935D8D /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600202682BB1500935D8D /* Options.swift */; };
-		136600232682BB1500935D8D /* YelpDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600212682BB1500935D8D /* YelpDataModels.swift */; };
-		136600272682BBCC00935D8D /* YelpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600242682BBCB00935D8D /* YelpEndpoint.swift */; };
-		136600282682BBCC00935D8D /* NetworkServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600252682BBCB00935D8D /* NetworkServicing.swift */; };
-		136600292682BBCC00935D8D /* YelpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600262682BBCC00935D8D /* YelpService.swift */; };
-		1366002B2682BC2B00935D8D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */; };
-		1366002E2682BC5100935D8D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366002D2682BC5100935D8D /* ResultsTableViewController.swift */; };
 		13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB63382679277600AE8CE2 /* AppDelegate.swift */; };
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
@@ -82,17 +75,11 @@
 		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
+		672E0624268389AF002BEEF6 /* ReportUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E0623268389AF002BEEF6 /* ReportUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1366001C2682B3DE00935D8D /* Restaurant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Restaurant.storyboard; path = "Lunch Hunch/Views/Storyboards/Mike/Restaurant.storyboard"; sourceTree = SOURCE_ROOT; };
-		136600202682BB1500935D8D /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		136600212682BB1500935D8D /* YelpDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpDataModels.swift; sourceTree = "<group>"; };
-		136600242682BBCB00935D8D /* YelpEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpEndpoint.swift; sourceTree = "<group>"; };
-		136600252682BBCB00935D8D /* NetworkServicing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServicing.swift; sourceTree = "<group>"; };
-		136600262682BBCC00935D8D /* YelpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpService.swift; sourceTree = "<group>"; };
-		1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
-		1366002D2682BC5100935D8D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		13BB63352679277600AE8CE2 /* Lunch Hunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lunch Hunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BB63382679277600AE8CE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13BB633A2679277600AE8CE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +148,7 @@
 		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		672E0623268389AF002BEEF6 /* ReportUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserViewController.swift; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
 		F5F688670B4C4091D5A7C9E6 /* Pods-Lunch Hunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.debug.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,44 +166,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1366001E2682BAD000935D8D /* YelpService */ = {
-			isa = PBXGroup;
-			children = (
-				1366002C2682BC2F00935D8D /* YelpResults(Reference only) */,
-				136600252682BBCB00935D8D /* NetworkServicing.swift */,
-				136600242682BBCB00935D8D /* YelpEndpoint.swift */,
-				136600262682BBCC00935D8D /* YelpService.swift */,
-				1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */,
-			);
-			path = YelpService;
-			sourceTree = "<group>";
-		};
-		1366001F2682BAE100935D8D /* YelpDataModel */ = {
-			isa = PBXGroup;
-			children = (
-				136600212682BB1500935D8D /* YelpDataModels.swift */,
-				136600202682BB1500935D8D /* Options.swift */,
-			);
-			path = YelpDataModel;
-			sourceTree = "<group>";
-		};
-		1366002C2682BC2F00935D8D /* YelpResults(Reference only) */ = {
-			isa = PBXGroup;
-			children = (
-				1366002D2682BC5100935D8D /* ResultsTableViewController.swift */,
-			);
-			path = "YelpResults(Reference only)";
-			sourceTree = "<group>";
-		};
-		1366002F2682C1C000935D8D /* Yelp Files */ = {
-			isa = PBXGroup;
-			children = (
-				1366001F2682BAE100935D8D /* YelpDataModel */,
-				1366001E2682BAD000935D8D /* YelpService */,
-			);
-			path = "Yelp Files";
-			sourceTree = "<group>";
-		};
 		13BB632C2679277600AE8CE2 = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +192,6 @@
 				13BB634D2679279C00AE8CE2 /* Views */,
 				13CD19F3267EBE22007C5B6F /* Helper and Extensions */,
 				13BB634C2679279600AE8CE2 /* Resources */,
-				1366002F2682C1C000935D8D /* Yelp Files */,
 			);
 			path = "Lunch Hunch";
 			sourceTree = "<group>";
@@ -463,6 +412,7 @@
 				13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */,
 				13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */,
 				13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */,
+				672E0623268389AF002BEEF6 /* ReportUserViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -650,10 +600,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */,
-				136600272682BBCC00935D8D /* YelpEndpoint.swift in Sources */,
 				13FED2A426813C1E00D25BC4 /* RequestsViewController.swift in Sources */,
 				13FED2A226813C1E00D25BC4 /* RequestsCell.swift in Sources */,
-				136600232682BB1500935D8D /* YelpDataModels.swift in Sources */,
 				13FED27226813BA300D25BC4 /* ChatsViewModel.swift in Sources */,
 				13FED2AD26813C1E00D25BC4 /* AboutTableViewController.swift in Sources */,
 				13FED24026813AF000D25BC4 /* Audio.swift in Sources */,
@@ -664,10 +612,9 @@
 				13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */,
 				13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */,
 				13FED2B526813C1E00D25BC4 /* PhotoDetailViewController.swift in Sources */,
-				1366002E2682BC5100935D8D /* ResultsTableViewController.swift in Sources */,
-				136600222682BB1500935D8D /* Options.swift in Sources */,
 				13FED24C26813B1000D25BC4 /* ActivityIndicator.swift in Sources */,
 				13FED2A826813C1E00D25BC4 /* AvailableViewController.swift in Sources */,
+				672E0624268389AF002BEEF6 /* ReportUserViewController.swift in Sources */,
 				13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */,
 				13FED2A126813C1E00D25BC4 /* ChatsViewController.swift in Sources */,
 				13FED2B126813C1E00D25BC4 /* UserCell.swift in Sources */,
@@ -679,7 +626,6 @@
 				13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */,
 				13FED25726813B5E00D25BC4 /* User.swift in Sources */,
 				13FED27026813BA300D25BC4 /* AboutViewModel.swift in Sources */,
-				136600282682BBCC00935D8D /* NetworkServicing.swift in Sources */,
 				13FED2AF26813C1E00D25BC4 /* AddFriendTableViewController.swift in Sources */,
 				13FED25B26813B5E00D25BC4 /* FBNetworkRequest.swift in Sources */,
 				13FED27326813BA300D25BC4 /* PeopleViewModel.swift in Sources */,
@@ -690,13 +636,11 @@
 				13FED25926813B5E00D25BC4 /* Network.swift in Sources */,
 				13FED24926813B1000D25BC4 /* Alert.swift in Sources */,
 				13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */,
-				1366002B2682BC2B00935D8D /* ResultsTableViewController.swift in Sources */,
 				13FED24826813B1000D25BC4 /* Constants.swift in Sources */,
 				13FED27E26813BF600D25BC4 /* SigninViewController.swift in Sources */,
 				13FED24B26813B1000D25BC4 /* Enums.swift in Sources */,
 				13FED27426813BA300D25BC4 /* EditeProfileViewModel.swift in Sources */,
 				13FED27726813BA300D25BC4 /* BlockedViewModel.swift in Sources */,
-				136600292682BBCC00935D8D /* YelpService.swift in Sources */,
 				13FED27D26813BF600D25BC4 /* ForgetPasswordViewController.swift in Sources */,
 				13FED24A26813B1000D25BC4 /* System Authorization.swift in Sources */,
 				13FED2AC26813C1E00D25BC4 /* SettingsViewController.swift in Sources */,
