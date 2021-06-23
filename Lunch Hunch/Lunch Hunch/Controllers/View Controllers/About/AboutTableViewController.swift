@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutTableViewController: UITableViewController { //JWR add report user to this page. This pagee should pop up whenever user image is tapped
+class AboutTableViewController: UITableViewController {
     
     public var name: String?
     public var uid : String?
@@ -151,10 +151,6 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
             cell.detailTextLabel?.text = vm.userViewModel.country
         } else if row == 0 && section == 1 {
             cell.textLabel?.text   = vm.isBlocked ? "Unblock" : "Block"
-            cell.textLabel?.textColor = .systemRed
-            cell.detailTextLabel?.text = String()
-        } else if row == 1 && section == 1 { // JWR add Report user
-            cell.textLabel?.text = "Report User"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
         }

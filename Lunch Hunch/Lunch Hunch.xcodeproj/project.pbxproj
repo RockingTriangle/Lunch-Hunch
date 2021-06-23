@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		108733C3E051D1A23D78A154 /* Pods_Lunch_Hunch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */; };
+		1366001D2682B3DE00935D8D /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1366001C2682B3DE00935D8D /* Restaurant.storyboard */; };
+		136600222682BB1500935D8D /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600202682BB1500935D8D /* Options.swift */; };
+		136600232682BB1500935D8D /* YelpDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600212682BB1500935D8D /* YelpDataModels.swift */; };
+		136600272682BBCC00935D8D /* YelpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600242682BBCB00935D8D /* YelpEndpoint.swift */; };
+		136600282682BBCC00935D8D /* NetworkServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600252682BBCB00935D8D /* NetworkServicing.swift */; };
+		136600292682BBCC00935D8D /* YelpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136600262682BBCC00935D8D /* YelpService.swift */; };
+		1366002B2682BC2B00935D8D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */; };
+		1366002E2682BC5100935D8D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366002D2682BC5100935D8D /* ResultsTableViewController.swift */; };
 		13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB63382679277600AE8CE2 /* AppDelegate.swift */; };
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
-		13CD19E7267EBD59007C5B6F /* jacobs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CD19E6267EBD59007C5B6F /* jacobs.storyboard */; };
-		13CD19E9267EBD68007C5B6F /* jaymonds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */; };
 		13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FA388B2681495D0036B276 /* GoogleService-Info.plist */; };
 		13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23126813A4900D25BC4 /* Settings.storyboard */; };
 		13FED23426813A6300D25BC4 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23326813A6300D25BC4 /* People.storyboard */; };
@@ -76,18 +82,22 @@
 		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
-		6779D6A0268251C900B706FD /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6779D69F268251C900B706FD /* Restaurant.storyboard */; };
-		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1366001C2682B3DE00935D8D /* Restaurant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Restaurant.storyboard; path = "Lunch Hunch/Views/Storyboards/Mike/Restaurant.storyboard"; sourceTree = SOURCE_ROOT; };
+		136600202682BB1500935D8D /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		136600212682BB1500935D8D /* YelpDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpDataModels.swift; sourceTree = "<group>"; };
+		136600242682BBCB00935D8D /* YelpEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpEndpoint.swift; sourceTree = "<group>"; };
+		136600252682BBCB00935D8D /* NetworkServicing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServicing.swift; sourceTree = "<group>"; };
+		136600262682BBCC00935D8D /* YelpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpService.swift; sourceTree = "<group>"; };
+		1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		1366002D2682BC5100935D8D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		13BB63352679277600AE8CE2 /* Lunch Hunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lunch Hunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BB63382679277600AE8CE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13BB633A2679277600AE8CE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		13BB63412679277800AE8CE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13BB63462679277800AE8CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13CD19E6267EBD59007C5B6F /* jacobs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = jacobs.storyboard; sourceTree = "<group>"; };
-		13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = jaymonds.storyboard; sourceTree = "<group>"; };
 		13FA388B2681495D0036B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13FED23126813A4900D25BC4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		13FED23326813A6300D25BC4 /* People.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
@@ -151,7 +161,6 @@
 		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
-		6779D69F268251C900B706FD /* Restaurant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Restaurant.storyboard; path = ../../../../../../../../../Documents/Restaurant.storyboard; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
 		F5F688670B4C4091D5A7C9E6 /* Pods-Lunch Hunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.debug.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +178,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1366001E2682BAD000935D8D /* YelpService */ = {
+			isa = PBXGroup;
+			children = (
+				1366002C2682BC2F00935D8D /* YelpResults(Reference only) */,
+				136600252682BBCB00935D8D /* NetworkServicing.swift */,
+				136600242682BBCB00935D8D /* YelpEndpoint.swift */,
+				136600262682BBCC00935D8D /* YelpService.swift */,
+				1366002A2682BC2B00935D8D /* ResultsTableViewController.swift */,
+			);
+			path = YelpService;
+			sourceTree = "<group>";
+		};
+		1366001F2682BAE100935D8D /* YelpDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				136600212682BB1500935D8D /* YelpDataModels.swift */,
+				136600202682BB1500935D8D /* Options.swift */,
+			);
+			path = YelpDataModel;
+			sourceTree = "<group>";
+		};
+		1366002C2682BC2F00935D8D /* YelpResults(Reference only) */ = {
+			isa = PBXGroup;
+			children = (
+				1366002D2682BC5100935D8D /* ResultsTableViewController.swift */,
+			);
+			path = "YelpResults(Reference only)";
+			sourceTree = "<group>";
+		};
+		1366002F2682C1C000935D8D /* Yelp Files */ = {
+			isa = PBXGroup;
+			children = (
+				1366001F2682BAE100935D8D /* YelpDataModel */,
+				1366001E2682BAD000935D8D /* YelpService */,
+			);
+			path = "Yelp Files";
+			sourceTree = "<group>";
+		};
 		13BB632C2679277600AE8CE2 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +242,7 @@
 				13BB634D2679279C00AE8CE2 /* Views */,
 				13CD19F3267EBE22007C5B6F /* Helper and Extensions */,
 				13BB634C2679279600AE8CE2 /* Resources */,
+				1366002F2682C1C000935D8D /* Yelp Files */,
 			);
 			path = "Lunch Hunch";
 			sourceTree = "<group>";
@@ -225,7 +273,6 @@
 		13BB634E267927A100AE8CE2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				6779D69E268251B100B706FD /* Restaurant */,
 				13CD19E5267EBD2C007C5B6F /* Mike */,
 				13CD19E4267EBD28007C5B6F /* Jacob */,
 				13CD19E3267EBD23007C5B6F /* Jaymond */,
@@ -259,8 +306,7 @@
 		13CD19E3267EBD23007C5B6F /* Jaymond */ = {
 			isa = PBXGroup;
 			children = (
-				13FED23326813A6300D25BC4 /* People.storyboard */,
-				13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */,
+				13FED23126813A4900D25BC4 /* Settings.storyboard */,
 			);
 			path = Jaymond;
 			sourceTree = "<group>";
@@ -268,9 +314,9 @@
 		13CD19E4267EBD28007C5B6F /* Jacob */ = {
 			isa = PBXGroup;
 			children = (
+				13FED23326813A6300D25BC4 /* People.storyboard */,
 				13FED23726813A7200D25BC4 /* Main.storyboard */,
 				13FED23526813A6C00D25BC4 /* Chats.storyboard */,
-				13CD19E6267EBD59007C5B6F /* jacobs.storyboard */,
 			);
 			path = Jacob;
 			sourceTree = "<group>";
@@ -278,7 +324,7 @@
 		13CD19E5267EBD2C007C5B6F /* Mike */ = {
 			isa = PBXGroup;
 			children = (
-				13FED23126813A4900D25BC4 /* Settings.storyboard */,
+				1366001C2682B3DE00935D8D /* Restaurant.storyboard */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -464,14 +510,6 @@
 			path = Chating;
 			sourceTree = "<group>";
 		};
-		6779D69E268251B100B706FD /* Restaurant */ = {
-			isa = PBXGroup;
-			children = (
-				6779D69F268251C900B706FD /* Restaurant.storyboard */,
-			);
-			path = Restaurant;
-			sourceTree = "<group>";
-		};
 		A59C217407AC788A93C593A4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,18 +586,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */,
 				13FED23A26813A8900D25BC4 /* LaunchScreen.storyboard in Resources */,
+				1366001D2682B3DE00935D8D /* Restaurant.storyboard in Resources */,
 				13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */,
 				13FED23F26813AF000D25BC4 /* Message.mp3 in Resources */,
 				13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */,
 				13FED23E26813AF000D25BC4 /* Cancel.mp3 in Resources */,
 				13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */,
-				6779D6A0268251C900B706FD /* Restaurant.storyboard in Resources */,
 				13FED23626813A6C00D25BC4 /* Chats.storyboard in Resources */,
-				13CD19E9267EBD68007C5B6F /* jaymonds.storyboard in Resources */,
 				13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */,
-				13CD19E7267EBD59007C5B6F /* jacobs.storyboard in Resources */,
 				13FED23826813A7200D25BC4 /* Main.storyboard in Resources */,
 				13FED23426813A6300D25BC4 /* People.storyboard in Resources */,
 			);
@@ -615,8 +650,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */,
+				136600272682BBCC00935D8D /* YelpEndpoint.swift in Sources */,
 				13FED2A426813C1E00D25BC4 /* RequestsViewController.swift in Sources */,
 				13FED2A226813C1E00D25BC4 /* RequestsCell.swift in Sources */,
+				136600232682BB1500935D8D /* YelpDataModels.swift in Sources */,
 				13FED27226813BA300D25BC4 /* ChatsViewModel.swift in Sources */,
 				13FED2AD26813C1E00D25BC4 /* AboutTableViewController.swift in Sources */,
 				13FED24026813AF000D25BC4 /* Audio.swift in Sources */,
@@ -627,6 +664,8 @@
 				13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */,
 				13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */,
 				13FED2B526813C1E00D25BC4 /* PhotoDetailViewController.swift in Sources */,
+				1366002E2682BC5100935D8D /* ResultsTableViewController.swift in Sources */,
+				136600222682BB1500935D8D /* Options.swift in Sources */,
 				13FED24C26813B1000D25BC4 /* ActivityIndicator.swift in Sources */,
 				13FED2A826813C1E00D25BC4 /* AvailableViewController.swift in Sources */,
 				13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */,
@@ -640,6 +679,7 @@
 				13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */,
 				13FED25726813B5E00D25BC4 /* User.swift in Sources */,
 				13FED27026813BA300D25BC4 /* AboutViewModel.swift in Sources */,
+				136600282682BBCC00935D8D /* NetworkServicing.swift in Sources */,
 				13FED2AF26813C1E00D25BC4 /* AddFriendTableViewController.swift in Sources */,
 				13FED25B26813B5E00D25BC4 /* FBNetworkRequest.swift in Sources */,
 				13FED27326813BA300D25BC4 /* PeopleViewModel.swift in Sources */,
@@ -650,11 +690,13 @@
 				13FED25926813B5E00D25BC4 /* Network.swift in Sources */,
 				13FED24926813B1000D25BC4 /* Alert.swift in Sources */,
 				13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */,
+				1366002B2682BC2B00935D8D /* ResultsTableViewController.swift in Sources */,
 				13FED24826813B1000D25BC4 /* Constants.swift in Sources */,
 				13FED27E26813BF600D25BC4 /* SigninViewController.swift in Sources */,
 				13FED24B26813B1000D25BC4 /* Enums.swift in Sources */,
 				13FED27426813BA300D25BC4 /* EditeProfileViewModel.swift in Sources */,
 				13FED27726813BA300D25BC4 /* BlockedViewModel.swift in Sources */,
+				136600292682BBCC00935D8D /* YelpService.swift in Sources */,
 				13FED27D26813BF600D25BC4 /* ForgetPasswordViewController.swift in Sources */,
 				13FED24A26813B1000D25BC4 /* System Authorization.swift in Sources */,
 				13FED2AC26813C1E00D25BC4 /* SettingsViewController.swift in Sources */,
