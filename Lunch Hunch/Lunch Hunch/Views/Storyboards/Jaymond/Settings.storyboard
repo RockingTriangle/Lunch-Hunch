@@ -93,6 +93,7 @@
                         <segue destination="t1U-hX-qod" kind="show" identifier="available" id="b27-s3-qO3"/>
                         <segue destination="dWF-PD-mv3" kind="show" identifier="toFriendsListVC" id="IGS-xV-4B4"/>
                         <segue destination="Cyv-No-xvh" kind="show" identifier="toRequests" id="e7z-3F-vVP"/>
+                        <segue destination="4bR-il-HYy" kind="show" identifier="toReportUserVC" id="iLF-Wb-qUH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSZ-F1-okK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -317,7 +318,7 @@
         <!--Report VC-->
         <scene sceneID="TCN-dR-F8j">
             <objects>
-                <viewController title="Report VC" id="4bR-il-HYy" sceneMemberID="viewController">
+                <viewController title="Report VC" id="4bR-il-HYy" customClass="ReportUserViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d3N-ha-duQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -348,11 +349,19 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitReportButtonTapped:" destination="4bR-il-HYy" eventType="touchUpInside" id="nIN-uv-8DX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RQL-KS-wen"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Asm-2l-6tL"/>
+                    <connections>
+                        <outlet property="reportDescriptionTextView" destination="0V0-Xb-dSl" id="uyG-tM-D7W"/>
+                        <outlet property="reportedUserNameTextField" destination="3QE-kI-2rJ" id="jQ5-4G-g0c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OfU-YY-uvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

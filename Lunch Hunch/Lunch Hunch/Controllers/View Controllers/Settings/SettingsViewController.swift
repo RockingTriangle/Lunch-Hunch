@@ -123,8 +123,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 //            return 2
         } else if section == 3 {
             return 1
+        } else if section == 4 { //Report User section JWR
+            return 1
         } else {
-        
+            
             return 0
     
         }
@@ -157,6 +159,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = "Sign Out"
             cell.textLabel?.textColor = #colorLiteral(red: 1, green: 0.3032806202, blue: 0.02296007777, alpha: 1)
             cell.accessoryType = .none
+        } else if row == 0 && section == 4 { //JWR Report User
+            cell.textLabel?.text = "Report User"
         }
         return cell
     }
@@ -196,6 +200,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "toRequests", sender: self) //JWR Show Requests VC
         } else if indexPath.section == 2 && indexPath.row == 2 {
             performSegue(withIdentifier: "blockedUsers", sender: self)
+        } else if indexPath.section == 4 && indexPath.row == 0 { //JWR report user
+            performSegue(withIdentifier: "toReportUserVC", sender: self)
         }
     }
     

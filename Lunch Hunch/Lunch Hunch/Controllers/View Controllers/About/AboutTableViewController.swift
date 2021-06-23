@@ -94,12 +94,6 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
     
     
     
-    
-    
-    
-    
-    
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -153,7 +147,7 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
             cell.textLabel?.text   = vm.isBlocked ? "Unblock" : "Block"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
-        } else if row == 1 && section == 1 { // JWR add Report user
+        } else if row == 0 && section == 2 { // JWR add Report user
             cell.textLabel?.text = "Report User"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
@@ -168,6 +162,8 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 && indexPath.section == 1 {
             vm.isBlocked ? vm.unblockUser(uid: uid!) : vm.blockUser(uid: uid!)
+        } else if indexPath.row == 0 && indexPath.section == 2 {
+            vm.reportUser(uid: uid!)
         }
     }
     

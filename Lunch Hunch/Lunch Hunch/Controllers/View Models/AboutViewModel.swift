@@ -73,4 +73,8 @@ class AboutViewModel {
         self.isBlocked = false
     }
     
+    func reportUser(uid: String) { //JWR report user in about view
+        FBNetworkRequest.shared.reportUser(uid: uid)
+    }
+    
 }

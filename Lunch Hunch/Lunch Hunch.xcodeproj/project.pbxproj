@@ -75,6 +75,7 @@
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
 		672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672E06292683C19E002BEEF6 /* Restaurants.storyboard */; };
+		672E062C2683D08D002BEEF6 /* ReportUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E062B2683D08D002BEEF6 /* ReportUserViewController.swift */; };
 		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,7 @@
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		672E06292683C19E002BEEF6 /* Restaurants.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurants.storyboard; sourceTree = "<group>"; };
+		672E062B2683D08D002BEEF6 /* ReportUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserViewController.swift; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
 		F5F688670B4C4091D5A7C9E6 /* Pods-Lunch Hunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.debug.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */,
 				13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */,
 				13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */,
+				672E062B2683D08D002BEEF6 /* ReportUserViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */,
 				13FED25726813B5E00D25BC4 /* User.swift in Sources */,
 				13FED27026813BA300D25BC4 /* AboutViewModel.swift in Sources */,
+				672E062C2683D08D002BEEF6 /* ReportUserViewController.swift in Sources */,
 				13FED2AF26813C1E00D25BC4 /* AddFriendTableViewController.swift in Sources */,
 				13FED25B26813B5E00D25BC4 /* FBNetworkRequest.swift in Sources */,
 				13FED27326813BA300D25BC4 /* PeopleViewModel.swift in Sources */,
