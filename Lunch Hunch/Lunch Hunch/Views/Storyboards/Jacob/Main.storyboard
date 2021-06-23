@@ -477,7 +477,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iFh-rJ-azq" kind="relationship" relationship="viewControllers" id="XYO-Gz-Sg5"/>
-                        <segue destination="GoK-X8-Z9N" kind="relationship" relationship="viewControllers" id="UBS-Z2-1fP"/>
+                        <segue destination="O79-EL-ahP" kind="relationship" relationship="viewControllers" id="xpz-nN-82L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51N-FE-rMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -534,16 +534,15 @@
             </objects>
             <point key="canvasLocation" x="2818" y="267"/>
         </scene>
-        <!--Restaurant-->
-        <scene sceneID="4ZH-Us-ebr">
+        <!--Restaurants-->
+        <scene sceneID="SYd-9M-9zW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Restaurant" id="GoK-X8-Z9N" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Restaurants" image="r.circle.fill" catalog="system" id="q60-Fp-Uyz"/>
-                    <navigationItem key="navigationItem" id="KKv-cV-zVU"/>
+                <viewControllerPlaceholder storyboardName="Restaurants" id="O79-EL-ahP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4He-ZK-9Aa"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fYf-OZ-tGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-Wk-gST" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2830" y="382"/>
+            <point key="canvasLocation" x="2830" y="344"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -553,7 +552,6 @@
         <image name="Logo" width="183" height="183"/>
         <image name="People" width="33" height="33"/>
         <image name="Settings" width="33" height="33"/>
-        <image name="r.circle.fill" catalog="system" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

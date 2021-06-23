@@ -74,6 +74,7 @@
 		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
+		672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672E06292683C19E002BEEF6 /* Restaurants.storyboard */; };
 		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,7 +147,7 @@
 		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
-		672E06282683C01B002BEEF6 /* Restaurant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurant.storyboard; sourceTree = "<group>"; };
+		672E06292683C19E002BEEF6 /* Restaurants.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurants.storyboard; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
 		F5F688670B4C4091D5A7C9E6 /* Pods-Lunch Hunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.debug.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -444,7 +445,7 @@
 		672E06272683C007002BEEF6 /* Mike */ = {
 			isa = PBXGroup;
 			children = (
-				672E06282683C01B002BEEF6 /* Restaurant.storyboard */,
+				672E06292683C19E002BEEF6 /* Restaurants.storyboard */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -530,6 +531,7 @@
 				13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */,
 				13FED23F26813AF000D25BC4 /* Message.mp3 in Resources */,
 				13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */,
+				672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */,
 				13FED23E26813AF000D25BC4 /* Cancel.mp3 in Resources */,
 				13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */,
 				13FED23626813A6C00D25BC4 /* Chats.storyboard in Resources */,
