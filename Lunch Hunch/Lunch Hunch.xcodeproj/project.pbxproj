@@ -11,8 +11,6 @@
 		13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB63382679277600AE8CE2 /* AppDelegate.swift */; };
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
-		13CD19E7267EBD59007C5B6F /* jacobs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CD19E6267EBD59007C5B6F /* jacobs.storyboard */; };
-		13CD19E9267EBD68007C5B6F /* jaymonds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */; };
 		13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FA388B2681495D0036B276 /* GoogleService-Info.plist */; };
 		13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23126813A4900D25BC4 /* Settings.storyboard */; };
 		13FED23426813A6300D25BC4 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23326813A6300D25BC4 /* People.storyboard */; };
@@ -76,6 +74,7 @@
 		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
+		672E06262683BD8C002BEEF6 /* Restaurant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672E06252683BD8C002BEEF6 /* Restaurant.storyboard */; };
 		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,8 +84,6 @@
 		13BB633A2679277600AE8CE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		13BB63412679277800AE8CE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13BB63462679277800AE8CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13CD19E6267EBD59007C5B6F /* jacobs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = jacobs.storyboard; sourceTree = "<group>"; };
-		13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = jaymonds.storyboard; sourceTree = "<group>"; };
 		13FA388B2681495D0036B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13FED23126813A4900D25BC4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		13FED23326813A6300D25BC4 /* People.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
@@ -150,6 +147,7 @@
 		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		672E06252683BD8C002BEEF6 /* Restaurant.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Restaurant.storyboard; path = "../../../../../../../../../.Trash/Lunch-Hunch 8.49.48 AM/Lunch Hunch/Lunch Hunch/Views/Storyboards/Mike/Restaurant.storyboard"; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
 		F5F688670B4C4091D5A7C9E6 /* Pods-Lunch Hunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.debug.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 				13CD19E5267EBD2C007C5B6F /* Mike */,
 				13CD19E4267EBD28007C5B6F /* Jacob */,
 				13CD19E3267EBD23007C5B6F /* Jaymond */,
-				13CD19F6267EBE79007C5B6F /* LaunchScreen */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -256,8 +253,7 @@
 		13CD19E3267EBD23007C5B6F /* Jaymond */ = {
 			isa = PBXGroup;
 			children = (
-				13FED23326813A6300D25BC4 /* People.storyboard */,
-				13CD19E8267EBD68007C5B6F /* jaymonds.storyboard */,
+				13FED23126813A4900D25BC4 /* Settings.storyboard */,
 			);
 			path = Jaymond;
 			sourceTree = "<group>";
@@ -265,9 +261,10 @@
 		13CD19E4267EBD28007C5B6F /* Jacob */ = {
 			isa = PBXGroup;
 			children = (
+				13FED23326813A6300D25BC4 /* People.storyboard */,
 				13FED23726813A7200D25BC4 /* Main.storyboard */,
 				13FED23526813A6C00D25BC4 /* Chats.storyboard */,
-				13CD19E6267EBD59007C5B6F /* jacobs.storyboard */,
+				13FED23926813A8900D25BC4 /* LaunchScreen.storyboard */,
 			);
 			path = Jacob;
 			sourceTree = "<group>";
@@ -275,7 +272,7 @@
 		13CD19E5267EBD2C007C5B6F /* Mike */ = {
 			isa = PBXGroup;
 			children = (
-				13FED23126813A4900D25BC4 /* Settings.storyboard */,
+				672E06252683BD8C002BEEF6 /* Restaurant.storyboard */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -315,14 +312,6 @@
 				13FED24726813B1000D25BC4 /* Extensions.swift */,
 			);
 			path = "Helper and Extensions";
-			sourceTree = "<group>";
-		};
-		13CD19F6267EBE79007C5B6F /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				13FED23926813A8900D25BC4 /* LaunchScreen.storyboard */,
-			);
-			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		13FED25026813B5E00D25BC4 /* Network */ = {
@@ -542,12 +531,11 @@
 				13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */,
 				13FED23F26813AF000D25BC4 /* Message.mp3 in Resources */,
 				13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */,
+				672E06262683BD8C002BEEF6 /* Restaurant.storyboard in Resources */,
 				13FED23E26813AF000D25BC4 /* Cancel.mp3 in Resources */,
 				13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */,
 				13FED23626813A6C00D25BC4 /* Chats.storyboard in Resources */,
-				13CD19E9267EBD68007C5B6F /* jaymonds.storyboard in Resources */,
 				13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */,
-				13CD19E7267EBD59007C5B6F /* jacobs.storyboard in Resources */,
 				13FED23826813A7200D25BC4 /* Main.storyboard in Resources */,
 				13FED23426813A6300D25BC4 /* People.storyboard in Resources */,
 			);
