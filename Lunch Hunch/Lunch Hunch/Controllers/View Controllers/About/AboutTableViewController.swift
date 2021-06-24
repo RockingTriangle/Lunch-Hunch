@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
-class AboutTableViewController: UITableViewController { //JWR add report user to this page. This pagee should pop up whenever user image is tapped
+class AboutTableViewController: UITableViewController {
     
     public var name: String?
     public var uid : String?
@@ -162,9 +164,8 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         if indexPath.row == 0 && indexPath.section == 1 {
             vm.isBlocked ? vm.unblockUser(uid: uid!) : vm.blockUser(uid: uid!)
         } else if indexPath.row == 1 && indexPath.section == 1 {
-            vm.reportUser(uid: uid!)
+
             presentControllerReport()
-            print("Reported user with id: \(String(describing: uid))")
             
         }
         
@@ -172,6 +173,7 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
     
     //MARK: - Report User Properties
     var reason: String = String()
+    var reports: Int = Int()
         
     
     func presentControllerReport() { //take in a user?
@@ -179,10 +181,10 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         //Bullying Button
         let bullyingAction = UIAlertAction(title: "Bullying", style: .default) { (action) in
             self.reason = "Bullying"
-            //JWR Add report user functionality here...
-            self.reportUser(uid: self.uid!) //JWR add to about screen to get uid?
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
             
-                let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
+            let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason).", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             }
             successAlert.addAction(okAction)
@@ -191,8 +193,8 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         //Hate Speech Button
         let harassmentAction = UIAlertAction(title: "Harassment", style: .default) { (action) in
             self.reason = "Harassment"
-            //JWR Add report user functionality here...
-            self.reportUser(uid: self.uid!) //JWR add to about screen to get uid?
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
             
                 let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
@@ -201,10 +203,10 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
             self.present(successAlert, animated: true, completion: nil)
         }
         //Hate Speech Button
-        let hateSpeechAction = UIAlertAction(title: "Hate Speech/Symbols", style: .default) { (action) in
-            self.reason = "Hate Speech/Symbols"
-            //JWR Add report user functionality here...
-            self.reportUser(uid: self.uid!) //JWR add to about screen to get uid?
+        let hateSpeechAction = UIAlertAction(title: "Hate Speech", style: .default) { (action) in
+            self.reason = "Hate Speech"
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
             
                 let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
@@ -215,61 +217,35 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         //Inappropriate button
         let inapropriateAction = UIAlertAction(title: "Inappropriate Content", style: .default) { (action) in
             self.reason = "Inappropriate content"
-            //JWR Add report user functionality here...
-            self.reportUser(uid: self.uid!) //JWR add to about screen to get uid?
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
             
             let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+
             }
             successAlert.addAction(okAction)
             self.present(successAlert, animated: true, completion: nil)
         }
-        
-        //Other button
-//        let otherAction = UIAlertAction(title: "Other", style: .default) { (action) in
-//
-//            let otherAlert = UIAlertController(title: "What is the issue?", message: "Please describe in detail why you are reporting this user.", preferredStyle: .alert)
-//            otherAlert.addTextField { (textField) in
-//                textField.placeholder = "Enter Reason Here..."
-//                self.reason = textField.text!
-//                print("\(self.reason)")
-//
-//            }
-//            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-//            }
-//            let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
-//                self.reportUser(uid: self.uid!) //JWR add to about screen to get uid?
-//                let successAlert = UIAlertController(title: "User Has Been Reported", message: nil, preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-//                }
-//                successAlert.addAction(okAction)
-//                self.present(successAlert, animated: true, completion: nil)
-//
-//            }
-//            otherAlert.addAction(cancelAction)
-//            otherAlert.addAction(submitAction)
-//            self.present(otherAlert, animated: true, completion: nil)
-//
-//        }
         
         //Cancel Action
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         
         //Add Actions
-//        alertController.addAction(otherAction)
         alertController.addAction(inapropriateAction)
         alertController.addAction(bullyingAction)
         alertController.addAction(harassmentAction)
         alertController.addAction(hateSpeechAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
-    }
-    func reportUser(uid: String) { //JWR report user in about view
-        guard let id = currentUser.id else {return}
-        REPORT_REF.child("Report").child(uid).updateChildValues([id: "true"])
 
-        FBNetworkRequest.shared.reportUser(uid: uid)
+    }
+    func reportUser(uid: String, reason: String) { //JWR report user in about view
+        guard let id = currentUser.id else {return}
+        REPORT_REF.child("report").child(uid).updateChildValues([reason : reports])
+        REPORT_REF.child("reported_by").child(id).updateChildValues([reason : reports])
+
         print("User \(uid) has been reported for \(reason)")
     }
 }

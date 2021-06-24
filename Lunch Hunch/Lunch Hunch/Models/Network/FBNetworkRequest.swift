@@ -15,7 +15,6 @@ class FBNetworkRequest {
     
     private let REQ_REF            = FBAuthentication.shared.ref.child("request_friends")
     private let BLOCK_REF          = FBAuthentication.shared.ref.child("blocked_list")
-    private let REPORT_REF         = FBAuthentication.shared.ref.child("reported_users") //JWR report user
     
     public var friendsList         = [String]()
     public var requestsSent        = [String]()
@@ -156,12 +155,7 @@ class FBNetworkRequest {
         FBAuthentication.shared.ref.child("friends_list").child(uid).child(id).removeValue()
     }
     
-    //MARK: - Report User //JWR report user
-    func reportUser(uid: String) {
-        guard let id = currentUser.id else {return}
-        REPORT_REF.child("Report").child(uid).updateChildValues([id: "true"])
-    }
-    
+
     // MARK:- Block User
     func blockUser(uid: String) {
         guard let id = currentUser.id else { return }

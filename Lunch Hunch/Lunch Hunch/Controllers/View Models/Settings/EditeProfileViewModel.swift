@@ -36,7 +36,7 @@ class EditeProfileViewModel {
     
     
     private func proccessCreateUser(user: User) -> UserInfoViewModel{
-        let country = user.country == "" ? "Egypt" : user.country
+        let country = user.country == "" ? "United States" : user.country
         return UserInfoViewModel(photo: user.image, country: country)
     }
     
