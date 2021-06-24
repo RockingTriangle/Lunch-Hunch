@@ -62,7 +62,7 @@ class LocationManager {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         LocationManager.shared.getAuthorizationStatus()
     }
-    
+
 }
 
 

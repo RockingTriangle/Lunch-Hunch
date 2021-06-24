@@ -26,13 +26,12 @@ class RestaurantSettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         configureCells()
         configureLocationManager()
-        
     }
     
     @IBAction func radiusSliderValueChanged(_ sender: UISlider) {
         let step: Float = 1
         let value = round(sender.value / step) * step
-        radiusLabel.text = "Radius: \(Int(value))"
+        radiusLabel.text = "Radius: \(Int(value)) miles"
     }
     
     @IBAction func priceButtonTapped(_ sender: UIButton) {
