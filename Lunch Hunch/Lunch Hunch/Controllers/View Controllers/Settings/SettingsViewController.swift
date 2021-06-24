@@ -119,11 +119,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         } else if section == 2{
             return 3 // changed line //JWR Commented out below lines
-//        } else if section == 3 {
-//            return 2
         } else if section == 3 {
-            return 1
-        } else if section == 4 { //Report User section JWR
             return 1
         } else {
             
@@ -149,18 +145,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = "Friends" // changed line
         } else if row == 1 && section == 2 {
             cell.textLabel?.text = "Friend Requests" // changed line JWR added requests
-       } else if row == 2 && section == 2 { // changed line
-            cell.textLabel?.text = "Blocked" // changed line JWR changed to Blocked from Report
-//        } else if row == 0 && section == 3 { //JWR Commented out and below
-//            cell.textLabel?.text = "Privacy Policy"
-//        } else if row == 1 && section == 3 {
-//            cell.textLabel?.text = "Terms of Service"
+       } else if row == 2 && section == 2 {
+            cell.textLabel?.text = "Blocked"
         } else if row == 0 && section == 3 {
             cell.textLabel?.text = "Sign Out"
             cell.textLabel?.textColor = #colorLiteral(red: 1, green: 0.3032806202, blue: 0.02296007777, alpha: 1)
             cell.accessoryType = .none
-        } else if row == 0 && section == 4 { //JWR Report User
-            cell.textLabel?.text = "Report User"
         }
         return cell
     }
@@ -200,8 +190,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "toRequests", sender: self) //JWR Show Requests VC
         } else if indexPath.section == 2 && indexPath.row == 2 {
             performSegue(withIdentifier: "blockedUsers", sender: self)
-        } else if indexPath.section == 4 && indexPath.row == 0 { //JWR report user
-            performSegue(withIdentifier: "toReportUserVC", sender: self)
         }
     }
     

@@ -147,7 +147,7 @@ class AboutTableViewController: UITableViewController {
             cell.textLabel?.text   = vm.isBlocked ? "Unblock" : "Block"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
-        } else if row == 1 && section == 1 { // JWR add Report user
+        } else if row == 1 && section == 1 { 
             cell.textLabel?.text = "Report User"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
@@ -241,7 +241,7 @@ class AboutTableViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
 
     }
-    func reportUser(uid: String, reason: String) { //JWR report user in about view
+    func reportUser(uid: String, reason: String) { 
         guard let id = currentUser.id else {return}
         REPORT_REF.child("report").child(uid).updateChildValues([reason : reports])
         REPORT_REF.child("reported_by").child(id).updateChildValues([reason : reports])

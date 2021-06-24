@@ -21,7 +21,6 @@ class FBNetworkRequest {
     public var requestsRecived     = [String]()
     public var blockedList         = [String]()
     public var blockedByList       = [String]()
-    public var reportedUser        = [String]() //JWR report user
     
     // MARK:- Requests
     func addFriend(uid: String) {
