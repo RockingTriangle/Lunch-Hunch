@@ -25,6 +25,7 @@ class ReportUserViewController: UIViewController {
     //MARK: - Properties
     public var uid : String?
     private let vm = AboutViewModel()
+    private let REPORT_REF         = FBAuthentication.shared.ref.child("reported_users") 
     
     //MARK: - Actions
     @IBAction func submitReportButtonTapped(_ sender: Any) {
@@ -61,6 +62,9 @@ class ReportUserViewController: UIViewController {
     }
     
     func reportUser(uid: String) { //JWR report user in about view
+        guard let id = currentUser.id else {return}
+        REPORT_REF.child("Report").child(uid).updateChildValues([id: "true"])
+
         FBNetworkRequest.shared.reportUser(uid: uid)
         print("User \(uid) has been reported")
     }

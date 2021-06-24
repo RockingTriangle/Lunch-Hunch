@@ -15,7 +15,7 @@ class FBNetworkRequest {
     
     private let REQ_REF            = FBAuthentication.shared.ref.child("request_friends")
     private let BLOCK_REF          = FBAuthentication.shared.ref.child("blocked_list")
-    private let REPORT_REF         = FBAuthentication.shared.ref.child("report_users") //JWR report user
+    private let REPORT_REF         = FBAuthentication.shared.ref.child("reported_users") //JWR report user
     
     public var friendsList         = [String]()
     public var requestsSent        = [String]()
@@ -226,4 +226,8 @@ class FBNetworkRequest {
             }
         }
     }
-}
+} //End of class
+
+
+
+
