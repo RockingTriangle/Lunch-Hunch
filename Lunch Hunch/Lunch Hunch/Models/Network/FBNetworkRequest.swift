@@ -154,6 +154,7 @@ class FBNetworkRequest {
         FBAuthentication.shared.ref.child("friends_list").child(uid).child(id).removeValue()
     }
     
+
     // MARK:- Block User
     func blockUser(uid: String) {
         guard let id = currentUser.id else { return }
@@ -218,4 +219,8 @@ class FBNetworkRequest {
             }
         }
     }
-}
+} //End of class
+
+
+
+

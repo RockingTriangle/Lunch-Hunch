@@ -122,7 +122,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IG3-MZ-Lox" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6997" y="471"/>
+            <point key="canvasLocation" x="6458" y="471"/>
         </scene>
         <!--People-->
         <scene sceneID="eKY-DN-LN3">
@@ -163,6 +163,7 @@
                         <outlet property="tableView" destination="wfP-Xf-dhF" id="tca-xl-0km"/>
                         <segue destination="kWk-ig-V47" kind="show" identifier="PeopleToChating" id="cnb-w7-F4y"/>
                         <segue destination="a8w-PE-7Hf" kind="show" identifier="PeopleToAbout" id="aWl-t1-Pxa"/>
+                        <segue destination="tCP-tZ-QeM" kind="show" identifier="PeopleToAbout" id="JgQ-45-Dot"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1Y-e1-cRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,6 +197,16 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="3891" y="471"/>
+        </scene>
+        <!--about-->
+        <scene sceneID="BqO-vb-8La">
+            <objects>
+                <viewControllerPlaceholder storyboardName="People" referencedIdentifier="about" id="tCP-tZ-QeM" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ivp-x2-q39"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wp6-A3-jQl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4592" y="471"/>
         </scene>
         <!--Chating View Controller-->
         <scene sceneID="wz0-ck-kxR">
@@ -651,10 +662,10 @@
                                             <rect key="frame" x="10" y="10" width="351" height="33"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GqF-m2-NwO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="33"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="27" height="33"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFZ-Jx-cgR">
-                                                            <rect key="frame" x="0.0" y="0.0" width="108" height="33"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="27" height="33"/>
                                                             <state key="normal" image="Camera"/>
                                                             <connections>
                                                                 <action selector="cameraButtonPressed:" destination="kWk-ig-V47" eventType="touchUpInside" id="BCv-fQ-7f9"/>
@@ -666,7 +677,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Aa" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5D-jW-nZs">
-                                                    <rect key="frame" x="118" y="0.0" width="233" height="33"/>
+                                                    <rect key="frame" x="37" y="0.0" width="314" height="33"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="0.63361515410000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -740,6 +751,8 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="hAT-G9-maU">
                         <barButtonItem key="backBarButtonItem" title=" " id="VpF-A3-Olt"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="Groups" id="naA-tr-Ypq"/>
+
                     </navigationItem>
                     <connections>
                         <outlet property="BottomView" destination="fCT-cc-apb" id="B54-lS-Bwd"/>
@@ -794,7 +807,81 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3889.8550724637685" y="1190.625"/>
+            <point key="canvasLocation" x="3890" y="1205"/>
+        </scene>
+        <!--Group Member view-->
+        <scene sceneID="gtW-M4-noX">
+            <objects>
+                <viewController title="Group Member view" id="O99-t4-YQI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="520-yX-eBc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbg-gK-xs7">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Group" id="m1m-1h-F5P">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8AB-Wp-IzV"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C9U-I8-1u9">
+                                <rect key="frame" x="0.0" y="204" width="414" height="692"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="107" id="Ox0-zk-YJL">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="107"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ox0-zk-YJL" id="TQO-eh-EfD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tk1-ah-hUR">
+                                                    <rect key="frame" x="20" y="11" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm0-2R-aJl">
+                                                    <rect key="frame" x="98" y="43" width="123" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Username&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mm6-po-SzS">
+                                                    <rect key="frame" x="98" y="11" width="123" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Group Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YNE-oa-mf4">
+                                <rect key="frame" x="103" y="105" width="226" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-ip-bFh">
+                                <rect key="frame" x="20" y="163" width="125" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sfk-Ox-q2a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FmK-sQ-m5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3182.608695652174" y="1204.6875"/>
         </scene>
         <!--About Table View Controller-->
         <scene sceneID="t0H-Xc-wC8">
@@ -883,7 +970,7 @@
                 </view>
                 <tapGestureRecognizer id="6wm-TP-K05"/>
             </objects>
-            <point key="canvasLocation" x="5251" y="1191"/>
+            <point key="canvasLocation" x="5117" y="1205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTQ-qf-Vre">
@@ -902,15 +989,16 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIc-5n-0OU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6284" y="471"/>
+            <point key="canvasLocation" x="5761" y="471"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vah-M9-FGg"/>
+        <segue reference="aWl-t1-Pxa"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Camera" width="33" height="33"/>
         <image name="Friends" width="400" height="400"/>
+        <image name="Groups" width="33" height="33"/>
         <image name="People" width="33" height="33"/>
         <image name="Send" width="33" height="33"/>
         <image name="cancel" width="33" height="33"/>

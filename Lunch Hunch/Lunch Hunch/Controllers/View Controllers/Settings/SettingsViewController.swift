@@ -118,11 +118,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else if section == 2{
-            return 3 // changed line
+            return 3 // changed line //JWR Commented out below lines
+
         } else if section == 3 {
             return 2
         } else {
-            return 1
+            
+            return 0
+
         }
     }
     
@@ -142,9 +145,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if row == 0 && section == 2 {
             cell.textLabel?.text = "Friends" // changed line
         } else if row == 1 && section == 2 {
-            cell.textLabel?.text = "Blocked" // changed line
-        } else if row == 2 && section == 2 { // changed line
-            cell.textLabel?.text = "Report User" // changed line
+            cell.textLabel?.text = "Friend Requests" // changed line JWR added requests
+       } else if row == 2 && section == 2 {
+            cell.textLabel?.text = "Blocked"
+
         } else if row == 0 && section == 3 {
             cell.textLabel?.text = "Privacy Policy"
         } else if row == 1 && section == 3 {

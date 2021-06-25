@@ -477,8 +477,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iFh-rJ-azq" kind="relationship" relationship="viewControllers" id="XYO-Gz-Sg5"/>
-                        <segue destination="qpc-23-nky" kind="relationship" relationship="viewControllers" id="qDe-9q-dC3"/>
-                        <segue destination="Vuf-4W-7Ku" kind="relationship" relationship="viewControllers" id="yeh-Jn-9u1"/>
+                        <segue destination="O79-EL-ahP" kind="relationship" relationship="viewControllers" id="xpz-nN-82L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51N-FE-rMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -533,6 +532,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXG-bc-TFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2818" y="267"/>
+        </scene>
+        <!--Restaurants-->
+        <scene sceneID="SYd-9M-9zW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Restaurants" id="O79-EL-ahP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4He-ZK-9Aa"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-Wk-gST" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2830" y="344"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
