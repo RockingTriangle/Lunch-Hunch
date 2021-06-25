@@ -74,6 +74,11 @@
 		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
 		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
+		392004682684F6DF0098045C /* VoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392004672684F6DF0098045C /* VoteTableViewController.swift */; };
+		3920046C2684FE270098045C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920046B2684FE270098045C /* Restaurant.swift */; };
+		3920046F2684FEBE0098045C /* RestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920046E2684FEBE0098045C /* RestaurantController.swift */; };
+		392004712685005A0098045C /* RestaurantListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39200470268500590098045C /* RestaurantListTableViewCell.swift */; };
+		393A97292683EB29007FB295 /* RestaurantVote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393A97282683EB29007FB295 /* RestaurantVote.storyboard */; };
 		672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672E06292683C19E002BEEF6 /* Restaurants.storyboard */; };
 		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -147,6 +152,11 @@
 		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
 		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		392004672684F6DF0098045C /* VoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteTableViewController.swift; sourceTree = "<group>"; };
+		3920046B2684FE270098045C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		3920046E2684FEBE0098045C /* RestaurantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantController.swift; sourceTree = "<group>"; };
+		39200470268500590098045C /* RestaurantListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListTableViewCell.swift; sourceTree = "<group>"; };
+		393A97282683EB29007FB295 /* RestaurantVote.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RestaurantVote.storyboard; sourceTree = "<group>"; };
 		672E06292683C19E002BEEF6 /* Restaurants.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurants.storyboard; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17BAB42216CC38319265E1B /* Pods-Lunch Hunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lunch Hunch.release.xcconfig"; path = "Target Support Files/Pods-Lunch Hunch/Pods-Lunch Hunch.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +241,7 @@
 		13BB634F267927A700AE8CE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3920046D2684FEB10098045C /* Model Controllers */,
 				13CD19ED267EBDE0007C5B6F /* View Models */,
 				13BB6350267927AB00AE8CE2 /* View Controllers */,
 			);
@@ -265,6 +276,7 @@
 				13FED23726813A7200D25BC4 /* Main.storyboard */,
 				13FED23526813A6C00D25BC4 /* Chats.storyboard */,
 				13FED23926813A8900D25BC4 /* LaunchScreen.storyboard */,
+				393A97282683EB29007FB295 /* RestaurantVote.storyboard */,
 			);
 			path = Jacob;
 			sourceTree = "<group>";
@@ -272,6 +284,7 @@
 		13CD19EA267EBDB1007C5B6F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3920046A2684FE190098045C /* Models */,
 				13FED25026813B5E00D25BC4 /* Network */,
 				13FED25526813B5E00D25BC4 /* Defaults.swift */,
 				13FED24E26813B5D00D25BC4 /* Message.swift */,
@@ -438,8 +451,26 @@
 				13FED29E26813C1D00D25BC4 /* MapsViewController.swift */,
 				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
 				13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */,
+				392004672684F6DF0098045C /* VoteTableViewController.swift */,
+				39200470268500590098045C /* RestaurantListTableViewCell.swift */,
 			);
 			path = Chating;
+			sourceTree = "<group>";
+		};
+		3920046A2684FE190098045C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3920046B2684FE270098045C /* Restaurant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3920046D2684FEB10098045C /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3920046E2684FEBE0098045C /* RestaurantController.swift */,
+			);
+			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 		672E06272683C007002BEEF6 /* Mike */ = {
@@ -526,6 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				393A97292683EB29007FB295 /* RestaurantVote.storyboard in Resources */,
 				6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */,
 				13FED23A26813A8900D25BC4 /* LaunchScreen.storyboard in Resources */,
 				13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */,
@@ -590,7 +622,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3920046C2684FE270098045C /* Restaurant.swift in Sources */,
 				13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */,
+				392004682684F6DF0098045C /* VoteTableViewController.swift in Sources */,
 				13FED2A426813C1E00D25BC4 /* RequestsViewController.swift in Sources */,
 				13FED2A226813C1E00D25BC4 /* RequestsCell.swift in Sources */,
 				13FED27226813BA300D25BC4 /* ChatsViewModel.swift in Sources */,
@@ -608,6 +642,7 @@
 				13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */,
 				13FED2A126813C1E00D25BC4 /* ChatsViewController.swift in Sources */,
 				13FED2B126813C1E00D25BC4 /* UserCell.swift in Sources */,
+				392004712685005A0098045C /* RestaurantListTableViewCell.swift in Sources */,
 				13FED2B326813C1E00D25BC4 /* VoiceTableViewCell.swift in Sources */,
 				13FED26C26813BA300D25BC4 /* ChatingViewModel.swift in Sources */,
 				13FED2B426813C1E00D25BC4 /* LocationTableViewCell.swift in Sources */,
@@ -629,6 +664,7 @@
 				13FED24826813B1000D25BC4 /* Constants.swift in Sources */,
 				13FED27E26813BF600D25BC4 /* SigninViewController.swift in Sources */,
 				13FED24B26813B1000D25BC4 /* Enums.swift in Sources */,
+				3920046F2684FEBE0098045C /* RestaurantController.swift in Sources */,
 				13FED27426813BA300D25BC4 /* EditeProfileViewModel.swift in Sources */,
 				13FED27726813BA300D25BC4 /* BlockedViewModel.swift in Sources */,
 				13FED27D26813BF600D25BC4 /* ForgetPasswordViewController.swift in Sources */,
@@ -775,7 +811,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FD53M4BR3B;
+				DEVELOPMENT_TEAM = P9ZKQ564FF;
 				INFOPLIST_FILE = "Lunch Hunch/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -795,7 +831,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FD53M4BR3B;
+				DEVELOPMENT_TEAM = P9ZKQ564FF;
 				INFOPLIST_FILE = "Lunch Hunch/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

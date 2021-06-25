@@ -23,15 +23,12 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var timeLabel   : UILabel!
     
     @IBOutlet weak var sendButton  : UIButton!
-    @IBOutlet weak var mapButton   : UIButton!
-    @IBOutlet weak var microphoneButton: UIButton!
-    @IBOutlet weak var cameraButton: UIButton!
-    @IBOutlet weak var photoButton : UIButton!
+    @IBOutlet weak var hatButton: UIButton!
     
     @IBOutlet weak var textView    : UITextView!
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
-    @IBOutlet weak var actionsStack: UIStackView!
+//    @IBOutlet weak var actionsStack: UIStackView!
     
     
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
@@ -221,16 +218,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         BottomView.isHidden = false
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Handle action buttons
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -250,46 +237,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
             sender.isEnabled = false
             if vm.countOfCells != 0 {
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
-            }
-        }
-    }
-    
-    //---------------------------------------------------------------------------------------------
-    
-    @IBAction func photoButtonPressed(_ sender: UIButton) {
-        if vm.areYouBlocked {
-            let name: String = (vm.friend?.name)!
-            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
-        } else {
-            SystemAuthorization.shared.photoAuthorization { [weak self] (isAuth, message) in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    if isAuth {
-                        self.photoPressed()
-                    } else {
-                        Alert.showAlert(at: self, title: "Photo Library Access", message: message!)
-                    }
-                }
-            }
-        }
-    }
-    
-    //---------------------------------------------------------------------------------------------
-    
-    @IBAction func cameraButtonPressed(_ sender: UIButton) { //JWR present UIAlert for Poll or Randomizer
-        if vm.areYouBlocked {
-            let name: String = (vm.friend?.name)!
-            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
-        } else {
-            SystemAuthorization.shared.cameraAuthorization { [weak self] (isAuth, message) in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    if isAuth {
-                        self.cameraPressed()
-                    } else {
-                        Alert.showAlert(at: self, title: "Camera Access", message: message!)
-                    }
-                }
             }
         }
     }
@@ -326,7 +273,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.2) {
                 if self.audioRecorder != nil {
-                    self.actionsStack.isHidden = true
+//                    self.actionsStack.isHidden = true
                     self.textView.isHidden = true
                     self.sendButton.isEnabled = true
                     self.recordView.isHidden = false
@@ -338,7 +285,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
                 } else {
                     self.timer.invalidate()
                     self.recordView.isHidden = true
-                    self.actionsStack.isHidden = false
+//                    self.actionsStack.isHidden = false
                     self.textView.isHidden = false
                     self.sendButton.isEnabled = false
                 }
@@ -357,12 +304,32 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     private func stringFormate(time: Int)-> String{
         return String(format: "%02d", Int(time) % 60)
     }
+    //---------------------------------------------------------------------------------------------
+    @IBAction func hatButtonTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
+        
+        let restaurants: [String] = []
+        
+        let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
+            self.performSegue(withIdentifier: "toVote", sender: nil)
+        } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
+        
+        let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
+            self.restaurantRandomizer(restaurants: restaurants)
+        } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
+        
+        alertController.addAction(pollAction)
+        alertController.addAction(randomAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
-    
-    
-    
-    
-    
+    //MARK: - FUNCTIONS
+    func restaurantRandomizer(restaurants: [String]) -> String {
+        let restaurant = restaurants.randomElement() ?? nil
+        print(restaurant)
+        return restaurant ?? ""
+    }
     
     
     // MARK:- Handling Keyboard with Notifications
@@ -671,7 +638,7 @@ extension ChatingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         vm.startTyping(friendID: uid)
         UIView.animate(withDuration: 0.2) {
-            self.actionsStack.isHidden = true
+//            self.actionsStack.isHidden = true
         }
         textView.text = ""
         checkDarkMode()
@@ -682,7 +649,7 @@ extension ChatingViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         vm.endTyping(friendID: uid)
         UIView.animate(withDuration: 0.2) {
-            self.actionsStack.isHidden = false
+//            self.actionsStack.isHidden = false
         }
         
         textView.text = "Aa"
