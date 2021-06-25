@@ -34,6 +34,7 @@ class RestaurantViewModel {
     }
     
     var searchLocation = "...searching"
+    
     var finalSearchLocation: CLLocation?
     
     var userSearchChoice = UserSearchChoice.location {
@@ -80,7 +81,14 @@ class RestaurantViewModel {
                              false, false, false, false, false] 
     
     
+    func getCoordinates(from finalLocation: CLLocation) -> Coordinates {
+        var coordinates: Coordinates?
+
+        coordinates?.latitude = finalLocation.coordinate.latitude
+        coordinates?.longitude = finalLocation.coordinate.longitude
         
+        return coordinates
+    }
     
 } // End of class
 
