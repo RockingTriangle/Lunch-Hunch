@@ -134,17 +134,10 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
     
     // MARK:- Actions
     
-//    @objc private func requestsPressed() {
-//        let storyboard = UIStoryboard.init(name: "Chats", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "requests")
-//        present(vc, animated: true)
-//    }
-    
-    @objc private func profilePressed() { //JWR Changed line
-        performSegue(withIdentifier: "ToSettingsVC", sender: self)
-//        let storyboard = UIStoryboard.init(name: "Chats", bundle: nil)
-//        let vc = storyboard.instantiateViewController(identifier: "Settings")
-//        present(vc, animated: true)
+    @objc private func requestsPressed() {
+        let storyboard = UIStoryboard.init(name: "Chats", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "requests")
+        present(vc, animated: true)
     }
     
     @IBAction func friendsPressd(_ sender: UIBarButtonItem) {
@@ -189,7 +182,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         requestView.addSubview(button)
         requestView.addSubview(badge)
         let lefButton = UIBarButtonItem(customView: requestView)
-        button.addTarget(self, action: #selector(profilePressed), for: .touchUpInside) //JWR changed from requestsPressed to profile Pressed
+        button.addTarget(self, action: #selector(requestsPressed), for: .touchUpInside)
         navigationItem.leftBarButtonItem = lefButton
     }
     

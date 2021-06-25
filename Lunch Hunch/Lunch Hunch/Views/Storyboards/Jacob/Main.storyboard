@@ -528,7 +528,6 @@
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="Vuf-4W-7Ku" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="qWG-gv-kIM"/>
-                    <navigationItem key="navigationItem" id="kz3-Wz-rJ9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXG-bc-TFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
