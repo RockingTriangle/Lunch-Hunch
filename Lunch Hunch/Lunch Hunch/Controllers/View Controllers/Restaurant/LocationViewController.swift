@@ -17,7 +17,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     var viewModel = RestaurantViewModel.shared
     var locationManager = LocationManager.shared
     var updateSettingsDelegate: UpdateSettings?
-    var mapRange: Float = 30000
+    var mapRange: Float = 4000
+    var mapSpan: MKCoordinateSpan?
+    let categories: [MKPointOfInterestCategory] = [.bakery, .brewery, .cafe, .foodMarket, .nightlife, .restaurant, .winery]
+    var filter: MKPointOfInterestFilter?
     
     // Mark: - IBOutlets
     @IBOutlet weak var myLocationButton: UIButton!
@@ -31,6 +34,8 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         configureViews()
         mapView.layer.borderColor = UIColor.white.cgColor
         mapView.layer.borderWidth = 2
+        filter = MKPointOfInterestFilter.init(including: categories)
+        mapView.pointOfInterestFilter = filter
     }
     
     // Mark: - IBActions
@@ -76,11 +81,6 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         alertController.addAction(searchAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
-        mapRange = 160_000 - sender.value
-        centerMapView()
     }
     
     func configureViews() {
@@ -130,8 +130,13 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setMapRegion(with location: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion.init(center: location, latitudinalMeters: CLLocationDistance(mapRange), longitudinalMeters: CLLocationDistance(mapRange))
-        mapView.setRegion(region, animated: true)
+        if mapSpan == nil {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: CLLocationDistance(mapRange), longitudinalMeters: CLLocationDistance(mapRange))
+            mapView.setRegion(region, animated: true)
+        } else {
+            let region = MKCoordinateRegion.init(center: location, span: mapSpan!)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func checkLocationServices() {
@@ -144,30 +149,37 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
         let mapCenter = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        
         switch viewModel.userSearchChoice {
         case .location:
-            if (viewModel.currentLocation?.distance(from: mapCenter)) ?? 0 > 400 {
+            if (viewModel.currentLocation?.distance(from: mapCenter)) ?? 0 > 200 {
                 viewModel.finalSearchLocation = mapCenter
                 viewModel.userSearchChoice = .custom
                 setMapRegion(with: CLLocationCoordinate2D(latitude: mapCenter.coordinate.latitude, longitude: mapCenter.coordinate.longitude))
             }
         case .city(_):
-            if (viewModel.cityLocation?.distance(from: mapCenter)) ?? 0 > 400 {
+            if (viewModel.cityLocation?.distance(from: mapCenter)) ?? 0 > 200 {
                 viewModel.finalSearchLocation = mapCenter
                 viewModel.userSearchChoice = .custom
             }
         case .zipcode(_):
-            if (viewModel.zipcodeLocation?.distance(from: mapCenter)) ?? 0 > 400 {
+            if (viewModel.zipcodeLocation?.distance(from: mapCenter)) ?? 0 > 200 {
                 viewModel.finalSearchLocation = mapCenter
                 viewModel.userSearchChoice = .custom
             }
         case .custom:
-            if (viewModel.finalSearchLocation?.distance(from: mapCenter)) ?? 0 > 400 {
+            if (viewModel.finalSearchLocation?.distance(from: mapCenter)) ?? 0 > 200 {
                 viewModel.finalSearchLocation = mapCenter
                 viewModel.userSearchChoice = .custom
             }
         }
-        centerMapView()
+        configureViews()
+        updateSettingsDelegate?.updateSettings()
+    }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        mapSpan = mapView.region.span
     }
 }
