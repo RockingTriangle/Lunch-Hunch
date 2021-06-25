@@ -15,6 +15,7 @@
 		13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB63382679277600AE8CE2 /* AppDelegate.swift */; };
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
+		13CD50262685852300DA2F62 /* FoodTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD50252685852300DA2F62 /* FoodTypesViewController.swift */; };
 		13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FA388B2681495D0036B276 /* GoogleService-Info.plist */; };
 		13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23126813A4900D25BC4 /* Settings.storyboard */; };
 		13FED23426813A6300D25BC4 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23326813A6300D25BC4 /* People.storyboard */; };
@@ -92,6 +93,7 @@
 		13BB633A2679277600AE8CE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		13BB63412679277800AE8CE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13BB63462679277800AE8CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13CD50252685852300DA2F62 /* FoodTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypesViewController.swift; sourceTree = "<group>"; };
 		13FA388B2681495D0036B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13FED23126813A4900D25BC4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		13FED23326813A6300D25BC4 /* People.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
 				132C89C92684248D002292B1 /* LocationViewController.swift */,
+				13CD50252685852300DA2F62 /* FoodTypesViewController.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				13FED24D26813B1000D25BC4 /* Extensions.swift in Sources */,
 				13FED2B226813C1E00D25BC4 /* PeopleViewController.swift in Sources */,
 				132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */,
+				13CD50262685852300DA2F62 /* FoodTypesViewController.swift in Sources */,
 				13FED25626813B5E00D25BC4 /* Message.swift in Sources */,
 				13FED26E26813BA300D25BC4 /* ResetPasswordViewModel.swift in Sources */,
 				13FED27C26813BF600D25BC4 /* SignupViewController.swift in Sources */,

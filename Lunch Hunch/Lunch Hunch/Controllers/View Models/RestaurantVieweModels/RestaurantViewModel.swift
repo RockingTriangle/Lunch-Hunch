@@ -39,7 +39,6 @@ class RestaurantViewModel {
     var userSearchChoice = UserSearchChoice.location {
         didSet {
             searchLocation = userSearchChoice.description
-            print(searchLocation)
         }
     }
     
@@ -63,10 +62,24 @@ class RestaurantViewModel {
             finalSearchLocation = zipcodeLocation
         }
     }
+    
+    var customLocation: CLLocation? {
+        didSet {
+            searchLocation = userSearchChoice.description
+            finalSearchLocation = customLocation
+        }
+    }
         
     var radiusAmount: Int = 15
     
     var priceOptions: [Bool] = [true, false, false, false]
+    
+    var foodTypes: [Bool] = [true, false, false, false, false,
+                             false, false, false, false, false,
+                             false, false, false, false, false,
+                             false, false, false, false, false] 
+    
+    
         
     
 } // End of class

@@ -26,6 +26,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var myLocationButton: UIButton!
     @IBOutlet weak var cityButton: UIButton!
     @IBOutlet weak var zipcodeButton: UIButton!
+    @IBOutlet weak var setLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
 
     override func viewDidLoad() {
@@ -33,9 +34,11 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         configureViews()
         mapView.layer.borderColor = UIColor.white.cgColor
-        mapView.layer.borderWidth = 2
+        mapView.layer.borderWidth = 8
         filter = MKPointOfInterestFilter.init(including: categories)
         mapView.pointOfInterestFilter = filter
+        setLocationButton.setTitleColor(.lightText, for: .normal)
+        myLocationButton.backgroundColor = .darkText
     }
     
     // Mark: - IBActions
@@ -66,6 +69,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     @IBAction func zipcodeButtonTappd(_ sender: Any) {
         let alertController = UIAlertController(title: "ZIP CODE", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField) in
+            textField.keyboardType = .numberPad
             textField.placeholder = "Enter 5 digit zip Code..."
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -81,6 +85,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         alertController.addAction(searchAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func setButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func configureViews() {
@@ -100,8 +108,10 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
                   let coordinates = placemark.location?.coordinate else { return }
             if self.viewModel.userSearchChoice.description.contains("City") {
                 self.viewModel.cityLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
-            } else {
+            } else if self.viewModel.userSearchChoice.description.contains("Zip") {
                 self.viewModel.zipcodeLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+            } else {
+                self.viewModel.finalSearchLocation = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
             }
             DispatchQueue.main.async {
                 self.configureViews()
@@ -124,7 +134,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             guard let location = viewModel.zipcodeLocation?.coordinate else { return }
             setMapRegion(with: location)
         case .custom:
-            guard let location = viewModel.finalSearchLocation?.coordinate else { return }
+            guard let location = viewModel.customLocation?.coordinate else { return }
             setMapRegion(with: location)
         }
     }
@@ -155,24 +165,27 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         switch viewModel.userSearchChoice {
         case .location:
             if (viewModel.currentLocation?.distance(from: mapCenter)) ?? 0 > 200 {
-                viewModel.finalSearchLocation = mapCenter
+                viewModel.customLocation = mapCenter
                 viewModel.userSearchChoice = .custom
                 setMapRegion(with: CLLocationCoordinate2D(latitude: mapCenter.coordinate.latitude, longitude: mapCenter.coordinate.longitude))
             }
         case .city(_):
             if (viewModel.cityLocation?.distance(from: mapCenter)) ?? 0 > 200 {
-                viewModel.finalSearchLocation = mapCenter
+                viewModel.customLocation = mapCenter
                 viewModel.userSearchChoice = .custom
+                setMapRegion(with: CLLocationCoordinate2D(latitude: mapCenter.coordinate.latitude, longitude: mapCenter.coordinate.longitude))
             }
         case .zipcode(_):
             if (viewModel.zipcodeLocation?.distance(from: mapCenter)) ?? 0 > 200 {
-                viewModel.finalSearchLocation = mapCenter
+                viewModel.customLocation = mapCenter
                 viewModel.userSearchChoice = .custom
+                setMapRegion(with: CLLocationCoordinate2D(latitude: mapCenter.coordinate.latitude, longitude: mapCenter.coordinate.longitude))
             }
         case .custom:
             if (viewModel.finalSearchLocation?.distance(from: mapCenter)) ?? 0 > 200 {
-                viewModel.finalSearchLocation = mapCenter
+                viewModel.customLocation = mapCenter
                 viewModel.userSearchChoice = .custom
+                setMapRegion(with: CLLocationCoordinate2D(latitude: mapCenter.coordinate.latitude, longitude: mapCenter.coordinate.longitude))
             }
         }
         configureViews()
