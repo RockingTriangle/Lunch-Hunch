@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Options {
-    static var foodOptions: [String] = ["restaurants",
+struct FoodTypeOptions {
+    static var options: [String] = ["restaurants",
                                         "italian",
                                         "mexican",
                                         "tradamerican",
@@ -17,13 +17,13 @@ struct Options {
                                         "hawaiian",
                                         "mediterranean",
                                         "burgers",
-                                        "sandwiches",
                                         "bbq",
                                         "tacos",
-                                        "sushi",
                                         "pizza",
-                                        "steak",
+                                        "sushi",
                                         "buffee",
+                                        "sandwiches",
+                                        "steak",
                                         "gluten_free",
                                         "vegetarian,vegan",
                                         "salad",

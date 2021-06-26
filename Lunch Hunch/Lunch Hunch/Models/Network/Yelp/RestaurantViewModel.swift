@@ -73,23 +73,16 @@ class RestaurantViewModel {
         
     var radiusAmount: Int = 15
     
-    var priceOptions: [Bool] = [true, false, false, false]
-    
     var foodTypes: [Bool] = [true, false, false, false, false,
                              false, false, false, false, false,
                              false, false, false, false, false,
-                             false, false, false, false, false] 
+                             false, false, false, false, false]
     
-    
-    func getCoordinates(from finalLocation: CLLocation) -> Coordinates {
-        var coordinates: Coordinates?
-
-        coordinates?.latitude = finalLocation.coordinate.latitude
-        coordinates?.longitude = finalLocation.coordinate.longitude
-        
-        return coordinates
-    }
+    var priceOptions: [Bool] = [true, false, false, false]
+    var priceValues: [Int] = [1, 2, 3, 4]
     
 } // End of class
+
+
 
 

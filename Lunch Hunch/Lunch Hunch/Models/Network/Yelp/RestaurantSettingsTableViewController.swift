@@ -11,7 +11,9 @@ import CoreLocation
 class RestaurantSettingsTableViewController: UITableViewController {
     
     var viewModel = RestaurantViewModel.shared
-    let locationManager = LocationManager.shared
+    var locationManager = LocationManager.shared
+    var endPoint = YELPEndpoint.shared
+    
     var buttonArray: [UIButton] = []
     
     @IBOutlet weak var locationLabel: UILabel!
@@ -50,6 +52,51 @@ class RestaurantSettingsTableViewController: UITableViewController {
         updatePriceButtons()
     }
     
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        
+        guard let location = viewModel.finalSearchLocation else { return }
+        
+        let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
+        let searchLongitude = URLQueryItem(name: "longitude", value: String(location.coordinate.longitude))
+        
+        endPoint.locationQueries = [searchLatitude, searchLongitude]
+        
+        endPoint.parameters = []
+        
+        endPoint.parameters.append(YELPEndpoint.Parameters.radius(Int(viewModel.radiusAmount * 1600)).parameterQueryItem)
+        
+        for index in (1...19) {
+            if viewModel.foodTypes[index] {
+                endPoint.parameters.append(YELPEndpoint.Parameters.categories(FoodTypeOptions.options[index]).parameterQueryItem)
+            }
+        }
+        
+        var priceQuery: [Int] = []
+        for index in (0...3) {
+            if viewModel.priceOptions[index] == true {
+                priceQuery.append(viewModel.priceValues[index])
+            }
+        }
+        var priceString = priceQuery.map { String($0) }
+        let finalPriceString = priceString.joined(separator: ",")
+        
+        //
+        //  I am here!!!!
+        //
+        
+        
+        switch settings.price {
+        case 0:
+            YELPEndpoint.shared.parameters.append(YELPEndpoint.Parameters.price(settings.price + 1).parameterQueryItem)
+        case 1:
+            YELPEndpoint.shared.parameters.append(YELPEndpoint.Parameters.price(settings.price + 1).parameterQueryItem)
+        case 2:
+            YELPEndpoint.shared.parameters.append(YELPEndpoint.Parameters.price(settings.price + 1).parameterQueryItem)
+        default:
+            YELPEndpoint.shared.parameters.append(YELPEndpoint.Parameters.price(settings.price + 1).parameterQueryItem)
+        }
+        YelpBusinessModelController.shared.fetchBusinesses()
+    }
     
     func configureCells() {
         locationLabel.text = viewModel.searchLocation.description
@@ -77,9 +124,10 @@ class RestaurantSettingsTableViewController: UITableViewController {
             destinationVC.updateSettingsDelegate = self
         }
     }
-
+    
 }
 
+// Mark: - Extension
 extension RestaurantSettingsTableViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -49,15 +49,17 @@ class FoodTypesViewController: UIViewController {
         
         switch index {
         case 0:
-            for toggle in (0...19) {
+            for toggle in (0...7) {
                 toggleArray[toggle].isOn = false
                 viewModel.foodTypes[toggle] = false
             }
             toggleArray[0].isOn.toggle()
             viewModel.foodTypes[0] = toggleArray[0].isOn
-        default:
+        case 1...7:
             toggleArray[0].isOn = false
             viewModel.foodTypes[0] = toggleArray[0].isOn
+            viewModel.foodTypes[index] = toggleArray[index].isOn
+        default:
             viewModel.foodTypes[index] = toggleArray[index].isOn
         }
     }

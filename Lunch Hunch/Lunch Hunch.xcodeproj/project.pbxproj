@@ -12,6 +12,13 @@
 		132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */; };
 		132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C92684248D002292B1 /* LocationViewController.swift */; };
 		132C89CC26842637002292B1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89CB26842637002292B1 /* LocationManager.swift */; };
+		13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */; };
+		13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */; };
+		13AA39FB26868525006E1F1C /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39FA26868525006E1F1C /* Business.swift */; };
+		13AA39FD26868543006E1F1C /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39FC26868543006E1F1C /* FoodTypes.swift */; };
+		13AA3A0126868674006E1F1C /* YelpServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA3A0026868674006E1F1C /* YelpServicing.swift */; };
+		13AA3A03268686A9006E1F1C /* YelpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA3A02268686A9006E1F1C /* YelpService.swift */; };
+		13AA3A05268686C7006E1F1C /* YelpEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */; };
 		13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB63382679277600AE8CE2 /* AppDelegate.swift */; };
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
@@ -88,6 +95,13 @@
 		132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSettingsTableViewController.swift; sourceTree = "<group>"; };
 		132C89C92684248D002292B1 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		132C89CB26842637002292B1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		13AA39FA26868525006E1F1C /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		13AA39FC26868543006E1F1C /* FoodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypes.swift; sourceTree = "<group>"; };
+		13AA3A0026868674006E1F1C /* YelpServicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpServicing.swift; sourceTree = "<group>"; };
+		13AA3A02268686A9006E1F1C /* YelpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpService.swift; sourceTree = "<group>"; };
+		13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpEndpoint.swift; sourceTree = "<group>"; };
 		13BB63352679277600AE8CE2 /* Lunch Hunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lunch Hunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BB63382679277600AE8CE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13BB633A2679277600AE8CE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,9 +192,9 @@
 		132C89472683D1D2002292B1 /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
 				132C89C92684248D002292B1 /* LocationViewController.swift */,
 				13CD50252685852300DA2F62 /* FoodTypesViewController.swift */,
+				13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -188,10 +202,50 @@
 		132C894A2683D230002292B1 /* RestaurantVieweModels */ = {
 			isa = PBXGroup;
 			children = (
-				132C894B2683D265002292B1 /* RestaurantViewModel.swift */,
+				13AA39F4268662E8006E1F1C /* Cells */,
 				132C89CB26842637002292B1 /* LocationManager.swift */,
 			);
 			path = RestaurantVieweModels;
+			sourceTree = "<group>";
+		};
+		13AA39F4268662E8006E1F1C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		13AA39F9268684F6006E1F1C /* Yelp */ = {
+			isa = PBXGroup;
+			children = (
+				13AA39FA26868525006E1F1C /* Business.swift */,
+				13AA39FC26868543006E1F1C /* FoodTypes.swift */,
+			);
+			path = Yelp;
+			sourceTree = "<group>";
+		};
+		13AA39FE2686864C006E1F1C /* FireBase */ = {
+			isa = PBXGroup;
+			children = (
+				13FED25126813B5E00D25BC4 /* FBAuthentication.swift */,
+				13FED25226813B5E00D25BC4 /* Network.swift */,
+				13FED25326813B5E00D25BC4 /* FBDatabase.swift */,
+				13FED25426813B5E00D25BC4 /* FBNetworkRequest.swift */,
+			);
+			path = FireBase;
+			sourceTree = "<group>";
+		};
+		13AA39FF2686865E006E1F1C /* Yelp */ = {
+			isa = PBXGroup;
+			children = (
+				13AA3A0026868674006E1F1C /* YelpServicing.swift */,
+				13AA3A02268686A9006E1F1C /* YelpService.swift */,
+				13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */,
+				132C894B2683D265002292B1 /* RestaurantViewModel.swift */,
+				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
+			);
+			path = Yelp;
 			sourceTree = "<group>";
 		};
 		13BB632C2679277600AE8CE2 = {
@@ -302,6 +356,7 @@
 		13CD19EA267EBDB1007C5B6F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				13AA39F9268684F6006E1F1C /* Yelp */,
 				13FED25026813B5E00D25BC4 /* Network */,
 				13FED25526813B5E00D25BC4 /* Defaults.swift */,
 				13FED24E26813B5D00D25BC4 /* Message.swift */,
@@ -340,10 +395,8 @@
 		13FED25026813B5E00D25BC4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				13FED25126813B5E00D25BC4 /* FBAuthentication.swift */,
-				13FED25226813B5E00D25BC4 /* Network.swift */,
-				13FED25326813B5E00D25BC4 /* FBDatabase.swift */,
-				13FED25426813B5E00D25BC4 /* FBNetworkRequest.swift */,
+				13AA39FF2686865E006E1F1C /* Yelp */,
+				13AA39FE2686864C006E1F1C /* FireBase */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -645,6 +698,7 @@
 				13FED26D26813BA300D25BC4 /* SignupViewModel.swift in Sources */,
 				13FED2AB26813C1E00D25BC4 /* BlockedUsersTableViewController.swift in Sources */,
 				13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */,
+				13AA3A03268686A9006E1F1C /* YelpService.swift in Sources */,
 				13FED25726813B5E00D25BC4 /* User.swift in Sources */,
 				13FED27026813BA300D25BC4 /* AboutViewModel.swift in Sources */,
 				13FED2AF26813C1E00D25BC4 /* AddFriendTableViewController.swift in Sources */,
@@ -656,6 +710,7 @@
 				132C89CC26842637002292B1 /* LocationManager.swift in Sources */,
 				13FED25A26813B5E00D25BC4 /* FBDatabase.swift in Sources */,
 				13FED25926813B5E00D25BC4 /* Network.swift in Sources */,
+				13AA3A0126868674006E1F1C /* YelpServicing.swift in Sources */,
 				132C894C2683D265002292B1 /* RestaurantViewModel.swift in Sources */,
 				13FED24926813B1000D25BC4 /* Alert.swift in Sources */,
 				13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */,
@@ -670,9 +725,14 @@
 				132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */,
 				13FED25C26813B5E00D25BC4 /* Defaults.swift in Sources */,
 				13FED2A526813C1E00D25BC4 /* ChatsCell.swift in Sources */,
+				13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */,
 				13FED24D26813B1000D25BC4 /* Extensions.swift in Sources */,
+				13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */,
 				13FED2B226813C1E00D25BC4 /* PeopleViewController.swift in Sources */,
+				13AA39FB26868525006E1F1C /* Business.swift in Sources */,
+				13AA3A05268686C7006E1F1C /* YelpEndpoint.swift in Sources */,
 				132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */,
+				13AA39FD26868543006E1F1C /* FoodTypes.swift in Sources */,
 				13CD50262685852300DA2F62 /* FoodTypesViewController.swift in Sources */,
 				13FED25626813B5E00D25BC4 /* Message.swift in Sources */,
 				13FED26E26813BA300D25BC4 /* ResetPasswordViewModel.swift in Sources */,

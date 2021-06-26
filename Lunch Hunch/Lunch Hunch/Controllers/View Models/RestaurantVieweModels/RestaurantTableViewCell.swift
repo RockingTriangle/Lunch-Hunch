@@ -8,16 +8,21 @@
 import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    // Mark: - IBOutlets
+    @IBOutlet weak var userSelectionButton: UIButton!
+    @IBOutlet weak var businessImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var ratingImageView: UIImageView!
+    @IBOutlet weak var numberOfRatingsLabel: UILabel!
+    
+    
+    
+    @IBAction func userSelectionButtonTapped(_ sender: Any) {
+        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-}
+} // End of class
