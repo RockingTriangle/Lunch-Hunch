@@ -21,6 +21,8 @@ struct Business: Codable, Hashable {
     let location: Location
     let displayPhone: String
     
+    var isSelected: Bool = false
+    
     enum CodingKeys: String, CodingKey {
         case id, name, rating, coordinates, price, location
         case imageURL = "image_url"

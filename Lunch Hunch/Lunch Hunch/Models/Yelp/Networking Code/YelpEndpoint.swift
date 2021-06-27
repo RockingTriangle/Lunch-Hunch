@@ -44,7 +44,7 @@ extension YELPEndpoint {
     enum Parameters {
         case radius(Int)
         case categories(String)
-        case price(Int)
+        case price(String)
         
         var parameterQueryItem: URLQueryItem {
             switch self {
@@ -53,7 +53,7 @@ extension YELPEndpoint {
             case .categories(let categories):
                 return URLQueryItem(name: "categories", value: categories)
             case .price(let price):
-                return URLQueryItem(name: "price", value: "\(price)")
+                return URLQueryItem(name: "price", value: price)
             }
         }
     }

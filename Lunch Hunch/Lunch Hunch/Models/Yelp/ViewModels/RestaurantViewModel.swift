@@ -8,10 +8,18 @@
 import UIKit
 import CoreLocation
 
+protocol RefreshData {
+    func refreshData()
+}
+
 class RestaurantViewModel {
     
     // Mark: - Static Instance
     static let shared = RestaurantViewModel()
+    private let yelpService = YELPService()
+    
+    var businesses: [Business] = []
+    var delegate: RefreshData?
     
     enum UserSearchChoice {
         case location
@@ -80,6 +88,22 @@ class RestaurantViewModel {
     
     var priceOptions: [Bool] = [true, false, false, false]
     var priceValues: [Int] = [1, 2, 3, 4]
+    
+    func fetchBusinesses() {
+        fetch(YELPEndpoint.shared)
+    }
+    
+    private func fetch(_ endpoint: YELPEndpoint) {
+        yelpService.fetch(Businesses.self, from: endpoint) { [weak self] result in
+            switch result {
+            case .success(let businesses):
+                self?.businesses = businesses.businesses
+                self?.delegate?.refreshData()
+            case .failure(let error):
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n\(error)")
+            }
+        }
+    }
     
 } // End of class
 

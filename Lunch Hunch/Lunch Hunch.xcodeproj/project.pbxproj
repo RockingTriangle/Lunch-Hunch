@@ -11,7 +11,6 @@
 		132C894C2683D265002292B1 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C894B2683D265002292B1 /* RestaurantViewModel.swift */; };
 		132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */; };
 		132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C92684248D002292B1 /* LocationViewController.swift */; };
-		132C89CC26842637002292B1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89CB26842637002292B1 /* LocationManager.swift */; };
 		13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */; };
 		13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */; };
 		13AA39FB26868525006E1F1C /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39FA26868525006E1F1C /* Business.swift */; };
@@ -23,6 +22,7 @@
 		13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB633A2679277600AE8CE2 /* SceneDelegate.swift */; };
 		13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13BB63412679277800AE8CE2 /* Assets.xcassets */; };
 		13CD50262685852300DA2F62 /* FoodTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD50252685852300DA2F62 /* FoodTypesViewController.swift */; };
+		13E7240F2687928D00834A09 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E7240E2687928D00834A09 /* LocationManager.swift */; };
 		13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FA388B2681495D0036B276 /* GoogleService-Info.plist */; };
 		13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23126813A4900D25BC4 /* Settings.storyboard */; };
 		13FED23426813A6300D25BC4 /* People.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23326813A6300D25BC4 /* People.storyboard */; };
@@ -94,7 +94,6 @@
 		132C894B2683D265002292B1 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSettingsTableViewController.swift; sourceTree = "<group>"; };
 		132C89C92684248D002292B1 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		132C89CB26842637002292B1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		13AA39FA26868525006E1F1C /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
@@ -108,6 +107,7 @@
 		13BB63412679277800AE8CE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13BB63462679277800AE8CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13CD50252685852300DA2F62 /* FoodTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypesViewController.swift; sourceTree = "<group>"; };
+		13E7240E2687928D00834A09 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		13FA388B2681495D0036B276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13FED23126813A4900D25BC4 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		13FED23326813A6300D25BC4 /* People.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = People.storyboard; sourceTree = "<group>"; };
@@ -189,38 +189,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		132C89472683D1D2002292B1 /* Restaurant */ = {
-			isa = PBXGroup;
-			children = (
-				132C89C92684248D002292B1 /* LocationViewController.swift */,
-				13CD50252685852300DA2F62 /* FoodTypesViewController.swift */,
-				13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */,
-			);
-			path = Restaurant;
-			sourceTree = "<group>";
-		};
-		132C894A2683D230002292B1 /* RestaurantVieweModels */ = {
-			isa = PBXGroup;
-			children = (
-				13AA39F4268662E8006E1F1C /* Cells */,
-				132C89CB26842637002292B1 /* LocationManager.swift */,
-			);
-			path = RestaurantVieweModels;
-			sourceTree = "<group>";
-		};
 		13AA39F4268662E8006E1F1C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */,
 			);
 			name = Cells;
+			path = RestaurantVieweModels;
 			sourceTree = "<group>";
 		};
 		13AA39F9268684F6006E1F1C /* Yelp */ = {
 			isa = PBXGroup;
 			children = (
-				13AA39FA26868525006E1F1C /* Business.swift */,
-				13AA39FC26868543006E1F1C /* FoodTypes.swift */,
+				13E7240D268790CB00834A09 /* Cuetom Views */,
+				13E7240C268790A900834A09 /* Networking Code */,
+				13E7240B2687909B00834A09 /* ViewControllers */,
+				13E7240A2687909500834A09 /* ViewModels */,
+				13E724092687908D00834A09 /* Models */,
+				13E7240E2687928D00834A09 /* LocationManager.swift */,
 			);
 			path = Yelp;
 			sourceTree = "<group>";
@@ -234,18 +220,6 @@
 				13FED25426813B5E00D25BC4 /* FBNetworkRequest.swift */,
 			);
 			path = FireBase;
-			sourceTree = "<group>";
-		};
-		13AA39FF2686865E006E1F1C /* Yelp */ = {
-			isa = PBXGroup;
-			children = (
-				13AA3A0026868674006E1F1C /* YelpServicing.swift */,
-				13AA3A02268686A9006E1F1C /* YelpService.swift */,
-				13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */,
-				132C894B2683D265002292B1 /* RestaurantViewModel.swift */,
-				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
-			);
-			path = Yelp;
 			sourceTree = "<group>";
 		};
 		13BB632C2679277600AE8CE2 = {
@@ -323,7 +297,6 @@
 		13BB6350267927AB00AE8CE2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				132C89472683D1D2002292B1 /* Restaurant */,
 				13FED28F26813C1D00D25BC4 /* About */,
 				13FED29826813C1D00D25BC4 /* Chating */,
 				13FED27F26813C1D00D25BC4 /* Chats */,
@@ -368,7 +341,6 @@
 		13CD19ED267EBDE0007C5B6F /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				132C894A2683D230002292B1 /* RestaurantVieweModels */,
 				13FED26226813BA300D25BC4 /* AboutViewModel.swift */,
 				13FED25E26813BA300D25BC4 /* Authentication */,
 				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
@@ -392,10 +364,55 @@
 			path = "Helper and Extensions";
 			sourceTree = "<group>";
 		};
+		13E724092687908D00834A09 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13AA39FA26868525006E1F1C /* Business.swift */,
+				13AA39FC26868543006E1F1C /* FoodTypes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		13E7240A2687909500834A09 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				132C894B2683D265002292B1 /* RestaurantViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		13E7240B2687909B00834A09 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
+				132C89C92684248D002292B1 /* LocationViewController.swift */,
+				13CD50252685852300DA2F62 /* FoodTypesViewController.swift */,
+				13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		13E7240C268790A900834A09 /* Networking Code */ = {
+			isa = PBXGroup;
+			children = (
+				13AA3A0026868674006E1F1C /* YelpServicing.swift */,
+				13AA3A02268686A9006E1F1C /* YelpService.swift */,
+				13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */,
+			);
+			path = "Networking Code";
+			sourceTree = "<group>";
+		};
+		13E7240D268790CB00834A09 /* Cuetom Views */ = {
+			isa = PBXGroup;
+			children = (
+				13AA39F4268662E8006E1F1C /* Cells */,
+			);
+			path = "Cuetom Views";
+			sourceTree = "<group>";
+		};
 		13FED25026813B5E00D25BC4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				13AA39FF2686865E006E1F1C /* Yelp */,
 				13AA39FE2686864C006E1F1C /* FireBase */,
 			);
 			path = Network;
@@ -707,7 +724,6 @@
 				13FED26F26813BA300D25BC4 /* SigninViewModel.swift in Sources */,
 				13FED25826813B5E00D25BC4 /* FBAuthentication.swift in Sources */,
 				13FED2A926813C1E00D25BC4 /* EditeProfileViewController.swift in Sources */,
-				132C89CC26842637002292B1 /* LocationManager.swift in Sources */,
 				13FED25A26813B5E00D25BC4 /* FBDatabase.swift in Sources */,
 				13FED25926813B5E00D25BC4 /* Network.swift in Sources */,
 				13AA3A0126868674006E1F1C /* YelpServicing.swift in Sources */,
@@ -725,6 +741,7 @@
 				132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */,
 				13FED25C26813B5E00D25BC4 /* Defaults.swift in Sources */,
 				13FED2A526813C1E00D25BC4 /* ChatsCell.swift in Sources */,
+				13E7240F2687928D00834A09 /* LocationManager.swift in Sources */,
 				13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */,
 				13FED24D26813B1000D25BC4 /* Extensions.swift in Sources */,
 				13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */,
