@@ -224,6 +224,9 @@
                     <navigationItem key="navigationItem" title="Restaurant Search Results" id="qQ9-YU-kgg">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Ve3-OP-RPL"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="Ve3-OP-RPL" id="9zk-Lf-SrD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6n-uG-rjG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

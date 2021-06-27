@@ -9,16 +9,16 @@ import UIKit
 
 class RestaurantSearchResultsTableViewController: UITableViewController {
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     var results = RestaurantViewModel.shared
     
-    var selectedCount = 0
-    var selectedBusinesses: [Int] = []
-    
-    // Mark: - Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         results.delegate = self
         results.businesses = []
+        saveButton.isEnabled = false
     }
 
     // MARK: - Table view data source
@@ -31,12 +31,14 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
                                                        for: indexPath) as? RestaurantTableViewCell
                                                        else { return UITableViewCell()}
         cell.prepareForReuse()
-        cell.delegate = self
+        cell.checkCountDelegate = self
+        cell.tooManyDelegate = self
         cell.business = results.businesses[indexPath.row]
+        cell.index = indexPath.row
         return cell
     }
         
-    // Mark: - Functions
+    // MARK: - Functions
     func showErorrAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "OK", style: .default) { [weak self] (action) -> Void in
@@ -47,6 +49,7 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
     }
 }
 
+// MARK: - Extensions
 extension RestaurantSearchResultsTableViewController: RefreshData {
     func refreshData() {
         tableView.reloadData()
@@ -56,22 +59,21 @@ extension RestaurantSearchResultsTableViewController: RefreshData {
     }
 }
 
-// BUG BUG BUG
+extension RestaurantSearchResultsTableViewController: CheckSelectionCountDelegate {
+    func checkSelectionCount(_ index: Int) {
+        if results.selectedBusiness.count < 2 {
+            saveButton.isEnabled = false
+        } else if results.selectedBusiness.count == 2 {
+            saveButton.isEnabled = true
+        }
+    }
+}
 
-extension RestaurantSearchResultsTableViewController: SelectBusinessDelegate {
-    func updateBusinessSelection(_ business: inout Business) {
-//        guard let index = results.businesses.firstIndex(of: business) else { return }
-//        let indexPath = IndexPath(row: index, section: 0)
-//        results.businesses[index].isSelected.toggle()
-//        selectedCount += 1
-//        selectedBusinesses.append(index)
-//        self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//        if selectedCount > 2 {
-//            let removedIndex = selectedBusinesses[1]
-//            results.businesses[removedIndex].isSelected.toggle()
-//            selectedBusinesses.remove(at: 1)
-//            selectedCount -= 1
-//            self.tableView.reloadRows(at: [IndexPath(row: removedIndex, section: 0)], with: .automatic)
-//        }
+extension RestaurantSearchResultsTableViewController: TooManySelectedDelegate {
+    func showTooManySelectedMessage() {
+        let alert = UIAlertController(title: "Sorry", message: "You can only select two restaurants. To select this restaurant, please deselect on of your other choices first.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

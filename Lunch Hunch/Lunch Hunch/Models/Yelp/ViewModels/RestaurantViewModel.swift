@@ -14,11 +14,12 @@ protocol RefreshData {
 
 class RestaurantViewModel {
     
-    // Mark: - Static Instance
     static let shared = RestaurantViewModel()
     private let yelpService = YELPService()
     
     var businesses: [Business] = []
+    var selectedBusiness: Set<Int> = []
+    
     var delegate: RefreshData?
     
     enum UserSearchChoice {

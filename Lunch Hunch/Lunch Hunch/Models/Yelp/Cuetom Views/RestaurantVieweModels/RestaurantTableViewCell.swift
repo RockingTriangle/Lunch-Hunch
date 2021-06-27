@@ -5,8 +5,12 @@
 //  Created by Mike Conner on 6/25/21.
 //
 
-protocol SelectBusinessDelegate {
-    func updateBusinessSelection(_ business: inout Business)
+protocol CheckSelectionCountDelegate {
+    func checkSelectionCount(_ index: Int)
+}
+
+protocol TooManySelectedDelegate {
+    func showTooManySelectedMessage()
 }
 
 import UIKit
@@ -14,6 +18,7 @@ import UIKit
 class RestaurantTableViewCell: UITableViewCell {
     
     private let service = YELPService()
+    var results = RestaurantViewModel.shared
     
     // Mark: - IBOutlets
     @IBOutlet weak var userSelectionButton: UIButton!
@@ -25,8 +30,12 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var numberOfRatingsLabel: UILabel!
     
+    
+    
     // Mark: - Properties
-    var delegate: SelectBusinessDelegate?
+    var checkCountDelegate: CheckSelectionCountDelegate?
+    var tooManyDelegate: TooManySelectedDelegate?
+    var index: Int?
     var business: Business? {
         didSet {
             fetchimage()
@@ -34,10 +43,25 @@ class RestaurantTableViewCell: UITableViewCell {
     }
     
     // Mark: - IBActions
-    @IBAction func userSelectionButtonTapped(_ sender: Any) {
-        guard let _ = business else { return }
-        business!.isSelected.toggle()
-        delegate?.updateBusinessSelection(&business!)
+    @IBAction func userSelectionButtonTapped(_ sender: UIButton) {
+        guard let _ = business, let index = index else { return }
+        if results.selectedBusiness.count < 2 {
+            business!.isSelected = business!.isSelected ? false : true
+            if results.selectedBusiness.contains(index) {
+                results.selectedBusiness.remove(index)
+                userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            } else {
+                results.selectedBusiness.insert(index)
+                userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+            }
+        } else if results.selectedBusiness.contains(index) {
+            business?.isSelected = false
+            userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            results.selectedBusiness.remove(index)
+        } else {
+            tooManyDelegate?.showTooManySelectedMessage()
+        }
+        checkCountDelegate?.checkSelectionCount(index)
     }
 
     @IBAction func readReviewsButtonTapped(_ sender: Any) {
@@ -48,11 +72,13 @@ class RestaurantTableViewCell: UITableViewCell {
     
     // Mark: - Functions
     func updateViews() {
-        guard let business = business else { return }
+        guard let business = business, let index = index else { return }
         userSelectionButton.layer.cornerRadius = userSelectionButton.frame.height / 2
-        userSelectionButton.setBackgroundImage(business.isSelected ?
-                                                UIImage(systemName: "checkmark.circle.fill") :
-                                                UIImage(systemName: "checkmark.circle"), for: .normal)
+        if results.selectedBusiness.contains(index) {
+            userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        } else {
+            userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        }
         nameLabel.text = business.name
         addressLabel.text = "\(business.location.displayAddress.first ?? "No address")\n\(business.location.displayAddress.last ?? "")"
         phoneLabel.text = business.displayPhone
@@ -82,8 +108,8 @@ class RestaurantTableViewCell: UITableViewCell {
             switch result {
             case .some(let image):
                 DispatchQueue.main.async {
-                    self?.businessImageView.image = image
-                    self?.updateViews()
+                    self!.businessImageView.image = image
+                    self!.updateViews()
                 }
             case .none:
                 print("Error downloading image.")
