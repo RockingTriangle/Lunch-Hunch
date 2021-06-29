@@ -1,9 +1,8 @@
 //
 //  FBNetworkRequest.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 6/17/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import Foundation
@@ -154,6 +153,7 @@ class FBNetworkRequest {
         FBAuthentication.shared.ref.child("friends_list").child(uid).child(id).removeValue()
     }
     
+
     // MARK:- Block User
     func blockUser(uid: String) {
         guard let id = currentUser.id else { return }
@@ -218,4 +218,8 @@ class FBNetworkRequest {
             }
         }
     }
-}
+} //End of class
+
+
+
+

@@ -1,9 +1,8 @@
 //
 //  PhotoDetailViewController.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 7/12/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit

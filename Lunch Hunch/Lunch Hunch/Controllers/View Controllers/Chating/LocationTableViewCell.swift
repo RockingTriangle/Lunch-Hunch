@@ -1,10 +1,5 @@
 //
-//  LocationTableViewCell.swift
-//  Message Now
-//
-//  Created by Hazem Tarek on 7/13/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
-//
+//  LocationTableViewCell.swiftv
 
 import UIKit
 import MapKit

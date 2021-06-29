@@ -1,14 +1,13 @@
 //
 //  RequestsViewController.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 6/17/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit
 
-class RequestsViewController: UIViewController { //JWR need to add request view
+class RequestsViewController: UIViewController {
     
     var usersRecived = [User]() { didSet { self.tableView.reloadData() } }
     var usersSent    = [User]() { didSet { self.tableView.reloadData() } }

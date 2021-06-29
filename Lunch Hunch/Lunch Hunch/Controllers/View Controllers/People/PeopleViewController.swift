@@ -1,9 +1,8 @@
 //
 //  PeopleTableViewController.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 4/24/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit
@@ -134,7 +133,7 @@ extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         vm.pressedCell(at: indexPath)
-        performSegue(withIdentifier: "PeopleToAbout", sender: self) //JWR Changed withIdentifier from PeopleToChatting -> PeopleToAbout
+        performSegue(withIdentifier: "PeopleToChating", sender: self)
         return indexPath
     }
     

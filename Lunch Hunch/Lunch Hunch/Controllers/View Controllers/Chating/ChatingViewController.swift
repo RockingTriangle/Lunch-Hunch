@@ -1,9 +1,8 @@
 //
 //  ChatingViewController.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 4/24/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit
@@ -112,14 +111,14 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     func initUserVM() {
         vm.updateBottomViewClouser = { [weak self] in
             guard let self = self else { return }
-            self.vm.isFriendBlocked || self.vm.areYouBlocked ? self.hideBottomView() : self.showBottomView()
+            self.vm.isFriendBlocked || self.vm.isYouBlocked ? self.hideBottomView() : self.showBottomView()
         }
         vm.updateUserInfoClouser = { [weak self] in
             guard let self = self else { return }
             self.titleLabel.text  = self.vm.friend?.name
             self.statusLabel.text = self.vm.friend?.status
         }
-        vm.updateUserImageClouser = { [weak self] in
+        vm.updateUserImageoClouser = { [weak self] in
             guard let self = self else { return }
             self.button.setImage(self.vm.friend_image, for: .normal)
         }
@@ -196,9 +195,9 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     //---------------------------------------------------------------------------------------------
     @objc private func imagePressed() {
-        if vm.areYouBlocked {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
-            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show their profile", message: "")
+            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else { performSegue(withIdentifier: "ChatingToAbout", sender: self) }
         
     }
@@ -221,7 +220,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK:- Handle action buttons
     
     @IBAction func sendPressed(_ sender: UIButton) {
-        if vm.areYouBlocked {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
             Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else {
@@ -242,6 +241,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     //---------------------------------------------------------------------------------------------
+
     private func sendAudioRecording() {
         audioRecorder.stop()
         recordingSession = .sharedInstance()
