@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class RestaurantSearchResultsTableViewController: UITableViewController {
     
@@ -20,6 +21,13 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
         results.businesses = []
         saveButton.isEnabled = false
     }
+    
+    //MARK: - Properties
+    private let RESTAURANT_REF         = FBAuthentication.shared.ref.child("restaurants")
+
+    var ref = Database.database().reference()
+    
+   
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,7 +52,11 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        print("kjhbgkjhgb")
+        guard let id = currentUser.id else {return}
+        for business in results.selectedBusiness {
+            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([results.businesses[business].name : results.businesses[business].name])
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Functions
@@ -113,5 +125,27 @@ extension RestaurantSearchResultsTableViewController {
         alert.addAction(sortByBestMatchAction)
         present(alert, animated: true)
     }
+} //End of class
+
+struct SearchedRestaurants {
+    var id: String
+    var name: String
+    var imageURL: String
+    var rating: Double
+    var coordinates: Coordinates
+    var price: String?
+    var voteCount: Int = 0
 }
+
+struct PolledRestaurants {
+    var id: String
+    var name: String
+    var imageURL: String
+    var rating: Double
+    var coordinates: Coordinates
+    var price: String?
+    var voteCount: Int
+}
+
+
 
