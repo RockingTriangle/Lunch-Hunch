@@ -13,7 +13,7 @@ class EditeProfileViewController: UIViewController {
     private var countryList = [String]()
     private let vm          = EditeProfileViewModel()
     private var image       = UIImage() { didSet {
-                              profileImage.setImage(image, for: .normal) }}
+        profileImage.setImage(image, for: .normal) }}
     
     
     
@@ -30,7 +30,7 @@ class EditeProfileViewController: UIViewController {
         initView()
         initVM()
     }
-
+    
     
     
     
@@ -102,7 +102,7 @@ class EditeProfileViewController: UIViewController {
     
     
     
-
+    
 }
 
 
@@ -147,7 +147,9 @@ extension EditeProfileViewController: UIImagePickerControllerDelegate, UINavigat
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
+        DispatchQueue.main.async {
+            self.present(imagePickerController, animated: true)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

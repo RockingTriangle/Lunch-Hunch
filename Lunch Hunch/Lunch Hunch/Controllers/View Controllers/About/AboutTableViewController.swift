@@ -48,7 +48,7 @@ class AboutTableViewController: UITableViewController {
         
         navigationController?.navigationBar.shadowImage = UIImage()
         
-        tapGesture.addTarget(self, action: #selector(photoPressed))
+//        tapGesture.addTarget(self, action: #selector(photoPressed))
         
         tableView.tableFooterView = UIView()
         title = name
@@ -83,12 +83,12 @@ class AboutTableViewController: UITableViewController {
     
     // MARK:- Actions
     
-    @objc private func photoPressed() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "toPhoto") as! PhotoDetailViewController
-        vc.photoURL = vm.userViewModel.imageURL!
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true)
-    }
+//    @objc private func photoPressed() {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "toPhoto") as! PhotoDetailViewController
+//        vc.photoURL = vm.userViewModel.imageURL!
+//        vc.modalTransitionStyle = .crossDissolve
+//        present(vc, animated: true)
+//    }
     
     
     

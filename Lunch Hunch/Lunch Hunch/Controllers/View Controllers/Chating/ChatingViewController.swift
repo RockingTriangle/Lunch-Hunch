@@ -318,8 +318,11 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
             self.restaurantRandomizer(restaurants: restaurants)
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alertController.addAction(pollAction)
         alertController.addAction(randomAction)
+        alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
     }
