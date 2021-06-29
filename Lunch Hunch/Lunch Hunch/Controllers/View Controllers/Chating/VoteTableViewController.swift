@@ -45,7 +45,9 @@ class VoteTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard selectedList.count == 3 else {return}
         
+        calculateWinner(restaurants: selectedList)
     }
 
     // MARK: - Table view data source
@@ -119,7 +121,16 @@ class VoteTableViewController: UITableViewController {
         return .none
     }
     
-
+    func calculateWinner(restaurants: [Restaurant]) {
+        
+        var points = 3
+        
+        for restaurant in restaurants {
+            restaurant.voteCount += points
+            points -= 1
+            print(restaurant.voteCount, restaurant.name)
+        }
+    }
     
 }//End of class
 
