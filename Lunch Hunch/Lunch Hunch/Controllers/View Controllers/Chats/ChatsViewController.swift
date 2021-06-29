@@ -134,9 +134,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
     // MARK:- Actions
     
     @objc private func requestsPressed() {
-        let storyboard = UIStoryboard.init(name: "Chats", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "requests")
-        present(vc, animated: true)
+        performSegue(withIdentifier: "ToSettingsVC", sender: self)
     }
     
     @IBAction func friendsPressd(_ sender: UIBarButtonItem) {

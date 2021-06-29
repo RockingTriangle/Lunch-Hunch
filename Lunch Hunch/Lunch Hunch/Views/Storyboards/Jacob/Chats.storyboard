@@ -164,6 +164,7 @@
                         <outlet property="connectionView" destination="fZh-zx-wZZ" id="qBf-9l-bkW"/>
                         <outlet property="tableView" destination="nA1-sT-ohY" id="LBp-ej-SRo"/>
                         <segue destination="r9S-2e-VNp" kind="show" identifier="ChatsToChating" id="VYL-CY-LWD"/>
+                        <segue destination="O28-Qg-QLy" kind="show" identifier="ToSettingsVC" id="Dj7-PO-kyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFT-yz-hn8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -275,6 +276,16 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="5331.884057971015" y="-177.45535714285714"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="pYk-u8-3HN">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Settings" storyboardName="Settings" id="O28-Qg-QLy" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Hnr-Hd-pmt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2df-P3-uOw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4088" y="-561"/>
         </scene>
         <!--about-->
         <scene sceneID="2tK-Oq-bwR">
