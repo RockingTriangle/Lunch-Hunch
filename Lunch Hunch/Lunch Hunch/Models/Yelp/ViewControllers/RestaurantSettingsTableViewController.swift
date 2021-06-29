@@ -19,6 +19,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
     @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var foodTypeCellLabel: UILabel!
     @IBOutlet weak var priceButtonOne: UIButton!
     @IBOutlet weak var priceButtonTwo: UIButton!
     @IBOutlet weak var priceButtonThree: UIButton!
@@ -28,6 +29,11 @@ class RestaurantSettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         configureCells()
         configureLocationManager()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureCells()
     }
     
     @IBAction func radiusSliderValueChanged(_ sender: UISlider) {
@@ -56,6 +62,13 @@ class RestaurantSettingsTableViewController: UITableViewController {
         locationLabel.text = viewModel.searchLocation.description
         radiusLabel.text = "Radius: \(viewModel.radiusAmount) miles"
         radiusSlider.value = Float(viewModel.radiusAmount)
+        var didSelectCustomFoodSelection = false
+        for index in (1...19) {
+            if viewModel.foodTypes[index] == true {
+                didSelectCustomFoodSelection = true
+            }
+        }
+        foodTypeCellLabel.text = didSelectCustomFoodSelection ? "Custom food type search, tap to edit." : "Search all options, tap to edit."
         buttonArray = [priceButtonOne, priceButtonTwo, priceButtonThree, priceButtonFour]
         updatePriceButtons()
     }
@@ -67,7 +80,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
     
     func updatePriceButtons() {
         for index in 0...3 {
-            buttonArray[index].setTitleColor(viewModel.priceOptions[index] == true ? .lightText : .darkText, for: .normal)
+            buttonArray[index].setTitleColor(viewModel.priceOptions[index] == true ? .white : .darkText, for: .normal)
             buttonArray[index].backgroundColor = viewModel.priceOptions[index] == true ? .darkText : .lightText
         }
     }

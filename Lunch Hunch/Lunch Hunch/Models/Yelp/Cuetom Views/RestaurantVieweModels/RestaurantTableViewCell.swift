@@ -29,8 +29,7 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var numberOfRatingsLabel: UILabel!
-    
-    
+    @IBOutlet weak var view: UIView!
     
     // Mark: - Properties
     var checkCountDelegate: CheckSelectionCountDelegate?
@@ -39,6 +38,7 @@ class RestaurantTableViewCell: UITableViewCell {
     var business: Business? {
         didSet {
             fetchimage()
+            view.alpha = 0
         }
     }
     
@@ -110,6 +110,9 @@ class RestaurantTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self!.businessImageView.image = image
                     self!.updateViews()
+                    UIView.animate(withDuration: 1.0) {
+                        self!.view.alpha = 1
+                    }
                 }
             case .none:
                 print("Error downloading image.")

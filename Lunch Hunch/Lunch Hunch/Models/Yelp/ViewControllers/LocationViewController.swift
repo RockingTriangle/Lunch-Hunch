@@ -37,8 +37,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         mapView.layer.borderWidth = 8
         filter = MKPointOfInterestFilter.init(including: categories)
         mapView.pointOfInterestFilter = filter
-        setLocationButton.setTitleColor(.lightText, for: .normal)
-        myLocationButton.backgroundColor = .darkText
+        setLocationButton.setTitleColor(.white, for: .normal)
     }
     
     // Mark: - IBActions
@@ -58,7 +57,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             guard let city = alertController.textFields?.first?.text,
                   !city.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
             
-            self.viewModel.userSearchChoice = .city(city)
+            self.viewModel.userSearchChoice = .city(city.capitalized)
             self.getCoordinats(from: city)            
         }
         alertController.addAction(searchAction)
@@ -92,11 +91,11 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     func configureViews() {
-        myLocationButton.setTitleColor(viewModel.userSearchChoice.description.contains("My Location") ? .lightText : .darkText, for: .normal)
+        myLocationButton.setTitleColor(viewModel.userSearchChoice.description.contains("My Location") ? .white : .darkText, for: .normal)
         myLocationButton.backgroundColor = viewModel.userSearchChoice.description.contains("My Location") ? .darkText : .lightText
-        cityButton.setTitleColor(viewModel.userSearchChoice.description.contains("City") ? .lightText : .darkText, for: .normal)
+        cityButton.setTitleColor(viewModel.userSearchChoice.description.contains("City") ? .white : .darkText, for: .normal)
         cityButton.backgroundColor = viewModel.userSearchChoice.description.contains("City") ? .darkText : .lightText
-        zipcodeButton.setTitleColor(viewModel.userSearchChoice.description.contains("Zipcode") ? .lightText : .darkText, for: .normal)
+        zipcodeButton.setTitleColor(viewModel.userSearchChoice.description.contains("Zipcode") ? .white : .darkText, for: .normal)
         zipcodeButton.backgroundColor = viewModel.userSearchChoice.description.contains("Zipcode") ? .darkText : .lightText
         centerMapView()
     }

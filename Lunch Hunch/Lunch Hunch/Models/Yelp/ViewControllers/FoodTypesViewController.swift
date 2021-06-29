@@ -59,12 +59,27 @@ class FoodTypesViewController: UIViewController {
             toggleArray[0].isOn = false
             viewModel.foodTypes[0] = toggleArray[0].isOn
             viewModel.foodTypes[index] = toggleArray[index].isOn
+            var setAllToTrue = true
+            for toggle in (1...7) {
+                if viewModel.foodTypes[toggle] == true {
+                    setAllToTrue = false
+                    break
+                }
+            }
+            if setAllToTrue {
+                toggleArray[0].isOn = true
+                viewModel.foodTypes[0] = true
+            }
         default:
             viewModel.foodTypes[index] = toggleArray[index].isOn
         }
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func setFoodTypesButtonTapped(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     

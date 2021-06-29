@@ -30,6 +30,7 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell",
                                                        for: indexPath) as? RestaurantTableViewCell
                                                        else { return UITableViewCell() }
+        cell.alpha = 0
         cell.prepareForReuse()
         cell.checkCountDelegate = self
         cell.tooManyDelegate = self
@@ -113,3 +114,4 @@ extension RestaurantSearchResultsTableViewController {
         present(alert, animated: true)
     }
 }
+
