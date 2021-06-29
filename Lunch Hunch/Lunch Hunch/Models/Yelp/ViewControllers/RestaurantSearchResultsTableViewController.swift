@@ -29,7 +29,7 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell",
                                                        for: indexPath) as? RestaurantTableViewCell
-                                                       else { return UITableViewCell()}
+                                                       else { return UITableViewCell() }
         cell.prepareForReuse()
         cell.checkCountDelegate = self
         cell.tooManyDelegate = self
@@ -37,7 +37,15 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
         cell.index = indexPath.row
         return cell
     }
-        
+    
+    @IBAction func sortButtonTapped(_ sender: Any) {
+        showAlert(with: "Sorting Options", and: "Please choose an option below:")
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        print("")
+    }
+    
     // MARK: - Functions
     func showErorrAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -74,6 +82,34 @@ extension RestaurantSearchResultsTableViewController: TooManySelectedDelegate {
         let alert = UIAlertController(title: "Sorry", message: "You can only select two restaurants. To select this restaurant, please deselect on of your other choices first.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+
+extension RestaurantSearchResultsTableViewController {
+    func showAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let sortByDistanceAction = UIAlertAction(title: "Distance", style: .default) { [weak self] (action) -> Void in
+            YELPEndpoint.shared.sortingOption = .distance
+            self?.results.fetchBusinesses()
+            self?.refreshData()
+            self?.dismiss(animated: false, completion: nil)
+        }
+        let sortByRatingAction = UIAlertAction(title: "Rating", style: .default) { [weak self] (action) -> Void in
+            YELPEndpoint.shared.sortingOption = .rating
+            self?.results.fetchBusinesses()
+            self?.refreshData()
+            self?.dismiss(animated: false, completion: nil)
+        }
+        let sortByBestMatchAction = UIAlertAction(title: "Best Match", style: .default) { [weak self] (action) -> Void in
+            YELPEndpoint.shared.sortingOption = .bestMatch
+            self?.results.fetchBusinesses()
+            self?.refreshData()
+            self?.dismiss(animated: false, completion: nil)
+        }
+        alert.addAction(sortByDistanceAction)
+        alert.addAction(sortByRatingAction)
+        alert.addAction(sortByBestMatchAction)
         present(alert, animated: true)
     }
 }

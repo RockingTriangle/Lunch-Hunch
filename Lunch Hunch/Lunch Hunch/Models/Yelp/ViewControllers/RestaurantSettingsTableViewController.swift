@@ -78,6 +78,8 @@ class RestaurantSettingsTableViewController: UITableViewController {
             destinationVC.updateSettingsDelegate = self
         }
         if segue.identifier == "toResultsVC" {
+            
+            if viewModel.priceOptions.contains(true) {
             guard let location = viewModel.finalSearchLocation else { return }
             
             let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
@@ -107,6 +109,9 @@ class RestaurantSettingsTableViewController: UITableViewController {
             endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
             
             RestaurantViewModel.shared.fetchBusinesses()
+            } else {
+                showAlert(with: "Sorry", and: "You must select one or more of the pricing options to proceed.")
+            }
         }
     }
     
@@ -129,5 +134,16 @@ extension RestaurantSettingsTableViewController: UpdateSettings {
     
     func updateSettings() {
         configureCells()
+    }
+}
+
+extension RestaurantSettingsTableViewController {
+    func showAlert(with title: String, and message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            self.dismiss(animated: false, completion: nil)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

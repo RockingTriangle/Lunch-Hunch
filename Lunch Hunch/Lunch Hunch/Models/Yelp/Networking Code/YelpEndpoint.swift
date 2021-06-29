@@ -32,10 +32,8 @@ class YELPEndpoint {
         }
         
         components.queryItems?.append(sortingOption.sortingOptionValue)
-        
         return components.url
     }
-    
 }
 
 // MARK: - Extension
