@@ -114,14 +114,14 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     func initUserVM() {
         vm.updateBottomViewClouser = { [weak self] in
             guard let self = self else { return }
-            self.vm.isFriendBlocked || self.vm.areYouBlocked ? self.hideBottomView() : self.showBottomView()
+            self.vm.isFriendBlocked || self.vm.isYouBlocked ? self.hideBottomView() : self.showBottomView()
         }
         vm.updateUserInfoClouser = { [weak self] in
             guard let self = self else { return }
             self.titleLabel.text  = self.vm.friend?.name
             self.statusLabel.text = self.vm.friend?.status
         }
-        vm.updateUserImageClouser = { [weak self] in
+        vm.updateUserImageoClouser = { [weak self] in
             guard let self = self else { return }
             self.button.setImage(self.vm.friend_image, for: .normal)
         }
@@ -198,9 +198,9 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     //---------------------------------------------------------------------------------------------
     @objc private func imagePressed() {
-        if vm.areYouBlocked {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
-            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show their profile", message: "")
+            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else { performSegue(withIdentifier: "ChatingToAbout", sender: self) }
         
     }
@@ -233,7 +233,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK:- Handle action buttons
     
     @IBAction func sendPressed(_ sender: UIButton) {
-        if vm.areYouBlocked {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
             Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else {
@@ -256,7 +256,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     //---------------------------------------------------------------------------------------------
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
-        if vm.areYouBlocked {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
             Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else {
@@ -275,8 +275,8 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     
     //---------------------------------------------------------------------------------------------
     
-    @IBAction func cameraButtonPressed(_ sender: UIButton) { //JWR present UIAlert for Poll or Randomizer
-        if vm.areYouBlocked {
+    @IBAction func cameraButtonPressed(_ sender: UIButton) {
+        if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
             Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else {
@@ -293,6 +293,72 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    //---------------------------------------------------------------------------------------------
+    
+    @IBAction func locationButtonPressed(_ sender: UIButton) {
+        manager.delegate = self
+        if vm.isYouBlocked {
+            let name: String = (vm.friend?.name)!
+            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
+        } else {
+            let status = CLLocationManager.authorizationStatus() 
+            if status == .denied  || status == .restricted{
+                Alert.showAlert(at: self, title: "Loaction Access", message: "Please enable Location Services in your Settings")
+            } else if status == .notDetermined {
+                manager.requestWhenInUseAuthorization()
+            } else {
+                let vc = storyboard?.instantiateViewController(withIdentifier: "map") as! MapsViewController
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .fullScreen
+                vc.delegate = self
+                DispatchQueue.main.async {
+                    self.present(vc, animated: true)
+                }
+                
+            }
+        }
+    }
+    
+    //---------------------------------------------------------------------------------------------
+    // Handle recording action
+    @IBAction func microphoneButtonPressed(_ sender: Any) {
+        if vm.isYouBlocked {
+            let name: String = (vm.friend?.name)!
+            Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
+        } else {
+            recordingSession = .sharedInstance()
+            do {
+                try recordingSession.setCategory(.playAndRecord, mode: .default)
+                try recordingSession.setActive(true)
+                try recordingSession.overrideOutputAudioPort(.speaker)
+                recordingSession.requestRecordPermission() { [unowned self] isAuth in
+                    DispatchQueue.main.async {
+                        if isAuth {
+                            self.startAudioRecording()
+                        } else {
+                            Alert.showAlert(at: self, title: "Microphone Access", message: "Please enable Microphone in your Settings")
+                        }
+                    }
+                }
+            } catch {
+                Alert.showAlert(at: self, title: "Voice Issue", message: error.localizedDescription)
+            }
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    private func startAudioRecording() {
+        let fileName = getDirectory().appendingPathComponent("sentAudio.m4a")
+        let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+        do{
+            audioRecorder = try AVAudioRecorder(url: fileName, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+            updateRecordingUI()
+        }catch{
+            Alert.showAlert(at: self, title: "Voice Note", message: "There's a problem, Thanks to try again")
+            print(error.localizedDescription)
+        }
+    }
     //---------------------------------------------------------------------------------------------
     private func sendAudioRecording() {
         audioRecorder.stop()

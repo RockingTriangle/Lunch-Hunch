@@ -104,7 +104,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 180
-        } else if section == 1 || section == 2 || section == 3 { // changed line JWR added section 3
+        } else if section == 1 || section == 2 { // changed line
             return 30
         } else {
             return 5
@@ -118,14 +118,13 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         } else if section == 2{
             return 3 // changed line //JWR Commented out below lines
-//        } else if section == 3 {
-//            return 2
+
         } else if section == 3 {
-            return 1
+            return 2
         } else {
-        
+            
             return 0
-    
+
         }
     }
     
@@ -134,7 +133,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         let section = indexPath.section
         if row == 0 && section == 0 {
-            cell.textLabel?.text = "Edit Profile"
+            cell.textLabel?.text = "Edite Profile"
         } else if row == 1 && section == 0 {
             cell.textLabel?.text = "Change Password"
         } else if row == 0 && section == 1 {
@@ -146,13 +145,14 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = "Friends" // changed line
         } else if row == 1 && section == 2 {
             cell.textLabel?.text = "Friend Requests" // changed line JWR added requests
-       } else if row == 2 && section == 2 { // changed line
-            cell.textLabel?.text = "Blocked" // changed line JWR changed to Blocked from Report
-//        } else if row == 0 && section == 3 { //JWR Commented out and below
-//            cell.textLabel?.text = "Privacy Policy"
-//        } else if row == 1 && section == 3 {
-//            cell.textLabel?.text = "Terms of Service"
+       } else if row == 2 && section == 2 {
+            cell.textLabel?.text = "Blocked"
+
         } else if row == 0 && section == 3 {
+            cell.textLabel?.text = "Privacy Policy"
+        } else if row == 1 && section == 3 {
+            cell.textLabel?.text = "Terms of Service"
+        } else if row == 0 && section == 4 {
             cell.textLabel?.text = "Sign Out"
             cell.textLabel?.textColor = #colorLiteral(red: 1, green: 0.3032806202, blue: 0.02296007777, alpha: 1)
             cell.accessoryType = .none
@@ -161,7 +161,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 3 && indexPath.row == 0 {
+        if indexPath.section == 4 && indexPath.row == 0 {
             let alert = UIAlertController(title: "Are you sure to sign out?", message: nil, preferredStyle: .actionSheet)
             alert.addAction(.init(title: "Sign Out", style: .destructive, handler: { [weak self](_) in
                 guard let self = self else { return }
@@ -190,9 +190,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 && indexPath.row == 0 {
             performSegue(withIdentifier: "available", sender: self)
         } else if indexPath.section == 2 && indexPath.row == 0 {
-            performSegue(withIdentifier: "toFriendsListVC", sender: self)//JWR Friends list view on people storyboard
+            performSegue(withIdentifier: "blockedUsers", sender: self)
         } else if indexPath.section == 2 && indexPath.row == 1 {
-            performSegue(withIdentifier: "toRequests", sender: self) //JWR Show Requests VC
+            performSegue(withIdentifier: "blockedUsers", sender: self)
         } else if indexPath.section == 2 && indexPath.row == 2 {
             performSegue(withIdentifier: "blockedUsers", sender: self)
         }

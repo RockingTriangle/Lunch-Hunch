@@ -93,6 +93,7 @@
                         <segue destination="t1U-hX-qod" kind="show" identifier="available" id="b27-s3-qO3"/>
                         <segue destination="dWF-PD-mv3" kind="show" identifier="toFriendsListVC" id="IGS-xV-4B4"/>
                         <segue destination="Cyv-No-xvh" kind="show" identifier="toRequests" id="e7z-3F-vVP"/>
+                        <segue destination="4bR-il-HYy" kind="show" identifier="toReportUserVC" id="iLF-Wb-qUH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSZ-F1-okK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -234,6 +235,7 @@
             <point key="canvasLocation" x="1820" y="1083"/>
         </scene>
         <!--Edit Profile-->
+
         <scene sceneID="EpG-Ur-ggI">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="dJW-QN-Lbi" customClass="EditeProfileViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
@@ -314,50 +316,7 @@
             </objects>
             <point key="canvasLocation" x="2522" y="1083"/>
         </scene>
-        <!--Report VC-->
-        <scene sceneID="TCN-dR-F8j">
-            <objects>
-                <viewController title="Report VC" id="4bR-il-HYy" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d3N-ha-duQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2D-Wm-cTT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Report" id="bgq-aJ-t9e"/>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-kI-2rJ">
-                                <rect key="frame" x="20" y="117" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Why are you reporting this user?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0V0-Xb-dSl">
-                                <rect key="frame" x="20" y="184" width="374" height="440"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-nc-BYC">
-                                <rect key="frame" x="20" y="691" width="374" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Submit"/>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="RQL-KS-wen"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OfU-YY-uvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4643" y="1083"/>
-        </scene>
+
         <!--Change Password View Controller-->
         <scene sceneID="4kc-hn-tAT">
             <objects>
@@ -739,6 +698,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEo-5j-qxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3690" y="357"/>
+
         </scene>
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>

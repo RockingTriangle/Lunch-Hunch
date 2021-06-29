@@ -752,6 +752,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="hAT-G9-maU">
                         <barButtonItem key="backBarButtonItem" title=" " id="VpF-A3-Olt"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="Groups" id="naA-tr-Ypq"/>
+
                     </navigationItem>
                     <connections>
                         <outlet property="BottomView" destination="fCT-cc-apb" id="B54-lS-Bwd"/>

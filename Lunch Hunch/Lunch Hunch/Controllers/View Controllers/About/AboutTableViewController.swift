@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
-class AboutTableViewController: UITableViewController { //JWR add report user to this page. This pagee should pop up whenever user image is tapped
+class AboutTableViewController: UITableViewController {
     
     public var name: String?
     public var uid : String?
@@ -27,11 +29,9 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         initVM()
     }
     
-    
-    
-    
-    
-    
+    //MARK: - Properties
+    private let REPORT_REF         = FBAuthentication.shared.ref.child("reported_users")
+
     
     
     // MARK:- Init view and view model
@@ -93,12 +93,6 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
     
     
     
-    
-    
-    
-    
-    
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -125,7 +119,7 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         if section == 0 {
             return 4
         } else {
-            return 1
+            return 2
         }
     }
     
@@ -152,7 +146,7 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
             cell.textLabel?.text   = vm.isBlocked ? "Unblock" : "Block"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
-        } else if row == 1 && section == 1 { // JWR add Report user
+        } else if row == 1 && section == 1 { 
             cell.textLabel?.text = "Report User"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
@@ -164,10 +158,93 @@ class AboutTableViewController: UITableViewController { //JWR add report user to
         return 50
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         if indexPath.row == 0 && indexPath.section == 1 {
             vm.isBlocked ? vm.unblockUser(uid: uid!) : vm.blockUser(uid: uid!)
+        } else if indexPath.row == 1 && indexPath.section == 1 {
+
+            presentControllerReport()
+            
         }
+        
     }
     
+    //MARK: - Report User Properties
+    var reason: String = String()
+    var reports: Int = Int()
+        
+    
+    func presentControllerReport() { //take in a user?
+        let alertController = UIAlertController(title: "Report User", message: "Why do you want to report this user?", preferredStyle: .actionSheet)
+        //Bullying Button
+        let bullyingAction = UIAlertAction(title: "Bullying", style: .default) { (action) in
+            self.reason = "Bullying"
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
+            
+            let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason).", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            successAlert.addAction(okAction)
+            self.present(successAlert, animated: true, completion: nil)
+        }
+        //Hate Speech Button
+        let harassmentAction = UIAlertAction(title: "Harassment", style: .default) { (action) in
+            self.reason = "Harassment"
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
+            
+                let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            successAlert.addAction(okAction)
+            self.present(successAlert, animated: true, completion: nil)
+        }
+        //Hate Speech Button
+        let hateSpeechAction = UIAlertAction(title: "Hate Speech", style: .default) { (action) in
+            self.reason = "Hate Speech"
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
+            
+                let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            }
+            successAlert.addAction(okAction)
+            self.present(successAlert, animated: true, completion: nil)
+        }
+        //Inappropriate button
+        let inapropriateAction = UIAlertAction(title: "Inappropriate Content", style: .default) { (action) in
+            self.reason = "Inappropriate content"
+            self.reports += 1
+            self.reportUser(uid: self.uid!, reason: self.reason)
+            
+            let successAlert = UIAlertController(title: "User Has Been Reported for \(self.reason)", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+
+            }
+            successAlert.addAction(okAction)
+            self.present(successAlert, animated: true, completion: nil)
+        }
+        
+        //Cancel Action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        }
+        
+        //Add Actions
+        alertController.addAction(inapropriateAction)
+        alertController.addAction(bullyingAction)
+        alertController.addAction(harassmentAction)
+        alertController.addAction(hateSpeechAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+
+    }
+    func reportUser(uid: String, reason: String) { 
+        guard let id = currentUser.id else {return}
+        REPORT_REF.child("report").child(uid).updateChildValues([reason : reports])
+        REPORT_REF.child("reported_by").child(id).updateChildValues([reason : reports])
+
+        print("User \(uid) has been reported for \(reason)")
+    }
 }
