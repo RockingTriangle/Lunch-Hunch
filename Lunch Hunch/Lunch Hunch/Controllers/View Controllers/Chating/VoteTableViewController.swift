@@ -6,10 +6,9 @@
 //
 
 import UIKit
+import Firebase
 
 class VoteTableViewController: UITableViewController {
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +17,18 @@ class VoteTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        
+        FirebaseApp.configure() //JWR
+        refRestaurants.observe(DataEventType.value, with: {(snapshot) in //JWR
+            if snapshot.childrenCount > 0 {
+                self.restaurantLists
+            }
+        })
     }
     
+    //MARK: - Properties
+    var listOfRestaurants = [String]()
+
+    var refRestaurants = Database.database().reference().child("restaurants").child(currentUser.id!).child("picked_restaurants_from_search") //JWR
     var restaurant: Restaurant?
     var restaurantList: [Restaurant] = RestaurantController.shared.restaurantList
     var selectedList: [Restaurant] = RestaurantController.shared.selectedList
