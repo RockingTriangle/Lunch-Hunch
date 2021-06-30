@@ -93,35 +93,34 @@ class RestaurantSettingsTableViewController: UITableViewController {
         if segue.identifier == "toResultsVC" {
             
             if viewModel.priceOptions.contains(true) {
-            guard let location = viewModel.finalSearchLocation else { return }
-            
-            let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
-            let searchLongitude = URLQueryItem(name: "longitude", value: String(location.coordinate.longitude))
-            
-            endPoint.locationQueries = [searchLatitude, searchLongitude]
-            
-            endPoint.parameters = []
-            
-            endPoint.parameters.append(YELPEndpoint.Parameters.radius(Int(viewModel.radiusAmount * 1600)).parameterQueryItem)
-            
-            for index in (1...19) {
-                if viewModel.foodTypes[index] {
-                    endPoint.parameters.append(YELPEndpoint.Parameters.categories(FoodTypeOptions.options[index]).parameterQueryItem)
+                guard let location = viewModel.finalSearchLocation else { return }
+                let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
+                let searchLongitude = URLQueryItem(name: "longitude", value: String(location.coordinate.longitude))
+                
+                endPoint.locationQueries = [searchLatitude, searchLongitude]
+                
+                endPoint.parameters = []
+                
+                endPoint.parameters.append(YELPEndpoint.Parameters.radius(Int(viewModel.radiusAmount * 1600)).parameterQueryItem)
+                
+                for index in (1...19) {
+                    if viewModel.foodTypes[index] {
+                        endPoint.parameters.append(YELPEndpoint.Parameters.categories(FoodTypeOptions.options[index]).parameterQueryItem)
+                    }
                 }
-            }
-            
-            var priceQuery: [Int] = []
-            for index in (0...3) {
-                if viewModel.priceOptions[index] == true {
-                    priceQuery.append(viewModel.priceValues[index])
+                
+                var priceQuery: [Int] = []
+                for index in (0...3) {
+                    if viewModel.priceOptions[index] == true {
+                        priceQuery.append(viewModel.priceValues[index])
+                    }
                 }
-            }
-            let priceString = priceQuery.map { String($0) }
-            let finalPriceString = priceString.joined(separator: ",")
-            
-            endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
-            
-            RestaurantViewModel.shared.fetchBusinesses()
+                let priceString = priceQuery.map { String($0) }
+                let finalPriceString = priceString.joined(separator: ",")
+                
+                endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
+                
+                RestaurantViewModel.shared.fetchBusinesses()
             } else {
                 showAlert(with: "Sorry", and: "You must select one or more of the pricing options to proceed.")
             }
@@ -157,6 +156,7 @@ extension RestaurantSettingsTableViewController {
             self.dismiss(animated: false, completion: nil)
         }
         alert.addAction(okAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
 }

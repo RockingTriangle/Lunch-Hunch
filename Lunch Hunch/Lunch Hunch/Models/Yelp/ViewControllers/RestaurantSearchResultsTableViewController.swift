@@ -70,6 +70,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
             self?.dismiss(animated: false, completion: nil)
         }
         alert.addAction(dismissAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
 }
@@ -126,6 +127,7 @@ extension RestaurantSearchResultsTableViewController {
         alert.addAction(sortByRatingAction)
         alert.addAction(sortByBestMatchAction)
         alert.addAction(cancelAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
 } //End of class

@@ -62,6 +62,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         }
         alertController.addAction(searchAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
         present(alertController, animated: true, completion: nil)
     }
     
