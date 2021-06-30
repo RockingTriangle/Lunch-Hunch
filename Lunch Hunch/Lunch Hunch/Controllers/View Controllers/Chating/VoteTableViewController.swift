@@ -20,15 +20,24 @@ class VoteTableViewController: UITableViewController {
         FirebaseApp.configure() //JWR
         refRestaurants.observe(DataEventType.value, with: {(snapshot) in //JWR
             if snapshot.childrenCount > 0 {
-                self.restaurantLists
+                self.listOfRestaurants.removeAll()
+                for restaurants in snapshot.children.allObjects as![DataSnapshot] {
+                    let restaurantObject = restaurants.value as? [String: AnyObject]
+                    let restaurantName = restaurantObject?["0"]
+                    let restaurantAddress = restaurantObject?["2"]
+                    
+                    let restaurants = RestaurantModel(name: restaurantName as! String, address: restaurantAddress as! String)
+                    self.listOfRestaurants.append(restaurants)
+                }
+                self.tableView.reloadData()
             }
         })
     }
     
     //MARK: - Properties
-    var listOfRestaurants = [String]()
+    var listOfRestaurants = [RestaurantModel]()
 
-    var refRestaurants = Database.database().reference().child("restaurants").child(currentUser.id!).child("picked_restaurants_from_search") //JWR
+    var refRestaurants = Database.database().reference().child("messages").child("restaurants").child(currentUser.id!).child("picked_restaurants_from_search") //JWR
     var restaurant: Restaurant?
     var restaurantList: [Restaurant] = RestaurantController.shared.restaurantList
     var selectedList: [Restaurant] = RestaurantController.shared.selectedList

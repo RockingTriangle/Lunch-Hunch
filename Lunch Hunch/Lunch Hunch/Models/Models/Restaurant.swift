@@ -27,3 +27,12 @@ extension Restaurant: Equatable {
         return lhs.uuid == rhs.uuid
     }
 }
+
+class RestaurantModel { //JWR
+    let name: String
+    let address: String
+    init(name: String, address: String) {
+        self.name = name
+        self.address = address
+    }
+}
