@@ -28,7 +28,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     //MARK: - Properties
     private let RESTAURANT_REF         = FBAuthentication.shared.ref.child("restaurants")
 
-    var ref = Database.database().reference()
+//    var ref = Database.database().reference()
     
    
 
@@ -54,11 +54,13 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         results.selectedBusiness = []
         showAlert(with: "Sorting Options", and: "Please choose an option below:")
     }
+
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let id = currentUser.id else {return}
         for business in results.selectedBusiness {
-            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([results.businesses[business].name : results.businesses[business].name])
+            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([String(business) : results.businesses[business].name, String(business + 2) : (results.businesses[business].location.displayAddress[0] + results.businesses[business].location.displayAddress[1])])
+           
         }
         navigationController?.popViewController(animated: true)
     }
