@@ -46,7 +46,7 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBAction func userSelectionButtonTapped(_ sender: UIButton) {
         guard let _ = business, let index = index else { return }
         if results.selectedBusiness.count < 2 {
-            business!.isSelected = business!.isSelected ? false : true
+            results.businesses[index].isSelected = results.businesses[index].isSelected ? false : true
             if results.selectedBusiness.contains(index) {
                 results.selectedBusiness.remove(index)
                 userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
@@ -55,7 +55,7 @@ class RestaurantTableViewCell: UITableViewCell {
                 userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             }
         } else if results.selectedBusiness.contains(index) {
-            business?.isSelected = false
+            results.businesses[index].isSelected = false
             userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             results.selectedBusiness.remove(index)
         } else {
@@ -65,9 +65,13 @@ class RestaurantTableViewCell: UITableViewCell {
     }
 
     @IBAction func readReviewsButtonTapped(_ sender: Any) {
-        print("go to yelp business page")
-        //Todo: - add link to Yelp business page
-        //Todo: - add link to Buisness model
+        guard let business = business, let url = URL(string: business.url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    @IBAction func yelpLogoButtonTapped(_ sender: Any) {
+        guard let url = URL(string: "https://www.yelp.com/") else { return }
+        UIApplication.shared.open(url)
     }
     
     // Mark: - Functions
@@ -110,7 +114,7 @@ class RestaurantTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self!.businessImageView.image = image
                     self!.updateViews()
-                    UIView.animate(withDuration: 1.0) {
+                    UIView.animate(withDuration: 0.5) {
                         self!.view.alpha = 1
                     }
                 }
