@@ -33,6 +33,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
     @IBOutlet weak var bottomVisualView: NSLayoutConstraint!
     @IBOutlet weak var heightConstraintOfStack: NSLayoutConstraint!
+    @IBOutlet weak var hatButtonOutlet: UIButton!
     
     
     private let button = UIButton()
@@ -57,6 +58,9 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     private var heightOfBottomView: CGFloat = 0
     private var keyboardWillShow = false
     
+    private var pollIsActive: Bool = false
+    private var randomIsActive: Bool = false
+    
     
     
     override func viewDidLoad() {
@@ -65,6 +69,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         initUserVM()
         initMessageVM()
         initNotifications()
+        hatButtonSetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -311,10 +316,14 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         let restaurants: [String] = []
         
         let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
+            self.pollIsActive.toggle()
+            self.hatButtonSetup()
             self.performSegue(withIdentifier: "toVote", sender: nil)
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
         
         let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
+            self.randomIsActive.toggle()
+            self.hatButtonSetup()
             self.restaurantRandomizer(restaurants: restaurants)
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
@@ -331,7 +340,19 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
         print(restaurant)
+        self.randomIsActive.toggle()
         return restaurant ?? ""
+    }
+    
+    func hatButtonSetup() {
+        
+        if pollIsActive == true {
+            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconPoll"), for: .normal)
+        } else if randomIsActive == true {
+            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
+        } else {
+            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        }
     }
     
     
