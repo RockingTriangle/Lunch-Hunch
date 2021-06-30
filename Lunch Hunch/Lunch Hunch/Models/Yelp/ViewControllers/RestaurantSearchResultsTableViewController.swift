@@ -26,11 +26,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     }
     
     //MARK: - Properties
-    private let RESTAURANT_REF         = FBAuthentication.shared.ref.child("messages")
-
-//    var ref = Database.database().reference()
-    
-   
+    private let RESTAURANT_REF = FBAuthentication.shared.ref.child("messages")
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,26 +129,3 @@ extension RestaurantSearchResultsTableViewController {
         present(alert, animated: true)
     }
 } //End of class
-
-struct SearchedRestaurants {
-    var id: String
-    var name: String
-    var imageURL: String
-    var rating: Double
-    var coordinates: Coordinates
-    var price: String?
-    var voteCount: Int = 0
-}
-
-struct PolledRestaurants {
-    var id: String
-    var name: String
-    var imageURL: String
-    var rating: Double
-    var coordinates: Coordinates
-    var price: String?
-    var voteCount: Int
-}
-
-
-
