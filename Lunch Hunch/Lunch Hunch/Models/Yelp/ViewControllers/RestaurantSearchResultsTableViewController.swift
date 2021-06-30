@@ -55,7 +55,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         showAlert(with: "Sorting Options", and: "Please choose an option below:")
     }
 
-    
+
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let id = currentUser.id else {return}
         for business in results.selectedBusiness {

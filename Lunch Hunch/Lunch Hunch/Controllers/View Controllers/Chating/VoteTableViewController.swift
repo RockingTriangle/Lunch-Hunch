@@ -9,13 +9,16 @@ import UIKit
 
 class VoteTableViewController: UITableViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isEditing = true
         
         tableView.dataSource = self
         tableView.delegate = self
-
+        
+        
     }
     
     var restaurant: Restaurant?

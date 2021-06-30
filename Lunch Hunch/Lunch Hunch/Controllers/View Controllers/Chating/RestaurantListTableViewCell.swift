@@ -22,6 +22,8 @@ class RestaurantListTableViewCell: UITableViewCell {
     var restaurant: Restaurant?
     private var wasPicked: Bool = false
     
+    
+    
     //MARK: - ACTIONS
     @IBAction func isPickedButtonTapped(_ sender: Any) {
         guard let restaurant = restaurant else {return}
