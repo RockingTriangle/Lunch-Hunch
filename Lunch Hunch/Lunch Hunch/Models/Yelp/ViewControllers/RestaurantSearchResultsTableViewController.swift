@@ -7,11 +7,12 @@
 
 import UIKit
 
-class RestaurantSearchResultsTableViewController: UITableViewController {
+class RestaurantSearchResultsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var results = RestaurantViewModel.shared
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -19,14 +20,16 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
         results.delegate = self
         results.businesses = []
         saveButton.isEnabled = false
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     // MARK: - Table view data source
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.businesses.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell",
                                                        for: indexPath) as? RestaurantTableViewCell
                                                        else { return UITableViewCell() }
@@ -40,6 +43,7 @@ class RestaurantSearchResultsTableViewController: UITableViewController {
     }
     
     @IBAction func sortButtonTapped(_ sender: Any) {
+        results.selectedBusiness = []
         showAlert(with: "Sorting Options", and: "Please choose an option below:")
     }
     
@@ -89,28 +93,27 @@ extension RestaurantSearchResultsTableViewController: TooManySelectedDelegate {
 
 extension RestaurantSearchResultsTableViewController {
     func showAlert(with title: String, and message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         let sortByDistanceAction = UIAlertAction(title: "Distance", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .distance
             self?.results.fetchBusinesses()
-            self?.refreshData()
             self?.dismiss(animated: false, completion: nil)
         }
         let sortByRatingAction = UIAlertAction(title: "Rating", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .rating
             self?.results.fetchBusinesses()
-            self?.refreshData()
             self?.dismiss(animated: false, completion: nil)
         }
         let sortByBestMatchAction = UIAlertAction(title: "Best Match", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .bestMatch
             self?.results.fetchBusinesses()
-            self?.refreshData()
             self?.dismiss(animated: false, completion: nil)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(sortByDistanceAction)
         alert.addAction(sortByRatingAction)
         alert.addAction(sortByBestMatchAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true)
     }
 }
