@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 
+
 extension UITableView {
     func setBottomInset(to value: CGFloat) {
         let edgeInset = UIEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
