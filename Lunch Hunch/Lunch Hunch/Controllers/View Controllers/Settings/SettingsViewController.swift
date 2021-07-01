@@ -10,16 +10,17 @@ import Firebase
 
 class SettingsViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var HeaderView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
     
-    
+    // MARK: - Properties
     let vm = SettingsViewModel()
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -32,21 +33,12 @@ class SettingsViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
-    
-    
-    
-    
     // MARK:- Init view and view model
-    
     private func initView() {
         profileImage.layer.cornerRadius = 35
         statusView.layer.cornerRadius = 5
         statusView.layer.masksToBounds = true
-        
         navigationController?.navigationBar.shadowImage = UIImage()
-        
-        
     }
     
     private func initVM() {
@@ -69,16 +61,8 @@ class SettingsViewController: UIViewController {
     
 }
 
-
-
-
-
-
-
 // MARK:- TableView datasource and delegate
-
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -121,9 +105,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 3 {
             return 1
         } else {
-            
             return 0
-            
         }
     }
     
@@ -174,9 +156,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
             }
-            //
-            // Several changes below...
-            //
         } else if indexPath.section == 0 && indexPath.row == 0 {
             performSegue(withIdentifier: "editeProfile", sender: self)
         } else if indexPath.section == 0 && indexPath.row == 1 {
@@ -184,9 +163,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 && indexPath.row == 0 {
             performSegue(withIdentifier: "available", sender: self)
         } else if indexPath.section == 2 && indexPath.row == 0 {
-            performSegue(withIdentifier: "toFriendsListVC", sender: self)//JWR Friends list view on people storyboard
+            performSegue(withIdentifier: "toFriendsListVC", sender: self)
         } else if indexPath.section == 2 && indexPath.row == 1 {
-            performSegue(withIdentifier: "toRequests", sender: self) //JWR Show Requests VC
+            performSegue(withIdentifier: "toRequests", sender: self) 
         } else if indexPath.section == 2 && indexPath.row == 2 {
             performSegue(withIdentifier: "blockedUsers", sender: self)
         }

@@ -17,6 +17,7 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
     private let service = YELPService()
     var results = RestaurantViewModel.shared
     

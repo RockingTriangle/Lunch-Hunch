@@ -12,29 +12,19 @@ protocol PresentChatingDelegate {
     func selectedCell(user: UserViewModel)
 }
 
-
-
-
 class FriendsViewController: UIViewController {
     
-    
-    
-    
+    // MARK: - Properties
     let searchController = UISearchController()
     let vm               = PeopleViewModel()
     var filtred          = [UserViewModel]()
-    
     var delegate: PresentChatingDelegate?
     
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var noFriendsView : UIView!
     
-    
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -42,13 +32,7 @@ class FriendsViewController: UIViewController {
         initVM()
     }
     
-    
-    
-    
-    
-    
     //MARK:- Init view and view model
-    
     private func initView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
@@ -60,7 +44,6 @@ class FriendsViewController: UIViewController {
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
     }
     
-    
     private func setupNoFriendsView() {
         noFriendsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(noFriendsView)
@@ -68,7 +51,6 @@ class FriendsViewController: UIViewController {
         noFriendsView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         noFriendsView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
     }
-    
     
     private func initVM() {
         vm.reloadTableViewClosure = { [weak self] in
@@ -87,15 +69,7 @@ class FriendsViewController: UIViewController {
         vm.initFetch()
     }
     
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func addFriendPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard.init(name: "People", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "addFriend")
@@ -106,21 +80,9 @@ class FriendsViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    
 }
 
-
-
-
-
-
-
-
-
-
-
 // MARK:- TableView Delegate and Datasource
-
 extension FriendsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,6 +119,7 @@ extension FriendsViewController: UITableViewDataSource, UITableViewDelegate {
         if searchController.isActive { searchController.isActive = false }
         dismiss(animated: true)
     }
+    
 }
 
 

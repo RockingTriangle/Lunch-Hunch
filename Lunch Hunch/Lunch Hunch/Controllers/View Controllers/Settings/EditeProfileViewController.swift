@@ -9,36 +9,25 @@ import FirebaseStorage
 
 class EditeProfileViewController: UIViewController {
     
-    
+    // MARK: - Properties
     private var countryList = [String]()
     private let vm          = EditeProfileViewModel()
     private var image       = UIImage() { didSet {
         profileImage.setImage(image, for: .normal) }}
     
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
     
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
-        
         initView()
         initVM()
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Init view and view model
-    
     private func initView() {
         profileImage.layer.cornerRadius = 55
         profileImage.layer.masksToBounds = true
@@ -57,13 +46,7 @@ class EditeProfileViewController: UIViewController {
         vm.initFetch()
     }
     
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func profileImagePressed(_ sender: Any) {
         let alert = UIAlertController()
         alert.addAction(.init(title: "Change Photo", style: .default, handler: { [weak self] _ in
@@ -87,9 +70,7 @@ class EditeProfileViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
-        
     }
-    
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         let activity = UIActivityIndicatorView()
@@ -99,24 +80,13 @@ class EditeProfileViewController: UIViewController {
         let country = countryList[pickerView.selectedRow(inComponent: 0)]
         vm.UpdateProfile(photo: image, country: country)
     }
-    
-    
-    
-    
 }
 
-
-
-
-
-
 // MARK:- Picker view delegate
-
 extension EditeProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return countryList.count
@@ -132,17 +102,8 @@ extension EditeProfileViewController: UIPickerViewDelegate, UIPickerViewDataSour
     
 }
 
-
-
-
-
-
-
-
 // MARK:- Image picker  delegate
-
 extension EditeProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     private func imagePressed() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true
@@ -160,5 +121,4 @@ extension EditeProfileViewController: UIImagePickerControllerDelegate, UINavigat
         }
         dismiss(animated: true, completion: nil)
     }
-    
 }

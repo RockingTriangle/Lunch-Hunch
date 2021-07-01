@@ -10,8 +10,8 @@ import Firebase
 
 class FBAuthentication {
     
+    // MARK: - Properties
     public static let shared = FBAuthentication()
-    
     public let ref = Database.database().reference()
     
     //MARK:- User authentications
@@ -34,9 +34,9 @@ class FBAuthentication {
         }
     }
     
+    // MARK: - Functions
     func FBSignUpUser(firstName: String, lasName: String, username: String, withEmail email: String, password: String, profileImage: UIImage?, completion: @escaping(Bool, String?) -> ()) {
         
-        //Validate TextFields isValid or Not
         guard !firstName.trimmingCharacters(in: .whitespaces).isEmpty   &&
               !lasName.trimmingCharacters(in: .whitespaces).isEmpty     &&
               !username.trimmingCharacters(in: .whitespaces).isEmpty    &&
@@ -46,7 +46,6 @@ class FBAuthentication {
                   return
         }
         
-        //Create and Insert user info to DBfirebase
         Auth.auth().createUser(withEmail: email, password: password) { [unowned self] (result, error) in
             if error != nil {
                 completion(false, error?.localizedDescription)
@@ -55,7 +54,6 @@ class FBAuthentication {
                     completion(false, "There was a problem, Thanks to try again")
                     return
                 }
-                //Validate username isUnique or Not
                 self.ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value) { [unowned self] (snapshot) in
                     if snapshot.exists() {
                         FBUser.delete()
@@ -125,4 +123,5 @@ class FBAuthentication {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             error == nil ? completion(true, nil) : completion(false, error?.localizedDescription) }
     }
+    
 }

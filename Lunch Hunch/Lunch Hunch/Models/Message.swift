@@ -13,12 +13,6 @@ struct Message {
     var text: String?
     var timestamp: Double?
     var msgKind: String?
-    var photoURL: String?
-    var latitude: Double?
-    var longitude: Double?
-    var videoURL:  String?
-    var voiceURL:  String?
-    var voiceSec:  Double?
 }
 
 struct RecentMessage {

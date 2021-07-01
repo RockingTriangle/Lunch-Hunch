@@ -11,6 +11,7 @@ import Firebase
 
 class SettingsViewModel {
     
+    // MARK: - Properties
     let defaults = UserDefaults.standard
     var user = User() {
         didSet {
@@ -20,7 +21,7 @@ class SettingsViewModel {
     
     var loadInfoClosure: (()->())?
     
-    
+    // MARK: - Functions
     func loadInfo() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         if self.defaults.string(forKey: "id") == uid  {
@@ -40,4 +41,5 @@ class SettingsViewModel {
             }
         }
     }
+    
 }

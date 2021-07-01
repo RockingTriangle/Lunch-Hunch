@@ -14,6 +14,7 @@ protocol UpdateSettings {
 
 class LocationViewController: UIViewController, MKMapViewDelegate {
     
+    // MARK: - Properties
     var viewModel = RestaurantViewModel.shared
     var locationManager = LocationManager.shared
     var updateSettingsDelegate: UpdateSettings?
@@ -29,6 +30,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var setLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -91,6 +93,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Functions
     func configureViews() {
         myLocationButton.setTitleColor(viewModel.userSearchChoice.description.contains("My Location") ? .white : .darkText, for: .normal)
         myLocationButton.backgroundColor = viewModel.userSearchChoice.description.contains("My Location") ? .darkText : .lightText
@@ -153,7 +156,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.checkLocationServices()
         } else {
-            let alert = UIAlertController(title: "User Location", message: "To allow user location, go to Settings -> Privacy -> Location", preferredStyle: .alert)
+            let alert = UIAlertController(title: "User Location Not Enabled", message: "To allow user location, go to Settings -> Privacy -> Location", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
         }
     }

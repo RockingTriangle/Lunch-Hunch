@@ -10,6 +10,7 @@ import Firebase
 
 struct FBDatabase {
     
+    // MARK: - Properties
     static let shared = FBDatabase()
     
     // MARK:- User database
@@ -142,21 +143,8 @@ struct FBDatabase {
         var message = [String : Any]()
         var recentMessage = [String : Any]()
         
-        if msgKind != .text {
-            if msgKind == .photo {
-                message = ["to": toUID, "photoURL": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind)]
-            } else if msgKind == .location {
-                message = ["to": toUID, "location": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind)]
-            }else if msgKind == .video {
-                message = ["to": toUID, "videoURL": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind)]
-            } else if msgKind == .voice {
-                message = ["to": toUID, "voiceURL": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind), "voiceSec": voiceSec ?? 0.0]
-            }
-            recentMessage = ["to": uid, "text": CheckMessageKind(msgKind: msgKind), "timestamp": timestamp]
-        } else {
-            message = ["to": toUID, "text": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind)]
-            recentMessage = ["to": uid, "text": msg, "timestamp": timestamp]
-        }
+        message = ["to": toUID, "text": msg, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: msgKind)]
+        recentMessage = ["to": uid, "text": msg, "timestamp": timestamp]
         
         let SenderRef = ref.child("messages").child(uid).child(toUID).childByAutoId()
         ref.child("unread").child(toUID).child(uid).updateChildValues([SenderRef.key!: "true"])
@@ -172,71 +160,6 @@ struct FBDatabase {
                 print(error!)
             } else {
                 ref.child("recent_message").child(toUID).child(uid).setValue(recentMessage)
-            }
-        }
-    }
-    
-    func sendPhoto(photo: UIImage, toUID: String) {
-        guard let imageData = photo.jpegData(compressionQuality: 0.5) else { return }
-        let uploadTask = Storage.storage().reference().child("messages").child("\(Date().timeIntervalSince1970).jpg")
-        uploadTask.putData(imageData, metadata: nil) { (metaData, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            } else {
-                uploadTask.downloadURL { (url, error) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                    } else {
-                        let url = url?.absoluteString
-                        self.sendMessage(to: toUID, msg: url!, msgKind: .photo, voiceSec: nil)
-                    }
-                }
-            }
-        }
-    }
-    
-    func sendVoice(file: Data, seconds: Double, toUID: String) {
-        let audioName = NSUUID().uuidString
-        let uploadTask = Storage.storage().reference().child("audio").child(audioName)
-        uploadTask.putData(file, metadata: nil) { (metaData, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            } else {
-                uploadTask.downloadURL { (url, error) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                    } else {
-                        let url = url?.absoluteString
-                        self.sendMessage(to: toUID, msg: url!, msgKind: .voice, voiceSec: seconds)
-                    }
-                }
-            }
-        }
-    }
-    
-    func sendLocation(toUID: String, latitude: Double, longitude: Double) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let timestamp = Date().timeIntervalSince1970
-        let ref = FBAuthentication.shared.ref
-        let message: [String: Any] = ["to": toUID, "timestamp": timestamp, "msgKind": CheckMessageKind(msgKind: .location), "latitude": latitude,"longitude": longitude]
-        
-        let SenderRef = ref.child("messages").child(uid).child(toUID).childByAutoId()
-        ref.child("unread").child(toUID).child(uid).updateChildValues([SenderRef.key!: "true"])
-        SenderRef.setValue(message){ (error, data) in
-            if error != nil {
-                print(error!)
-            } else {
-                ref.child("recent_message").child(uid).child(toUID).setValue(["to": toUID, "timestamp": timestamp,"text": self.CheckMessageKind(msgKind: .location)])
-            }
-        }
-        ref.child("messages").child(toUID).child(uid).childByAutoId().setValue(message){ (error, data) in
-            if error != nil {
-                print(error!)
-            } else {
-                ref.child("recent_message").child(toUID).child(uid).setValue(["to": uid, "timestamp": timestamp,"text": self.CheckMessageKind(msgKind: .location)])
-                ref.child("unread").child(toUID).child(uid).updateChildValues([data.key!: "true"])
             }
         }
     }
@@ -259,11 +182,6 @@ struct FBDatabase {
                 messageModel.text = message.childSnapshot(forPath: "text").value as? String
                 messageModel.timestamp = message.childSnapshot(forPath: "timestamp").value as? Double
                 messageModel.msgKind = message.childSnapshot(forPath: "msgKind").value as? String
-                messageModel.photoURL = message.childSnapshot(forPath: "photoURL").value as? String
-                messageModel.latitude = message.childSnapshot(forPath: "latitude").value as? Double
-                messageModel.longitude = message.childSnapshot(forPath: "longitude").value as? Double
-                messageModel.voiceURL = message.childSnapshot(forPath: "voiceURL").value as? String
-                messageModel.voiceSec = message.childSnapshot(forPath: "voiceSec").value as? Double
                 messages.append(messageModel)
             }
             completion(messages.reversed())
@@ -281,11 +199,6 @@ struct FBDatabase {
             message.to = values["to"] as? String
             message.text = values["text"] as? String
             message.msgKind = values["msgKind"] as? String
-            message.photoURL = values["photoURL"] as? String
-            message.latitude = values["latitude"] as? Double
-            message.longitude = values["longitude"] as? Double
-            message.voiceURL = values["voiceURL"] as? String
-            message.voiceSec = values["voiceSec"] as? Double
             let status = lastMessages.contains { (element) -> Bool in return message.timestamp == element.timestamp }
             if !status {
                 completion(message)
@@ -423,16 +336,9 @@ struct FBDatabase {
     //MARK:- Validate kind and Type of Messages
     func CheckMessageKind(msgKind: MessageKind) -> String {
         switch msgKind {
-            case .location:
-                return "location"
-            case .photo:
-                return "photo"
             case .text:
                 return "text"
-            case .video:
-                return "video"
-            case .voice:
-                return "voice"
         }
     }
+    
 }

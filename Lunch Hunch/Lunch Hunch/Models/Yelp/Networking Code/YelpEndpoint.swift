@@ -10,15 +10,12 @@ import CoreLocation
 
 class YELPEndpoint {
     
+    // MARK: - Properties
     static let shared = YELPEndpoint()
-    
     let baseURL = "https://api.yelp.com/v3/businesses/search"
-    
     var locationQueries: [URLQueryItem]?
-    
     var parameters: [URLQueryItem] = []
     var sortingOption: SortingOption = .distance
-    
     var url: URL? {
         guard let url = URL(string: baseURL),
               var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
@@ -34,6 +31,7 @@ class YELPEndpoint {
         components.queryItems?.append(sortingOption.sortingOptionValue)
         return components.url
     }
+    
 }
 
 // MARK: - Extension

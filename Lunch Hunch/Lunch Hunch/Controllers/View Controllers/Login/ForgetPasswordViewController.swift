@@ -9,32 +9,23 @@ import UIKit
 
 class ForgetPasswordViewController: UIViewController {
 
-    
+    // MARK: - Properties
     let vm = ResetPasswordViewModel()
     
+    // MARK: - IBOutlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         initVM()
     }
     
-
-    
-    
-    
-    
-    
-    
     // MARK:- Init view model
-    
     private func initVM() {
         vm.showAlertClosure = { [weak self] in
             guard let self = self else { return }
@@ -46,19 +37,10 @@ class ForgetPasswordViewController: UIViewController {
                 self.resetButton.isEnabled = true
                 Alert.showAlert(at: self, title: self.vm.message!, message: "")
             }
-            
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         activityIndicator.startAnimating()
         sender.isEnabled = false
@@ -69,30 +51,12 @@ class ForgetPasswordViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private func setupUI() {
-        //Setup cornerRadius
         resetButton.layer.cornerRadius = 27.5
         emailTextField.layer.cornerRadius = 27.5
-        
-        //Setup backgroundColor
         emailTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
-
-        //Setup delegates
         setupTextFields(textField: emailTextField)
-        
         tapGesture.addTarget(self, action: #selector(dismissKeyboard))
-        
-        
     }
     
     func setupTextFields(textField: UITextField) {

@@ -10,12 +10,13 @@ import CoreLocation
 
 class RestaurantSettingsTableViewController: UITableViewController {
     
+    // MARK: - Properties
     var viewModel = RestaurantViewModel.shared
     var locationManager = LocationManager.shared
     var endPoint = YELPEndpoint.shared
-    
     var buttonArray: [UIButton] = []
     
+    // MARK: - IBOutlets
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
     @IBOutlet weak var radiusSlider: UISlider!
@@ -25,10 +26,16 @@ class RestaurantSettingsTableViewController: UITableViewController {
     @IBOutlet weak var priceButtonThree: UIButton!
     @IBOutlet weak var priceButtonFour: UIButton!
    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCells()
         configureLocationManager()
+        if CLLocationManager.authorizationStatus() == .denied ||
+            CLLocationManager.authorizationStatus() == .notDetermined ||
+            CLLocationManager.authorizationStatus() == .restricted {
+            locationManager.locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +43,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         configureCells()
     }
     
+    // MARK: - IBActions
     @IBAction func radiusSliderValueChanged(_ sender: UISlider) {
         let step: Float = 1
         let value = round(sender.value / step) * step
@@ -58,6 +66,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         updatePriceButtons()
     }
     
+    // MARK: - Functions
     func configureCells() {
         locationLabel.text = viewModel.searchLocation.description
         radiusLabel.text = "Radius: \(viewModel.radiusAmount) miles"
@@ -85,6 +94,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLocation" {
             guard let destinationVC = segue.destination as? LocationViewController else { return }
@@ -131,7 +141,6 @@ class RestaurantSettingsTableViewController: UITableViewController {
 
 // Mark: - Extension
 extension RestaurantSettingsTableViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             viewModel.currentLocation = location
@@ -143,7 +152,6 @@ extension RestaurantSettingsTableViewController: CLLocationManagerDelegate {
 }
 
 extension RestaurantSettingsTableViewController: UpdateSettings {
-    
     func updateSettings() {
         configureCells()
     }

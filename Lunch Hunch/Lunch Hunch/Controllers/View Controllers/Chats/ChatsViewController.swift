@@ -10,23 +10,19 @@ import Firebase
 
 class ChatsViewController: UIViewController, PresentChatingDelegate {
     
+    // MARK: - Properties
     private let vm                   = ChatsViewModel()
     private var filtred              = [RecentsViewModel]()
     private let searchController     = UISearchController()
     private let button               = UIButton()
     private let badge                = UILabel(frame: .init(x: 20, y: -5, width: 22, height: 22))
-    
     private var selectedCell    : UserViewModel?
     
+    // MARK: - IBOutlets
     @IBOutlet var connectionView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
-    
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -41,14 +37,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         button.setImage(resizeImage(image: image!, newWidth: 30, newHieght: 30), for: .normal)
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Init View and ViewModel
-    
     private func initView() {
         setupLeftButton()
         tableView.alpha = 0
@@ -66,8 +55,6 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         tabBarController?.tabBar.shadowImage = UIImage()
         tabBarController?.tabBar.clipsToBounds = true
     }
-    
-    
     
     private func initVM() {
         vm.updateIndicatorClouser = { [weak self] in
@@ -105,6 +92,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
                 }
             }
         }
+        
         vm.updatebadgeClouser = { [weak self] in
             guard let self = self else { return }
             let value = self.vm.countUnreadedMessages
@@ -114,25 +102,13 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
                 self.tabBarController?.tabBar.items![0].badgeValue = "\(value)"
             }
         }
+        
         vm.initFetchUnreadMessages()
         vm.initFetchRequests()
         vm.initFetchMessages()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @objc private func requestsPressed() {
         performSegue(withIdentifier: "ToSettingsVC", sender: self)
     }
@@ -144,13 +120,10 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         present(UINavigationController(rootViewController: vc), animated: true)
     }
     
-    
-    // Implementation for a protocol to pesent Chating View Controller
     func selectedCell(user: UserViewModel) {
         selectedCell = user
         performSegue(withIdentifier: "ChatsToChating", sender: self)
     }
-    
     
     // Setup left button bar
     private func setupLeftButton() {
@@ -183,28 +156,16 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         navigationItem.leftBarButtonItem = lefButton
     }
     
-    
     func resizeImage(image: UIImage, newWidth: CGFloat, newHieght: CGFloat) -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHieght))
         image.draw(in: CGRect(x: 0, y: 0,width: newWidth, height: newHieght))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         return newImage!.withRenderingMode(.alwaysOriginal)
     }
+    
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // MARK:- Setup TableView Datasource
-
 extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {  return vm.numberOfSection }
@@ -237,25 +198,13 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
-    
-    
 }
 
-
-
-
-
-
-
-
 // MARK:- Search Controller Delegate
-
 extension ChatsViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let text = searchController.searchBar.text?.lowercased()
         vm.searchAbout(text: text!)
-        
     }
     
     func presentSearchController(_ searchController: UISearchController) {

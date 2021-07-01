@@ -9,19 +9,16 @@ import UIKit
 
 class AddFriendTableViewController: UITableViewController {
 
+    // MARK: - Properties
     private var users = [User]()
     private let searchController = UISearchController()
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         initFetch()
     }
-
-    
-    
-    
     
     private func initView() {
         tableView.tableFooterView = UIView()
@@ -29,8 +26,6 @@ class AddFriendTableViewController: UITableViewController {
         navigationItem.searchController = searchController
         searchController.obscuresBackgroundDuringPresentation = false
     }
-    
-    
     
     private func initFetch() {
         FBDatabase.shared.loadAllUsers { [weak self] (users, error) in
@@ -42,25 +37,11 @@ class AddFriendTableViewController: UITableViewController {
         }
     }
     
-    
-    
-    
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -73,7 +54,6 @@ class AddFriendTableViewController: UITableViewController {
         return users.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell", for: indexPath) as! AddFriendCell
         cell.user = users[indexPath.row]

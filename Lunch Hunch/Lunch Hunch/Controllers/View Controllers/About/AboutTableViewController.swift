@@ -11,31 +11,26 @@ import Firebase
 
 class AboutTableViewController: UITableViewController {
     
+    // MARK: - Properties
     public var name: String?
     public var uid : String?
-    
     private let vm = AboutViewModel()
+    private let REPORT_REF = FBAuthentication.shared.ref.child("reported_users")
     
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var sectionView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var statusView: UIView!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         initVM()
     }
     
-    //MARK: - Properties
-    private let REPORT_REF         = FBAuthentication.shared.ref.child("reported_users")
-
-    
-    
     // MARK:- Init view and view model
-    
     private func initView() {
         profileImage.layer.cornerRadius   = 35
         profileImage.layer.borderColor    = #colorLiteral(red: 0.1215686275, green: 0.1294117647, blue: 0.1411764706, alpha: 1)
@@ -47,13 +42,9 @@ class AboutTableViewController: UITableViewController {
         statusView.layer.borderWidth    = 1.5
         
         navigationController?.navigationBar.shadowImage = UIImage()
-        
-//        tapGesture.addTarget(self, action: #selector(photoPressed))
-        
         tableView.tableFooterView = UIView()
         title = name
     }
-    
     
     private func initVM() {
         vm.reloadTableViewClosure = { [unowned self] in
@@ -76,25 +67,7 @@ class AboutTableViewController: UITableViewController {
         vm.initFetch(uid: uid!)
     }
     
-    
-    
-    
-    
-    
-    // MARK:- Actions
-    
-//    @objc private func photoPressed() {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "toPhoto") as! PhotoDetailViewController
-//        vc.photoURL = vm.userViewModel.imageURL!
-//        vc.modalTransitionStyle = .crossDissolve
-//        present(vc, animated: true)
-//    }
-    
-    
-    
-    
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -163,18 +136,14 @@ class AboutTableViewController: UITableViewController {
         if indexPath.row == 0 && indexPath.section == 1 {
             vm.isBlocked ? vm.unblockUser(uid: uid!) : vm.blockUser(uid: uid!)
         } else if indexPath.row == 1 && indexPath.section == 1 {
-
             presentControllerReport()
-            
         }
-        
     }
     
     //MARK: - Report User Properties
     var reason: String = String()
     var reports: Int = Int()
         
-    
     func presentControllerReport() { //take in a user?
         let alertController = UIAlertController(title: "Report User", message: "Why do you want to report this user?", preferredStyle: .actionSheet)
         //Bullying Button
@@ -237,9 +206,10 @@ class AboutTableViewController: UITableViewController {
         alertController.addAction(harassmentAction)
         alertController.addAction(hateSpeechAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
         present(alertController, animated: true, completion: nil)
-
     }
+    
     func reportUser(uid: String, reason: String) { 
         guard let id = currentUser.id else {return}
         REPORT_REF.child("report").child(uid).updateChildValues([reason : reports])
@@ -247,4 +217,5 @@ class AboutTableViewController: UITableViewController {
 
         print("User \(uid) has been reported for \(reason)")
     }
+    
 }

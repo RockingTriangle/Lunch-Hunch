@@ -8,7 +8,6 @@
 import Foundation
 
 struct Identifiers {
-    
     static let chats = "ChatsCell"
     static let tabBar = "tabBar"
 }

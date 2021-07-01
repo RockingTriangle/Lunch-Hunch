@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;We need your photos&quot;</string>
+	<string>&quot;We need access to your photo library to set your profile picture.&quot;</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>&quot;We need your location&quot;</string>
+	<string>&quot;We need your location to search for restaurants around you.&quot;</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>&quot;We need your location&quot;</string>
+	<string>&quot;We need your location to search for restaurants around you.&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -9,9 +9,10 @@ import UIKit
 
 class SigninViewController: UIViewController {
 
+    // MARK: - Properties
     private let vm = SigninViewModel()
     
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -24,13 +25,7 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var heightStack: NSLayoutConstraint!
     @IBOutlet weak var topForget: NSLayoutConstraint!
     
-    
-    
-    
-    
-
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,23 +33,14 @@ class SigninViewController: UIViewController {
         initVM()
     }
     
-    
-    
-    
-    
-    
-    
     //MARK:- Init view and fetch View Model
-    
     private func initView() {
-        //Setup navigationBar
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.navigationBar.isHidden = false
     }
-    
     
     private func initVM() {
         vm.signInClosure = { [weak self] in
@@ -69,17 +55,7 @@ class SigninViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func signinPressed(_ sender: UIButton) {
         updateUI()
         dismissKeyboard()
@@ -87,14 +63,13 @@ class SigninViewController: UIViewController {
         loginButton.isEnabled = false
         vm.signInPressed(withEmail: emailTextField.text!, password: passwordTextField.text!)
     }
+    
     private func presentViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "tabBar")
         loginVC.modalTransitionStyle = .crossDissolve
         self.present(loginVC, animated: true)
     }
-    
-
     
     func setupTextFields(textField: UITextField) {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: textField.frame.height))
@@ -103,40 +78,27 @@ class SigninViewController: UIViewController {
         textField.rightViewMode = .always
     }
     
-    
     @objc private func dismissKeyboard() {
         view.endEditing(true)
         updateUI()
     }
-
-    
-    
-    
-    
-    
-    
-    
     
     private func setupUI() {
-        //Setup cornerRadius
         loginButton.layer.cornerRadius = 27.5
         createAccountButton.layer.cornerRadius = 27.5
         emailTextField.layer.cornerRadius = 27.5
         passwordTextField.layer.cornerRadius = 27.5
         
-        //Setup backgroundColor
         emailTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         passwordTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         createAccountButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         
-        //Setup delegates
         setupTextFields(textField: emailTextField)
         setupTextFields(textField: passwordTextField)
         
         tapGesture.addTarget(self, action: #selector(dismissKeyboard))
         
         activityIndicator.stopAnimating()
-        
     }
     
     private func updateUI() {
@@ -153,7 +115,6 @@ class SigninViewController: UIViewController {
 
 
 // MARK:- TextField delegate
-
 extension SigninViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         DispatchQueue.main.async {
@@ -163,6 +124,6 @@ extension SigninViewController: UITextFieldDelegate {
                 self.topForget.constant = 170
             }
         }
-        
     }
+    
 }

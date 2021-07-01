@@ -9,6 +9,7 @@ import UIKit
 
 class AddFriendCell: UITableViewCell {
 
+    // MARK: - Properties
     var user = User() {
         didSet {
             userImage.KFloadImage(url: user.imageURL!)
@@ -19,15 +20,13 @@ class AddFriendCell: UITableViewCell {
         }
     }
     
-    
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
-    
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
@@ -38,7 +37,6 @@ class AddFriendCell: UITableViewCell {
         userImage.layer.cornerRadius = 21
         addButton.layer.cornerRadius = 4
     }
-    
     
     @objc private func addPressed() {
         if addButton.titleLabel?.text == "Add Friend" {
@@ -52,7 +50,6 @@ class AddFriendCell: UITableViewCell {
         }
     }
 
-    
     private func updateButtonUI(status: Bool) {
         if !status {
             addButton.setTitle("Add Friend", for: .normal)
@@ -62,6 +59,5 @@ class AddFriendCell: UITableViewCell {
             addButton.backgroundColor = .darkGray
         }
     }
-    
     
 }
