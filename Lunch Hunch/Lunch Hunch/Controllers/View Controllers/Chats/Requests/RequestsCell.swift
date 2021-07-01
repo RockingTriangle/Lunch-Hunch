@@ -9,6 +9,7 @@ import UIKit
 
 class RequestsCell: UITableViewCell {
     
+    // MARK: - Properties
     private let vm   = RequestsViewModel()
     public  var user = UserViewModel() { didSet {
         nameLabel.text      = user.name
@@ -16,8 +17,7 @@ class RequestsCell: UITableViewCell {
         userImage.load(url: user.imageURL!)
         }}
     
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -25,14 +25,11 @@ class RequestsCell: UITableViewCell {
     @IBOutlet weak var declineButton: UIButton!
     @IBOutlet weak var buttonsStack: UIStackView!
     
-    
-    
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
     }
-    
-    
     
     private func initView() {
         userImage.layer.cornerRadius     = 21
@@ -43,12 +40,7 @@ class RequestsCell: UITableViewCell {
         declineButton.addTarget(self, action: #selector(declinePressed), for: .touchUpInside)
     }
     
-    
-    
-    
-    
     // MARK:- Actions
-    
     @objc private func confirmPressed() {
         vm.confirmRequest(uid: user.uid!)
         DispatchQueue.main.async {

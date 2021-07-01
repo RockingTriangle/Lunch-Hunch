@@ -9,22 +9,12 @@ import Foundation
 
 class ResetPasswordViewModel {
     
-    
+    // MARK: - Properties
     var message     : String? { didSet { showAlertClosure?() }}
-    
     var isSuccess   = true
-
     var showAlertClosure: (()->())?
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    // MARK: - Functions
     func resetPassword(email: String) {
         FBAuthentication.shared.resetPassword(email: email) { (isSuccess, error) in
             if isSuccess {

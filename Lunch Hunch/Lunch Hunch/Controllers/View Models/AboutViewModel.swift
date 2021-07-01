@@ -9,24 +9,15 @@ import Foundation
 
 class AboutViewModel {
     
-    
+    // MARK: - Properties
     public var userViewModel   = UserViewModel() { didSet { reloadTableViewClosure?() }}
     public var isBlocked       = false           { didSet { reloadTableViewClosure?() }}
     public var message         : String?         { didSet { showAlertClosure?() }}
     
-    
     var reloadTableViewClosure: (()->())?
     var showAlertClosure      : (()->())?
     
-    
-    
-    
-    
-    
-    
-    
     //MARK:- Fetch User Info
-    
     func initFetch(uid: String) {
         FBDatabase.shared.loadUserInfo(for: uid) { [weak self] (user, error) in
             guard let self = self else { return }
@@ -42,15 +33,7 @@ class AboutViewModel {
         return UserViewModel(name: name, username: user.username, email: user.email, imageURL: user.imageURL, uid: user.id, isOnline: status, country: user.country)
     }
     
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Block Action
-    
     func checkBlocking(uid: String) {
         if FBNetworkRequest.shared.blockedList.isEmpty {
             FBNetworkRequest.shared.fetchBlockedList { [weak self] (_) in

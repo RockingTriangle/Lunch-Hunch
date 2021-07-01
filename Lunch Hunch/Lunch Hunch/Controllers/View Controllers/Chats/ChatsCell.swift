@@ -9,17 +9,12 @@ import UIKit
 
 class ChatsCell: UITableViewCell {
 
-    
-    
+    // MARK: - Properties
     var cellVM = RecentsViewModel() { didSet {
         nameLabel.text = cellVM.name
-        
         messageLabel.text = String(cellVM.message!.prefix(22))
-        
         timeLabel.text = " . \(cellVM.timestamp!.getDays())"
-        
         profileImage.KFloadImage(url: cellVM.imageURL!)
-        
         let unreadCount = cellVM.unreadCount
         if unreadCount != nil {
             unreadCountButton.isHidden = false
@@ -27,15 +22,11 @@ class ChatsCell: UITableViewCell {
         } else {
             unreadCountButton.isHidden = true
         }
-        
         checkAvailability()
-        
         }
     }
     
-    
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -43,16 +34,11 @@ class ChatsCell: UITableViewCell {
     @IBOutlet weak var unreadCountButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     
-    
-    
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
     }
-
-    
-    
-    
     
     private func initView() {
         profileImage.layer.cornerRadius = 21
@@ -62,9 +48,6 @@ class ChatsCell: UITableViewCell {
         
         unreadCountButton.layer.cornerRadius = 12
     }
-
-    
-    
     
     private func checkAvailability() {
         let status = DefaultSettings.shared.availability()
@@ -78,7 +61,6 @@ class ChatsCell: UITableViewCell {
         } else {
             statusView.isHidden = true
         }
-        
     }
     
 }

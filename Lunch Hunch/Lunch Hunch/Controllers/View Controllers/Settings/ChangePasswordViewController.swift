@@ -9,32 +9,24 @@ import UIKit
 
 class ChangePasswordViewController: UIViewController {
 
+    // MARK: - Properties
     private let vm = ChangePasswordViewModel()
     
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var passwordextField: UITextField!
     @IBOutlet weak var repasswordTextField: UITextField!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    
-    
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCellUI()
         initVM()
     }
     
-    
-    
-    
-    
     // MARK:- Init view model
-    
     private func initVM() {
         vm.changePasswordClosure = { [weak self] in
             guard let self = self else { return }
@@ -44,27 +36,20 @@ class ChangePasswordViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func UpdateButtonPressed(_ sender: UIButton) {
         vm.chnagePassword(password: passwordextField.text!, repassword: repasswordTextField.text!)
         dismissKeyboard()
         activityIndicator.startAnimating()
         changeButton.isEnabled = false
     }
+    
     private func presentViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "tabBar")
         loginVC.modalTransitionStyle = .crossDissolve
         self.present(loginVC, animated: true)
     }
-    
 
     private func setupCellUI() {
         //Setup cornerRadius
@@ -83,7 +68,6 @@ class ChangePasswordViewController: UIViewController {
         tapGesture.addTarget(self, action: #selector(dismissKeyboard))
         
         activityIndicator.stopAnimating()
-        
     }
     
     func setupTextFields(textField: UITextField) {
@@ -93,10 +77,8 @@ class ChangePasswordViewController: UIViewController {
         textField.rightViewMode = .always
     }
     
-    
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 
 }

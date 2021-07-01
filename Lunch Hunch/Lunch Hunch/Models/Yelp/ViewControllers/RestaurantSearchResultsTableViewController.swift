@@ -71,6 +71,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
+    
 }
 
 // MARK: - Extensions
@@ -128,4 +129,5 @@ extension RestaurantSearchResultsTableViewController {
         alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
-} //End of class
+    
+}

@@ -10,6 +10,7 @@ import Firebase
 
 class VoteTableViewController: UITableViewController {
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         loadViewIfNeeded()
@@ -59,7 +60,6 @@ class VoteTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.sections.count
     }
@@ -68,7 +68,6 @@ class VoteTableViewController: UITableViewController {
         return viewModel.sections[section].count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as? RestaurantListTableViewCell else {return UITableViewCell()}
         
@@ -143,13 +142,15 @@ class VoteTableViewController: UITableViewController {
                 }
             }
             
-            self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
-            for index in (0..<self.viewModel.restaurantList.count - 1) {
-                if index == self.viewModel.restaurantList.count {
-                    break
-                }
-                if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
-                    self.viewModel.restaurantList.remove(at: index)
+            if self.viewModel.restaurantList.count > 0 {
+                self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
+                for index in (0..<self.viewModel.restaurantList.count - 1) {
+                    if index == self.viewModel.restaurantList.count {
+                        break
+                    }
+                    if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
+                        self.viewModel.restaurantList.remove(at: index)
+                    }
                 }
             }
             
@@ -170,6 +171,7 @@ class VoteTableViewController: UITableViewController {
     
 }//End of class
 
+// MARK: - Extensions
 extension VoteTableViewController: RestaurantListCellDelegate {
     func addedToPickedTapped(isPicked: Bool, restaurant: Restaurant, cell: RestaurantListTableViewCell) {
         RestaurantController.shared.updateIsPicked(isPicked: isPicked, restaurant: restaurant)

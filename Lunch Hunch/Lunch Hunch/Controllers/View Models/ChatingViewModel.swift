@@ -9,16 +9,15 @@ import UIKit
 
 class ChatingViewModel {
     
+    // MARK: - Properties
     public  var friend             : UserViewModel? { didSet { updateUserInfoClouser?() }}
     public  var friend_image       : UIImage? { didSet { updateUserImageoClouser?() }}
     public  var messageViewModel   = [MessageViewModel]() { didSet { reloadTableViewClouser?() }}
     public  var countOfCells       : Int { return messageViewModel.count}
     
-    
     private var queryStart         : Double?
     private var unreadMessages     = [String]()
     public  var selectedCell       : MessageViewModel?
-    
     
     private var lastIsReached   = false
     private var isFetching      = false
@@ -27,7 +26,6 @@ class ChatingViewModel {
     public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
     public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
     
-    
     var updateUserInfoClouser      : (()->())?
     var updateUserImageoClouser    : (()->())?
     var reloadTableViewClouser     : (()->())?
@@ -35,17 +33,7 @@ class ChatingViewModel {
     var updateFriendStatusClouser  : (()->())?
     var updateBottomViewClouser    : (()->())?
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Fetch friend info
-    
     public func fetchUserInfo(uid: String) {
         FBDatabase.shared.readMessages(id: uid)
         FBDatabase.shared.loadChatingUser(for: uid) { [weak self] (user, error) in
@@ -73,17 +61,7 @@ class ChatingViewModel {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Fetch Messages
-    
     public func fetchMessages(uid: String) {
         FBDatabase.shared.loadUnreadMessages(id: uid) { [weak self] (keys) in
             guard let self = self else { return }
@@ -147,7 +125,6 @@ class ChatingViewModel {
         }
     }
     
-    
     private func createMessageViewModel(messages: [Message]) {
         var vms = [MessageViewModel]()
         for message in messages {
@@ -162,25 +139,14 @@ class ChatingViewModel {
     
     private func proccessFetchMessage(message: Message) -> MessageViewModel {
         let isSeen = checkSeenMessage(message: message)
-        return MessageViewModel(to: message.to, text: message.text, timestamp: message.timestamp, msgKind: message.msgKind, photoURL: message.photoURL, latitude: message.latitude, longitude: message.longitude, voiceURL: message.voiceURL, videoURL: message.videoURL, voiceSec: message.voiceSec, isSeen: isSeen)
+        return MessageViewModel(to: message.to, text: message.text, timestamp: message.timestamp, msgKind: message.msgKind, isSeen: isSeen)
     }
     
-    
-    //Get the Index of selected cell
     func pressedCell(at indexpath: IndexPath) {
         selectedCell = messageViewModel[indexpath.row]
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Handle unread messages
-    
     func readMessages(friendID: String) {
         FBDatabase.shared.readMessages(id: friendID)
     }
@@ -202,39 +168,12 @@ class ChatingViewModel {
         return isSeen
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Handling send message
-    
     func sendTextMessage(uid: String, text: String) {
         FBDatabase.shared.sendMessage(to: uid, msg: text, msgKind: .text, voiceSec: 0)
     }
     
-    func sendVoiceMessage(data: Data, seconds: Double, uid: String) {
-        FBDatabase.shared.sendVoice(file: data, seconds: seconds, toUID: uid)
-    }
-    
-    func sendLocationMessage(uid: String, latitude: Double, longitude: Double) {
-        FBDatabase.shared.sendLocation(toUID: uid, latitude: latitude, longitude: longitude)
-    }
-    
-    func sendPhotoMessage(image: UIImage, uid: String) {
-        FBDatabase.shared.sendPhoto(photo: image, toUID: uid)
-    }
-    
-    
-    
-    
-    
     // MARK:- Handle typing action
-    
     func startTyping(friendID: String) {
         FBDatabase.shared.FBStartTypingUser(friendID: friendID)
     }
@@ -249,17 +188,7 @@ class ChatingViewModel {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Check Blocking
-
     func checkBlocking(uid: String) {
         if FBNetworkRequest.shared.blockedList.isEmpty {
             FBNetworkRequest.shared.fetchBlockedList { [unowned self] (_) in
@@ -280,14 +209,6 @@ class ChatingViewModel {
     
 }
 
-
-
-
-
-
-
-
-
 // MARK:- Message View Model
 
 struct MessageViewModel {
@@ -296,12 +217,6 @@ struct MessageViewModel {
     var text     : String?
     var timestamp: Double?
     var msgKind  : String?
-    var photoURL : String?
-    var latitude : Double?
-    var longitude: Double?
-    var voiceURL : String?
-    var videoURL : String?
-    var voiceSec : Double?
     var isSeen   : Bool?
     
 }

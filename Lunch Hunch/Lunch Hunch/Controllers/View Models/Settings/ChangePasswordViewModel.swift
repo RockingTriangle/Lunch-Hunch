@@ -9,12 +9,12 @@ import Foundation
 
 class ChangePasswordViewModel {
     
+    // MARK: - Properties
     var message = String() { didSet { changePasswordClosure?() }}
-    
     
     var changePasswordClosure: (()->())?
     
-    
+    // MARK: - Functions
     func chnagePassword(password: String, repassword: String) {
         if password == repassword {
             FBAuthentication.shared.changePassword(password: password) { [weak self] (isSuccess, error) in

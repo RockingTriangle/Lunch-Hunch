@@ -7,13 +7,16 @@
 
 import Foundation
 
+/// Resaurant data type for selecting restaurant in chat polls and randomizing
 struct Restaurant {
     
+    // MARK: - Properties
     var name: String
     var voteCount: Int
     let isPicked: Bool
     let uuid: String
     
+    // MARK: - Initializers
     init(name: String, voteCount: Int = 0, isPicked: Bool = false, uuid: String = UUID().uuidString) {
         self.name = name
         self.voteCount = voteCount
@@ -37,13 +40,3 @@ extension Restaurant: Hashable {
         hasher.combine(name)
     }
 }
-
-class RestaurantModel { //JWR
-    let name: String
-    let address: String
-    init(name: String, address: String) {
-        self.name = name
-        self.address = address
-    }
-}
-

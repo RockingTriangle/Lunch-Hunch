@@ -10,35 +10,27 @@ import Foundation
 
 class ChatsViewModel {
     
+    // MARK: - Properties
     public  var isReachable             = true { didSet { updateTableViewClouser?() }}
     public  var isAnimating             = true { didSet { updateIndicatorClouser?() }}
     public  var messageViewModel        = [RecentsViewModel]() { didSet { updateTableViewClouser?() }}
     public  var countUnreadedMessages   = 0 { didSet{ updatebadgeClouser?() }}
     private var originalModel           = [RecentsViewModel]()
     
-    
     public var numberOfMessages         : Int { return messageViewModel.count }
     public var numberOfSection          : Int { return 1 }
     public var prevIndex                : Int?
     public var selectedCell             : RecentsViewModel?
-    
     
     var updateTableViewClouser: (()->())?
     var updateIndicatorClouser: (()->())?
     var updateRequestsClouser:  (()->())?
     var updatebadgeClouser:  (()->())?
     
-    
-    
+    // MARK: - Initializer
     init() {
         checkConnection()
     }
-    
-    
-    
-    
-    
-    
     
     // MARK:- Check Connection
     private func checkConnection() {
@@ -54,11 +46,7 @@ class ChatsViewModel {
         }
     }
     
-    
-    
-    
     // MARK:- Fetch Requests, Recent Messages and Undread Messages
-    
     func initFetchRequests() {
         FBNetworkRequest.shared.fetchBlockedList     { (_) in }
         FBNetworkRequest.shared.fetchBlockedByList   { (_) in }
@@ -66,7 +54,6 @@ class ChatsViewModel {
         FBNetworkRequest.shared.checkRequestsRecived { [weak self] (requests) in
             guard let self = self else { return }
             self.updateRequestsClouser?()
-            //self.initFetchMessages()
         }
     }
     
@@ -80,7 +67,6 @@ class ChatsViewModel {
         }
     }
     
-    
     func initFetchUnreadMessages() {
         FBDatabase.shared.loadCountAllUnread { [weak self] (count) in
             guard let self = self else { return }
@@ -88,18 +74,7 @@ class ChatsViewModel {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Proccess to create  message view model
-    
     private func proccessFetchUnreadCount(messages: [RecentMessage]) {
         var msgs = [RecentMessage]()
         var index = 0
@@ -119,7 +94,6 @@ class ChatsViewModel {
             }
         }
     }
-    
     
     private func updateUnreadCount(uid: String, count: Int?) {
         var index = 0
@@ -152,7 +126,6 @@ class ChatsViewModel {
         }
     }
     
-    
     private func updateUserStatus(uid: String, status: Bool) {
         if FBNetworkRequest.shared.blockedByList.contains(uid) || FBNetworkRequest.shared.blockedList.contains(uid) {}
         else {
@@ -166,7 +139,6 @@ class ChatsViewModel {
         }
     }
     
-    
     private func createCellViewModel(messages: [RecentMessage]) {
         var vms = [RecentsViewModel]()
         for message in messages {
@@ -175,40 +147,18 @@ class ChatsViewModel {
         messageViewModel.append(contentsOf: vms)
     }
     
-    
     private func proccessFetchMessage(message: RecentMessage) -> RecentsViewModel {
         let name   = message.user!.first! + " " + message.user!.last!
         let status = FBNetworkRequest.shared.blockedByList.contains((message.user?.id)!) || FBNetworkRequest.shared.blockedList.contains((message.user?.id)!) ? false : message.user?.isOnline
         return RecentsViewModel(name: name, message: message.text!, imageURL: message.user!.imageURL, timestamp: message.timestamp, isOnline: status, uid: message.to, unreadCount: message.unreadCount)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Handle selected cell
-    
     func pressedCell(at indexpath: IndexPath) {
         selectedCell = messageViewModel[indexpath.row]
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Handle searching
-    
     func startSearching() {
         originalModel = messageViewModel
     }
@@ -222,25 +172,13 @@ class ChatsViewModel {
         }
     }
     
-    
     func endSearching() {
         messageViewModel = originalModel
     }
       
 }
 
-
-
-
-
-
-
-
-
-
-
 // MARK:- Message ViewModel
-
 struct RecentsViewModel{
     var name: String?
     var message: String?
@@ -250,10 +188,3 @@ struct RecentsViewModel{
     var uid: String?
     var unreadCount: Int?
 }
-
-
-
-
-
-
-

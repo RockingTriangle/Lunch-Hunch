@@ -10,6 +10,7 @@ import Foundation
 
 class PeopleViewModel{
     
+    // MARK: - Properties
     var friendViewModel     = [UserViewModel]() { didSet { reloadTableViewClosure?() } }
     var selectedCell        : UserViewModel?
     var numberOfCells       : Int { return friendViewModel.count }
@@ -25,16 +26,9 @@ class PeopleViewModel{
         }
     }
     
-    
     var reloadTableViewClosure: (()->())?
     
-    
-    
-    
-    
-    
     // MARK:- Init fetch friends
-    
     func initFetch() {
         FBNetworkRequest.shared.loadFriendsList { (_) in
             FBNetworkRequest.shared.loadFriends { [weak self] (users) in
@@ -71,14 +65,7 @@ class PeopleViewModel{
         selectedCell = friendViewModel[indexpath.row]
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Handle Searching
-    
     func startSearching() {
         originalModel = friendViewModel
     }
@@ -98,13 +85,7 @@ class PeopleViewModel{
     
 }
 
-
-
-
-
-
 // MARK:- User view model
-
 struct UserViewModel{
     var name     : String?
     var username : String?

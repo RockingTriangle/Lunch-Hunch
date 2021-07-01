@@ -47,5 +47,6 @@ struct DefaultSettings {
     
     func ChangeAvailability(status: Bool) {
         DefaultSettings.shared.defaults.set(status, forKey: "status")
-    }    
+    }
+    
 }

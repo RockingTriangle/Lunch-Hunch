@@ -10,18 +10,17 @@ import Reachability
 
 class Network {
     
+    // MARK: - Properites
     static let shared = Network()
-    
+    private var reachability: Reachability?
+    var updateConnectionStatus: ((Bool)->())?
     public var isReachable = false {
         didSet {
             updateConnectionStatus?(isReachable)
         }
     }
-    
-    private var reachability: Reachability?
-    
-    var updateConnectionStatus: ((Bool)->())?
-        
+       
+    // MARK: - Initializer
     init() {
         checkConnection()
     }
@@ -70,5 +69,6 @@ class Network {
         isReachable = false
         
     }
+    
 }
 
