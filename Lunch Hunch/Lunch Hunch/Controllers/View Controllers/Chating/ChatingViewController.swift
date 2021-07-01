@@ -94,7 +94,7 @@ class ChatingViewController: UIViewController {
         }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
-    }
+    }//JWR Add button image change here?
     
     func initMessageVM() {
         vm.reloadTableViewClouser = { [weak self] in
@@ -216,6 +216,7 @@ class ChatingViewController: UIViewController {
     //MARK: - FUNCTIONS
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
+
         return restaurant ?? ""
     }
     

@@ -187,7 +187,24 @@ class ChatingViewModel {
             self.isTyping = isTyping
         }
     }
+    //JWR handle polling action
     
+    func startPolling(friendID: String) {
+        FBDatabase.shared.FBStartPoll(friendID: friendID)
+    }
+    
+    func endPolling(friendID: String) {
+        FBDatabase.shared.FBEndPoll(friendID: friendID)
+    }
+    
+    func detectFriendPolling(friendID: String) {
+        FBDatabase.shared.FBDetectPoll(friendID: friendID) { (isTyping) in
+            self.isTyping = isTyping
+        }
+    }
+    
+    
+ 
     // MARK:- Check Blocking
     func checkBlocking(uid: String) {
         if FBNetworkRequest.shared.blockedList.isEmpty {

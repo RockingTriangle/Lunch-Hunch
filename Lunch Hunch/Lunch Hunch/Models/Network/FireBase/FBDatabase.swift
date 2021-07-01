@@ -315,7 +315,25 @@ struct FBDatabase {
         }
     }
     
-    //MARK:- Validate kind and Type of Messages    
+    //MARK: - Handle Polling Button Change
+    func FBStartPoll(friendID: String) { //JWRcopy code for polling
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "true"])
+    }
+    
+    func FBEndPoll(friendID: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("polling").child(uid).child(friendID).removeValue()
+    }
+    
+    func FBDetectPoll(friendID: String, completion: @escaping(Bool) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("polling").child(friendID).child(uid).observe(.value) { (snapshot) in
+            snapshot.exists() ? completion(true) : completion(false)
+        }
+    }
+    
+    //MARK:- Validate kind and Type of Messages
     func CheckMessageKind(msgKind: MessageKind) -> String {
         switch msgKind {
             case .text:
