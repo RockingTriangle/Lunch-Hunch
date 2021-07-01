@@ -23,7 +23,6 @@ struct Restaurant {
         self.isPicked = isPicked
         self.uuid = uuid
     }
-}//End of class
     
     init(data: Data) {
         self.init(name: String(data: data, encoding: .utf8) ?? "nope")
@@ -35,7 +34,6 @@ extension Restaurant: Equatable {
         return lhs.uuid == rhs.uuid
     }
 }//End of extension
-}
 
 extension Restaurant: Hashable {
     func hash(into hasher: inout Hasher) {

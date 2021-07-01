@@ -222,6 +222,7 @@ class ChatingViewController: UIViewController {
                 self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "poll"])
                 self.hatButtonSetup()
             }
+            
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
         
         let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
@@ -231,7 +232,7 @@ class ChatingViewController: UIViewController {
                 self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "rando"])
                 self.hatButtonSetup()
             }
-            let _ = self.restaurantRandomizer(restaurants: restaurants)
+            
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

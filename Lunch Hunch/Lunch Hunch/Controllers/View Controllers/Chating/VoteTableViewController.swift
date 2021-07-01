@@ -57,10 +57,6 @@ class VoteTableViewController: UITableViewController {
         let selected = selectedList
         
         guard selected.count == 3 else {return}
-        
-        calculateWinner(restaurants: selectedList)
-        print(selectedList)
-        
         calculateWinner()
     }
 
