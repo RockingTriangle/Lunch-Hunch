@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
+import CoreLocation
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class ChatingViewController: UIViewController {
     
@@ -25,10 +30,13 @@ class ChatingViewController: UIViewController {
     @IBOutlet weak var textView    : UITextView!
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
+    //    @IBOutlet weak var actionsStack: UIStackView!
+
     
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
     @IBOutlet weak var bottomVisualView: NSLayoutConstraint!
     @IBOutlet weak var heightConstraintOfStack: NSLayoutConstraint!
+    @IBOutlet weak var hatButtonOutlet: UIButton!
     
     // MARK: - Properties
     private let button = UIButton()
@@ -44,6 +52,11 @@ class ChatingViewController: UIViewController {
     private var heightOfBottomView: CGFloat = 0
     private var keyboardWillShow = false
     
+    var ref: DatabaseReference!
+    
+    
+    
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +64,8 @@ class ChatingViewController: UIViewController {
         initUserVM()
         initMessageVM()
         initNotifications()
+        ref = Database.database().reference()
+        hatButtonSetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -196,16 +211,26 @@ class ChatingViewController: UIViewController {
     }
     
     //---------------------------------------------------------------------------------------------
+
     @IBAction func hatButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
         
-        let restaurants: [String] = []
-        
         let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
-            self.performSegue(withIdentifier: "toVote", sender: nil)
+            self.dismiss(animated: true) {
+                let userID = Auth.auth().currentUser?.uid
+                let otherUser = self.uid
+                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "poll"])
+                self.hatButtonSetup()
+            }
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
         
         let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
+            self.dismiss(animated: true) {
+                let userID = Auth.auth().currentUser?.uid
+                let otherUser = self.uid
+                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "rando"])
+                self.hatButtonSetup()
+            }
             let _ = self.restaurantRandomizer(restaurants: restaurants)
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
@@ -223,6 +248,24 @@ class ChatingViewController: UIViewController {
         let restaurant = restaurants.randomElement() ?? nil
 
         return restaurant ?? ""
+    }
+    
+    func hatButtonSetup() {
+        let userID = Auth.auth().currentUser?.uid
+        let otherUser = self.uid
+        
+        self.ref.child("messages").child(userID!).child(otherUser).child("poll").observe(.childChanged) { (snapshot) in
+            
+            let value = snapshot.value as! String
+            
+            if value == "poll" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconPoll"), for: .normal)
+            } else if value == "rando" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
+            } else if value == "" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+            }
+        }
     }
     
     
@@ -330,6 +373,7 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             fromCell.msgVM = message
             return fromCell
         } else {
+
             let toCell = tableView.dequeueReusableCell(withIdentifier: "ToCell", for: indexPath) as! ToCell
             toCell.msgVM = message
             toCell.userImage.image = vm.friend_image
@@ -375,6 +419,7 @@ extension ChatingViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         vm.startTyping(friendID: uid)
+
         textView.text = ""
         self.view.updateConstraintsIfNeeded()
         self.view.layoutIfNeeded()
@@ -382,6 +427,7 @@ extension ChatingViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         vm.endTyping(friendID: uid)
+
         textView.text = "Aa"
         textView.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         textView.sizeToFit()

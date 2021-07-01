@@ -672,14 +672,18 @@
                                             <rect key="frame" x="10" y="10" width="351" height="33"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVp-u8-m96">
-                                                    <rect key="frame" x="0.0" y="0.0" width="17" height="33"/>
-                                                    <state key="normal" image="cylinder.fill" catalog="system"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33" id="Njc-uL-IeU"/>
+                                                        <constraint firstAttribute="width" constant="33" id="PsT-7T-T6U"/>
+                                                    </constraints>
+                                                    <state key="normal" image="hatIcon"/>
                                                     <connections>
                                                         <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
                                                     </connections>
                                                 </button>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Aa" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5D-jW-nZs">
-                                                    <rect key="frame" x="27" y="0.0" width="324" height="33"/>
+                                                    <rect key="frame" x="43" y="0.0" width="308" height="33"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="0.63361515410000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -763,6 +767,7 @@
                         <outlet property="BottomView" destination="fCT-cc-apb" id="B54-lS-Bwd"/>
                         <outlet property="bottomVisualView" destination="lZx-XT-tGC" id="frp-Dd-VSX"/>
                         <outlet property="hatButton" destination="BVp-u8-m96" id="6Zw-Rd-R0L"/>
+                        <outlet property="hatButtonOutlet" destination="BVp-u8-m96" id="5kO-kK-zCU"/>
                         <outlet property="heightConstraintOfStack" destination="37K-Xx-NX4" id="pGE-bb-qoD"/>
                         <outlet property="heightVisualView" destination="Bei-sj-5at" id="zSF-yP-a2C"/>
                         <outlet property="parentactionStack" destination="u84-zk-KWJ" id="eNK-CA-DIg"/>
@@ -1007,7 +1012,7 @@
         <image name="People" width="33" height="33"/>
         <image name="Send" width="33" height="33"/>
         <image name="cancel" width="33" height="33"/>
-        <image name="cylinder.fill" catalog="system" width="121" height="128"/>
+        <image name="hatIcon" width="1068" height="985"/>
         <image name="play" width="33" height="33"/>
         <namedColor name="BasicColor">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
