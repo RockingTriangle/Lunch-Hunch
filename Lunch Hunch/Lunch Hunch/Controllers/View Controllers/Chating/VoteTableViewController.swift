@@ -159,10 +159,12 @@ class VoteTableViewController: UITableViewController {
     
     func calculateWinner() {
         
-        var points = 1
-        while points < 4 {
-            RestaurantController.shared.selectedList[points].voteCount += points
-            points += 1
+        var points = 3
+        var index = 0
+        while points > 0 {
+            RestaurantController.shared.selectedList[index].voteCount += points
+            index += 1
+            points -= 1
         }
     }
     
