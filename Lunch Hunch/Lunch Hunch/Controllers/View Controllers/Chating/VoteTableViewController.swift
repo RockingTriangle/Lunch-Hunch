@@ -45,9 +45,13 @@ class VoteTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard selectedList.count == 3 else {return}
+        let selected = selectedList
+        
+        guard selected.count == 3 else {return}
         
         calculateWinner(restaurants: selectedList)
+        print(selectedList)
+        
     }
 
     // MARK: - Table view data source

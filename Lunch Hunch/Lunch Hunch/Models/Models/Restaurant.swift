@@ -20,10 +20,10 @@ class Restaurant {
         self.isPicked = isPicked
         self.uuid = uuid
     }
-}
+}//End of class
 
 extension Restaurant: Equatable {
     static func == (lhs: Restaurant, rhs: Restaurant) -> Bool {
         return lhs.uuid == rhs.uuid
     }
-}
+}//End of extension

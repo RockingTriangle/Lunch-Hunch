@@ -677,6 +677,7 @@
                                                         <constraint firstAttribute="height" constant="33" id="Njc-uL-IeU"/>
                                                         <constraint firstAttribute="width" constant="33" id="PsT-7T-T6U"/>
                                                     </constraints>
+                                                    <state key="normal" image="hatIcon"/>
                                                     <connections>
                                                         <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
                                                     </connections>
@@ -1011,6 +1012,7 @@
         <image name="People" width="33" height="33"/>
         <image name="Send" width="33" height="33"/>
         <image name="cancel" width="33" height="33"/>
+        <image name="hatIcon" width="1068" height="985"/>
         <image name="play" width="33" height="33"/>
         <namedColor name="BasicColor">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

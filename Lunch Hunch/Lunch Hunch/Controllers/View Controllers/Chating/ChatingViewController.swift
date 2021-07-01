@@ -8,6 +8,8 @@
 import UIKit
 import AVFoundation
 import CoreLocation
+import FirebaseDatabase
+import FirebaseAuth
 
 class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     
@@ -27,7 +29,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var textView    : UITextView!
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
-//    @IBOutlet weak var actionsStack: UIStackView!
+    //    @IBOutlet weak var actionsStack: UIStackView!
     
     
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
@@ -58,8 +60,8 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     private var heightOfBottomView: CGFloat = 0
     private var keyboardWillShow = false
     
-    private var pollIsActive: Bool = false
-    private var randomIsActive: Bool = false
+    var ref: DatabaseReference!
+    
     
     
     
@@ -69,6 +71,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         initUserVM()
         initMessageVM()
         initNotifications()
+        ref = Database.database().reference()
         hatButtonSetup()
     }
     
@@ -246,7 +249,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     //---------------------------------------------------------------------------------------------
-
+    
     private func sendAudioRecording() {
         audioRecorder.stop()
         recordingSession = .sharedInstance()
@@ -278,19 +281,19 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.2) {
                 if self.audioRecorder != nil {
-//                    self.actionsStack.isHidden = true
+                    //                    self.actionsStack.isHidden = true
                     self.textView.isHidden = true
                     self.sendButton.isEnabled = true
                     self.recordView.isHidden = false
                     self.prograssBar.setProgress(0.0, animated: true)
                     self.timer = .scheduledTimer(timeInterval: 1.0, target: self, selector:
-                        #selector(self.updateRecordingTime), userInfo: nil, repeats: true)
+                                                    #selector(self.updateRecordingTime), userInfo: nil, repeats: true)
                     self.timer.fire()
                     
                 } else {
                     self.timer.invalidate()
                     self.recordView.isHidden = true
-//                    self.actionsStack.isHidden = false
+                    //                    self.actionsStack.isHidden = false
                     self.textView.isHidden = false
                     self.sendButton.isEnabled = false
                 }
@@ -313,18 +316,22 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func hatButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
         
-        let restaurants: [String] = []
-        
         let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
-            self.pollIsActive.toggle()
-            self.hatButtonSetup()
-            self.performSegue(withIdentifier: "toVote", sender: nil)
+            self.dismiss(animated: true) {
+                let userID = Auth.auth().currentUser?.uid
+                let otherUser = self.uid
+                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "poll"])
+                self.hatButtonSetup()
+            }
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
         
         let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
-            self.randomIsActive.toggle()
-            self.hatButtonSetup()
-            self.restaurantRandomizer(restaurants: restaurants)
+            self.dismiss(animated: true) {
+                let userID = Auth.auth().currentUser?.uid
+                let otherUser = self.uid
+                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "rando"])
+                self.hatButtonSetup()
+            }
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -340,18 +347,24 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
         print(restaurant)
-        self.randomIsActive.toggle()
         return restaurant ?? ""
     }
     
     func hatButtonSetup() {
+        let userID = Auth.auth().currentUser?.uid
+        let otherUser = self.uid
         
-        if pollIsActive == true {
-            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconPoll"), for: .normal)
-        } else if randomIsActive == true {
-            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
-        } else {
-            hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        self.ref.child("messages").child(userID!).child(otherUser).child("poll").observe(.childChanged) { (snapshot) in
+            
+            let value = snapshot.value as! String
+            
+            if value == "poll" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconPoll"), for: .normal)
+            } else if value == "rando" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
+            } else if value == "" {
+                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+            }
         }
     }
     
@@ -477,7 +490,7 @@ extension ChatingViewController: CLLocationManagerDelegate, locationDelegate {
             present(vc, animated: true)
         }
     }
-
+    
     
     @objc func openLocationByMap(tapGesture: UITapGestureRecognizer) {
         let gesture = tapGesture.view as! UIImageView
@@ -610,7 +623,7 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
                 let toCell = tableView.dequeueReusableCell(withIdentifier: "ToCell", for: indexPath) as! ToCell
                 toCell.msgVM = message
                 toCell.userImage.image = vm.friend_image
-
+                
                 return toCell
             }
         }
@@ -662,7 +675,7 @@ extension ChatingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         vm.startTyping(friendID: uid)
         UIView.animate(withDuration: 0.2) {
-//            self.actionsStack.isHidden = true
+            //            self.actionsStack.isHidden = true
         }
         textView.text = ""
         checkDarkMode()
@@ -673,7 +686,7 @@ extension ChatingViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         vm.endTyping(friendID: uid)
         UIView.animate(withDuration: 0.2) {
-//            self.actionsStack.isHidden = false
+            //            self.actionsStack.isHidden = false
         }
         
         textView.text = "Aa"
