@@ -13,7 +13,7 @@ class RestaurantController {
     
     
     var sections: [[Restaurant]] {[selectedList, restaurantList]}
-    var restaurantList: [Restaurant] = []
+    var restaurantList: [Restaurant] = [] 
     var selectedList: [Restaurant] = []
     
     private init() {}

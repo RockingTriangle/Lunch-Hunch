@@ -12,34 +12,46 @@ class VoteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadViewIfNeeded()
         tableView.isEditing = true
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        FirebaseApp.configure() //JWR
+        viewModel.selectedList = []
+        viewModel.restaurantList = []
+                
         refRestaurants.observe(DataEventType.value, with: {(snapshot) in //JWR
             if snapshot.childrenCount > 0 {
-                self.listOfRestaurants.removeAll()
-                for restaurants in snapshot.children.allObjects as![DataSnapshot] {
-                    let restaurantObject = restaurants.value as? [String: AnyObject]
-                    let restaurantName = restaurantObject?["0"]
-                    let restaurantAddress = restaurantObject?["2"]
-                    
-                    let restaurants = RestaurantModel(name: restaurantName as! String, address: restaurantAddress as! String)
-                    self.listOfRestaurants.append(restaurants)
+                let data = try? JSONSerialization.data(withJSONObject: snapshot.value!)
+                var string = String(data: data!, encoding: .utf8)
+                let removeCharacters: Set<Character> = ["\"", "[", "]"]
+                string!.removeAll(where: { removeCharacters.contains($0) } )
+                let items = string?.components(separatedBy: ",")
+                for item in items! {
+                    let restaurant = Restaurant(name: item)
+                    self.viewModel.restaurantList.append(restaurant)
                 }
-                self.tableView.reloadData()
             }
+            
+            self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
+            for index in (0..<self.viewModel.restaurantList.count - 1) {
+                if index == self.viewModel.restaurantList.count {
+                    break
+                }
+                if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
+                    self.viewModel.restaurantList.remove(at: index)
+                }
+            }
+            
+            self.tableView.reloadData()
         })
     }
     
     //MARK: - Properties
-    var listOfRestaurants = [RestaurantModel]()
-
-    var refRestaurants = Database.database().reference().child("messages").child("restaurants").child(currentUser.id!).child("picked_restaurants_from_search") //JWR
+    var viewModel = RestaurantController.shared
+    var refRestaurants = Database.database().reference().child("messages").child(currentUser.id!).child("picked_restaurants_from_search") //JWR
     var restaurant: Restaurant?
-    var restaurantList: [Restaurant] = RestaurantController.shared.restaurantList
     var selectedList: [Restaurant] = RestaurantController.shared.selectedList
     
     //MARK: - ACTIONS
@@ -67,26 +79,26 @@ class VoteTableViewController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard selectedList.count == 3 else {return}
         
-        calculateWinner(restaurants: selectedList)
+        calculateWinner()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return RestaurantController.shared.sections.count
+        return viewModel.sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RestaurantController.shared.sections[section].count
+        return viewModel.sections[section].count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as? RestaurantListTableViewCell else {return UITableViewCell()}
         
-        let restaurants = RestaurantController.shared.sections[indexPath.section][indexPath.row]
+        let restaurant = viewModel.sections[indexPath.section][indexPath.row]
         
-        cell.configure(restaurant: restaurants)
+        cell.configure(restaurant: restaurant)
         cell.delegate = self
         
         return cell
@@ -141,14 +153,12 @@ class VoteTableViewController: UITableViewController {
         return .none
     }
     
-    func calculateWinner(restaurants: [Restaurant]) {
+    func calculateWinner() {
         
-        var points = 3
-        
-        for restaurant in restaurants {
-            restaurant.voteCount += points
-            points -= 1
-            print(restaurant.voteCount, restaurant.name)
+        var points = 1
+        while points < 4 {
+            RestaurantController.shared.selectedList[points].voteCount += points
+            points += 1
         }
     }
     
