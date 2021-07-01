@@ -55,7 +55,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let id = currentUser.id else {return}
         for business in results.selectedBusiness {
-            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([String(business) : results.businesses[business].name, String(business + 2) : (results.businesses[business].location.displayAddress[0] + results.businesses[business].location.displayAddress[1])])
+            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([String(business) : results.businesses[business].name])
            
         }
         navigationController?.popViewController(animated: true)
