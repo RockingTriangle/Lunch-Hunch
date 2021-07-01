@@ -21,31 +21,7 @@ class VoteTableViewController: UITableViewController {
         viewModel.selectedList = []
         viewModel.restaurantList = []
                 
-        refRestaurants.observe(DataEventType.value, with: {(snapshot) in //JWR
-            if snapshot.childrenCount > 0 {
-                let data = try? JSONSerialization.data(withJSONObject: snapshot.value!)
-                var string = String(data: data!, encoding: .utf8)
-                let removeCharacters: Set<Character> = ["\"", "[", "]"]
-                string!.removeAll(where: { removeCharacters.contains($0) } )
-                let items = string?.components(separatedBy: ",")
-                for item in items! {
-                    let restaurant = Restaurant(name: item)
-                    self.viewModel.restaurantList.append(restaurant)
-                }
-            }
-            
-            self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
-            for index in (0..<self.viewModel.restaurantList.count - 1) {
-                if index == self.viewModel.restaurantList.count {
-                    break
-                }
-                if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
-                    self.viewModel.restaurantList.remove(at: index)
-                }
-            }
-            
-            self.tableView.reloadData()
-        })
+        loadRestaurantsFromFB()
     }
     
     //MARK: - Properties
@@ -151,6 +127,34 @@ class VoteTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
+    }
+    
+    func loadRestaurantsFromFB() {
+        refRestaurants.observe(DataEventType.value, with: {(snapshot) in //JWR
+            if snapshot.childrenCount > 0 {
+                let data = try? JSONSerialization.data(withJSONObject: snapshot.value!)
+                var string = String(data: data!, encoding: .utf8)
+                let removeCharacters: Set<Character> = ["\"", "[", "]"]
+                string!.removeAll(where: { removeCharacters.contains($0) } )
+                let items = string?.components(separatedBy: ",")
+                for item in items! {
+                    let restaurant = Restaurant(name: item)
+                    self.viewModel.restaurantList.append(restaurant)
+                }
+            }
+            
+            self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
+            for index in (0..<self.viewModel.restaurantList.count - 1) {
+                if index == self.viewModel.restaurantList.count {
+                    break
+                }
+                if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
+                    self.viewModel.restaurantList.remove(at: index)
+                }
+            }
+            
+            self.tableView.reloadData()
+        })
     }
     
     func calculateWinner() {
