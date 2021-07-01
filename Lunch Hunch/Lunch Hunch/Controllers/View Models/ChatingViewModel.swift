@@ -248,6 +248,7 @@ class ChatingViewModel {
             self.isTyping = isTyping
         }
     }
+    //JWR handle polling action
     
     
     

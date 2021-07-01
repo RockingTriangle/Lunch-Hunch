@@ -128,7 +128,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
-    }
+    }//JWR Add button image change here?
     
     
     func initMessageVM() {
