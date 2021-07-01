@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 
+
 extension UITableView {
     func setBottomInset(to value: CGFloat) {
         let edgeInset = UIEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
@@ -111,5 +112,19 @@ extension Double {
         } else {
             return "\(month)"
         }
+    }
+}
+
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
     }
 }

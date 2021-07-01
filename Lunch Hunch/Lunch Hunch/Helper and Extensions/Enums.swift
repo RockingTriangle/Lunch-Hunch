@@ -14,10 +14,6 @@ enum MessageType {
 
 enum MessageKind {
     case text
-    case photo
-    case video
-    case location
-    case voice
 }
 
 enum RequestType {

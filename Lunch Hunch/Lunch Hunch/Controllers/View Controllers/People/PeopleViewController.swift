@@ -9,21 +9,16 @@ import UIKit
 
 class PeopleViewController: UIViewController {
     
+    // MARK: - Properties
     let searchController = UISearchController()
     let vm               = PeopleViewModel()
     var filtred          = [UserViewModel]()
     
-    
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var noFriendsView : UIView!
     
-    
-    
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -31,13 +26,7 @@ class PeopleViewController: UIViewController {
         initVM()
     }
     
-    
-    
-    
-    
     // MARK:- Init view and view model
-    
-    
     private func initView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
@@ -47,7 +36,6 @@ class PeopleViewController: UIViewController {
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "UserCell")
     }
     
-    
     private func setupNoFriendsView() {
         noFriendsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(noFriendsView)
@@ -55,7 +43,6 @@ class PeopleViewController: UIViewController {
         noFriendsView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         noFriendsView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
     }
-    
     
     private func initVM() {
         vm.reloadTableViewClosure = { [weak self] in
@@ -74,35 +61,16 @@ class PeopleViewController: UIViewController {
         vm.initFetch()
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func addFriendPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard.init(name: "People", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "addFriend")
         present(vc, animated: true)
     }
     
-    
-    
 }
 
-
-
-
-
-
-
-
-
-
 // MARK:- TableView Delegate and Datasource
-
 extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return vm.numbserOfSections
@@ -119,7 +87,6 @@ extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm.numberOfCells
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
@@ -153,16 +120,10 @@ extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
             vc.uid  = vm.selectedCell!.uid!
         }
     }
+    
 }
 
-
-
-
-
-
-
 // MARK:- Search controller delegate
-
 extension PeopleViewController: UISearchControllerDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let text = searchController.searchBar.text?.lowercased()

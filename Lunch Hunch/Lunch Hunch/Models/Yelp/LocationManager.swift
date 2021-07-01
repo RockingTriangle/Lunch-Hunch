@@ -16,17 +16,15 @@ class LocationManager {
     // Properties
     let locationManager = CLLocationManager()
     
-    
     // MARK: - Functions
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             configureLocationManager()
-        } else {
-            print("location services off: fix in settings")
         }
     }
 
     func configureLocationManager() {
+        getAuthorizationStatus()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
     }
@@ -42,11 +40,7 @@ class LocationManager {
             locationManager.requestAlwaysAuthorization()
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
-        case .restricted:
-            print("restricted: fix in settings")
-        case .denied:
-            print("denied: fix in settings")
-        @unknown default:
+        default:
             break
         }
     }
@@ -62,5 +56,5 @@ class LocationManager {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         LocationManager.shared.getAuthorizationStatus()
     }
-
+    
 }

@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             viewController = storyboard.instantiateViewController(identifier: "loginVC")
         }
         window?.rootViewController = viewController
+        viewController?.overrideUserInterfaceStyle = .light
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

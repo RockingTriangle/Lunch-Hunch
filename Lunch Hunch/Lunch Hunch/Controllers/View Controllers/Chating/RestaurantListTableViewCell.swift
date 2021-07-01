@@ -39,4 +39,5 @@ class RestaurantListTableViewCell: UITableViewCell {
         isPickedButton.setImage(image, for: .normal)
         isPickedButton.tintColor = .cyan
     }
+    
 }

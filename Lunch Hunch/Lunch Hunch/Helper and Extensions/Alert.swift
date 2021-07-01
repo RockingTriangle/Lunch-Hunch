@@ -14,8 +14,5 @@ struct Alert {
         DispatchQueue.main.async {
             viewController.present(alert, animated: true)
         }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            alert.dismiss(animated: true, completion: nil)
-//        }
     }
 }

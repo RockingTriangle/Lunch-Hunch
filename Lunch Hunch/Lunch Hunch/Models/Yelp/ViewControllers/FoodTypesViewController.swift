@@ -9,6 +9,7 @@ import UIKit
 
 class FoodTypesViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var allToggle: UISwitch!
     @IBOutlet weak var italianToggle: UISwitch!
     @IBOutlet weak var mexicantoggle: UISwitch!
@@ -30,9 +31,11 @@ class FoodTypesViewController: UIViewController {
     @IBOutlet weak var saladToggle: UISwitch!
     @IBOutlet weak var seafoodToggle: UISwitch!
     
+    // MARK: - Properties
     var viewModel = RestaurantViewModel.shared
     var toggleArray: [UISwitch] = []
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         toggleArray = [allToggle, italianToggle, mexicantoggle, americanToggle,
@@ -43,6 +46,7 @@ class FoodTypesViewController: UIViewController {
         configureViews()
     }
     
+    // MARK: - IBActions
     @IBAction func toggleWasTapped(_ sender: UISwitch) {
         
         let index = sender.tag
@@ -92,4 +96,5 @@ class FoodTypesViewController: UIViewController {
             }
         }
     }
+    
 }

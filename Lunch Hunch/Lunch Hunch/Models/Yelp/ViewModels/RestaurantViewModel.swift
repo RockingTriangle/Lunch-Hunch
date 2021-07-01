@@ -55,7 +55,9 @@ class RestaurantViewModel {
     var currentLocation: CLLocation? {
         didSet {
             searchLocation = userSearchChoice.description
-            finalSearchLocation = currentLocation
+            if searchLocation.contains("My Location") {
+                finalSearchLocation = currentLocation
+            }
         }
     }
     

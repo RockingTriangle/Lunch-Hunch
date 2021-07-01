@@ -11,13 +11,14 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseAuth
 
-class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
+
+class ChatingViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet var titleView        : UIView!
     @IBOutlet weak var titleLabel  : UILabel!
     @IBOutlet weak var statusLabel : UILabel!
     @IBOutlet weak var tableView   : UITableView!
-    
     
     @IBOutlet weak var recordView  : UIView!
     @IBOutlet weak var prograssBar : UIProgressView!
@@ -30,31 +31,22 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
     //    @IBOutlet weak var actionsStack: UIStackView!
-    
+
     
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
     @IBOutlet weak var bottomVisualView: NSLayoutConstraint!
     @IBOutlet weak var heightConstraintOfStack: NSLayoutConstraint!
     @IBOutlet weak var hatButtonOutlet: UIButton!
     
-    
+    // MARK: - Properties
     private let button = UIButton()
-    
     public  var name = String()
     public  var uid  = String()
     
     private let database = FBDatabase.shared
     private var selectedCell = Message()
-    private let manager  = CLLocationManager()
     private let vm       = ChatingViewModel()
     private var current  = 0.0
-    
-    
-    private let player   = Audio()
-    private var timer    = Timer()
-    private var recordingSession: AVAudioSession!
-    private var audioRecorder   : AVAudioRecorder!
-    
     
     private var heightKeyboard: CGFloat = 0
     private var heightOfBottomView: CGFloat = 0
@@ -65,6 +57,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -81,14 +74,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         textView.resignFirstResponder()
         
         vm.endTyping(friendID: uid)
-        
-        let indexPath = self.tableView.indexPathsForVisibleRows
-        for i in indexPath! {
-            let cell = self.tableView.cellForRow(at: i) as? VoiceTableViewCell
-            cell?.dismiss()
-        }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         vm.checkBlocking(uid: uid)
@@ -96,26 +82,13 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         textView.isEditable = true
     }
     
-    
     deinit {
         removeNotifications()
         FBDatabase.shared.removewMessagesObserver(forUID: uid)
         vm.readMessages(friendID: uid)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Init user and messages View Models
-    
     func initUserVM() {
         vm.updateBottomViewClouser = { [weak self] in
             guard let self = self else { return }
@@ -134,10 +107,14 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
             guard let self = self else { return }
             self.statusLabel.text = self.vm.isTyping ? "Typing..." : self.vm.friend?.status
         }
+//        vm.updatePollingClouser = { [weak self] in
+//            guard let self = self else {return}
+//            self.
+//        }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
+        vm.detectFriendPolling(friendID: uid) //JWR Polling
     }
-    
     
     func initMessageVM() {
         vm.reloadTableViewClouser = { [weak self] in
@@ -146,7 +123,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
                 self.tableView.beginUpdates()
                 self.tableView.insertRows(at: [.init(row: 0, section: 0)], with: .automatic)
                 self.tableView.endUpdates()
-                self.player.playSound(file: "Message")
                 self.vm.isNew = false
                 self.vm.readMessages(friendID: self.uid)
             } else { self.tableView.reloadData() }
@@ -154,18 +130,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         vm.fetchMessages(uid: uid)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Setup view
-    
     private func initView() {
         updateBottomView()
         setupBottomView()
@@ -226,21 +191,18 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     // MARK:- Handle action buttons
-    
     @IBAction func sendPressed(_ sender: UIButton) {
         if vm.isYouBlocked {
             let name: String = (vm.friend?.name)!
             Alert.showAlert(at: self, title: "You are blocked by \(name), You Can't show his profile", message: "")
         } else {
-            if textView.isHidden { sendAudioRecording() }
-            else {
-                vm.sendTextMessage(uid: uid, text: textView.text)
-                textView.text = ""
-                let size = CGSize(width: textView.frame.width, height: .infinity)
-                let height = textView.sizeThatFits(size)
-                heightVisualView.constant = CGFloat(height.height) + 20
-                heightConstraintOfStack.constant = CGFloat(height.height)
-            }
+            vm.sendTextMessage(uid: uid, text: textView.text)
+            textView.text = ""
+            let size = CGSize(width: textView.frame.width, height: .infinity)
+            let height = textView.sizeThatFits(size)
+            heightVisualView.constant = CGFloat(height.height) + 20
+            heightConstraintOfStack.constant = CGFloat(height.height)
+            
             sender.isEnabled = false
             if vm.countOfCells != 0 {
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
@@ -249,70 +211,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     //---------------------------------------------------------------------------------------------
-    
-    private func sendAudioRecording() {
-        audioRecorder.stop()
-        recordingSession = .sharedInstance()
-        do{
-            try recordingSession.setActive(false)
-            let data = try Data(contentsOf: getDirectory().appendingPathComponent("sentAudio.m4a"))
-            vm.sendVoiceMessage(data: data, seconds: current, uid: uid)
-            audioRecorder = nil
-            updateRecordingUI()
-        }catch{
-            Alert.showAlert(at: self, title: "Voice Problem", message: error.localizedDescription)
-        }
-    }
-    //---------------------------------------------------------------------------------------------
-    func getDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    //---------------------------------------------------------------------------------------------
-    @IBAction func cancelRecording(_ sender: UIButton) {
-        audioRecorder.stop()
-        audioRecorder.deleteRecording()
-        audioRecorder = nil
-        player.playSound(file: "Cancel")
-        updateRecordingUI()
-    }
-    //---------------------------------------------------------------------------------------------
-    private func updateRecordingUI() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.2) {
-                if self.audioRecorder != nil {
-                    //                    self.actionsStack.isHidden = true
-                    self.textView.isHidden = true
-                    self.sendButton.isEnabled = true
-                    self.recordView.isHidden = false
-                    self.prograssBar.setProgress(0.0, animated: true)
-                    self.timer = .scheduledTimer(timeInterval: 1.0, target: self, selector:
-                                                    #selector(self.updateRecordingTime), userInfo: nil, repeats: true)
-                    self.timer.fire()
-                    
-                } else {
-                    self.timer.invalidate()
-                    self.recordView.isHidden = true
-                    //                    self.actionsStack.isHidden = false
-                    self.textView.isHidden = false
-                    self.sendButton.isEnabled = false
-                }
-            }
-        }
-    }
-    //---------------------------------------------------------------------------------------------
-    @objc func updateRecordingTime() {
-        current = audioRecorder.currentTime
-        let seconds = stringFormate(time: Int(audioRecorder.currentTime)%60)
-        let minuts = stringFormate(time: Int(audioRecorder.currentTime)/60)
-        timeLabel.text = "\(minuts):\(seconds)"
-        prograssBar.progress = Float(audioRecorder.currentTime / 600)
-    }
-    //---------------------------------------------------------------------------------------------
-    private func stringFormate(time: Int)-> String{
-        return String(format: "%02d", Int(time) % 60)
-    }
-    //---------------------------------------------------------------------------------------------
+
     @IBAction func hatButtonTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
         
@@ -332,6 +231,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
                 self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "rando"])
                 self.hatButtonSetup()
             }
+            let _ = self.restaurantRandomizer(restaurants: restaurants)
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -346,7 +246,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     //MARK: - FUNCTIONS
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
-        print(restaurant)
+
         return restaurant ?? ""
     }
     
@@ -370,7 +270,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     
     
     // MARK:- Handling Keyboard with Notifications
-    
     private func initNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateBottomView), name: UIDevice.orientationDidChangeNotification, object: nil)
@@ -380,7 +279,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
-    
     
     @objc func keyboardChangeFrame(_ notification: Notification?) {
         guard let info    = notification?.userInfo else { return }
@@ -399,7 +297,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
         }) { (_) in }
     }
     
-    
     private func updateVisualView(_ deltaY: CGFloat) {
         if deltaY < -100 {
             let size = CGSize(width: textView.frame.width, height: .infinity)
@@ -409,7 +306,6 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
             heightVisualView.constant += 30
         }
     }
-    
     
     @objc private func keyboardWillShow(_ notification: Notification?) {
         if (heightKeyboard != 0) { return }
@@ -462,109 +358,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     
 }
 
-
-
-
-
-
-
-
-
-// MARK:- Handle Location
-
-extension ChatingViewController: CLLocationManagerDelegate, locationDelegate {
-    
-    func sendLocation(location: CLLocation) {
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-        vm.sendLocationMessage(uid: uid, latitude: latitude, longitude: longitude)
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "map") as! MapsViewController
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            vc.delegate = self
-            present(vc, animated: true)
-        }
-    }
-    
-    
-    @objc func openLocationByMap(tapGesture: UITapGestureRecognizer) {
-        let gesture = tapGesture.view as! UIImageView
-        let tag = gesture.tag
-        let message = vm.messageViewModel[tag]
-        let latitude = String(message.latitude!)
-        let longitude = String(message.longitude!)
-        if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
-            UIApplication.shared.open(URL(string:"comgooglemaps://?center=\(latitude),\(longitude)&zoom=14&views=traffic&q=\(latitude),\(longitude)")!, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.open(URL(string: "http://maps.google.com/maps?q=loc:\(latitude),\(longitude)&zoom=14&views=traffic&q=\(latitude),\(longitude)")!, options: [:], completionHandler: nil)
-        }
-    }
-    
-}
-
-
-
-
-
-
-
-
-// MARK:- Handle Image Picker delegate and navigation
-
-extension ChatingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    private func photoPressed() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
-    }
-    
-    private func cameraPressed() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = .camera
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        var image = UIImage()
-        if let editedImage = info[.editedImage] as? UIImage {
-            image = editedImage
-        } else if let originalImage = info[.originalImage] as? UIImage {
-            image = originalImage
-        }
-        vm.sendPhotoMessage(image: image, uid: uid)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    @objc func photoCellPressed(tapGesture: UITapGestureRecognizer) {
-        let gesture = tapGesture.view as! UIImageView
-        let tag = gesture.tag
-        let vc = storyboard?.instantiateViewController(withIdentifier: "toPhoto") as! PhotoDetailViewController
-        vc.photoURL = vm.messageViewModel[tag].photoURL!
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true)
-    }
-    
-}
-
-
-
-
-
-
-
-
 // MARK: - TableView Data source and Delegate -
-
 extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -574,58 +368,17 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let message = vm.messageViewModel[indexPath.row]
-        
-        if message.msgKind == database.CheckMessageKind(msgKind: .photo) {
-            let photoCell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! PhotoTableViewCell
-            photoCell.photoStack.alignment = message.to == uid ? .trailing: .leading
-            photoCell.checkMessageType(senderID: message.to!, photo: vm.friend_image!)
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(photoCellPressed(tapGesture:)))
-            photoCell.photo.tag = indexPath.row
-            photoCell.photo.addGestureRecognizer(tapGesture)
-            photoCell.msgVM = message
-            return photoCell
-            
-            
-            
-            
-            
-        } else if message.msgKind == database.CheckMessageKind(msgKind: .location) {
-            let locationCell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath) as! LocationTableViewCell
-            locationCell.locationStack.alignment = message.to == uid ? .trailing: .leading
-            locationCell.checkMessageType(senderID: message.to!, photo: vm.friend_image!)
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openLocationByMap))
-            locationCell.locationImage.addGestureRecognizer(tapGesture)
-            locationCell.locationImage.tag = indexPath.row
-            locationCell.msgVM = message
-            return locationCell
-            
-            
-        } else if message.msgKind == database.CheckMessageKind(msgKind: .voice) {
-            let voiceCell = tableView.dequeueReusableCell(withIdentifier: "voiceCell", for: indexPath) as! VoiceTableViewCell
-            voiceCell.checkMessageType(senderID: message.to!)
-            if message.to == uid {
-                voiceCell.VoiceStack.alignment = .trailing
-                voiceCell.userImage.image = currentUser.image!
-            } else {
-                voiceCell.VoiceStack.alignment = .leading
-                voiceCell.userImage.image = vm.friend_image
-            }
-            voiceCell.msgVM = message
-            return voiceCell
-            
-            
+        if message.to == uid {
+            let fromCell = tableView.dequeueReusableCell(withIdentifier: "FromCell", for: indexPath) as! FromCell
+            fromCell.msgVM = message
+            return fromCell
         } else {
-            if message.to == uid {
-                let fromCell = tableView.dequeueReusableCell(withIdentifier: "FromCell", for: indexPath) as! FromCell
-                fromCell.msgVM = message
-                return fromCell
-            } else {
-                let toCell = tableView.dequeueReusableCell(withIdentifier: "ToCell", for: indexPath) as! ToCell
-                toCell.msgVM = message
-                toCell.userImage.image = vm.friend_image
-                
-                return toCell
-            }
+
+            let toCell = tableView.dequeueReusableCell(withIdentifier: "ToCell", for: indexPath) as! ToCell
+            toCell.msgVM = message
+            toCell.userImage.image = vm.friend_image
+            
+            return toCell
         }
     }
     
@@ -647,16 +400,9 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             vc.uid = vm.friend?.uid
         }
     }
-    
 }
 
-
-
-
-
-
 // MARK:- TextView Delegate
-
 extension ChatingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty || textView.text.starts(with: " ") {
@@ -671,40 +417,23 @@ extension ChatingViewController: UITextViewDelegate {
         heightConstraintOfStack.constant = CGFloat(height.height)
     }
     
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
         vm.startTyping(friendID: uid)
-        UIView.animate(withDuration: 0.2) {
-            //            self.actionsStack.isHidden = true
-        }
+
         textView.text = ""
-        checkDarkMode()
         self.view.updateConstraintsIfNeeded()
         self.view.layoutIfNeeded()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         vm.endTyping(friendID: uid)
-        UIView.animate(withDuration: 0.2) {
-            //            self.actionsStack.isHidden = false
-        }
-        
+
         textView.text = "Aa"
         textView.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         textView.sizeToFit()
         heightVisualView.constant = heightOfBottomView + 5
         heightConstraintOfStack.constant = 33
         self.view.layoutIfNeeded()
-    }
-    
-    private func checkDarkMode() {
-        if #available(iOS 12.0, *) {
-            if self.traitCollection.userInterfaceStyle == .dark {
-                textView.textColor = .white
-            } else {
-                textView.textColor = .darkText
-            }
-        }
     }
     
 }

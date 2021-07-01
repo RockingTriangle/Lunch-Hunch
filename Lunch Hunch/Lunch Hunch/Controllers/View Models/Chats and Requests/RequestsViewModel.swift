@@ -9,31 +9,15 @@ import Foundation
 
 class RequestsViewModel {
     
-    
-    
+    // MARK: - Properties
     private var recivedViewModel = [UserViewModel]()
     private var sentViewModel    = [UserViewModel]()
     public  var userViewModel    = [UserViewModel]() { didSet { reloadTableView?() }}
-    
-    
     public  var numberOfCells: Int { return userViewModel.count }
-    
-    
     public  var reloadTableView: (()->())?
     
- 
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Init Requests recvied and sent
-    
     func initFetch() {
-        // Validate if has requests recived and load it
         if FBNetworkRequest.shared.requestsRecived.isEmpty {
             FBNetworkRequest.shared.checkRequestsRecived { (_) in
                 FBNetworkRequest.shared.loadUsersOfRequests(requestType: .recived) { [weak self] (requests) in
@@ -71,22 +55,7 @@ class RequestsViewModel {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Refactor and Create a Cell View Model
-    
     private func createRecivedViewModel(users: [User]) {
         var vms = [UserViewModel]()
         for user in users {
@@ -94,7 +63,6 @@ class RequestsViewModel {
         }
         recivedViewModel.append(contentsOf: vms)
     }
-    
     
     private func createSentViewModel(users: [User]) {
         var vms = [UserViewModel]()
@@ -104,23 +72,10 @@ class RequestsViewModel {
         sentViewModel.append(contentsOf: vms)
     }
     
-    
     private func proccessFetchUsers(user: User) -> UserViewModel {
         let name = user.first! + " " + user.last!
         return UserViewModel(name: name, username: user.username!, imageURL: user.imageURL!, uid: user.id!)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // MARK:- Select which Requests will display
     func selectedSegmentIndex(SegmentIndex: Int) {
@@ -131,19 +86,6 @@ class RequestsViewModel {
             userViewModel = recivedViewModel
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // MARK:- Handle requests action
     func confirmRequest(uid: String) {

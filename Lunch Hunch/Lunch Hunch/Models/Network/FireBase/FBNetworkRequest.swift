@@ -10,6 +10,7 @@ import Firebase
 
 class FBNetworkRequest {
     
+    // MARK: - Properties
     public static let shared       = FBNetworkRequest()
     
     private let REQ_REF            = FBAuthentication.shared.ref.child("request_friends")
@@ -152,7 +153,6 @@ class FBNetworkRequest {
         FBAuthentication.shared.ref.child("friends_list").child(id).child(uid).removeValue()
         FBAuthentication.shared.ref.child("friends_list").child(uid).child(id).removeValue()
     }
-    
 
     // MARK:- Block User
     func blockUser(uid: String) {
@@ -218,6 +218,7 @@ class FBNetworkRequest {
             }
         }
     }
+    
 } //End of class
 
 

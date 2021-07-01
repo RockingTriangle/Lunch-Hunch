@@ -7,23 +7,38 @@
 
 import Foundation
 
-class Restaurant {
+/// Resaurant data type for selecting restaurant in chat polls and randomizing
+struct Restaurant {
     
-    let name: String
+    // MARK: - Properties
+    var name: String
     var voteCount: Int
     let isPicked: Bool
     let uuid: String
     
-    init(name: String, voteCount: Int = 0, isPicked: Bool, uuid: String = UUID().uuidString) {
+    // MARK: - Initializers
+    init(name: String, voteCount: Int = 0, isPicked: Bool = false, uuid: String = UUID().uuidString) {
         self.name = name
         self.voteCount = voteCount
         self.isPicked = isPicked
         self.uuid = uuid
     }
 }//End of class
+    
+    init(data: Data) {
+        self.init(name: String(data: data, encoding: .utf8) ?? "nope")
+    }
+}
 
 extension Restaurant: Equatable {
     static func == (lhs: Restaurant, rhs: Restaurant) -> Bool {
         return lhs.uuid == rhs.uuid
     }
 }//End of extension
+}
+
+extension Restaurant: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+}

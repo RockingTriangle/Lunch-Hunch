@@ -9,7 +9,7 @@ import UIKit
 
 class UserCell: UITableViewCell {
     
-    
+    // MARK: - Properties
     var cellVM = UserViewModel() { didSet {
         userImage.KFloadImage(url: cellVM.imageURL!)
         nameLabel.text = cellVM.name
@@ -17,20 +17,16 @@ class UserCell: UITableViewCell {
         }
     }
     
-    
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
-    
-    
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
     }
-    
-    
     
     private func initView() {
         userImage.layer.cornerRadius = 21

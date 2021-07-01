@@ -17,6 +17,7 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
     private let service = YELPService()
     var results = RestaurantViewModel.shared
     
@@ -46,7 +47,7 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBAction func userSelectionButtonTapped(_ sender: UIButton) {
         guard let _ = business, let index = index else { return }
         if results.selectedBusiness.count < 2 {
-            business!.isSelected = business!.isSelected ? false : true
+            results.businesses[index].isSelected = results.businesses[index].isSelected ? false : true
             if results.selectedBusiness.contains(index) {
                 results.selectedBusiness.remove(index)
                 userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
@@ -55,7 +56,7 @@ class RestaurantTableViewCell: UITableViewCell {
                 userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             }
         } else if results.selectedBusiness.contains(index) {
-            business?.isSelected = false
+            results.businesses[index].isSelected = false
             userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             results.selectedBusiness.remove(index)
         } else {
@@ -65,9 +66,13 @@ class RestaurantTableViewCell: UITableViewCell {
     }
 
     @IBAction func readReviewsButtonTapped(_ sender: Any) {
-        print("go to yelp business page")
-        //Todo: - add link to Yelp business page
-        //Todo: - add link to Buisness model
+        guard let business = business, let url = URL(string: business.url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    @IBAction func yelpLogoButtonTapped(_ sender: Any) {
+        guard let url = URL(string: "https://www.yelp.com/") else { return }
+        UIApplication.shared.open(url)
     }
     
     // Mark: - Functions
@@ -83,23 +88,30 @@ class RestaurantTableViewCell: UITableViewCell {
         addressLabel.text = "\(business.location.displayAddress.first ?? "No address")\n\(business.location.displayAddress.last ?? "")"
         phoneLabel.text = business.displayPhone
         priceLabel.text = business.price
-        // Todo: - add other ratings
+
         switch business.rating {
-        case 1..<2:
+        case 1:
             ratingImageView.image = UIImage(named: "regular_1")
-        case 2..<3:
+        case 1.5:
+            ratingImageView.image = UIImage(named: "regular_1_half")
+        case 2:
             ratingImageView.image = UIImage(named: "regular_2")
-        case 3..<4:
+        case 2.5:
+            ratingImageView.image = UIImage(named: "regular_2_half")
+        case 3:
             ratingImageView.image = UIImage(named: "regular_3")
-        case 4..<5:
+        case 3.5:
+            ratingImageView.image = UIImage(named: "regular_3_half")
+        case 4:
             ratingImageView.image = UIImage(named: "regular_4")
+        case 4.5:
+            ratingImageView.image = UIImage(named: "regular_4_half")
         case 5:
             ratingImageView.image = UIImage(named: "regular_5")
         default:
             ratingImageView.image = UIImage(named: "regular_0")
         }
-        // ToDo: - add review count to business model
-        numberOfRatingsLabel.text = "123 reviews"
+        numberOfRatingsLabel.text = "\(business.reviewCount) reviews"
     }
     
     func fetchimage() {
@@ -110,7 +122,7 @@ class RestaurantTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self!.businessImageView.image = image
                     self!.updateViews()
-                    UIView.animate(withDuration: 1.0) {
+                    UIView.animate(withDuration: 0.5) {
                         self!.view.alpha = 1
                     }
                 }

@@ -32,4 +32,5 @@ struct currentUser {
     static var country    : String?  { return defualts.string(forKey: "country") }
     static var imageURL   : String?  { return defualts.string(forKey: "imageURL") }
     static var image      : UIImage? { return UIImage(data: defualts.data(forKey: "image") ?? Data()) ?? UIImage() }
+    
 }

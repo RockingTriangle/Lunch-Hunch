@@ -9,23 +9,13 @@ import Foundation
 
 class BlockedViewModel {
     
-    
-    
-    
+    // MARK: - Properties
     var userViewModel = [UserViewModel]() { didSet { reloadTableViewClouser?() }}
     var numberOfCells : Int? { return userViewModel.count}
     
-    
     var reloadTableViewClouser: (()->())?
     
-    
-    
-    
-    
-    
-    
     // MARK:- Fetch Blocked Users
-    
     func initFetch() {
         if FBNetworkRequest.shared.blockedList.isEmpty {
             FBNetworkRequest.shared.fetchBlockedList { (_) in
@@ -56,15 +46,7 @@ class BlockedViewModel {
         return UserViewModel(name: name, username: user.username!, imageURL: user.imageURL!, uid: user.id!)
     }
     
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Block Action
-    
     func unblockUser(uid: String) {
         FBNetworkRequest.shared.unblockUser(uid: uid)
     }

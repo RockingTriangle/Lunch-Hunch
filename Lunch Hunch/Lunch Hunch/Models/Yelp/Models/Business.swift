@@ -15,7 +15,9 @@ struct Business: Codable, Hashable {
     let id: String
     let name: String
     let imageURL: String
+    let url: String
     let rating: Double
+    let reviewCount: Int
     let coordinates: Coordinates
     let price: String?
     let location: Location
@@ -24,8 +26,9 @@ struct Business: Codable, Hashable {
     var isSelected: Bool = false
     
     enum CodingKeys: String, CodingKey {
-        case id, name, rating, coordinates, price, location
+        case id, name, url, rating, coordinates, price, location
         case imageURL = "image_url"
+        case reviewCount = "review_count"
         case displayPhone = "display_phone"
     }
 }

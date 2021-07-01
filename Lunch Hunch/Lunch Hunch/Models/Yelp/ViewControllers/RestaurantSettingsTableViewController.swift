@@ -10,12 +10,13 @@ import CoreLocation
 
 class RestaurantSettingsTableViewController: UITableViewController {
     
+    // MARK: - Properties
     var viewModel = RestaurantViewModel.shared
     var locationManager = LocationManager.shared
     var endPoint = YELPEndpoint.shared
-    
     var buttonArray: [UIButton] = []
     
+    // MARK: - IBOutlets
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
     @IBOutlet weak var radiusSlider: UISlider!
@@ -25,10 +26,16 @@ class RestaurantSettingsTableViewController: UITableViewController {
     @IBOutlet weak var priceButtonThree: UIButton!
     @IBOutlet weak var priceButtonFour: UIButton!
    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCells()
         configureLocationManager()
+        if CLLocationManager.authorizationStatus() == .denied ||
+            CLLocationManager.authorizationStatus() == .notDetermined ||
+            CLLocationManager.authorizationStatus() == .restricted {
+            locationManager.locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +43,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         configureCells()
     }
     
+    // MARK: - IBActions
     @IBAction func radiusSliderValueChanged(_ sender: UISlider) {
         let step: Float = 1
         let value = round(sender.value / step) * step
@@ -58,6 +66,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         updatePriceButtons()
     }
     
+    // MARK: - Functions
     func configureCells() {
         locationLabel.text = viewModel.searchLocation.description
         radiusLabel.text = "Radius: \(viewModel.radiusAmount) miles"
@@ -85,6 +94,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toLocation" {
             guard let destinationVC = segue.destination as? LocationViewController else { return }
@@ -93,35 +103,34 @@ class RestaurantSettingsTableViewController: UITableViewController {
         if segue.identifier == "toResultsVC" {
             
             if viewModel.priceOptions.contains(true) {
-            guard let location = viewModel.finalSearchLocation else { return }
-            
-            let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
-            let searchLongitude = URLQueryItem(name: "longitude", value: String(location.coordinate.longitude))
-            
-            endPoint.locationQueries = [searchLatitude, searchLongitude]
-            
-            endPoint.parameters = []
-            
-            endPoint.parameters.append(YELPEndpoint.Parameters.radius(Int(viewModel.radiusAmount * 1600)).parameterQueryItem)
-            
-            for index in (1...19) {
-                if viewModel.foodTypes[index] {
-                    endPoint.parameters.append(YELPEndpoint.Parameters.categories(FoodTypeOptions.options[index]).parameterQueryItem)
+                guard let location = viewModel.finalSearchLocation else { return }
+                let searchLatitude = URLQueryItem(name: "latitude", value: String(location.coordinate.latitude))
+                let searchLongitude = URLQueryItem(name: "longitude", value: String(location.coordinate.longitude))
+                
+                endPoint.locationQueries = [searchLatitude, searchLongitude]
+                
+                endPoint.parameters = []
+                
+                endPoint.parameters.append(YELPEndpoint.Parameters.radius(Int(viewModel.radiusAmount * 1600)).parameterQueryItem)
+                
+                for index in (1...19) {
+                    if viewModel.foodTypes[index] {
+                        endPoint.parameters.append(YELPEndpoint.Parameters.categories(FoodTypeOptions.options[index]).parameterQueryItem)
+                    }
                 }
-            }
-            
-            var priceQuery: [Int] = []
-            for index in (0...3) {
-                if viewModel.priceOptions[index] == true {
-                    priceQuery.append(viewModel.priceValues[index])
+                
+                var priceQuery: [Int] = []
+                for index in (0...3) {
+                    if viewModel.priceOptions[index] == true {
+                        priceQuery.append(viewModel.priceValues[index])
+                    }
                 }
-            }
-            let priceString = priceQuery.map { String($0) }
-            let finalPriceString = priceString.joined(separator: ",")
-            
-            endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
-            
-            RestaurantViewModel.shared.fetchBusinesses()
+                let priceString = priceQuery.map { String($0) }
+                let finalPriceString = priceString.joined(separator: ",")
+                
+                endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
+                
+                RestaurantViewModel.shared.fetchBusinesses()
             } else {
                 showAlert(with: "Sorry", and: "You must select one or more of the pricing options to proceed.")
             }
@@ -132,7 +141,6 @@ class RestaurantSettingsTableViewController: UITableViewController {
 
 // Mark: - Extension
 extension RestaurantSettingsTableViewController: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             viewModel.currentLocation = location
@@ -144,7 +152,6 @@ extension RestaurantSettingsTableViewController: CLLocationManagerDelegate {
 }
 
 extension RestaurantSettingsTableViewController: UpdateSettings {
-    
     func updateSettings() {
         configureCells()
     }
@@ -157,6 +164,7 @@ extension RestaurantSettingsTableViewController {
             self.dismiss(animated: false, completion: nil)
         }
         alert.addAction(okAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
 }

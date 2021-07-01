@@ -9,13 +9,13 @@ import Foundation
 
 class RestaurantController {
     
+    // MARK: - Properties
     static let shared = RestaurantController()
-    
-    
     var sections: [[Restaurant]] {[selectedList, restaurantList]}
-    var restaurantList: [Restaurant] = []
+    var restaurantList: [Restaurant] = [] 
     var selectedList: [Restaurant] = []
     
+    // MARK: - Initializer
     private init() {}
     
     //MARK: - FUNCTIONS
@@ -37,6 +37,5 @@ class RestaurantController {
             }
         }
     }
-    
     
 }//End of class

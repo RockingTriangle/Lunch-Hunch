@@ -9,10 +9,12 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
+    // MARK: - Properties
     private let vm    = SignupViewModel()
     private var image = UIImage() { didSet {
                         profileImage.setImage(image, for: .normal) } }
     
+    // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIButton!
     @IBOutlet weak var firstTextField: UITextField!
     @IBOutlet weak var lastTextfield: UITextField!
@@ -24,29 +26,14 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tapGesture: UITapGestureRecognizer!
     
-    
-    
-    
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCellUI()
         initVM()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Init view model
-    
     private func initVM() {
         vm.signupClosure = { [weak self] () in
             guard let self = self else { return }
@@ -61,18 +48,7 @@ class SignupViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     private func presentViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "tabBar")
@@ -80,14 +56,12 @@ class SignupViewController: UIViewController {
         self.present(loginVC, animated: true)
     }
     
-    
     @IBAction func signupPressed(_ sender: UIButton) {
         dismissKeyboard()
         activityIndicator.startAnimating()
         signUpButton.isEnabled = false
         vm.signUpPressed(firstName: firstTextField.text!, lasName: lastTextfield.text!, username: usernameTextField.text!, withEmail: emailTextfield.text!, password: passwordTextfield.text!, profileImage: profileImage.currentImage!)
     }
-    
     
     @IBAction func haveAccountPressed(_ sender: UIButton) {
         navigationController?.popToRootViewController(animated: true)
@@ -108,20 +82,11 @@ class SignupViewController: UIViewController {
         }
     }
     
-
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    
-    
-    
-    
-    
-    
-    
     private func setupCellUI() {
-        //Setup cornerRadius
         profileImage.layer.cornerRadius = 60
         profileImage.layer.masksToBounds = true
         firstTextField.layer.cornerRadius = 27.5
@@ -132,8 +97,6 @@ class SignupViewController: UIViewController {
         signUpButton.layer.cornerRadius = 27.5
         haveAccountButton.layer.cornerRadius = 27.5
         
-        
-        //Setup backgroundColor
         firstTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         lastTextfield.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         usernameTextField.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
@@ -141,7 +104,6 @@ class SignupViewController: UIViewController {
         passwordTextfield.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         haveAccountButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         
-        //Setup delegates
         setupTextFields(textField: firstTextField)
         setupTextFields(textField: lastTextfield)
         setupTextFields(textField: usernameTextField)
@@ -151,7 +113,6 @@ class SignupViewController: UIViewController {
         tapGesture.addTarget(self, action: #selector(dismissKeyboard))
         
         activityIndicator.stopAnimating()
-        
     }
     
     func setupTextFields(textField: UITextField) {
@@ -161,24 +122,10 @@ class SignupViewController: UIViewController {
         textField.rightViewMode = .always
     }
     
-    
 }
 
-
-
-
-
-
-
-
-
-
-
-
 // MARK:- Handle image picker controller
-
 extension SignupViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     private func imagePressed() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.allowsEditing = true

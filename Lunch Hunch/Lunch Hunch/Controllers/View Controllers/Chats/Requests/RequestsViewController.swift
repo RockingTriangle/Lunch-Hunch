@@ -9,29 +9,23 @@ import UIKit
 
 class RequestsViewController: UIViewController {
     
+    // MARK: - Properties
     var usersRecived = [User]() { didSet { self.tableView.reloadData() } }
     var usersSent    = [User]() { didSet { self.tableView.reloadData() } }
-    
     let vm = RequestsViewModel()
 
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         initVM()
     }
     
-    
-    
-    
-    
-    
     // MARK:- Init view and view model
-    
     private func initView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         tableView.tableFooterView = UIView()
@@ -48,21 +42,12 @@ class RequestsViewController: UIViewController {
             self.tableView.reloadData()
         }
         vm.initFetch()
-        
     }
     
-    
-    
-    
-    
-    
-    
     // MARK:- Actions
-    
     @IBAction func segmentedPress(_ sender: UISegmentedControl) {
         vm.selectedSegmentIndex(SegmentIndex: sender.selectedSegmentIndex)
     }
-    
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
@@ -70,16 +55,7 @@ class RequestsViewController: UIViewController {
     
 }
 
-
-
-
-
-
-
-
-
 // TableView delegate and datasource
-
 extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,6 +78,5 @@ extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
-    
     
 }
