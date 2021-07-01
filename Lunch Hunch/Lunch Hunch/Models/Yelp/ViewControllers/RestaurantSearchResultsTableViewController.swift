@@ -26,7 +26,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     }
     
     //MARK: - Properties
-    private let RESTAURANT_REF = FBAuthentication.shared.ref.child("restaurants")
+    private let RESTAURANT_REF = FBAuthentication.shared.ref.child("messages")
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
