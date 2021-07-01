@@ -330,7 +330,7 @@ class ChatingViewController: UIViewController, AVAudioRecorderDelegate {
     //MARK: - FUNCTIONS
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
-        print(restaurant)
+        print(restaurant!)
         return restaurant ?? ""
     }
     

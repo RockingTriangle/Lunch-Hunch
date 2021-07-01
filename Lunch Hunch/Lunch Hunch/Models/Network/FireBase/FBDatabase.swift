@@ -385,7 +385,7 @@ struct FBDatabase {
     }
     
     // MARK:- Handle typing indicator
-    func FBStartTypingUser(friendID: String) { //JWRcopy code for polling
+    func FBStartTypingUser(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("typing").child(uid).child(friendID).setValue([uid: "true"])
     }
