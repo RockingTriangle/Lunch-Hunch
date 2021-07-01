@@ -228,6 +228,7 @@ class ChatingViewController: UIViewController {
                 guard let uid = Auth.auth().currentUser?.uid else {return}
                 let friendID = self.uid
                 Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
+                Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "poll"])
             }
             
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
@@ -237,6 +238,7 @@ class ChatingViewController: UIViewController {
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 let friendID = self.uid
                 Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
+                Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "rando"])
             }
             
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
