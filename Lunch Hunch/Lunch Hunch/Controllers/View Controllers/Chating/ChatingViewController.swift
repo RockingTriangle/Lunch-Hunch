@@ -107,20 +107,16 @@ class ChatingViewController: UIViewController {
             guard let self = self else { return }
             self.statusLabel.text = self.vm.isTyping ? "Typing..." : self.vm.friend?.status
         }
-        vm.updatePollingClouser = { [weak self] in
-            guard let self = self else {return}
-            self.hatButtonOutlet.setImage(setImage(), for: .normal)
-        }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
         //MARK: - Polling
         vm.detectFriendPolling(friendID: uid) { type in
-            self.hatButtonOutlet.setImage(setImage(), for: .normal)
+            self.hatButtonOutlet.setImage(setImage(type), for: .normal)
         }
-        func setImage() -> UIImage {
-            if vm.isPolling == "poll" {
+        func setImage(_ type: String) -> UIImage {
+            if type == "poll" {
                 return #imageLiteral(resourceName: "hatIconPoll")
-            } else if vm.isPolling == "rando" {
+            } else if type == "rando" {
                 return #imageLiteral(resourceName: "hatIconRando")
             } else {
                 return #imageLiteral(resourceName: "hatIcon")

@@ -26,7 +26,6 @@ class ChatingViewModel {
     public  var isTyping        = false { didSet { updateFriendStatusClouser?() }}
     public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
     public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
-    public var isPolling        = "" { didSet { updatePollingClouser?() }} //JWR Polling
     
     var updateUserInfoClouser      : (()->())?
     var updateUserImageoClouser    : (()->())?
@@ -190,19 +189,21 @@ class ChatingViewModel {
             self.isTyping = isTyping
         }
     }
+    
     //MARK: - Handle Polling Action
     func detectFriendPolling(friendID: String, completion: @escaping(String) -> ()) {
         FBDatabase.shared.FBDetectPoll(friendID: friendID) { (isPolling) in
             guard let uid = Auth.auth().currentUser?.uid else {return}
             Database.database().reference().child("polling").child(uid).child(friendID).observe(.value) { (snapshot) in
-                let value = snapshot.value as! String
-                completion(value)
-                
+                if snapshot.exists() {
+                    var type = ""
+                    let data = snapshot.children.allObjects as! [DataSnapshot]
+                    type = (data.last?.value as! NSString) as String
+                    completion(type)
+                }
             }
         }
     }
-    
-    
  
     // MARK:- Check Blocking
     func checkBlocking(uid: String) {
