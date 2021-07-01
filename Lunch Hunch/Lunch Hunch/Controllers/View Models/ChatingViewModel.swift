@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatingViewModel {
     
@@ -25,7 +26,7 @@ class ChatingViewModel {
     public  var isTyping        = false { didSet { updateFriendStatusClouser?() }}
     public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
     public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
-    public var isPolling        = false { didSet { updatePollingClouser?() }} //JWR Polling
+    public var isPolling        = "" { didSet { updatePollingClouser?() }} //JWR Polling
     
     var updateUserInfoClouser      : (()->())?
     var updateUserImageoClouser    : (()->())?
@@ -189,19 +190,15 @@ class ChatingViewModel {
             self.isTyping = isTyping
         }
     }
-    //JWR handle polling action
-    
-    func startPolling(friendID: String) {
-        FBDatabase.shared.FBStartPoll(friendID: friendID)
-    }
-    
-    func endPolling(friendID: String) {
-        FBDatabase.shared.FBEndPoll(friendID: friendID)
-    }
-    
-    func detectFriendPolling(friendID: String) {
-        FBDatabase.shared.FBDetectPoll(friendID: friendID) { (isTyping) in
-            self.isTyping = isTyping
+    //MARK: - Handle Polling Action
+    func detectFriendPolling(friendID: String, completion: @escaping(String) -> ()) {
+        FBDatabase.shared.FBDetectPoll(friendID: friendID) { (isPolling) in
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            Database.database().reference().child("polling").child(uid).child(friendID).observe(.value) { (snapshot) in
+                let value = snapshot.value as! String
+                completion(value)
+                
+            }
         }
     }
     

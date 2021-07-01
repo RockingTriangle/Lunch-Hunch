@@ -318,9 +318,12 @@ struct FBDatabase {
     //MARK: - Handle Polling Button Change
     func FBStartPoll(friendID: String) { //JWRcopy code for polling
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "true"])
+        Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
     }
-    
+    func FBStartRando(friendID: String) { //JWRcopy code for polling
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
+    }
     func FBEndPoll(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("polling").child(uid).child(friendID).removeValue()

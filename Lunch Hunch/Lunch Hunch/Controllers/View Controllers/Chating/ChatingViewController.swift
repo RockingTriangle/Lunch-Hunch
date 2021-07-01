@@ -107,13 +107,25 @@ class ChatingViewController: UIViewController {
             guard let self = self else { return }
             self.statusLabel.text = self.vm.isTyping ? "Typing..." : self.vm.friend?.status
         }
-//        vm.updatePollingClouser = { [weak self] in
-//            guard let self = self else {return}
-//            self.
-//        }
+        vm.updatePollingClouser = { [weak self] in
+            guard let self = self else {return}
+            self.hatButtonOutlet.setImage(setImage(), for: .normal)
+        }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
-        vm.detectFriendPolling(friendID: uid) //JWR Polling
+        //MARK: - Polling
+        vm.detectFriendPolling(friendID: uid) { type in
+            self.hatButtonOutlet.setImage(setImage(), for: .normal)
+        }
+        func setImage() -> UIImage {
+            if vm.isPolling == "poll" {
+                return #imageLiteral(resourceName: "hatIconPoll")
+            } else if vm.isPolling == "rando" {
+                return #imageLiteral(resourceName: "hatIconRando")
+            } else {
+                return #imageLiteral(resourceName: "hatIcon")
+            }
+        }
     }
     
     func initMessageVM() {
@@ -135,8 +147,8 @@ class ChatingViewController: UIViewController {
         updateBottomView()
         setupBottomView()
         setupRightButton()
-        textView.text = "Aa"
-        textView.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+        textView.text = "..."
+        textView.textColor = .black
         sendButton.isEnabled = false
         
         let bottom = view.safeAreaInsets.top + 44 + 30
@@ -217,20 +229,18 @@ class ChatingViewController: UIViewController {
         
         let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
             self.dismiss(animated: true) {
-                let userID = Auth.auth().currentUser?.uid
-                let otherUser = self.uid
-                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "poll"])
-                self.hatButtonSetup()
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                let friendID = self.uid
+                Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
             }
             
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
         
         let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
             self.dismiss(animated: true) {
-                let userID = Auth.auth().currentUser?.uid
-                let otherUser = self.uid
-                self.ref.child("messages").child(userID!).child(otherUser).child("poll").updateChildValues([String("poll") : "rando"])
-                self.hatButtonSetup()
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                let friendID = self.uid
+                Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
             }
             
         } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
