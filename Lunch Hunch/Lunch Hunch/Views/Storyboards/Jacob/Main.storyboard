@@ -113,15 +113,15 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oDr-3H-Pde">
                                                 <rect key="frame" x="107" y="35" width="200" height="190"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-Fv-dPl">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Logo1-1" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-Fv-dPl">
                                                         <rect key="frame" x="40" y="0.0" width="120" height="120"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="120" id="rI1-UQ-dXW"/>
                                                             <constraint firstAttribute="height" priority="750" constant="120" id="sO7-zK-q37"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to  Message Now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgC-zf-NAJ">
-                                                        <rect key="frame" x="20.5" y="125" width="159.5" height="65"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to  Lunch Hunch!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgC-zf-NAJ">
+                                                        <rect key="frame" x="21.5" y="125" width="157.5" height="65"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -477,8 +477,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="iFh-rJ-azq" kind="relationship" relationship="viewControllers" id="XYO-Gz-Sg5"/>
-                        <segue destination="qpc-23-nky" kind="relationship" relationship="viewControllers" id="qDe-9q-dC3"/>
-                        <segue destination="Vuf-4W-7Ku" kind="relationship" relationship="viewControllers" id="yeh-Jn-9u1"/>
+                        <segue destination="O79-EL-ahP" kind="relationship" relationship="viewControllers" id="VyQ-5X-uML"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51N-FE-rMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -514,34 +513,22 @@
             </objects>
             <point key="canvasLocation" x="2807" y="-11"/>
         </scene>
-        <!--People-->
-        <scene sceneID="Ees-nk-XaI">
+        <!--Restaurants-->
+        <scene sceneID="SYd-9M-9zW">
             <objects>
-                <viewControllerPlaceholder storyboardName="People" id="qpc-23-nky" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="People" image="People" id="1TU-3T-0N2"/>
+                <viewControllerPlaceholder storyboardName="Restaurants" id="O79-EL-ahP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4He-ZK-9Aa"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pQs-xI-i8H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-Wk-gST" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2813" y="135"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="khO-sx-Y52">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="Vuf-4W-7Ku" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="qWG-gv-kIM"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OXG-bc-TFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2818" y="267"/>
+            <point key="canvasLocation" x="2830" y="344"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Avatar" width="163.5" height="163.5"/>
         <image name="Chat" width="33" height="33"/>
-        <image name="Logo" width="183" height="183"/>
-        <image name="People" width="33" height="33"/>
-        <image name="Settings" width="33" height="33"/>
+        <image name="Logo1-1" width="3456" height="2416"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

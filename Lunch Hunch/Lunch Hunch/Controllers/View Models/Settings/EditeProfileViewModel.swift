@@ -1,9 +1,8 @@
 //
 //  EditeProfileViewModel.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 7/23/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit
@@ -36,7 +35,7 @@ class EditeProfileViewModel {
     
     
     private func proccessCreateUser(user: User) -> UserInfoViewModel{
-        let country = user.country == "" ? "Egypt" : user.country
+        let country = user.country == "" ? "United States" : user.country
         return UserInfoViewModel(photo: user.image, country: country)
     }
     

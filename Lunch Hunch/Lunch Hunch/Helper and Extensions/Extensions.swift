@@ -1,13 +1,13 @@
 //
 //  Extensions.swift
-//  Message Now
+//  Lunch Hunch
 //
-//  Created by Hazem Tarek on 4/20/20.
-//  Copyright © 2020 Hazem Tarek. All rights reserved.
+//  Created by Lunch Hunch Team on 6/14/21.
 //
 
 import UIKit
 import Kingfisher
+
 
 extension UITableView {
     func setBottomInset(to value: CGFloat) {
@@ -112,5 +112,19 @@ extension Double {
         } else {
             return "\(month)"
         }
+    }
+}
+
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
     }
 }
