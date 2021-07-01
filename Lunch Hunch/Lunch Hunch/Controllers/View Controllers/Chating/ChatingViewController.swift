@@ -92,9 +92,14 @@ class ChatingViewController: UIViewController {
             guard let self = self else { return }
             self.statusLabel.text = self.vm.isTyping ? "Typing..." : self.vm.friend?.status
         }
+//        vm.updatePollingClouser = { [weak self] in
+//            guard let self = self else {return}
+//            self.
+//        }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
-    }//JWR Add button image change here?
+        vm.detectFriendPolling(friendID: uid) //JWR Polling
+    }
     
     func initMessageVM() {
         vm.reloadTableViewClouser = { [weak self] in

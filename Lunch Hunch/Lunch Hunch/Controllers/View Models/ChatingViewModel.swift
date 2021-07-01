@@ -25,6 +25,7 @@ class ChatingViewModel {
     public  var isTyping        = false { didSet { updateFriendStatusClouser?() }}
     public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
     public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
+    public var isPolling        = false { didSet { updatePollingClouser?() }} //JWR Polling
     
     var updateUserInfoClouser      : (()->())?
     var updateUserImageoClouser    : (()->())?
@@ -32,6 +33,7 @@ class ChatingViewModel {
     var updateTableViewClouser     : (()->())?
     var updateFriendStatusClouser  : (()->())?
     var updateBottomViewClouser    : (()->())?
+    var updatePollingClouser       : (()->())? //JWR Polling
     
     // MARK:- Fetch friend info
     public func fetchUserInfo(uid: String) {
