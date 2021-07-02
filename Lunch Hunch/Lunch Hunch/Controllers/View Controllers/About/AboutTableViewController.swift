@@ -110,9 +110,6 @@ class AboutTableViewController: UITableViewController {
             cell.textLabel?.text   = "Username"
             cell.detailTextLabel?.text = vm.userViewModel.username ?? ""
         } else if row == 2 && section == 0 {
-            cell.textLabel?.text   = "Email"
-            cell.detailTextLabel?.text = vm.userViewModel.email ?? ""
-        } else if row == 3 && section == 0 {
             cell.textLabel?.text   = "Country"
             cell.detailTextLabel?.text = vm.userViewModel.country
         } else if row == 0 && section == 1 {
