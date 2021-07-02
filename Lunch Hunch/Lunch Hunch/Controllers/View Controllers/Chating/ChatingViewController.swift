@@ -229,8 +229,8 @@ class ChatingViewController: UIViewController {
                 self.dismiss(animated: true) {
                     guard let uid = Auth.auth().currentUser?.uid else {return}
                     let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "poll"])
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("poll")
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("poll")
                 }
                 
             } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
@@ -239,8 +239,8 @@ class ChatingViewController: UIViewController {
                 self.dismiss(animated: true) {
                     guard let uid = Auth.auth().currentUser?.uid else { return }
                     let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "rando"])
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("rando")
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("rando")
                 }
                 
             } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
@@ -281,6 +281,7 @@ class ChatingViewController: UIViewController {
                 self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
             }
         }
+        
         Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 self.hatButtonOutlet.isEnabled = false
@@ -288,10 +289,17 @@ class ChatingViewController: UIViewController {
                 self.hatButtonOutlet.isEnabled = true
             }
         }
+        
         Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 if snapshop.childrenCount > 2 {
-                    self.hatButtonOutlet.isEnabled = false
+                    // MARK: - all entries submitted, change to new hat image -
+                    Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+                        if snapshop.exists() {
+                            print(snapshop.value ?? "failed")
+                        }
+                    }
+                    
                 }else {
                     self.hatButtonOutlet.isEnabled = true
                 }
