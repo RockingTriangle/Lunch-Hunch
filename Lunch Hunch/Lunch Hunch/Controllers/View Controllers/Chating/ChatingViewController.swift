@@ -394,6 +394,16 @@ class ChatingViewController: UIViewController {
                 restaurantsTied.append(choice.key)
             }
         }
+        
+        hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        
+        Database.database().reference().child("points").removeValue()
+        Database.database().reference().child("points").removeAllObservers()
+        Database.database().reference().child("polling").removeValue()
+        Database.database().reference().child("polling").removeAllObservers()
+        Database.database().reference().child("restaurants").removeValue()
+        Database.database().reference().child("restaurants").removeAllObservers()
+        
         if restaurantsTied.count > 0 {
             print(randomizeRestaurantChoices(restaurantsTied))
             return
@@ -401,13 +411,6 @@ class ChatingViewController: UIViewController {
             print("\(restaurantWinner) with \(maxPoints) points!")
             return
         }
-        hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
-        Database.database().reference().child("points").removeValue()
-        Database.database().reference().child("points").removeAllObservers()
-        Database.database().reference().child("polling").removeValue()
-        Database.database().reference().child("polling").removeAllObservers()
-        Database.database().reference().child("restaurants").removeValue()
-        Database.database().reference().child("restaurants").removeAllObservers()
     }
     
     func randomizeRestaurantChoices(_ restaurants: [String]) -> String {
