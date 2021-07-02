@@ -15,6 +15,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
     var locationManager = LocationManager.shared
     var endPoint = YELPEndpoint.shared
     var buttonArray: [UIButton] = []
+    public var uid : String?
     
     // MARK: - IBOutlets
     @IBOutlet weak var locationLabel: UILabel!
@@ -131,6 +132,10 @@ class RestaurantSettingsTableViewController: UITableViewController {
                 endPoint.parameters.append(YELPEndpoint.Parameters.price(finalPriceString).parameterQueryItem)
                 
                 RestaurantViewModel.shared.fetchBusinesses()
+                
+                let vc = segue.destination as! RestaurantSearchResultsTableViewController
+                vc.uid = uid
+                vc.delegate = self
             } else {
                 showAlert(with: "Sorry", and: "You must select one or more of the pricing options to proceed.")
             }
@@ -166,5 +171,11 @@ extension RestaurantSettingsTableViewController {
         alert.addAction(okAction)
         alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
+    }
+}
+
+extension RestaurantSettingsTableViewController: PopViewController {
+    func popViewController() {
+        dismiss(animated: true)
     }
 }

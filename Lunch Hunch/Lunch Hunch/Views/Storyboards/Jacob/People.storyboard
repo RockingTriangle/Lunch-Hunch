@@ -216,7 +216,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GDc-wb-2G7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3124" y="1208"/>
+            <point key="canvasLocation" x="4526" y="1623"/>
+        </scene>
+        <!--Restaurants-->
+        <scene sceneID="iOU-nf-hjs">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Restaurants" id="LMm-0x-NS2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TcR-bH-Qfv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4436" y="1440"/>
         </scene>
         <!--Chating View Controller-->
         <scene sceneID="wz0-ck-kxR">
@@ -669,28 +679,18 @@
                                             </connections>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u84-zk-KWJ">
-                                            <rect key="frame" x="10" y="10" width="351" height="33"/>
+                                            <rect key="frame" x="53" y="10" width="308" height="33"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVp-u8-m96">
-                                                    <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="Njc-uL-IeU"/>
-                                                        <constraint firstAttribute="width" constant="33" id="PsT-7T-T6U"/>
-                                                    </constraints>
-                                                    <state key="normal" image="hatIcon"/>
-                                                    <connections>
-                                                        <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
-                                                    </connections>
-                                                </button>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Aa" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5D-jW-nZs">
-                                                    <rect key="frame" x="43" y="0.0" width="308" height="33"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w5D-jW-nZs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="33"/>
                                                     <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="0.63361515410000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                                 </textView>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Z6-m3-XfA">
-                                                    <rect key="frame" x="351" y="0.0" width="10" height="33"/>
+                                                    <rect key="frame" x="308" y="0.0" width="10" height="33"/>
                                                     <subviews>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mFn-RO-5GW">
                                                             <rect key="frame" x="5" y="5" width="0.0" height="2"/>
@@ -728,13 +728,27 @@
                                                 <constraint firstAttribute="height" constant="33" id="37K-Xx-NX4"/>
                                             </constraints>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVp-u8-m96">
+                                            <rect key="frame" x="10" y="10" width="33" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="33" id="Njc-uL-IeU"/>
+                                                <constraint firstAttribute="width" constant="33" id="PsT-7T-T6U"/>
+                                            </constraints>
+                                            <state key="normal" image="hatIcon"/>
+                                            <connections>
+                                                <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
+                                                <segue destination="LMm-0x-NS2" kind="showDetail" identifier="toSearchSettingsVC" id="Hkb-qO-pSL"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="BVp-u8-m96" firstAttribute="leading" secondItem="7xo-8Z-qHZ" secondAttribute="leading" constant="10" id="3oT-jb-est"/>
+                                        <constraint firstItem="u84-zk-KWJ" firstAttribute="leading" secondItem="BVp-u8-m96" secondAttribute="trailing" constant="10" id="6cS-v0-mL4"/>
                                         <constraint firstAttribute="trailing" secondItem="iLm-kJ-0sG" secondAttribute="trailing" constant="10" id="XH0-2f-q5Z"/>
+                                        <constraint firstItem="BVp-u8-m96" firstAttribute="top" secondItem="w5D-jW-nZs" secondAttribute="top" id="Zna-ko-o8M"/>
                                         <constraint firstItem="iLm-kJ-0sG" firstAttribute="top" secondItem="7xo-8Z-qHZ" secondAttribute="top" constant="10" id="g1J-JJ-hfc"/>
                                         <constraint firstItem="iLm-kJ-0sG" firstAttribute="leading" secondItem="u84-zk-KWJ" secondAttribute="trailing" constant="10" id="iXV-JY-BLJ"/>
                                         <constraint firstItem="u84-zk-KWJ" firstAttribute="top" secondItem="7xo-8Z-qHZ" secondAttribute="top" constant="10" id="oOI-R5-spD"/>
-                                        <constraint firstItem="u84-zk-KWJ" firstAttribute="leading" secondItem="7xo-8Z-qHZ" secondAttribute="leading" constant="10" id="r7w-aP-l02"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -892,7 +906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FmK-sQ-m5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3890" y="1929"/>
+            <point key="canvasLocation" x="3857" y="1929"/>
         </scene>
         <!--About Table View Controller-->
         <scene sceneID="t0H-Xc-wC8">
@@ -981,7 +995,7 @@
                 </view>
                 <tapGestureRecognizer id="6wm-TP-K05"/>
             </objects>
-            <point key="canvasLocation" x="5117" y="1205"/>
+            <point key="canvasLocation" x="5093" y="1187"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gTQ-qf-Vre">
