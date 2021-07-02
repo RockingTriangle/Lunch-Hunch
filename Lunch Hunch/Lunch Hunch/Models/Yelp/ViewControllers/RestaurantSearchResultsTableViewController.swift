@@ -64,11 +64,11 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         RESTAURANT_REF.child(uid).child(id).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 for business in self.results.selectedBusiness {
-                    self.RESTAURANT_REF.child(uid).child(id).updateChildValues([String(business + 2) : self.results.businesses[business].name])
+                    self.RESTAURANT_REF.child(uid).child(id).updateChildValues([UUID().uuidString : self.results.businesses[business].name])
                 }
             } else {
                 for business in self.results.selectedBusiness {
-                    self.RESTAURANT_REF.child(id).child(uid).updateChildValues([String(business) : self.results.businesses[business].name])
+                    self.RESTAURANT_REF.child(id).child(uid).updateChildValues([UUID().uuidString : self.results.businesses[business].name])
                 }
             }
         }

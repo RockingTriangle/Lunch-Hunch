@@ -795,7 +795,7 @@
                         <outlet property="titleLabel" destination="2Dm-wi-4Rl" id="gNv-TP-XJL"/>
                         <outlet property="titleView" destination="7ca-wp-4bP" id="l3z-wb-CBq"/>
                         <segue destination="a8w-PE-7Hf" kind="show" identifier="ChatingToAbout" id="Vah-M9-FGg"/>
-                        <segue destination="jcM-9H-t3l" kind="showDetail" identifier="toVote" id="7vS-pt-HSP"/>
+                        <segue destination="jcM-9H-t3l" kind="showDetail" identifier="toVoteController" id="7vS-pt-HSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ql-Tu-OS5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -290,20 +290,20 @@ class ChatingViewController: UIViewController {
         Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 self.hatButtonOutlet.isEnabled = false
-            }
-        }
-        
-        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
-            if snapshop.exists() {
-                if snapshop.childrenCount > 2 {
-                    self.hatButtonOutlet.isEnabled = false
-                }
             } else {
-                self.hatButtonOutlet.isEnabled = true
+                Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        if snapshop.childrenCount > 2 {
+                            self.hatButtonOutlet.isEnabled = false
+                        }
+                    } else {
+                        self.hatButtonOutlet.isEnabled = true
+                    }
+                }
             }
         }
         
-        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observe(.childAdded) { snapshop in
+        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observe(.value) { snapshop in
             if snapshop.childrenCount == 4 {
                 Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
                     if snapshop.exists() {
@@ -319,7 +319,7 @@ class ChatingViewController: UIViewController {
             }
         }
         
-        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observe(.childAdded) { snapshop in
+        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observe(.value) { snapshop in
             if snapshop.childrenCount == 4 {
                 Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
                     if snapshop.exists() {
@@ -334,6 +334,22 @@ class ChatingViewController: UIViewController {
                 }
             }
         }
+        
+        Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshop in
+            if snapshop.exists() {
+                self.hatButtonOutlet.isEnabled = false
+            }
+            Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshop in
+                if snapshop.exists() {
+                    self.declarePollWinner(snapShot: snapshop)
+                }
+            }
+        }
+
+    }
+    
+    func declarePollWinner(snapShot: DataSnapshot) {
+        print("winner winner chicken dinner")
     }
     
     
@@ -471,6 +487,11 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = navVC.topViewController as! RestaurantSettingsTableViewController
             vc.uid = vm.friend?.uid
             vc.delegate = self
+        } else if segue.identifier == "toVoteController" {
+            let navVC = segue.destination as! UINavigationController
+            let vc = navVC.topViewController as! VoteTableViewController
+            vc.userID = currentUser.id
+            vc.otherUser = uid
         }
     }
 }

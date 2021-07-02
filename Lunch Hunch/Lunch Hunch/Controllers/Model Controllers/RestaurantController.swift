@@ -25,7 +25,7 @@ class RestaurantController {
     }
     
     func updateIsPicked(isPicked: Bool, restaurant: Restaurant) {
-        if isPicked {
+        if isPicked && selectedList.count < 3 {
             if let index = restaurantList.firstIndex(of: restaurant) {
                 restaurantList.remove(at: index)
                 selectedList.append(restaurant)
