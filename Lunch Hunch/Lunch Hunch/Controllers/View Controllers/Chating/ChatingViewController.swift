@@ -252,9 +252,14 @@ class ChatingViewController: UIViewController {
             alertController.addAction(cancelAction)
             
             present(alertController, animated: true, completion: nil)
-        } else {
+        } else if type == "poll" || type == "rando" {
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
+        } else if type == "vote" {
+            performSegue(withIdentifier: "toVoteController", sender: self)
+        } else if type == "random" {
+            print("random")
         }
+        
         hatButtonSetup()
     }
     
@@ -285,23 +290,47 @@ class ChatingViewController: UIViewController {
         Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 self.hatButtonOutlet.isEnabled = false
-            } else {
-                self.hatButtonOutlet.isEnabled = true
             }
         }
         
         Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 if snapshop.childrenCount > 2 {
-                    // MARK: - all entries submitted, change to new hat image -
-                    Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
-                        if snapshop.exists() {
-                            print(snapshop.value ?? "failed")
+                    self.hatButtonOutlet.isEnabled = false
+                }
+            } else {
+                self.hatButtonOutlet.isEnabled = true
+            }
+        }
+        
+        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observe(.childAdded) { snapshop in
+            if snapshop.childrenCount == 4 {
+                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        self.hatButtonOutlet.isEnabled = true
+                        self.type = (snapshop.value as! NSString) as String
+                        if self.type == "poll" {
+                            self.type = "vote"
+                        } else if self.type == "rando" {
+                            self.type = "random"
                         }
                     }
-                    
-                }else {
-                    self.hatButtonOutlet.isEnabled = true
+                }
+            }
+        }
+        
+        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observe(.childAdded) { snapshop in
+            if snapshop.childrenCount == 4 {
+                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        self.hatButtonOutlet.isEnabled = true
+                        self.type = (snapshop.value as! NSString) as String
+                        if self.type == "poll" {
+                            self.type = "vote"
+                        } else if self.type == "rando" {
+                            self.type = "random"
+                        }
+                    }
                 }
             }
         }

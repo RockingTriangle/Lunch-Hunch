@@ -197,9 +197,7 @@ class ChatingViewModel {
             Database.database().reference().child("polling").child(uid).child(friendID).observe(.value) { (snapshot) in
                 if snapshot.exists() {
                     var type = ""
-//                    let data = snapshot.children.allObjects as! [DataSnapshot]
                     type = (snapshot.value as! NSString) as String
-//                    type = (data.last?.value as! NSString) as String
                     completion(type)
                 }
             }

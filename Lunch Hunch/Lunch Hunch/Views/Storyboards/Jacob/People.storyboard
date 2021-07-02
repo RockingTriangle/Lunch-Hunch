@@ -216,15 +216,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GDc-wb-2G7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4526" y="1623"/>
+            <point key="canvasLocation" x="4497" y="1623"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="iOU-nf-hjs">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Restaurants" id="LMm-0x-NS2" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="TcR-bH-Qfv"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4436" y="1440"/>
         </scene>
@@ -737,7 +737,7 @@
                                             <state key="normal" image="hatIcon"/>
                                             <connections>
                                                 <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
-                                                <segue destination="LMm-0x-NS2" kind="showDetail" identifier="toSearchSettingsVC" id="Hkb-qO-pSL"/>
+                                                <segue destination="LMm-0x-NS2" kind="show" identifier="toSearchSettingsVC" id="qJe-a9-GDL"/>
                                             </connections>
                                         </button>
                                     </subviews>
