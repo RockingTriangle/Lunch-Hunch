@@ -105,6 +105,7 @@ class ChatingViewController: UIViewController {
         }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
+        
         //MARK: - Polling
         vm.detectFriendPolling(friendID: uid) { type in
             self.hatButtonOutlet.setImage(setImage(type), for: .normal)
@@ -432,6 +433,7 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             let navVC = segue.destination as! UINavigationController
             let vc = navVC.topViewController as! RestaurantSettingsTableViewController
             vc.uid = vm.friend?.uid
+            vc.delegate = self
         }
     }
 }
@@ -471,4 +473,20 @@ extension ChatingViewController: UITextViewDelegate {
         self.view.layoutIfNeeded()
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            sendPressed(sendButton)
+            return false
+        }
+        return true
+    }
+    
+}
+
+extension ChatingViewController: RefreshHatProtocol {
+    func refreshHat() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.hatButtonSetup()
+        }
+    }
 }

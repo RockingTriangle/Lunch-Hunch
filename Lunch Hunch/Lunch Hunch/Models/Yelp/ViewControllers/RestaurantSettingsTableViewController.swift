@@ -8,9 +8,14 @@
 import UIKit
 import CoreLocation
 
+protocol RefreshHatProtocol {
+    func refreshHat()
+}
+
 class RestaurantSettingsTableViewController: UITableViewController {
     
     // MARK: - Properties
+    var delegate: RefreshHatProtocol?
     var viewModel = RestaurantViewModel.shared
     var locationManager = LocationManager.shared
     var endPoint = YELPEndpoint.shared
@@ -176,6 +181,7 @@ extension RestaurantSettingsTableViewController {
 
 extension RestaurantSettingsTableViewController: PopViewController {
     func popViewController() {
+        delegate?.refreshHat()
         dismiss(animated: true)
     }
 }
