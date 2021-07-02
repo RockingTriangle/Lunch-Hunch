@@ -11,7 +11,7 @@
         <!--Choose Your Top 3!-->
         <scene sceneID="JMz-Eb-Sci">
             <objects>
-                <tableViewController id="n7U-lD-L4e" customClass="VoteTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController interfaceStyle="light" id="n7U-lD-L4e" customClass="VoteTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FQk-bb-jfw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,8 +74,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2p6-hX-9TJ">
             <objects>
-                <navigationController id="Evr-iR-9x9" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                <navigationController interfaceStyle="light" toolbarHidden="NO" id="Evr-iR-9x9" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyx-EY-Q8h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

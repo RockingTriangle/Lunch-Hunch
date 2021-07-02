@@ -43,7 +43,7 @@ class ChatingViewModel {
             if error == nil {
                 self.friend = self.createUserViewModel(user: user!)
                 self.createUserImage(url: (user?.imageURL)!)
-            }else { print(error!) }
+            } else { print(error!) }
         }
     }
     

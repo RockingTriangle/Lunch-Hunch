@@ -14,13 +14,13 @@
         <!--Results-->
         <scene sceneID="i0f-yz-dcW">
             <objects>
-                <viewController id="zrV-bp-s07" customClass="RestaurantSearchResultsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="zrV-bp-s07" customClass="RestaurantSearchResultsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zUt-7k-qfn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="leK-Ix-mhs">
-                                <rect key="frame" x="0.0" y="158.5" width="414" height="703.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="414" height="654.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
@@ -217,7 +217,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLN-NR-5xS" userLabel="InnerView">
-                                        <rect key="frame" x="10.5" y="8" width="393" height="54.5"/>
+                                        <rect key="frame" x="10.5" y="-80" width="393" height="54.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -226,7 +226,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5ki-HS-6Xy">
-                                        <rect key="frame" x="20" y="15" width="374" height="41"/>
+                                        <rect key="frame" x="20" y="-73" width="374" height="41"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-eD-8mC">
                                                 <rect key="frame" x="0.0" y="1" width="40" height="39"/>
@@ -296,13 +296,13 @@
         <!--Food Types-->
         <scene sceneID="pV4-DT-TNZ">
             <objects>
-                <viewController id="b00-0e-d1I" customClass="FoodTypesViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="b00-0e-d1I" customClass="FoodTypesViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4S-Nk-bsp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwC-19-cLf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAn-fI-zM9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
@@ -762,13 +762,13 @@
         <!--Location-->
         <scene sceneID="Kjl-cF-RS1">
             <objects>
-                <viewController id="ldU-kb-EQC" customClass="LocationViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="ldU-kb-EQC" customClass="LocationViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9P0-xf-jao">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W9T-wV-oUJ">
-                                <rect key="frame" x="24" y="215.5" width="366" height="366"/>
+                                <rect key="frame" x="24" y="127.5" width="366" height="366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="W9T-wV-oUJ" secondAttribute="height" multiplier="1:1" id="yKf-3E-rrs"/>
@@ -780,20 +780,20 @@
                                 </userDefinedRuntimeAttributes>
                             </mapView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="WNz-AW-sRk">
-                                <rect key="frame" x="187" y="345.5" width="40" height="80"/>
+                                <rect key="frame" x="187" y="257.5" width="40" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="6VM-EL-vV6"/>
                                     <constraint firstAttribute="width" secondItem="WNz-AW-sRk" secondAttribute="height" multiplier="1:2" id="ZnP-Ph-sim"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCN-cw-YHC">
-                                <rect key="frame" x="24" y="104" width="366" height="21.5"/>
+                                <rect key="frame" x="24" y="16" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-Tn-6p6">
-                                <rect key="frame" x="24" y="141.5" width="366" height="60"/>
+                                <rect key="frame" x="24" y="53.5" width="366" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LAR-EK-DC7">
                                         <rect key="frame" x="16" y="10" width="334" height="40"/>
@@ -862,7 +862,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nd-Um-kCI">
-                                <rect key="frame" x="24" y="605.5" width="366" height="60"/>
+                                <rect key="frame" x="24" y="517.5" width="366" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-kP-cQF">
                                         <rect key="frame" x="16" y="10" width="334" height="40"/>
@@ -939,12 +939,12 @@
         <!--Restaurants-->
         <scene sceneID="i9p-ml-6aR">
             <objects>
-                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" id="Zed-50-pOe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" toolbarHidden="NO" id="Zed-50-pOe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restaurants" id="3wu-dZ-LZg">
                         <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8f-In-9RF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="I8f-In-9RF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -960,9 +960,9 @@
         <!--Search Settings-->
         <scene sceneID="JlB-Wq-xaV">
             <objects>
-                <tableViewController storyboardIdentifier="toSearchSettingsVC" id="M78-rS-ePV" customClass="RestaurantSettingsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="toSearchSettingsVC" modalPresentationStyle="fullScreen" interfaceStyle="light" id="M78-rS-ePV" customClass="RestaurantSettingsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="BZf-wX-Dwc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="NiE-Fe-rjP" userLabel="Outer View">
                             <rect key="frame" x="0.0" y="408" width="414" height="70"/>

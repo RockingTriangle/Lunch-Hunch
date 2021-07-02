@@ -13,7 +13,7 @@
         <!--Signin View Controller-->
         <scene sceneID="BIY-k5-w2H">
             <objects>
-                <viewController id="sMm-f3-kCg" customClass="SigninViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="sMm-f3-kCg" customClass="SigninViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mff-au-SRy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +201,7 @@
         <!--Forget Password View Controller-->
         <scene sceneID="dGs-5D-6sz">
             <objects>
-                <viewController id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pe4-3v-roK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +277,7 @@
         <!--Signup View Controller-->
         <scene sceneID="dEh-Np-QL6">
             <objects>
-                <viewController id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QcU-6Y-CvA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -467,7 +467,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="VbQ-oi-y1l">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" modalPresentationStyle="fullScreen" id="76g-vf-0sF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" modalPresentationStyle="fullScreen" interfaceStyle="light" id="76g-vf-0sF" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="8ac-dt-Ra6"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Je-bd-QhF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -488,7 +488,7 @@
         <!--Navigation Controller-->
         <scene sceneID="pHt-Yk-9qg">
             <objects>
-                <navigationController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="CEF-dH-gbo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="CEF-dH-gbo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zmq-xX-MHJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -542,6 +542,7 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
         vm.pressedCell(at: indexPath)
     }
     
+    // MARK: - Navigation -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ChatingToAbout" {
             let vc = segue.destination as! AboutTableViewController
@@ -549,7 +550,9 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             vc.uid = vm.friend?.uid
         } else if segue.identifier == "toSearchSettingsVC" {
             let navVC = segue.destination as! UINavigationController
+            navVC.navigationBar.barTintColor = .white
             let vc = navVC.topViewController as! RestaurantSettingsTableViewController
+            vc.overrideUserInterfaceStyle = .light
             vc.uid = vm.friend?.uid
             vc.delegate = self
         } else if segue.identifier == "toVoteController" {

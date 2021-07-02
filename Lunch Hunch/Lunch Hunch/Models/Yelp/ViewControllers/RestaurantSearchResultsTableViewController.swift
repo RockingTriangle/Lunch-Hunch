@@ -25,6 +25,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         results.delegate = self
         results.businesses = []
         saveButton.isEnabled = false
@@ -125,17 +126,14 @@ extension RestaurantSearchResultsTableViewController {
         let sortByDistanceAction = UIAlertAction(title: "Distance", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .distance
             self?.results.fetchBusinesses()
-            self?.dismiss(animated: false, completion: nil)
         }
         let sortByRatingAction = UIAlertAction(title: "Rating", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .rating
             self?.results.fetchBusinesses()
-            self?.dismiss(animated: false, completion: nil)
         }
         let sortByBestMatchAction = UIAlertAction(title: "Best Match", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .bestMatch
             self?.results.fetchBusinesses()
-            self?.dismiss(animated: false, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(sortByDistanceAction)

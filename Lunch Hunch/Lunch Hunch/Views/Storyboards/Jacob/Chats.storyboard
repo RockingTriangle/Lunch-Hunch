@@ -14,7 +14,7 @@
         <!--Chat-->
         <scene sceneID="xMn-IT-jo0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="okR-9v-H0V" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="okR-9v-H0V" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" id="MtU-wY-rJB">
                         <imageReference key="image" image="bubble.left.and.bubble.right.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
@@ -45,7 +45,7 @@
         <!--Chats-->
         <scene sceneID="ja2-zQ-0Bv">
             <objects>
-                <viewController id="z4m-jK-VJf" customClass="ChatsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="z4m-jK-VJf" customClass="ChatsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E7r-5d-yqo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +198,7 @@
         <!--Navigation Controller-->
         <scene sceneID="xGL-nk-aTB">
             <objects>
-                <navigationController storyboardIdentifier="friendss" id="RKA-w9-4Lq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="friendss" interfaceStyle="light" id="RKA-w9-4Lq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oMB-KE-mYa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ElB-7D-oem">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -215,7 +215,7 @@
         <!--Choose People-->
         <scene sceneID="jTp-sR-zvf">
             <objects>
-                <viewController storyboardIdentifier="friends" id="cTk-cP-p00" customClass="FriendsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friends" interfaceStyle="light" id="cTk-cP-p00" customClass="FriendsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q6y-Zc-S01">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,7 +307,7 @@
         <!--Requests View Controller-->
         <scene sceneID="dAb-QJ-L8b">
             <objects>
-                <viewController id="L01-zC-Dwg" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="L01-zC-Dwg" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ikD-7W-y51">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -534,7 +534,7 @@
         <!--Navigation Controller-->
         <scene sceneID="66p-og-ynJ">
             <objects>
-                <navigationController storyboardIdentifier="requests" automaticallyAdjustsScrollViewInsets="NO" id="EZq-RQ-VEq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="requests" automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="EZq-RQ-VEq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KbV-es-shu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

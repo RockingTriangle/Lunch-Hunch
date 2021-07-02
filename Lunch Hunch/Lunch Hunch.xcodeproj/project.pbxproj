@@ -182,6 +182,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13A8C631268FD1F100217E8B /* ChatingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
+			);
+			path = ChatingViewController;
+			sourceTree = "<group>";
+		};
 		13AA39F4268662E8006E1F1C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,9 +532,9 @@
 		13FED29826813C1D00D25BC4 /* Chating */ = {
 			isa = PBXGroup;
 			children = (
+				13A8C631268FD1F100217E8B /* ChatingViewController */,
 				13FED29C26813C1D00D25BC4 /* FromCell.swift */,
 				13FED29D26813C1D00D25BC4 /* ToCell.swift */,
-				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
 				392004672684F6DF0098045C /* VoteTableViewController.swift */,
 				39200470268500590098045C /* RestaurantListTableViewCell.swift */,
 			);

@@ -33,6 +33,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         mapView.delegate = self
         configureViews()
         mapView.layer.borderColor = UIColor.white.cgColor
