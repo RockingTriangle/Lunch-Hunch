@@ -8,12 +8,19 @@
 import UIKit
 import FirebaseDatabase
 
+protocol PopViewController {
+    func popViewController()
+}
+
 class RestaurantSearchResultsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var results = RestaurantViewModel.shared
+    var delegate: PopViewController?
     @IBOutlet weak var tableView: UITableView!
+    
+    public var uid: String?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -26,7 +33,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     }
     
     //MARK: - Properties
-    private let RESTAURANT_REF = FBAuthentication.shared.ref.child("messages")
+    private let RESTAURANT_REF = FBAuthentication.shared.ref.child("restaurants")
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,14 +58,23 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         showAlert(with: "Sorting Options", and: "Please choose an option below:")
     }
 
-
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let id = currentUser.id else {return}
-        for business in results.selectedBusiness {
-            RESTAURANT_REF.child(id).child("picked_restaurants_from_search").updateChildValues([String(business) : results.businesses[business].name])
-           
+        guard let id = currentUser.id, let uid = uid else {return}
+        
+        RESTAURANT_REF.child(uid).child(id).observeSingleEvent(of: .value) { snapshop in
+            if snapshop.exists() {
+                for business in self.results.selectedBusiness {
+                    self.RESTAURANT_REF.child(uid).child(id).updateChildValues([String(business + 2) : self.results.businesses[business].name])
+                }
+            } else {
+                for business in self.results.selectedBusiness {
+                    self.RESTAURANT_REF.child(id).child(uid).updateChildValues([String(business) : self.results.businesses[business].name])
+                }
+            }
         }
+        
         navigationController?.popViewController(animated: true)
+        delegate?.popViewController()
     }
     
     // MARK: - Functions

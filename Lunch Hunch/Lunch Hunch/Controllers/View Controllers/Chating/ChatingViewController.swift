@@ -30,8 +30,6 @@ class ChatingViewController: UIViewController {
     @IBOutlet weak var textView    : UITextView!
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
-    //    @IBOutlet weak var actionsStack: UIStackView!
-
     
     @IBOutlet weak var heightVisualView: NSLayoutConstraint!
     @IBOutlet weak var bottomVisualView: NSLayoutConstraint!
@@ -53,9 +51,7 @@ class ChatingViewController: UIViewController {
     private var keyboardWillShow = false
     
     var ref: DatabaseReference!
-    
-    
-    
+    var type: String = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -109,16 +105,20 @@ class ChatingViewController: UIViewController {
         }
         vm.fetchUserInfo(uid: uid)
         vm.detectFrindTyping(friendID: uid)
+        
         //MARK: - Polling
         vm.detectFriendPolling(friendID: uid) { type in
             self.hatButtonOutlet.setImage(setImage(type), for: .normal)
         }
         func setImage(_ type: String) -> UIImage {
             if type == "poll" {
+                self.type = "poll"
                 return #imageLiteral(resourceName: "hatIconPoll")
             } else if type == "rando" {
+                self.type = "rando"
                 return #imageLiteral(resourceName: "hatIconRando")
             } else {
+                self.type = ""
                 return #imageLiteral(resourceName: "hatIcon")
             }
         }
@@ -221,35 +221,41 @@ class ChatingViewController: UIViewController {
     //---------------------------------------------------------------------------------------------
 
     @IBAction func hatButtonTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
         
-        let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
-            self.dismiss(animated: true) {
-                guard let uid = Auth.auth().currentUser?.uid else {return}
-                let friendID = self.uid
-                Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
-                Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "poll"])
-            }
+        if type == "" {
+            let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
             
-        } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
-        
-        let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
-            self.dismiss(animated: true) {
-                guard let uid = Auth.auth().currentUser?.uid else { return }
-                let friendID = self.uid
-                Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
-                Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "rando"])
-            }
+            let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
+                self.dismiss(animated: true) {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    let friendID = self.uid
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "poll"])
+                }
+                
+            } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
             
-        } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(pollAction)
-        alertController.addAction(randomAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+            let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
+                self.dismiss(animated: true) {
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    let friendID = self.uid
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "rando"])
+                }
+                
+            } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertController.addAction(pollAction)
+            alertController.addAction(randomAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
+        }
+        hatButtonSetup()
     }
     
     //MARK: - FUNCTIONS
@@ -273,6 +279,22 @@ class ChatingViewController: UIViewController {
                 self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
             } else if value == "" {
                 self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+            }
+        }
+        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+            if snapshop.exists() {
+                self.hatButtonOutlet.isEnabled = false
+            } else {
+                self.hatButtonOutlet.isEnabled = true
+            }
+        }
+        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
+            if snapshop.exists() {
+                if snapshop.childrenCount > 2 {
+                    self.hatButtonOutlet.isEnabled = false
+                }else {
+                    self.hatButtonOutlet.isEnabled = true
+                }
             }
         }
     }
@@ -407,6 +429,11 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = segue.destination as! AboutTableViewController
             vc.name = vm.friend?.name
             vc.uid = vm.friend?.uid
+        } else if segue.identifier == "toSearchSettingsVC" {
+            let navVC = segue.destination as! UINavigationController
+            let vc = navVC.topViewController as! RestaurantSettingsTableViewController
+            vc.uid = vm.friend?.uid
+            vc.delegate = self
         }
     }
 }
@@ -430,6 +457,7 @@ extension ChatingViewController: UITextViewDelegate {
         vm.startTyping(friendID: uid)
 
         textView.text = ""
+        textView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         self.view.updateConstraintsIfNeeded()
         self.view.layoutIfNeeded()
     }
@@ -437,7 +465,7 @@ extension ChatingViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         vm.endTyping(friendID: uid)
 
-        textView.text = "Aa"
+        textView.text = ""
         textView.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         textView.sizeToFit()
         heightVisualView.constant = heightOfBottomView + 5
@@ -445,4 +473,20 @@ extension ChatingViewController: UITextViewDelegate {
         self.view.layoutIfNeeded()
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            sendPressed(sendButton)
+            return false
+        }
+        return true
+    }
+    
+}
+
+extension ChatingViewController: RefreshHatProtocol {
+    func refreshHat() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.hatButtonSetup()
+        }
+    }
 }

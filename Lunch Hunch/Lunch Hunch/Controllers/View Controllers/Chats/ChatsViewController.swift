@@ -124,7 +124,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
         selectedCell = user
         performSegue(withIdentifier: "ChatsToChating", sender: self)
     }
-    
+        
     // Setup left button bar
     private func setupLeftButton() {
         let requestView                                              = UIView(frame: .init(x: 0, y: 0, width: 30, height: 30))
