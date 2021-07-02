@@ -127,7 +127,7 @@ class VoteTableViewController: UITableViewController {
                 if self.viewModel.restaurantList.count > 0 {
                     self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
                     for index in (0..<self.viewModel.restaurantList.count - 1) {
-                        if index == self.viewModel.restaurantList.count {
+                        if index == self.viewModel.restaurantList.count - 1 {
                             break
                         }
                         if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
@@ -175,13 +175,14 @@ class VoteTableViewController: UITableViewController {
         var points = 5
         var index = 0
         while points > 2 {
-            selectedList[index].voteCount += points
+            RestaurantController.shared.selectedList[index].voteCount += points
             index += 1
             points -= 1
         }
-        Database.database().reference().child("points").child(userID!).child(otherUser!).setValue([selectedList[0].name : selectedList[0].voteCount,
-                                                                                                   selectedList[1].name : selectedList[1].voteCount,
-                                                                                                   selectedList[2].name : selectedList[2].voteCount])
+        Database.database().reference().child("points").child(userID!).child(otherUser!).setValue(
+                    [RestaurantController.shared.selectedList[0].name : RestaurantController.shared.selectedList[0].voteCount,
+                     RestaurantController.shared.selectedList[1].name : RestaurantController.shared.selectedList[1].voteCount,
+                     RestaurantController.shared.selectedList[2].name : RestaurantController.shared.selectedList[2].voteCount])
         dismiss(animated: true)
     }
     
@@ -191,7 +192,7 @@ class VoteTableViewController: UITableViewController {
 extension VoteTableViewController: RestaurantListCellDelegate {
     func addedToPickedTapped(restaurant: Restaurant, cell: RestaurantListTableViewCell) {
         RestaurantController.shared.updateIsPicked(isPicked: !cell.wasPicked! ? true : false, restaurant: restaurant)
-        if selectedList.count == 3 {
+        if RestaurantController.shared.selectedList.count == 3 {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false

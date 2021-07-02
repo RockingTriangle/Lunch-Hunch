@@ -335,21 +335,83 @@ class ChatingViewController: UIViewController {
             }
         }
         
-        Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshop in
-            if snapshop.exists() {
+        Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot1 in
+            if snapshot1.exists() {
                 self.hatButtonOutlet.isEnabled = false
-            }
-            Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshop in
-                if snapshop.exists() {
-                    self.declarePollWinner(snapShot: snapshop)
+                Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot2 in
+                    if snapshot2.exists() {
+                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
+                    }
                 }
             }
         }
 
     }
     
-    func declarePollWinner(snapShot: DataSnapshot) {
-        print("winner winner chicken dinner")
+    func declarePollWinner(snapshot1: DataSnapshot, snapshot2: DataSnapshot) {
+        
+        var choices: [String: Int] = [:]
+        
+        if snapshot1.childrenCount > 0 {
+            let data = try? JSONSerialization.data(withJSONObject: snapshot1.value!)
+            var string = String(data: data!, encoding: .utf8)
+            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
+            string!.removeAll(where: { removeCharacters.contains($0) } )
+            let items = string?.components(separatedBy: ",")
+            for item in items! {
+                let points = item.last
+                let restaurant = item.dropLast()
+                choices[String(restaurant)] = Int(String(points!))
+            }
+        }
+        
+        if snapshot2.childrenCount > 0 {
+            let data = try? JSONSerialization.data(withJSONObject: snapshot2.value!)
+            var string = String(data: data!, encoding: .utf8)
+            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
+            string!.removeAll(where: { removeCharacters.contains($0) } )
+            let items = string?.components(separatedBy: ",")
+            for item in items! {
+                let points = item.last
+                let restaurant = item.dropLast()
+                if choices[String(restaurant)] != nil {
+                    choices[String(restaurant)] = choices[String(restaurant)]! + Int(String(points!))!
+                } else {
+                    choices[String(restaurant)] = Int(String(points!))
+                }
+            }
+        }
+        
+        var maxPoints = 0
+        var restaurantsTied = [String]()
+        var restaurantWinner = ""
+        for choice in choices {
+            if choice.value > maxPoints {
+                restaurantWinner = choice.key
+                maxPoints = choice.value
+                restaurantsTied.removeAll()
+            } else if choice.value == maxPoints {
+                restaurantsTied.append(choice.key)
+            }
+        }
+        if restaurantsTied.count > 0 {
+            print(randomizeRestaurantChoices(restaurantsTied))
+            return
+        } else {
+            print("\(restaurantWinner) with \(maxPoints) points!")
+            return
+        }
+        hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        Database.database().reference().child("points").removeValue()
+        Database.database().reference().child("points").removeAllObservers()
+        Database.database().reference().child("polling").removeValue()
+        Database.database().reference().child("polling").removeAllObservers()
+        Database.database().reference().child("restaurants").removeValue()
+        Database.database().reference().child("restaurants").removeAllObservers()
+    }
+    
+    func randomizeRestaurantChoices(_ restaurants: [String]) -> String {
+        restaurants.randomElement() ?? "failed to randomize"
     }
     
     
