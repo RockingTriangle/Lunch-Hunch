@@ -270,11 +270,14 @@
                     <navigationItem key="navigationItem" title="Results" id="g2S-OB-pjZ">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="save" id="Ve3-OP-RPL">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="zrV-bp-s07" id="o5P-jV-jPB"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="arrow.up.arrow.down.circle" catalog="system" id="3JU-NF-IMl">
+                            <barButtonItem id="3JU-NF-IMl">
+                                <imageReference key="image" image="arrow.up.arrow.down.circle.fill" catalog="system" symbolScale="large"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="sortButtonTapped:" destination="zrV-bp-s07" id="X2b-mE-ucu"/>
                                 </connections>
@@ -721,6 +724,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Food Types" id="3YY-H1-crQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DYh-Ev-rgA">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="doneButtonTapped:" destination="b00-0e-d1I" id="iAb-RY-hlM"/>
                             </connections>
@@ -914,6 +918,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="Yan-aq-2Ms">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="TFC-fP-RDL">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="setButtonTapped:" destination="ldU-kb-EQC" id="Vaw-Qo-wtY"/>
                             </connections>
@@ -931,11 +936,13 @@
             </objects>
             <point key="canvasLocation" x="3479.7101449275365" y="-185.49107142857142"/>
         </scene>
-        <!--Item-->
+        <!--Restaurants-->
         <scene sceneID="i9p-ml-6aR">
             <objects>
                 <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" id="Zed-50-pOe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3wu-dZ-LZg"/>
+                    <tabBarItem key="tabBarItem" title="Restaurants" id="3wu-dZ-LZg">
+                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8f-In-9RF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1192,7 +1199,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search Settings" id="QVS-ww-SYg">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="dgs-GF-lkE">
+                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass.circle.fill" catalog="system" id="dgs-GF-lkE">
                             <connections>
                                 <segue destination="zrV-bp-s07" kind="show" identifier="toResultsVC" id="Gen-sA-eNl"/>
                             </connections>
@@ -1218,9 +1225,11 @@
         <segue reference="d3r-1a-s6k"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.up.arrow.down.circle.fill" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="pin" width="450" height="600"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="yelpLogo" width="1000" height="647"/>

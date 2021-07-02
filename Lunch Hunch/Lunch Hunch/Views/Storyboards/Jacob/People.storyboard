@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -111,6 +112,7 @@
                     <navigationItem key="navigationItem" title="Add Friend" id="u39-gP-3rH">
                         <barButtonItem key="backBarButtonItem" title=" " id="wKl-kl-qL9"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="95A-hs-W5S">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="C6E-de-dFQ" id="sFh-n8-8nb"/>
                             </connections>
@@ -152,7 +154,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="People" largeTitleDisplayMode="always" id="c75-Zs-tNx">
                         <barButtonItem key="backBarButtonItem" title=" " id="3rh-0c-k0s"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sAt-ke-tfq">
+                        <barButtonItem key="rightBarButtonItem" id="sAt-ke-tfq">
+                            <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addFriendPressed:" destination="BXx-8u-g2h" id="MTM-vV-Rud"/>
                             </connections>
@@ -1018,7 +1022,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vah-M9-FGg"/>
+        <segue reference="Vri-hm-e8t"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Friends" width="400" height="400"/>
@@ -1028,6 +1032,7 @@
         <image name="cancel" width="33" height="33"/>
         <image name="hatIcon" width="1068" height="985"/>
         <image name="play" width="33" height="33"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="BasicColor">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

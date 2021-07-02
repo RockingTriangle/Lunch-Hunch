@@ -57,6 +57,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Your Top 3!" id="jfZ-ha-OBg">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="mBK-ou-Sfg">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveButtonTapped:" destination="n7U-lD-L4e" id="WpS-uR-egX"/>
                             </connections>
@@ -74,6 +75,7 @@
         <scene sceneID="2p6-hX-9TJ">
             <objects>
                 <navigationController id="Evr-iR-9x9" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyx-EY-Q8h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -87,6 +89,7 @@
             <point key="canvasLocation" x="-789" y="-99"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
