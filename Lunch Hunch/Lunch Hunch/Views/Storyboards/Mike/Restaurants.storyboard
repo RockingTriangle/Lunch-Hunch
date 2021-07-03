@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="70.5" width="414" height="654.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantSearchTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="231.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MPb-4A-eON" id="BEr-2H-aZF" userLabel="Outer View">
