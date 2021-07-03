@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RestaurantListCellDelegate: AnyObject {
-    func addedToPickedTapped(isPicked: Bool, restaurant: Restaurant, cell: RestaurantListTableViewCell)
+    func addedToPickedTapped(restaurant: Restaurant, cell: RestaurantListTableViewCell)
 }
 
 class RestaurantListTableViewCell: UITableViewCell {
@@ -20,20 +20,19 @@ class RestaurantListTableViewCell: UITableViewCell {
     weak var delegate: RestaurantListCellDelegate?
     
     var restaurant: Restaurant?
-    private var wasPicked: Bool = false
+    var wasPicked: Bool?
     
     //MARK: - ACTIONS
     @IBAction func isPickedButtonTapped(_ sender: Any) {
         guard let restaurant = restaurant else {return}
         
-        wasPicked.toggle()
-        delegate?.addedToPickedTapped(isPicked: wasPicked, restaurant: restaurant, cell: self)
+        delegate?.addedToPickedTapped(restaurant: restaurant, cell: self)
     }
     
     //MARK: - FUNCTIONS
     func configure(restaurant: Restaurant) {
         self.restaurant = restaurant
-        
+        guard let wasPicked = wasPicked else { return }
         let image = wasPicked ? UIImage(systemName: "minus") : UIImage(systemName: "plus")
         restaurantNameTextLabel.text = restaurant.name
         isPickedButton.setImage(image, for: .normal)

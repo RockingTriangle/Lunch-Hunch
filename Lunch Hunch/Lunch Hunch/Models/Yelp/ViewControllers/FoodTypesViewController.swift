@@ -38,6 +38,7 @@ class FoodTypesViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         toggleArray = [allToggle, italianToggle, mexicantoggle, americanToggle,
                        asianToggle, indianToggle, hawaiianToggle, mediterraneanToggle,
                        burgersToggle, bbqToggle, tacosToggle, pizzaToggle,

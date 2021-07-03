@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Vote!-->
+        <!--Choose Your Top 3!-->
         <scene sceneID="JMz-Eb-Sci">
             <objects>
-                <tableViewController id="n7U-lD-L4e" customClass="VoteTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController interfaceStyle="light" id="n7U-lD-L4e" customClass="VoteTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FQk-bb-jfw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,18 +55,17 @@
                             <outlet property="delegate" destination="n7U-lD-L4e" id="sjd-7a-1Ax"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Vote!" id="jfZ-ha-OBg">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="3Nl-bO-nAY">
+                    <navigationItem key="navigationItem" title="Choose Your Top 3!" id="jfZ-ha-OBg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mBK-ou-Sfg">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="saveButtonTapped:" destination="n7U-lD-L4e" id="TOu-In-VpA"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="mBK-ou-Sfg">
-                            <connections>
-                                <action selector="addTestButtonTapped:" destination="n7U-lD-L4e" id="qwd-zt-PHl"/>
+                                <action selector="saveButtonTapped:" destination="n7U-lD-L4e" id="WpS-uR-egX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="mBK-ou-Sfg" id="ug6-AM-ZNj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P8u-uZ-WiV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,7 +74,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2p6-hX-9TJ">
             <objects>
-                <navigationController id="Evr-iR-9x9" sceneMemberID="viewController">
+                <navigationController interfaceStyle="light" toolbarHidden="NO" id="Evr-iR-9x9" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyx-EY-Q8h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,6 +88,7 @@
             <point key="canvasLocation" x="-789" y="-99"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

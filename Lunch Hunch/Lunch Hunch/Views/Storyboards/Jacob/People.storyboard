@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +14,7 @@
         <!--People-->
         <scene sceneID="980-0B-agB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w18-n9-jT6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="w18-n9-jT6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="People" image="People" id="U5Z-Pu-YCt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="V2L-a5-eer">
@@ -33,7 +34,7 @@
         <!--Add Friend-->
         <scene sceneID="CWL-lR-9lK">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="C6E-de-dFQ" customClass="AddFriendTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="C6E-de-dFQ" customClass="AddFriendTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="tIU-uc-GyY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,6 +112,7 @@
                     <navigationItem key="navigationItem" title="Add Friend" id="u39-gP-3rH">
                         <barButtonItem key="backBarButtonItem" title=" " id="wKl-kl-qL9"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="95A-hs-W5S">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="C6E-de-dFQ" id="sFh-n8-8nb"/>
                             </connections>
@@ -127,7 +129,7 @@
         <!--People-->
         <scene sceneID="eKY-DN-LN3">
             <objects>
-                <viewController id="BXx-8u-g2h" customClass="PeopleViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="BXx-8u-g2h" customClass="PeopleViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9zN-5L-LbW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +154,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="People" largeTitleDisplayMode="always" id="c75-Zs-tNx">
                         <barButtonItem key="backBarButtonItem" title=" " id="3rh-0c-k0s"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sAt-ke-tfq">
+                        <barButtonItem key="rightBarButtonItem" id="sAt-ke-tfq">
+                            <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addFriendPressed:" destination="BXx-8u-g2h" id="MTM-vV-Rud"/>
                             </connections>
@@ -216,22 +220,24 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GDc-wb-2G7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4526" y="1623"/>
+            <point key="canvasLocation" x="4497" y="1623"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="iOU-nf-hjs">
             <objects>
-                <viewControllerPlaceholder storyboardName="Restaurants" id="LMm-0x-NS2" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="TcR-bH-Qfv"/>
-                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Restaurants" id="LMm-0x-NS2" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TcR-bH-Qfv">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="dg6-qr-AJu"/>
+                    </navigationItem>
+                </viewControllerPlaceholder>
             </objects>
             <point key="canvasLocation" x="4436" y="1440"/>
         </scene>
         <!--Chating View Controller-->
         <scene sceneID="wz0-ck-kxR">
             <objects>
-                <viewController storyboardIdentifier="chating" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="kWk-ig-V47" customClass="ChatingViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chating" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="kWk-ig-V47" customClass="ChatingViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bkc-OB-xZf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -737,7 +743,7 @@
                                             <state key="normal" image="hatIcon"/>
                                             <connections>
                                                 <action selector="hatButtonTapped:" destination="kWk-ig-V47" eventType="touchUpInside" id="DvE-HB-Ths"/>
-                                                <segue destination="LMm-0x-NS2" kind="showDetail" identifier="toSearchSettingsVC" id="Hkb-qO-pSL"/>
+                                                <segue destination="LMm-0x-NS2" kind="show" identifier="toSearchSettingsVC" id="qJe-a9-GDL"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -795,7 +801,7 @@
                         <outlet property="titleLabel" destination="2Dm-wi-4Rl" id="gNv-TP-XJL"/>
                         <outlet property="titleView" destination="7ca-wp-4bP" id="l3z-wb-CBq"/>
                         <segue destination="a8w-PE-7Hf" kind="show" identifier="ChatingToAbout" id="Vah-M9-FGg"/>
-                        <segue destination="jcM-9H-t3l" kind="showDetail" identifier="toVote" id="7vS-pt-HSP"/>
+                        <segue destination="jcM-9H-t3l" kind="showDetail" identifier="toVoteController" id="7vS-pt-HSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ql-Tu-OS5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -836,7 +842,7 @@
         <!--Group Member view-->
         <scene sceneID="gtW-M4-noX">
             <objects>
-                <viewController title="Group Member view" id="O99-t4-YQI" sceneMemberID="viewController">
+                <viewController title="Group Member view" interfaceStyle="light" id="O99-t4-YQI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="520-yX-eBc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -911,7 +917,7 @@
         <!--About Table View Controller-->
         <scene sceneID="t0H-Xc-wC8">
             <objects>
-                <tableViewController storyboardIdentifier="about" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="about" interfaceStyle="light" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9zc-dz-yY7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1000,7 +1006,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gTQ-qf-Vre">
             <objects>
-                <navigationController storyboardIdentifier="addFriend" automaticallyAdjustsScrollViewInsets="NO" id="72M-fj-yQa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addFriend" automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="72M-fj-yQa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JzK-9n-MSf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c3T-4i-VJM">
@@ -1028,6 +1034,7 @@
         <image name="cancel" width="33" height="33"/>
         <image name="hatIcon" width="1068" height="985"/>
         <image name="play" width="33" height="33"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="BasicColor">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

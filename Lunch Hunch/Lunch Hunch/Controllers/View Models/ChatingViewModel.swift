@@ -43,7 +43,7 @@ class ChatingViewModel {
             if error == nil {
                 self.friend = self.createUserViewModel(user: user!)
                 self.createUserImage(url: (user?.imageURL)!)
-            }else { print(error!) }
+            } else { print(error!) }
         }
     }
     
@@ -197,8 +197,7 @@ class ChatingViewModel {
             Database.database().reference().child("polling").child(uid).child(friendID).observe(.value) { (snapshot) in
                 if snapshot.exists() {
                     var type = ""
-                    let data = snapshot.children.allObjects as! [DataSnapshot]
-                    type = (data.last?.value as! NSString) as String
+                    type = (snapshot.value as! NSString) as String
                     completion(type)
                 }
             }

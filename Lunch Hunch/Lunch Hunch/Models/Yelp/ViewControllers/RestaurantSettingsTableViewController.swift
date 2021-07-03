@@ -35,6 +35,7 @@ class RestaurantSettingsTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         configureCells()
         configureLocationManager()
         if CLLocationManager.authorizationStatus() == .denied ||

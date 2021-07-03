@@ -229,8 +229,8 @@ class ChatingViewController: UIViewController {
                 self.dismiss(animated: true) {
                     guard let uid = Auth.auth().currentUser?.uid else {return}
                     let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "poll"])
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "poll"])
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("poll")
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("poll")
                 }
                 
             } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
@@ -239,8 +239,8 @@ class ChatingViewController: UIViewController {
                 self.dismiss(animated: true) {
                     guard let uid = Auth.auth().currentUser?.uid else { return }
                     let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue([uid: "rando"])
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue([uid: "rando"])
+                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("rando")
+                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("rando")
                 }
                 
             } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
@@ -252,9 +252,14 @@ class ChatingViewController: UIViewController {
             alertController.addAction(cancelAction)
             
             present(alertController, animated: true, completion: nil)
-        } else {
+        } else if type == "poll" || type == "rando" {
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
+        } else if type == "vote" {
+            performSegue(withIdentifier: "toVoteController", sender: self)
+        } else if type == "random" {
+            print("random")
         }
+        
         hatButtonSetup()
     }
     
@@ -281,22 +286,163 @@ class ChatingViewController: UIViewController {
                 self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
             }
         }
+        
         Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
             if snapshop.exists() {
                 self.hatButtonOutlet.isEnabled = false
             } else {
-                self.hatButtonOutlet.isEnabled = true
-            }
-        }
-        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
-            if snapshop.exists() {
-                if snapshop.childrenCount > 2 {
-                    self.hatButtonOutlet.isEnabled = false
-                }else {
-                    self.hatButtonOutlet.isEnabled = true
+                Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        if snapshop.childrenCount > 2 {
+                            self.hatButtonOutlet.isEnabled = false
+                        }
+                    } else {
+                        self.hatButtonOutlet.isEnabled = true
+                    }
                 }
             }
         }
+        
+        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observe(.value) { snapshop in
+            if snapshop.childrenCount == 4 {
+                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        self.hatButtonOutlet.isEnabled = true
+                        self.type = (snapshop.value as! NSString) as String
+                        if self.type == "poll" {
+                            self.type = "vote"
+                        } else if self.type == "rando" {
+                            self.type = "random"
+                        }
+                    }
+                }
+            }
+        }
+        
+        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observe(.value) { snapshop in
+            if snapshop.childrenCount == 4 {
+                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
+                    if snapshop.exists() {
+                        self.hatButtonOutlet.isEnabled = true
+                        self.type = (snapshop.value as! NSString) as String
+                        if self.type == "poll" {
+                            self.type = "vote"
+                        } else if self.type == "rando" {
+                            self.type = "random"
+                        }
+                    }
+                }
+            }
+        }
+        
+        Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot1 in
+            if snapshot1.exists() {
+                self.hatButtonOutlet.isEnabled = false
+                Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot2 in
+                    if snapshot2.exists() {
+                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
+                    }
+                }
+            }
+        }
+        
+        Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot1 in
+            if snapshot1.exists() {
+                self.hatButtonOutlet.isEnabled = false
+                Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot2 in
+                    if snapshot2.exists() {
+                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
+                    }
+                }
+            }
+        }
+
+    }
+    
+    func declarePollWinner(snapshot1: DataSnapshot, snapshot2: DataSnapshot) {
+        
+        var choices: [String: Int] = [:]
+        
+        if snapshot1.childrenCount > 0 {
+            let data = try? JSONSerialization.data(withJSONObject: snapshot1.value!)
+            var string = String(data: data!, encoding: .utf8)
+            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
+            string!.removeAll(where: { removeCharacters.contains($0) } )
+            let items = string?.components(separatedBy: ",")
+            for item in items! {
+                let points = item.last
+                let restaurant = item.dropLast()
+                choices[String(restaurant)] = Int(String(points!))
+            }
+        }
+        
+        if snapshot2.childrenCount > 0 {
+            let data = try? JSONSerialization.data(withJSONObject: snapshot2.value!)
+            var string = String(data: data!, encoding: .utf8)
+            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
+            string!.removeAll(where: { removeCharacters.contains($0) } )
+            let items = string?.components(separatedBy: ",")
+            for item in items! {
+                let points = item.last
+                let restaurant = item.dropLast()
+                if choices[String(restaurant)] != nil {
+                    choices[String(restaurant)] = choices[String(restaurant)]! + Int(String(points!))!
+                } else {
+                    choices[String(restaurant)] = Int(String(points!))
+                }
+            }
+        }
+        
+        var maxPoints = 0
+        var restaurantsTied = [String]()
+        var restaurantWinner = ""
+        for choice in choices {
+            if choice.value > maxPoints {
+                restaurantWinner = choice.key
+                maxPoints = choice.value
+                restaurantsTied.removeAll()
+            } else if choice.value == maxPoints {
+                restaurantsTied.append(choice.key)
+            }
+        }
+        
+        hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        hatButtonOutlet.isEnabled = true
+        type = ""
+        
+        Database.database().reference().child("points").child(currentUser.id!).removeValue()
+        Database.database().reference().child("points").child(uid).removeValue()
+        Database.database().reference().child("points").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("points").child(uid).removeAllObservers()
+
+        Database.database().reference().child("polling").child(currentUser.id!).removeValue()
+        Database.database().reference().child("polling").child(uid).removeValue()
+        Database.database().reference().child("polling").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("polling").child(uid).removeAllObservers()
+        
+        Database.database().reference().child("restaurants").child(currentUser.id!).removeValue()
+        Database.database().reference().child("restaurants").child(uid).removeValue()
+        Database.database().reference().child("restaurants").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("restaurants").child(uid).removeAllObservers()
+        
+        if restaurantsTied.count > 0 {
+            randomizeRestaurantChoices(restaurantsTied)
+            return  
+        } else {
+            let alert = UIAlertController(title: "\(restaurantWinner)", message: "Your winner with \(maxPoints) points!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true)
+            return
+        }
+    }
+    
+    // TODO: - need to make sure both people's result is the same...
+    func randomizeRestaurantChoices(_ restaurants: [String]) {
+        let alert = UIAlertController(title: "\(restaurants.randomElement() ?? "no winner")", message: "Randomly selected from a tie!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     
@@ -424,6 +570,7 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
         vm.pressedCell(at: indexPath)
     }
     
+    // MARK: - Navigation -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ChatingToAbout" {
             let vc = segue.destination as! AboutTableViewController
@@ -431,9 +578,16 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             vc.uid = vm.friend?.uid
         } else if segue.identifier == "toSearchSettingsVC" {
             let navVC = segue.destination as! UINavigationController
+            navVC.navigationBar.barTintColor = .white
             let vc = navVC.topViewController as! RestaurantSettingsTableViewController
+            vc.overrideUserInterfaceStyle = .light
             vc.uid = vm.friend?.uid
             vc.delegate = self
+        } else if segue.identifier == "toVoteController" {
+            let navVC = segue.destination as! UINavigationController
+            let vc = navVC.topViewController as! VoteTableViewController
+            vc.userID = currentUser.id
+            vc.otherUser = uid
         }
     }
 }

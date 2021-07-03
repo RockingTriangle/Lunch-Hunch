@@ -13,7 +13,7 @@
         <!--Settings-->
         <scene sceneID="qGD-ZF-M4N">
             <objects>
-                <navigationController id="6Z2-oZ-irK" sceneMemberID="viewController">
+                <navigationController interfaceStyle="light" id="6Z2-oZ-irK" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="zWi-5N-9RW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="E1c-rW-1Z1">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -30,7 +30,7 @@
         <!--Settings-->
         <scene sceneID="J1M-ql-nvC">
             <objects>
-                <viewController storyboardIdentifier="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ydd-ds-cmf" customClass="SettingsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="light" id="Ydd-ds-cmf" customClass="SettingsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Ov-lu-RvL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +93,6 @@
                         <segue destination="t1U-hX-qod" kind="show" identifier="available" id="b27-s3-qO3"/>
                         <segue destination="dWF-PD-mv3" kind="show" identifier="toFriendsListVC" id="IGS-xV-4B4"/>
                         <segue destination="Cyv-No-xvh" kind="show" identifier="toRequests" id="e7z-3F-vVP"/>
-                        <segue destination="4bR-il-HYy" kind="show" identifier="toReportUserVC" id="iLF-Wb-qUH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PSZ-F1-okK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -152,7 +151,7 @@
         <!--Blocked Users-->
         <scene sceneID="vpz-KI-AHY">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="eEX-sD-ER3" customClass="BlockedUsersTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="eEX-sD-ER3" customClass="BlockedUsersTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rUJ-vM-qQp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,10 +234,9 @@
             <point key="canvasLocation" x="1820" y="1083"/>
         </scene>
         <!--Edit Profile-->
-
         <scene sceneID="EpG-Ur-ggI">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="dJW-QN-Lbi" customClass="EditeProfileViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="dJW-QN-Lbi" customClass="EditeProfileViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bc3-4y-8za">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -302,6 +300,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Edit Profile" id="0wM-8t-vxo">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="hhz-Gs-pAh">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="savePressed:" destination="dJW-QN-Lbi" id="oQ1-dK-Qmh"/>
                             </connections>
@@ -316,11 +315,10 @@
             </objects>
             <point key="canvasLocation" x="2522" y="1083"/>
         </scene>
-
         <!--Change Password View Controller-->
         <scene sceneID="4kc-hn-tAT">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="kcc-7q-XER" customClass="ChangePasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="kcc-7q-XER" customClass="ChangePasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EMg-hM-nO1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +423,7 @@
         <!--Available View Controller-->
         <scene sceneID="v9N-Sn-Fti">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="t1U-hX-qod" customClass="AvailableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="t1U-hX-qod" customClass="AvailableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fSB-c3-igP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,7 +477,7 @@
         <!--Requests View Controller-->
         <scene sceneID="ENc-O9-cgb">
             <objects>
-                <viewController storyboardIdentifier="Requests" id="Cyv-No-xvh" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Requests" interfaceStyle="light" id="Cyv-No-xvh" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXc-16-9q3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -685,6 +683,7 @@
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="si7-gv-PMs">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="Cyv-No-xvh" id="AIK-io-Pdx"/>
                             </connections>
@@ -698,7 +697,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEo-5j-qxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3690" y="357"/>
-
         </scene>
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>

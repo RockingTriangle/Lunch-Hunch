@@ -185,6 +185,26 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ChatsToChating", sender: self)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let id = Auth.auth().currentUser?.uid
+            let chatToDelete = vm.messageViewModel[indexPath.row].uid
+            Database.database().reference().child("messages").child(id!).child(chatToDelete!).removeValue()
+            Database.database().reference().child("messages").child(chatToDelete!).child(id!).removeValue()
+            Database.database().reference().child("recent_message").child(id!).child(chatToDelete!).removeValue()
+            Database.database().reference().child("recent_message").child(chatToDelete!).child(id!).removeValue()
+            Database.database().reference().child("polling").child(id!).child(chatToDelete!).removeValue()
+            Database.database().reference().child("polling").child(chatToDelete!).child(id!).removeValue()
+            Database.database().reference().child("restaurants").child(id!).child(chatToDelete!).removeValue()
+            Database.database().reference().child("restaurants").child(chatToDelete!).child(id!).removeValue()
+            Database.database().reference().child("unread").child(id!).child(chatToDelete!).removeValue()
+            Database.database().reference().child("unread").child(chatToDelete!).child(id!).removeValue()
+            
+            vm.messageViewModel.remove(at: indexPath.row)
+        }
+    }
+    
+    // MARK: - Navigation -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ChatsToChating" {
             let vc = segue.destination as! ChatingViewController
