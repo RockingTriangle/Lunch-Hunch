@@ -345,6 +345,17 @@ class ChatingViewController: UIViewController {
                 }
             }
         }
+        
+        Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot1 in
+            if snapshot1.exists() {
+                self.hatButtonOutlet.isEnabled = false
+                Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot2 in
+                    if snapshot2.exists() {
+                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
+                    }
+                }
+            }
+        }
 
     }
     
@@ -396,25 +407,42 @@ class ChatingViewController: UIViewController {
         }
         
         hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
+        hatButtonOutlet.isEnabled = true
+        type = ""
         
-        Database.database().reference().child("points").removeValue()
-        Database.database().reference().child("points").removeAllObservers()
-        Database.database().reference().child("polling").removeValue()
-        Database.database().reference().child("polling").removeAllObservers()
-        Database.database().reference().child("restaurants").removeValue()
-        Database.database().reference().child("restaurants").removeAllObservers()
+        Database.database().reference().child("points").child(currentUser.id!).removeValue()
+        Database.database().reference().child("points").child(uid).removeValue()
+        Database.database().reference().child("points").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("points").child(uid).removeAllObservers()
+
+        Database.database().reference().child("polling").child(currentUser.id!).removeValue()
+        Database.database().reference().child("polling").child(uid).removeValue()
+        Database.database().reference().child("polling").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("polling").child(uid).removeAllObservers()
+        
+        Database.database().reference().child("restaurants").child(currentUser.id!).removeValue()
+        Database.database().reference().child("restaurants").child(uid).removeValue()
+        Database.database().reference().child("restaurants").child(currentUser.id!).removeAllObservers()
+        Database.database().reference().child("restaurants").child(uid).removeAllObservers()
         
         if restaurantsTied.count > 0 {
-            print(randomizeRestaurantChoices(restaurantsTied))
-            return
+            randomizeRestaurantChoices(restaurantsTied)
+            return  
         } else {
-            print("\(restaurantWinner) with \(maxPoints) points!")
+            let alert = UIAlertController(title: "\(restaurantWinner)", message: "Your winner with \(maxPoints) points!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alert.addAction(okAction)
+            present(alert, animated: true)
             return
         }
     }
     
-    func randomizeRestaurantChoices(_ restaurants: [String]) -> String {
-        restaurants.randomElement() ?? "failed to randomize"
+    // TODO: - need to make sure both people's result is the same...
+    func randomizeRestaurantChoices(_ restaurants: [String]) {
+        let alert = UIAlertController(title: "\(restaurants.randomElement() ?? "no winner")", message: "Randomly selected from a tie!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     

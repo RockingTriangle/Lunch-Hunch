@@ -128,14 +128,14 @@ class VoteTableViewController: UITableViewController {
                     self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
                     for index in (0..<self.viewModel.restaurantList.count - 1) {
                         if index == self.viewModel.restaurantList.count - 1 {
-                            break
+                            self.tableView.reloadData()
+                            return
                         }
                         if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
                             self.viewModel.restaurantList.remove(at: index)
                         }
                     }
                 }
-                
                 self.tableView.reloadData()
             } else {
                 self.refRestaurants.child(otherUser).child(userID).observe(DataEventType.value, with: {(snapshot) in //JWR
@@ -156,15 +156,15 @@ class VoteTableViewController: UITableViewController {
                     if self.viewModel.restaurantList.count > 0 {
                         self.viewModel.restaurantList.sort(by: { $0.name < $1.name })
                         for index in (0..<self.viewModel.restaurantList.count - 1) {
-                            if index == self.viewModel.restaurantList.count {
-                                break
+                            if index == self.viewModel.restaurantList.count - 1 {
+                                self.tableView.reloadData()
+                                return
                             }
                             if self.viewModel.restaurantList[index].name == self.viewModel.restaurantList[index + 1].name {
                                 self.viewModel.restaurantList.remove(at: index)
                             }
                         }
                     }
-                    
                     self.tableView.reloadData()
                 })
             }
