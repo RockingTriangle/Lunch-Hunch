@@ -33,8 +33,6 @@ class VoteTableViewController: UITableViewController {
     //MARK: - Properties
     var viewModel = RestaurantVoteModel.shared
     var refRestaurants = Database.database().reference().child("restaurants")
-    var restaurant: Restaurant?
-    var selectedList: [Restaurant] = RestaurantVoteModel.shared.selectedList
     var userID: String?
     var otherUser: String?
     

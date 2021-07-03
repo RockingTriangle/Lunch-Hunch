@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		108733C3E051D1A23D78A154 /* Pods_Lunch_Hunch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */; };
+		130B3D862690F0B500DB45A6 /* ChatingViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B3D852690F0B500DB45A6 /* ChatingViewController+Ext.swift */; };
 		132C894C2683D265002292B1 /* RestaurantSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C894B2683D265002292B1 /* RestaurantSearchModel.swift */; };
 		132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */; };
 		132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C92684248D002292B1 /* LocationViewController.swift */; };
@@ -87,6 +88,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		130B3D852690F0B500DB45A6 /* ChatingViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatingViewController+Ext.swift"; sourceTree = "<group>"; };
 		132C894B2683D265002292B1 /* RestaurantSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchModel.swift; sourceTree = "<group>"; };
 		132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSettingsTableViewController.swift; sourceTree = "<group>"; };
 		132C89C92684248D002292B1 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
 				13FED28026813C1D00D25BC4 /* ChatsViewController.swift */,
+				130B3D852690F0B500DB45A6 /* ChatingViewController+Ext.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */,
 				13FED24826813B1000D25BC4 /* Constants.swift in Sources */,
 				13FED27E26813BF600D25BC4 /* SigninViewController.swift in Sources */,
+				130B3D862690F0B500DB45A6 /* ChatingViewController+Ext.swift in Sources */,
 				13FED24B26813B1000D25BC4 /* Enums.swift in Sources */,
 				3920046F2684FEBE0098045C /* RestaurantVoteModel.swift in Sources */,
 				13FED27426813BA300D25BC4 /* EditProfileViewModel.swift in Sources */,

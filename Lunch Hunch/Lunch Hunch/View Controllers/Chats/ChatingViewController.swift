@@ -37,18 +37,20 @@ class ChatingViewController: UIViewController {
     @IBOutlet weak var hatButtonOutlet: UIButton!
     
     // MARK: - Properties
-    private let button = UIButton()
-    public  var name = String()
-    public  var uid  = String()
+    private let button  = UIButton()
+    public  var name    = String()
+    public  var uid     = String()
     
-    private let database = FBDatabase.shared
-    private var selectedCell = Message()
-    private let vm       = ChatingViewModel()
-    private var current  = 0.0
+    private let restaurantSearchVM  = RestaurantSearchModel.shared
+    private let restaurantVoteVM    = RestaurantVoteModel.shared
+    private let database            = FBDatabase.shared
+    private var selectedCell        = Message()
+    private let vm                  = ChatingViewModel()
+    private var current             = 0.0
     
-    private var heightKeyboard: CGFloat = 0
+    private var heightKeyboard: CGFloat     = 0
     private var heightOfBottomView: CGFloat = 0
-    private var keyboardWillShow = false
+    private var keyboardWillShow            = false
     
     var ref: DatabaseReference!
     var type: String = ""
@@ -110,6 +112,7 @@ class ChatingViewController: UIViewController {
         vm.detectFriendPolling(friendID: uid) { type in
             self.hatButtonOutlet.setImage(setImage(type), for: .normal)
         }
+        
         func setImage(_ type: String) -> UIImage {
             if type == "poll" {
                 self.type = "poll"
@@ -425,6 +428,11 @@ class ChatingViewController: UIViewController {
         Database.database().reference().child("restaurants").child(currentUser.id!).removeAllObservers()
         Database.database().reference().child("restaurants").child(uid).removeAllObservers()
         
+        restaurantSearchVM.businesses = []
+        restaurantSearchVM.selectedBusiness = []
+        restaurantVoteVM.restaurantList = []
+        restaurantVoteVM.selectedList = []
+        
         if restaurantsTied.count > 0 {
             randomizeRestaurantChoices(restaurantsTied)
             return  
@@ -639,7 +647,7 @@ extension ChatingViewController: UITextViewDelegate {
 
 extension ChatingViewController: RefreshHatProtocol {
     func refreshHat() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.hatButtonSetup()
         }
     }

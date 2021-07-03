@@ -225,12 +225,12 @@
         <!--Restaurants-->
         <scene sceneID="iOU-nf-hjs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Restaurants" id="LMm-0x-NS2" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="TcR-bH-Qfv">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="dg6-qr-AJu"/>
                     </navigationItem>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dLD-dg-0Mp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4436" y="1440"/>
         </scene>

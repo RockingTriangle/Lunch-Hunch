@@ -25,7 +25,6 @@ class RestaurantVoteListTableViewCell: UITableViewCell {
     //MARK: - ACTIONS
     @IBAction func isPickedButtonTapped(_ sender: Any) {
         guard let restaurant = restaurant else {return}
-        
         delegate?.addedToPickedTapped(restaurant: restaurant, cell: self)
     }
     
