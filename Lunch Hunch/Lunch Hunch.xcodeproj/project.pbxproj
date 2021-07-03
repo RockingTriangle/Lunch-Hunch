@@ -474,8 +474,8 @@
 			isa = PBXGroup;
 			children = (
 				13FED28226813C1D00D25BC4 /* RequestsCell.swift */,
-				13FED28326813C1D00D25BC4 /* SentCell.swift */,
 				13FED28426813C1D00D25BC4 /* RequestsViewController.swift */,
+				13FED28326813C1D00D25BC4 /* SentCell.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
