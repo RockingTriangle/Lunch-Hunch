@@ -92,7 +92,7 @@ class AboutTableViewController: UITableViewController {
         if section == 0 {
             return 4
         } else {
-            return 2
+            return 3
         }
     }
     
@@ -120,6 +120,10 @@ class AboutTableViewController: UITableViewController {
             cell.textLabel?.text = "Report User"
             cell.textLabel?.textColor = .systemRed
             cell.detailTextLabel?.text = String()
+        } else if row == 2 && section == 1 {
+            cell.textLabel?.text = "Unfriend"
+            cell.textLabel?.textColor = .systemRed
+            cell.detailTextLabel?.text = String()
         }
         return cell
     }
@@ -134,6 +138,8 @@ class AboutTableViewController: UITableViewController {
             vm.isBlocked ? vm.unblockUser(uid: uid!) : vm.blockUser(uid: uid!)
         } else if indexPath.row == 1 && indexPath.section == 1 {
             presentControllerReport()
+        } else if indexPath.row == 2 && indexPath.section == 1 {
+            presentAlertForUnfriend()
         }
     }
     
@@ -213,6 +219,17 @@ class AboutTableViewController: UITableViewController {
         REPORT_REF.child("reported_by").child(id).updateChildValues([reason : reports])
 
         print("User \(uid) has been reported for \(reason)")
+    }
+    
+    func presentAlertForUnfriend() {
+        let alertController = UIAlertController(title: "Unfriend", message: "Are you sure that you want to remove this user?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { result in
+            self.vm.unfriendUser(uid: self.uid!)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
     
 }

@@ -55,4 +55,8 @@ class AboutViewModel {
         self.isBlocked = false
     }
     
+    func unfriendUser(uid: String) {
+        FBNetworkRequest.shared.unfriend(uid: uid)
+    }
+    
 }

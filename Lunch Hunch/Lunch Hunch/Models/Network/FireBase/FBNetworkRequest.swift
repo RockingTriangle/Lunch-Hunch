@@ -35,6 +35,12 @@ class FBNetworkRequest {
         REQ_REF.child("sent").child(id).child(uid).removeValue()
     }
     
+    func unfriend(uid: String) {
+        guard let id = currentUser.id else { return }
+        FBAuthentication.shared.ref.child("friends_list").child(id).child(uid).removeValue()
+        FBAuthentication.shared.ref.child("friends_List").child(uid).child(id).removeValue()
+    }
+    
     func declineRequestFriend(uid: String) {
         guard let id = currentUser.id else { return }
         REQ_REF.child("recived").child(id).child(uid).removeValue()
