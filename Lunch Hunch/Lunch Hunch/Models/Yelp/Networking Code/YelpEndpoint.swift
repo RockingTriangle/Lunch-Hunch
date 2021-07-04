@@ -55,12 +55,15 @@ extension YELPEndpoint {
     }
     
     enum SortingOption {
+        case random
         case bestMatch
         case rating
         case distance
         
         var sortingOptionValue: URLQueryItem {
             switch self {
+            case .random:
+                return URLQueryItem(name: "sort_by", value: "random")
             case .bestMatch:
                 return URLQueryItem(name: "sort_by", value: "best_match")
             case .rating:

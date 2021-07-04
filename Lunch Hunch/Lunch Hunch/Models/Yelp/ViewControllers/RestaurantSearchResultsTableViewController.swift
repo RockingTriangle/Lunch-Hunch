@@ -17,6 +17,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var results = RestaurantViewModel.shared
+    var array: [String] = []
     var delegate: PopViewController?
     @IBOutlet weak var tableView: UITableView!
     
@@ -123,6 +124,12 @@ extension RestaurantSearchResultsTableViewController: TooManySelectedDelegate {
 extension RestaurantSearchResultsTableViewController {
     func showAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let sortByRandomizeAction = UIAlertAction(title: "Random", style: .default) { [weak self] (action) -> Void in
+            //YELPEndpoint.shared.sortingOption = .random
+            //self?.results.businesses.shuffled()
+            self?.results.randomBusinesses()
+            
+        }
         let sortByDistanceAction = UIAlertAction(title: "Distance", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .distance
             self?.results.fetchBusinesses()
@@ -136,6 +143,7 @@ extension RestaurantSearchResultsTableViewController {
             self?.results.fetchBusinesses()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(sortByRandomizeAction)
         alert.addAction(sortByDistanceAction)
         alert.addAction(sortByRatingAction)
         alert.addAction(sortByBestMatchAction)
@@ -144,4 +152,5 @@ extension RestaurantSearchResultsTableViewController {
         present(alert, animated: true)
     }
     
+        
 }
