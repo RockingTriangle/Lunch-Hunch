@@ -36,6 +36,7 @@ class RestaurantSearchTableViewCell: UITableViewCell {
     var checkCountDelegate: CheckSelectionCountDelegate?
     var tooManyDelegate: TooManySelectedDelegate?
     var index: Int?
+    var fromChat = false
     var business: Business? {
         didSet {
             fetchimage()
@@ -78,6 +79,7 @@ class RestaurantSearchTableViewCell: UITableViewCell {
     // Mark: - Functions
     func updateViews() {
         guard let business = business, let index = index else { return }
+        userSelectionButton.alpha = fromChat ? 1 : 0
         userSelectionButton.layer.cornerRadius = userSelectionButton.frame.height / 2
         if results.selectedBusiness.contains(index) {
             userSelectionButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)

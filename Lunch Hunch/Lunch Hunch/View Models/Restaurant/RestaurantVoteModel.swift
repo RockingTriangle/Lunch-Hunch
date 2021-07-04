@@ -19,11 +19,6 @@ class RestaurantVoteModel {
     private init() {}
     
     //MARK: - FUNCTIONS
-    func createTest(name: String, isPicked: Bool) {
-        let restaurant = Restaurant(name: name, isPicked: isPicked)
-        restaurantList.append(restaurant)
-    }
-    
     func updateIsPicked(isPicked: Bool, restaurant: Restaurant) {
         if isPicked && selectedList.count < 3 {
             if let index = restaurantList.firstIndex(of: restaurant) {
@@ -33,6 +28,19 @@ class RestaurantVoteModel {
         } else {
             if let index = selectedList.firstIndex(of: restaurant) {
                 selectedList.remove(at: index)
+                restaurantList.append(restaurant)
+            }
+        }
+    }
+    
+    func createRestaurants(with restaurants: [String]) {
+        for restaurant in restaurants {
+            restaurantList.append(Restaurant(name: restaurant))
+        }
+        let tempList = restaurantList.sorted(by: { $0.name < $1.name })
+        restaurantList = []
+        for restaurant in tempList {
+            if !restaurantList.contains(restaurant) {
                 restaurantList.append(restaurant)
             }
         }

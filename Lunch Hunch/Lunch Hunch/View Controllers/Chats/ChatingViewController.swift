@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import AVFoundation
-import CoreLocation
 import FirebaseDatabase
 import FirebaseAuth
 
@@ -25,16 +23,16 @@ class ChatingViewController: UIViewController {
     @IBOutlet weak var timeLabel   : UILabel!
     
     @IBOutlet weak var sendButton  : UIButton!
-    @IBOutlet weak var hatButton: UIButton!
+    @IBOutlet weak var hatButton   : UIButton!
     
     @IBOutlet weak var textView    : UITextView!
     @IBOutlet weak var BottomView  : UIVisualEffectView!
     @IBOutlet weak var parentactionStack: UIStackView!
     
-    @IBOutlet weak var heightVisualView: NSLayoutConstraint!
-    @IBOutlet weak var bottomVisualView: NSLayoutConstraint!
-    @IBOutlet weak var heightConstraintOfStack: NSLayoutConstraint!
-    @IBOutlet weak var hatButtonOutlet: UIButton!
+    @IBOutlet weak var heightVisualView         : NSLayoutConstraint!
+    @IBOutlet weak var bottomVisualView         : NSLayoutConstraint!
+    @IBOutlet weak var heightConstraintOfStack  : NSLayoutConstraint!
+    @IBOutlet weak var hatButtonOutlet          : UIButton!
     
     // MARK: - Properties
     private let button  = UIButton()
@@ -52,8 +50,9 @@ class ChatingViewController: UIViewController {
     private var heightOfBottomView: CGFloat = 0
     private var keyboardWillShow            = false
     
-    var ref: DatabaseReference!
-    var type: String = ""
+    var ref : DatabaseReference!
+    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton() }}
+    var yourWinner = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -63,7 +62,6 @@ class ChatingViewController: UIViewController {
         initMessageVM()
         initNotifications()
         ref = Database.database().reference()
-        hatButtonSetup()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -105,26 +103,24 @@ class ChatingViewController: UIViewController {
             guard let self = self else { return }
             self.statusLabel.text = self.vm.isTyping ? "Typing..." : self.vm.friend?.status
         }
-        vm.fetchUserInfo(uid: uid)
-        vm.detectFrindTyping(friendID: uid)
-        
-        //MARK: - Polling
-        vm.detectFriendPolling(friendID: uid) { type in
-            self.hatButtonOutlet.setImage(setImage(type), for: .normal)
-        }
-        
-        func setImage(_ type: String) -> UIImage {
-            if type == "poll" {
-                self.type = "poll"
-                return #imageLiteral(resourceName: "hatIconPoll")
-            } else if type == "rando" {
-                self.type = "rando"
-                return #imageLiteral(resourceName: "hatIconRando")
+        vm.updateChoosingClouser = { [weak self] in
+            guard let self = self else { return }
+            if self.vm.friendsHatStatus == .poll || self.vm.friendsHatStatus == .rando && self.myHatButtonStatus == .open {
+                self.hatButton.setImage(self.setImage(self.vm.friendsHatStatus), for: .normal)
+                self.vm.startChoosing(friendID: self.uid, status: self.vm.friendsHatStatus)
+                self.myHatButtonStatus = self.vm.friendsHatStatus
+            } else if self.vm.friendsHatStatus == .winner {
+                self.vm.getThierPoints(friendID: self.uid)
+                self.hatButton.isEnabled = true
             } else {
-                self.type = ""
-                return #imageLiteral(resourceName: "hatIcon")
+                self.hatButton.setImage(self.setImage(self.myHatButtonStatus), for: .normal)
             }
+            self.enableHatButton()
         }
+        vm.fetchUserInfo(uid: uid)
+        vm.detectFriendTyping(friendID: uid)
+        vm.detectChoosing(friendID: uid)
+        vm.detectRestaurants(friendID: uid)
     }
     
     func initMessageVM() {
@@ -186,13 +182,6 @@ class ChatingViewController: UIViewController {
         
     }
     //---------------------------------------------------------------------------------------------
-    func resizeImage(image: UIImage, newWidth: CGFloat, newHieght: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHieght))
-        image.draw(in: CGRect(x: 0, y: 0,width: newWidth, height: newHieght))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        return newImage!.withRenderingMode(.alwaysOriginal)
-    }
-    //---------------------------------------------------------------------------------------------
     func hideBottomView() {
         BottomView.isHidden = true
     }
@@ -220,239 +209,114 @@ class ChatingViewController: UIViewController {
             }
         }
     }
-    
-    //---------------------------------------------------------------------------------------------
 
+    //---------------------------------------------------------------------------------------------
     @IBAction func hatButtonTapped(_ sender: Any) {
-        
-        if type == "" {
-            let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
-            
-            let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
-                self.dismiss(animated: true) {
-                    guard let uid = Auth.auth().currentUser?.uid else {return}
-                    let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("poll")
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("poll")
-                }
-                
-            } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a poll.
-            
-            let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
-                self.dismiss(animated: true) {
-                    guard let uid = Auth.auth().currentUser?.uid else { return }
-                    let friendID = self.uid
-                    Database.database().reference().child("polling").child(uid).child(friendID).setValue("rando")
-                    Database.database().reference().child("polling").child(friendID).child(uid).setValue("rando")
-                }
-                
-            } //JSWAN - Need to figure out what to do with the completion handler. Will send some data that will start a random selection.
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(pollAction)
-            alertController.addAction(randomAction)
-            alertController.addAction(cancelAction)
-            
-            present(alertController, animated: true, completion: nil)
-        } else if type == "poll" || type == "rando" {
+        switch (myHatButtonStatus, vm.friendsHatStatus) {
+        case (.open, .open):
+            showChoosingAlert()
+        case (.poll, .poll), (.rando, .rando):
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
-        } else if type == "vote" {
+        case (.vote, .vote), (.vote, .winner), (.winner, .vote):
             performSegue(withIdentifier: "toVoteController", sender: self)
-        } else if type == "random" {
-            print("random")
+        case (.winner, .winner):
+            self.vm.checkForWinner(friendID: self.uid)
+            alertUserOf(self.vm.winner)
+            return
+        default:
+            return
         }
-        
-        hatButtonSetup()
     }
     
     //MARK: - FUNCTIONS
     func restaurantRandomizer(restaurants: [String]) -> String {
         let restaurant = restaurants.randomElement() ?? nil
-
         return restaurant ?? ""
     }
     
-    func hatButtonSetup() {
-        let userID = Auth.auth().currentUser?.uid
-        let otherUser = self.uid
-        
-        self.ref.child("messages").child(userID!).child(otherUser).child("poll").observe(.childChanged) { (snapshot) in
-            
-            let value = snapshot.value as! String
-            
-            if value == "poll" {
-                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconPoll"), for: .normal)
-            } else if value == "rando" {
-                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIconRando"), for: .normal)
-            } else if value == "" {
-                self.hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
-            }
-        }
-        
-        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
-            if snapshop.exists() {
-                self.hatButtonOutlet.isEnabled = false
-            } else {
-                Database.database().reference().child("restaurants").child(otherUser).child(userID!).observeSingleEvent(of: .value) { snapshop in
-                    if snapshop.exists() {
-                        if snapshop.childrenCount > 2 {
-                            self.hatButtonOutlet.isEnabled = false
-                        }
-                    } else {
-                        self.hatButtonOutlet.isEnabled = true
-                    }
-                }
-            }
-        }
-        
-        Database.database().reference().child("restaurants").child(otherUser).child(userID!).observe(.value) { snapshop in
-            if snapshop.childrenCount == 4 {
-                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
-                    if snapshop.exists() {
-                        self.hatButtonOutlet.isEnabled = true
-                        self.type = (snapshop.value as! NSString) as String
-                        if self.type == "poll" {
-                            self.type = "vote"
-                        } else if self.type == "rando" {
-                            self.type = "random"
-                        }
-                    }
-                }
-            }
-        }
-        
-        Database.database().reference().child("restaurants").child(userID!).child(otherUser).observe(.value) { snapshop in
-            if snapshop.childrenCount == 4 {
-                Database.database().reference().child("polling").child(userID!).child(otherUser).observeSingleEvent(of: .value) { snapshop in
-                    if snapshop.exists() {
-                        self.hatButtonOutlet.isEnabled = true
-                        self.type = (snapshop.value as! NSString) as String
-                        if self.type == "poll" {
-                            self.type = "vote"
-                        } else if self.type == "rando" {
-                            self.type = "random"
-                        }
-                    }
-                }
-            }
-        }
-        
-        Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot1 in
-            if snapshot1.exists() {
-                self.hatButtonOutlet.isEnabled = false
-                Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot2 in
-                    if snapshot2.exists() {
-                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
-                    }
-                }
-            }
-        }
-        
-        Database.database().reference().child("points").child(otherUser).child(userID!).observe(.value) { snapshot1 in
-            if snapshot1.exists() {
-                self.hatButtonOutlet.isEnabled = false
-                Database.database().reference().child("points").child(userID!).child(otherUser).observe(.value) { snapshot2 in
-                    if snapshot2.exists() {
-                        self.declarePollWinner(snapshot1: snapshot1, snapshot2: snapshot2)
-                    }
-                }
-            }
-        }
-
-    }
-    
-    func declarePollWinner(snapshot1: DataSnapshot, snapshot2: DataSnapshot) {
-        
-        var choices: [String: Int] = [:]
-        
-        if snapshot1.childrenCount > 0 {
-            let data = try? JSONSerialization.data(withJSONObject: snapshot1.value!)
-            var string = String(data: data!, encoding: .utf8)
-            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
-            string!.removeAll(where: { removeCharacters.contains($0) } )
-            let items = string?.components(separatedBy: ",")
-            for item in items! {
-                let points = item.last
-                let restaurant = item.dropLast()
-                choices[String(restaurant)] = Int(String(points!))
-            }
-        }
-        
-        if snapshot2.childrenCount > 0 {
-            let data = try? JSONSerialization.data(withJSONObject: snapshot2.value!)
-            var string = String(data: data!, encoding: .utf8)
-            let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
-            string!.removeAll(where: { removeCharacters.contains($0) } )
-            let items = string?.components(separatedBy: ",")
-            for item in items! {
-                let points = item.last
-                let restaurant = item.dropLast()
-                if choices[String(restaurant)] != nil {
-                    choices[String(restaurant)] = choices[String(restaurant)]! + Int(String(points!))!
-                } else {
-                    choices[String(restaurant)] = Int(String(points!))
-                }
-            }
-        }
-        
-        var maxPoints = 0
-        var restaurantsTied = [String]()
-        var restaurantWinner = ""
-        for choice in choices {
-            if choice.value > maxPoints {
-                restaurantWinner = choice.key
-                maxPoints = choice.value
-                restaurantsTied.removeAll()
-            } else if choice.value == maxPoints {
-                restaurantsTied.append(choice.key)
-            }
-        }
-        
-        hatButtonOutlet.setImage(#imageLiteral(resourceName: "hatIcon"), for: .normal)
-        hatButtonOutlet.isEnabled = true
-        type = ""
-        
-        Database.database().reference().child("points").child(currentUser.id!).removeValue()
-        Database.database().reference().child("points").child(uid).removeValue()
-        Database.database().reference().child("points").child(currentUser.id!).removeAllObservers()
-        Database.database().reference().child("points").child(uid).removeAllObservers()
-
-        Database.database().reference().child("polling").child(currentUser.id!).removeValue()
-        Database.database().reference().child("polling").child(uid).removeValue()
-        Database.database().reference().child("polling").child(currentUser.id!).removeAllObservers()
-        Database.database().reference().child("polling").child(uid).removeAllObservers()
-        
-        Database.database().reference().child("restaurants").child(currentUser.id!).removeValue()
-        Database.database().reference().child("restaurants").child(uid).removeValue()
-        Database.database().reference().child("restaurants").child(currentUser.id!).removeAllObservers()
-        Database.database().reference().child("restaurants").child(uid).removeAllObservers()
-        
-        restaurantSearchVM.businesses = []
-        restaurantSearchVM.selectedBusiness = []
-        restaurantVoteVM.restaurantList = []
-        restaurantVoteVM.selectedList = []
-        
-        if restaurantsTied.count > 0 {
-            randomizeRestaurantChoices(restaurantsTied)
-            return  
-        } else {
-            let alert = UIAlertController(title: "\(restaurantWinner)", message: "Your winner with \(maxPoints) points!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(okAction)
-            present(alert, animated: true)
-            return
+    func enableHatButton() {
+        switch vm.friendsHatStatus {
+        case .open:
+            hatButton.isEnabled = myHatButtonStatus == .open ? true : false
+        case .poll:
+            hatButton.isEnabled = (myHatButtonStatus == .poll  ||
+                                   myHatButtonStatus == .open) ? true : false
+        case .rando:
+            hatButton.isEnabled = (myHatButtonStatus == .rando  ||
+                                   myHatButtonStatus == .open) ? true : false
+        case .vote:
+            hatButton.isEnabled = (myHatButtonStatus == .vote ||
+                                   myHatButtonStatus == .poll ||
+                                   myHatButtonStatus == .open) ? true : false
+        case .winner:
+            hatButton.isEnabled = (myHatButtonStatus == .winner ||
+                                   myHatButtonStatus == .vote ||
+                                   myHatButtonStatus == .poll ||
+                                   myHatButtonStatus == .open) ? true : false
         }
     }
     
-    // TODO: - need to make sure both people's result is the same...
+    func showChoosingAlert() {
+        let alertController = UIAlertController(title: "Would you like this to be a poll or randomizer?", message: nil, preferredStyle: .alert)
+        
+        let pollAction = UIAlertAction(title: "Poll", style: .default) { _ in
+            self.dismiss(animated: true) {
+                self.vm.startChoosing(friendID: self.uid, status: .poll)
+                self.myHatButtonStatus = .poll
+                self.hatButton.setImage(self.setImage(.poll), for: .normal)
+            }
+        }
+        
+        let randomAction = UIAlertAction(title: "Randomize", style: .default) { _ in
+            self.dismiss(animated: true) {
+                self.vm.startChoosing(friendID: self.uid, status: .rando)
+                self.myHatButtonStatus = .rando
+                self.hatButton.setImage(self.setImage(.rando), for: .normal)
+            }
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(pollAction)
+        alertController.addAction(randomAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func setImage(_ status: HatStatus) -> UIImage {
+        switch status {
+        case .open:
+            return #imageLiteral(resourceName: "hatIcon")
+        case .poll:
+            return #imageLiteral(resourceName: "hatIconPoll")
+        case .rando:
+            return #imageLiteral(resourceName: "hatIconRando")
+        case .vote:
+            return #imageLiteral(resourceName: "logo")
+        case .winner:
+            return #imageLiteral(resourceName: "pin")
+        }
+    }
+    
+    func alertUserOf(_ winner: String) {
+        let alert = UIAlertController(title: "Winner", message: winner, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.vm.cleanUP(friendID: self.uid)
+            self.restaurantVoteVM.selectedList = []
+            self.restaurantVoteVM.restaurantList = []
+            self.hatButton.isEnabled = true
+            self.hatButton.setTitle(self.setImage(.open), for: .normal)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
     func randomizeRestaurantChoices(_ restaurants: [String]) {
         let alert = UIAlertController(title: "\(restaurants.randomElement() ?? "no winner")", message: "Randomly selected from a tie!", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
     
     // MARK:- Handling Keyboard with Notifications
     private func initNotifications() {
@@ -589,13 +453,13 @@ extension ChatingViewController: UITableViewDelegate, UITableViewDataSource {
             navVC.navigationBar.barTintColor = .white
             let vc = navVC.topViewController as! RestaurantSettingsTableViewController
             vc.overrideUserInterfaceStyle = .light
-            vc.uid = vm.friend?.uid
             vc.delegate = self
+            vc.uid = vm.friend?.uid
         } else if segue.identifier == "toVoteController" {
             let navVC = segue.destination as! UINavigationController
             let vc = navVC.topViewController as! VoteTableViewController
-            vc.userID = currentUser.id
-            vc.otherUser = uid
+            vc.winnerDelegate = self
+            vc.friendID = uid
         }
     }
 }
@@ -647,8 +511,20 @@ extension ChatingViewController: UITextViewDelegate {
 
 extension ChatingViewController: RefreshHatProtocol {
     func refreshHat() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.hatButtonSetup()
+        if myHatButtonStatus == .poll {
+            myHatButtonStatus = .vote
+            hatButton.setImage(setImage(.vote), for: .normal)
+            enableHatButton()
         }
+    }
+}
+
+extension ChatingViewController: DeclareAWinnerProtocol {
+    func declareAWinner() {
+        myHatButtonStatus = .winner
+        vm.startChoosing(friendID: uid, status: .winner)
+        hatButton.setImage(setImage(.winner), for: .normal)
+        self.vm.getMyPoints(friendID: self.uid)
+        enableHatButton()
     }
 }

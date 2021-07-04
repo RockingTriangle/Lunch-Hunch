@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 protocol RefreshData {
     func refreshData()
@@ -17,9 +18,10 @@ class RestaurantSearchModel {
     static let shared = RestaurantSearchModel()
     private let yelpService = YELPService()
     
-    var businesses: [Business] = []
-    var selectedBusiness: Set<Int> = []
-    
+    var businesses: [Business]      = []
+    var selectedBusiness: Set<Int>  = []
+    var businessesToSave: [String]  = []
+    var theirBusinesses: [String]   = []
     var delegate: RefreshData?
     
     enum UserSearchChoice {
@@ -106,6 +108,29 @@ class RestaurantSearchModel {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n\(error)")
             }
         }
+    }
+    
+    private func getSelectedBusinesses() {
+        guard let firstBusiness = selectedBusiness.first else { return }
+        businessesToSave.append(businesses[firstBusiness].name)
+        selectedBusiness.removeFirst()
+        guard let secondBusiness = selectedBusiness.first else { return }
+        businessesToSave.append(businesses[secondBusiness].name)
+        selectedBusiness.removeAll()
+    }
+    
+    func addRestaurants(friendID: String) {
+        getSelectedBusinesses()
+        FBDatabase.shared.FBAddRestaurants(friendID: friendID, businesses: businessesToSave)
+        FBDatabase.shared.FBDetectRestaurants(friendsID: friendID) { (restaurants) in
+            guard let restaurants = restaurants else { return }
+            self.theirBusinesses = restaurants
+        }
+        FBDatabase.shared.FBStartChoosing(friendID: friendID, status: .vote)
+    }
+    
+    func savePoints(friendID: String, restaurants: [Restaurant]) {
+        FBDatabase.shared.FBAddPoints(friendID: friendID, restaurants: restaurants)
     }
     
 } // End of class

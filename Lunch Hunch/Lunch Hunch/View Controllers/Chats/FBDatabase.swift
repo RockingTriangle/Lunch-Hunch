@@ -28,6 +28,9 @@ struct FBDatabase {
                 user.country = values["country"] as? String ?? nil
                 user.isOnline = values["status"] as? Bool ?? true
                 user.lastOnlineDate = values["lastOnlineDate"] as? Double
+                if user.lastOnlineDate == nil {
+                    user.lastOnlineDate = Date().timeIntervalSince1970  // Potential bug fix...
+                }
                 completion(user, nil)
             } else {
                 completion(nil, "The user is not exist")
@@ -316,24 +319,117 @@ struct FBDatabase {
     }
     
     //MARK: - Handle Polling Button Change
-    func FBStartPoll(friendID: String) { //JWRcopy code for polling
+    func FBStartChoosing(friendID: String, status: HatStatus) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("polling").child(uid).child(friendID).setValue("poll")
-    }
-    func FBStartRando(friendID: String) { //JWRcopy code for polling
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("polling").child(uid).child(friendID).setValue("rando")
-    }
-    func FBEndPoll(friendID: String) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("polling").child(uid).child(friendID).removeValue()
+        switch status {
+        case .open:
+            Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "open"])
+        case .poll:
+            Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "poll"])
+        case .rando:
+            Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "rando"])
+        case .vote:
+            Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "vote"])
+        case .winner:
+            Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "winner"])
+        }
     }
     
-    func FBDetectPoll(friendID: String, completion: @escaping(Bool) -> ()) {
+    func FBEndChoosing(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("polling").child(friendID).child(uid).observe(.value) { (snapshot) in
-            snapshot.exists() ? completion(true) : completion(false)
+        Database.database().reference().child("choosing").child(uid).child(friendID).removeValue()
+    }
+    
+    func FBDetectChoosing(friendID: String, completion: @escaping(HatStatus?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("choosing").child(friendID).child(uid).observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                let values = snapshot.value as! [String: Any]
+                let status = values["type"] as? String ?? "open"
+                
+                switch status {
+                case "open":
+                    completion(.open)
+                case "poll":
+                    completion(.poll)
+                case "rando":
+                    completion(.rando)
+                case "vote":
+                    completion(.vote)
+                case "winner":
+                    completion(.winner)
+                default:
+                    completion(nil)
+                }
+            } else { completion(nil) }
         }
+    }
+    
+    func FBAddRestaurants(friendID: String, businesses: [String]) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("restaurants").child(uid).child(friendID).setValue(["one" : businesses[0]])
+        Database.database().reference().child("restaurants").child(uid).child(friendID).updateChildValues(["two" : businesses[1]])
+    }
+    
+    func FBRemoveRestaurants(friendID: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("restaurants").child(uid).child(friendID).removeValue()
+    }
+    
+    func FBDetectRestaurants(friendsID: String, completion: @escaping([String]?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("restaurants").child(friendsID).child(uid).observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                let data = snapshot.children.allObjects as! [DataSnapshot]
+                let removeCharacters: Set<Character> = ["{", "}", ":", "\""]
+                let array = data
+                var businesses = [String]()
+                for item in array {
+                    var string = item.description
+                    string.removeAll(where: { removeCharacters.contains($0) })
+                    string = String(string.dropFirst(11))
+                    businesses.append(string)
+                }
+                if businesses.count != 0 {
+                    completion(businesses)
+                } else { completion(nil) }
+            } else { completion(nil) }
+        }
+    }
+    
+    func FBAddPoints(friendID: String, restaurants: [Restaurant]) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        if restaurants.count == 2 {
+            Database.database().reference().child("points").child(uid).child(friendID).setValue([restaurants[0].name: restaurants[0].voteCount])
+            Database.database().reference().child("points").child(uid).child(friendID).updateChildValues([restaurants[1].name: restaurants[1].voteCount])
+        } else if restaurants.count == 3 {
+            Database.database().reference().child("points").child(uid).child(friendID).setValue([restaurants[0].name: restaurants[0].voteCount])
+            Database.database().reference().child("points").child(uid).child(friendID).updateChildValues([restaurants[1].name: restaurants[1].voteCount])
+            Database.database().reference().child("points").child(uid).child(friendID).updateChildValues([restaurants[2].name: restaurants[2].voteCount])
+        }
+    }
+    
+    func FBGetMyPoints(friendID: String, completion: @escaping(DataSnapshot?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("points").child(uid).child(friendID).observe(.value) { (snapshot) in
+            snapshot.exists() ? completion(snapshot) : completion(nil)
+        }
+    }
+    
+    func FBGetTheirPoints(friendID: String, completion: @escaping(DataSnapshot?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("points").child(friendID).child(uid).observe(.value) { (snapshot) in
+            snapshot.exists() ? completion(snapshot) : completion(nil)
+        }
+    }
+    
+    func FBCleanUp(friendID: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("restaurants").removeValue()
+        Database.database().reference().child("points").removeValue()
+        
+        Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "open"])
+        Database.database().reference().child("choosing").child(friendID).child(uid).setValue(["type": "open"])
     }
     
     //MARK:- Validate kind and Type of Messages

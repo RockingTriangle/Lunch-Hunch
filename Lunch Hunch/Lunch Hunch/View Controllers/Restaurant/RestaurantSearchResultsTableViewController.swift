@@ -28,6 +28,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         overrideUserInterfaceStyle = .light
         results.delegate = self
         results.businesses = []
+        results.selectedBusiness = []
         saveButton.isEnabled = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,8 +46,12 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell",
                                                        for: indexPath) as? RestaurantSearchTableViewCell
                                                        else { return UITableViewCell() }
-        cell.alpha = 0
         cell.prepareForReuse()
+        if let _ = uid {
+            cell.fromChat = true
+        } else {
+            cell.fromChat = false
+        }
         cell.checkCountDelegate = self
         cell.tooManyDelegate = self
         cell.business = results.businesses[indexPath.row]
@@ -60,22 +65,13 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     }
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let id = currentUser.id, let uid = uid else {return}
-        
-        RESTAURANT_REF.child(uid).child(id).observeSingleEvent(of: .value) { snapshop in
-            if snapshop.exists() {
-                for business in self.results.selectedBusiness {
-                    self.RESTAURANT_REF.child(uid).child(id).updateChildValues([UUID().uuidString : self.results.businesses[business].name])
-                }
-            } else {
-                for business in self.results.selectedBusiness {
-                    self.RESTAURANT_REF.child(id).child(uid).updateChildValues([UUID().uuidString : self.results.businesses[business].name])
-                }
-            }
+        if let uid = uid {
+            results.addRestaurants(friendID: uid)
+            navigationController?.popViewController(animated: true)
+            delegate?.popViewController()
+        } else {
+            navigationController?.popViewController(animated: true)
         }
-        
-        navigationController?.popViewController(animated: true)
-        delegate?.popViewController()
     }
     
     // MARK: - Functions
