@@ -1,2 +1,2 @@
 # Lunch-Hunch
-DevMountain Group Capstone Project - Jaymond Richardson, Jacob Schvaneveldt, Mike Conner
+DevMountain Group Capstone Project - Jaymond Richardson, Jacob Schvaneveldt, Shak Feizi and Mike Conner
