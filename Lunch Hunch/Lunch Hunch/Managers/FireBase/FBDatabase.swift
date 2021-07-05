@@ -422,6 +422,22 @@ struct FBDatabase {
         }
     }
     
+    func FBDetectRandomWinner(friendID: String, completion: @escaping(String?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("seen").child(friendID).child(uid).observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                let values = snapshot.value as! [String: Any]
+                let winner = values["winner"] as? String ?? "no winner"
+                completion(winner)
+            } else { completion(nil) }
+        }
+    }
+    
+    func FBSetWinner(friendID: String, winner: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("seen").child(uid).child(friendID).child("winner").setValue(["winner" : winner])
+    }
+    
     func FBSeenWinner(friendID: String, completion: @escaping(Bool?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("seen").child(uid).child(friendID).setValue("true")

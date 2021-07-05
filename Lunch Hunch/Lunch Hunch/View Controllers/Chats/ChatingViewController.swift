@@ -127,6 +127,7 @@ class ChatingViewController: UIViewController {
         vm.detectFriendTyping(friendID: uid)
         vm.detectChoosing(friendID: uid)
         vm.detectRestaurants(friendID: uid)
+        vm.detectRandomWinner(friendID: uid)
     }
     
     func initMessageVM() {

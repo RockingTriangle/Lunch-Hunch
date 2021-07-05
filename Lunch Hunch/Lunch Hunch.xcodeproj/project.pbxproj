@@ -474,8 +474,8 @@
 		13FED26326813BA300D25BC4 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				13FED26526813BA300D25BC4 /* ChatsViewModel.swift */,
 				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
+				13FED26526813BA300D25BC4 /* ChatsViewModel.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
