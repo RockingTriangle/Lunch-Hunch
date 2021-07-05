@@ -51,7 +51,7 @@ class ChatingViewController: UIViewController {
     private var keyboardWillShow            = false
     
     var ref : DatabaseReference!
-    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton() }}
+    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton(); print("hat status changed") }}
     var yourWinner = ""
     
     // MARK: - Lifecycle
@@ -76,6 +76,8 @@ class ChatingViewController: UIViewController {
         vm.checkBlocking(uid: uid)
         super.viewWillAppear(animated)
         textView.isEditable = true
+        print("viewWillAppear")
+        enableHatButton()
     }
     
     deinit {
@@ -111,9 +113,13 @@ class ChatingViewController: UIViewController {
                 self.myHatButtonStatus = self.vm.friendsHatStatus
             } else if self.vm.friendsHatStatus == .winner {
                 self.vm.getThierPoints(friendID: self.uid)
+                if !self.vm.isRandom {
+                    self.vm.stopChoosing(friendID: self.uid)
+                }
             } else {
                 self.hatButton.setImage(self.setImage(self.myHatButtonStatus), for: .normal)
             }
+            print("updateChoosingClosure")
             self.enableHatButton()
         }
         vm.updateResetClosure = { [weak self] in
@@ -121,12 +127,16 @@ class ChatingViewController: UIViewController {
             if self.vm.shouldReset {
                 self.vm.cleanUpFBDatabase(friendID: self.uid)
                 self.cleanupLocalVariables()
+                self.myHatButtonStatus = .open
+                self.hatButton.isEnabled = true
             }
         }
+        
         vm.fetchUserInfo(uid: uid)
         vm.detectFriendTyping(friendID: uid)
         vm.detectChoosing(friendID: uid)
         vm.detectRestaurants(friendID: uid)
+        vm.detectRandomWinner(friendID: uid)
     }
     
     func initMessageVM() {
@@ -221,6 +231,8 @@ class ChatingViewController: UIViewController {
         switch (myHatButtonStatus, vm.friendsHatStatus) {
         case (.open, .open):
             showChoosingAlert()
+//            cleanupLocalVariables()
+//            vm.cleanUpFBDatabase(friendID: uid)
         case (.poll, .poll), (.rando, .rando):
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
         case (.vote, .vote), (.vote, .winner), (.winner, .vote):
@@ -280,15 +292,15 @@ class ChatingViewController: UIViewController {
     func setImage(_ status: HatStatus) -> UIImage {
         switch status {
         case .open:
-            return #imageLiteral(resourceName: "hatIcon")
+            return UIImage(named: "hatIcon")!
         case .poll:
-            return #imageLiteral(resourceName: "hatIconPoll")
+            return UIImage(named: "hatIconPoll")!
         case .rando:
-            return #imageLiteral(resourceName: "hatIconRando")
+            return UIImage(named: "hatIconRando")!
         case .vote:
-            return #imageLiteral(resourceName: "hatIconVote")
+            return UIImage(named: "hatIconVote")!
         case .winner:
-            return #imageLiteral(resourceName: "logo")
+            return UIImage(named: "winner")!
         }
     }
     
@@ -296,7 +308,9 @@ class ChatingViewController: UIViewController {
         let alert = UIAlertController(title: "Winner", message: winner, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.vm.ensureBothSeeWinner(friendID: self.uid)
+            self.vm.setSeeWinner(friendID: self.uid)
+            self.vm.detectSeenWinner(friendID: self.uid)
+            self.myHatButtonStatus = .open
         }
         alert.addAction(okAction)
         present(alert, animated: true)
@@ -331,17 +345,17 @@ class ChatingViewController: UIViewController {
     }
     
     private func cleanupLocalVariables() {
-        vm.mySnapshot = nil
+            vm.mySnapshot = nil
         vm.theirSnapshot = nil
-        vm.winner.removeAll()
-        vm.results.businesses.removeAll()
-        vm.results.selectedBusiness.removeAll()
-        vm.results.businessesToSave.removeAll()
-        vm.results.theirBusinesses.removeAll()
-        restaurantVoteVM.selectedList.removeAll()
-        restaurantVoteVM.restaurantList.removeAll()
-        vm.friendsRestaurants.removeAll()
-        yourWinner.removeAll()
+        vm.winner = ""
+        vm.results.businesses = []
+        vm.results.selectedBusiness = []
+        vm.results.businessesToSave = []
+        vm.results.theirBusinesses = []
+        restaurantVoteVM.selectedList = []
+        restaurantVoteVM.restaurantList = []
+        vm.friendsRestaurants = []
+        yourWinner = ""
         myHatButtonStatus = .open
         vm.shouldReset = false
         vm.isRandom = false
@@ -517,10 +531,12 @@ extension ChatingViewController: RefreshHatProtocol {
             myHatButtonStatus = .vote
             hatButton.setImage(setImage(.vote), for: .normal)
             enableHatButton()
+            print("refresh hat 1")
         } else if myHatButtonStatus == .rando {
             myHatButtonStatus = .winner
             hatButton.setImage(setImage(.winner), for: .normal)
             enableHatButton()
+            print("refresh hat 2")
         }
     }
 }
@@ -532,5 +548,6 @@ extension ChatingViewController: DeclareAWinnerProtocol {
         hatButton.setImage(setImage(.winner), for: .normal)
         self.vm.getMyPoints(friendID: self.uid)
         enableHatButton()
+        print("declare winner")
     }
 }
