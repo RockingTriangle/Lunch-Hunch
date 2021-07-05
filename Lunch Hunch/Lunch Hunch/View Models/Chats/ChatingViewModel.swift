@@ -207,7 +207,9 @@ class ChatingViewModel {
     func detectRandomWinner(friendID: String) {
         FBDatabase.shared.FBDetectRandomWinner(friendID: friendID) { [weak self] (winner) in
             guard let self = self else { return }
-            self.winner = winner ?? "no winner"
+            if self.winner == "" {
+                self.winner = winner ?? ""
+            }
         }
     }
     
@@ -261,7 +263,7 @@ class ChatingViewModel {
     
     func checkForWinner(friendID: String) {
         if isRandom {
-            if winner != "" {
+            if winner == "" {
                 declareRandomWinner(friendID: friendID)
             }
         } else {
@@ -273,6 +275,7 @@ class ChatingViewModel {
     func declareRandomWinner(friendID: String) {
         let randomChoices = results.businessesToSave + friendsRestaurants
         winner = randomChoices.randomElement() ?? "Failed to select random winner"
+        Database.database().reference().child("seen").removeAllObservers()
         FBDatabase.shared.FBSetWinner(friendID: friendID, winner: winner)
     }
     

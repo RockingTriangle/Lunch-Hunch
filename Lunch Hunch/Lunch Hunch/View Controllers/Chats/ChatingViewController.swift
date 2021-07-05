@@ -76,6 +76,7 @@ class ChatingViewController: UIViewController {
         vm.checkBlocking(uid: uid)
         super.viewWillAppear(animated)
         textView.isEditable = true
+        enableHatButton()
     }
     
     deinit {
@@ -222,6 +223,8 @@ class ChatingViewController: UIViewController {
         switch (myHatButtonStatus, vm.friendsHatStatus) {
         case (.open, .open):
             showChoosingAlert()
+            cleanupLocalVariables()
+            vm.cleanUpFBDatabase(friendID: uid)
         case (.poll, .poll), (.rando, .rando):
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
         case (.vote, .vote), (.vote, .winner), (.winner, .vote):
@@ -298,6 +301,7 @@ class ChatingViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.vm.ensureBothSeeWinner(friendID: self.uid)
+            self.myHatButtonStatus = .open
         }
         alert.addAction(okAction)
         present(alert, animated: true)

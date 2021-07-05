@@ -424,10 +424,10 @@ struct FBDatabase {
     
     func FBDetectRandomWinner(friendID: String, completion: @escaping(String?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("seen").child(friendID).child(uid).observe(.value) { (snapshot) in
+        Database.database().reference().child("winner").child(friendID).child(uid).observe(.value) { (snapshot) in
             if snapshot.exists() {
                 let values = snapshot.value as! [String: Any]
-                let winner = values["winner"] as? String ?? "no winner"
+                let winner = values["winner"] as? String ?? ""
                 completion(winner)
             } else { completion(nil) }
         }
@@ -435,7 +435,7 @@ struct FBDatabase {
     
     func FBSetWinner(friendID: String, winner: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("seen").child(uid).child(friendID).child("winner").setValue(["winner" : winner])
+        Database.database().reference().child("winner").child(uid).child(friendID).setValue(["winner" : winner])
     }
     
     func FBSeenWinner(friendID: String, completion: @escaping(Bool?) -> ()) {
@@ -452,6 +452,7 @@ struct FBDatabase {
         Database.database().reference().child("restaurants").child(uid).removeValue()
         Database.database().reference().child("points").child(uid).removeValue()
         Database.database().reference().child("seen").child(uid).removeValue()
+        Database.database().reference().child("winner").child(uid).removeValue()
         Database.database().reference().child("points").removeAllObservers()
         Database.database().reference().child("seen").removeAllObservers()
     }
