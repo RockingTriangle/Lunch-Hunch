@@ -20,6 +20,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     weak var delegate: PopViewController?
     var isRandom = false
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var topStackView: UIStackView!
     
     public var uid: String?
     
@@ -33,6 +34,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
         saveButton.isEnabled = false
         tableView.delegate = self
         tableView.dataSource = self
+        topStackView.alpha = uid == nil ? 0 : 1
     }
     
     //MARK: - Properties

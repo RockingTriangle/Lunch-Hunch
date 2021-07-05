@@ -204,8 +204,21 @@ class ChatingViewModel {
     }
     
     //MARK: - Handle Restaurants Actions
+    func detectRandomWinner(friendID: String) {
+        FBDatabase.shared.FBDetectRandomWinner(friendID: friendID) { [weak self] (winner) in
+            guard let self = self else { return }
+            if self.winner == "" {
+                self.winner = winner ?? ""
+            }
+        }
+    }
+    
     func startChoosing(friendID: String, status: HatStatus) {
         FBDatabase.shared.FBStartChoosing(friendID: friendID, status: status)
+    }
+    
+    func stopChoosing(friendID: String) {
+        FBDatabase.shared.FBEndChoosing(friendID: friendID)
     }
     
     func detectChoosing(friendID: String) {
@@ -254,7 +267,9 @@ class ChatingViewModel {
     
     func checkForWinner(friendID: String) {
         if isRandom {
-            declareRandomWinner(friendID: friendID)
+            if winner == "" {
+                declareRandomWinner(friendID: friendID)
+            }
         } else {
             guard let uid = Auth.auth().currentUser?.uid, let mySnapshot = mySnapshot, let theirSnapshot = theirSnapshot else { return }
             declarePollWinner(id: uid, friendID: friendID, mySnapshot: mySnapshot, theirSnapshot: theirSnapshot)
@@ -264,6 +279,8 @@ class ChatingViewModel {
     func declareRandomWinner(friendID: String) {
         let randomChoices = results.businessesToSave + friendsRestaurants
         winner = randomChoices.randomElement() ?? "Failed to select random winner"
+        Database.database().reference().child("seen").removeAllObservers()
+        FBDatabase.shared.FBSetWinner(friendID: friendID, winner: winner)
     }
     
     func declarePollWinner(id: String, friendID: String, mySnapshot: DataSnapshot, theirSnapshot: DataSnapshot) {
@@ -320,11 +337,16 @@ class ChatingViewModel {
         }
     }
     
-    func ensureBothSeeWinner(friendID: String) {
-        FBDatabase.shared.FBSeenWinner(friendID: friendID) { [weak self] isSeen in
-            guard let self = self else { return }
-            if isSeen! {
+    func setSeeWinner(friendID: String) {
+        FBDatabase.shared.FBSeenWinner(friendID: friendID)
+    }
+    
+    func detectSeenWinner(friendID: String) {
+        FBDatabase.shared.FBDetectSeenWinner(friendID: friendID)  { [weak self] isSeen in
+            guard let self = self, let isSeen = isSeen else { return }
+            if isSeen == true {
                 self.shouldReset = true
+                Database.database().reference().child("seen").child(friendID).child(currentUser.id!).removeAllObservers()
             }
         }
     }

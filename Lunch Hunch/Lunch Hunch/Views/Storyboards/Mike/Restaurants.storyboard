@@ -287,6 +287,7 @@
                     <connections>
                         <outlet property="saveButton" destination="Ve3-OP-RPL" id="xAY-Jg-xlv"/>
                         <outlet property="tableView" destination="leK-Ix-mhs" id="Dov-0L-FgC"/>
+                        <outlet property="topStackView" destination="5ki-HS-6Xy" id="0GZ-kV-4Je"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rmu-jG-YnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
