@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="leK-Ix-mhs">
-                                <rect key="frame" x="0.0" y="70.5" width="414" height="654.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="414" height="703.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantSearchTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
@@ -302,7 +302,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwC-19-cLf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAn-fI-zM9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
@@ -939,7 +939,7 @@
         <!--Restaurants-->
         <scene sceneID="i9p-ml-6aR">
             <objects>
-                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" toolbarHidden="NO" id="Zed-50-pOe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="Zed-50-pOe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Restaurants" id="3wu-dZ-LZg">
                         <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>

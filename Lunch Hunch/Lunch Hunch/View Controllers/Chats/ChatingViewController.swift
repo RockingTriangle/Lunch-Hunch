@@ -286,9 +286,9 @@ class ChatingViewController: UIViewController {
         case .rando:
             return #imageLiteral(resourceName: "hatIconRando")
         case .vote:
-            return #imageLiteral(resourceName: "logo")
+            return #imageLiteral(resourceName: "hatIconVote")
         case .winner:
-            return #imageLiteral(resourceName: "pin")
+            return #imageLiteral(resourceName: "logo")
         }
     }
     

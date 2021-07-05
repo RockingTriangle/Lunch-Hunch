@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "icons8-paper-plane-100.png",
+      "filename" : "Send.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-paper-plane-100@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-paper-plane-100@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
