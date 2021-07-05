@@ -334,7 +334,7 @@ struct FBDatabase {
             Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "winner"])
         }
     }
-    
+        
     func FBEndChoosing(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("choosing").child(uid).child(friendID).removeValue()
@@ -451,14 +451,12 @@ struct FBDatabase {
     }
     
     func FBCleanUp(friendID: String) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("choosing").child(uid).removeValue()
-        Database.database().reference().child("restaurants").child(uid).removeValue()
-        Database.database().reference().child("points").child(uid).removeValue()
-        Database.database().reference().child("seen").child(uid).removeValue()
-        Database.database().reference().child("winner").child(uid).removeValue()
-        Database.database().reference().child("points").removeAllObservers()
-        Database.database().reference().child("seen").removeAllObservers()
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("choosing").removeValue()
+        Database.database().reference().child("restaurants").removeValue()
+        Database.database().reference().child("points").removeValue()
+        Database.database().reference().child("seen").removeValue()
+        Database.database().reference().child("winner").removeValue()
     }
     
     //MARK:- Validate kind and Type of Messages

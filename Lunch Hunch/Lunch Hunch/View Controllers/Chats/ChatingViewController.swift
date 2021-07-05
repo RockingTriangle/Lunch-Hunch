@@ -51,7 +51,7 @@ class ChatingViewController: UIViewController {
     private var keyboardWillShow            = false
     
     var ref : DatabaseReference!
-    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton() }}
+    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton(); print("hat status changed") }}
     var yourWinner = ""
     
     // MARK: - Lifecycle
@@ -76,6 +76,7 @@ class ChatingViewController: UIViewController {
         vm.checkBlocking(uid: uid)
         super.viewWillAppear(animated)
         textView.isEditable = true
+        print("viewWillAppear")
         enableHatButton()
     }
     
@@ -112,9 +113,13 @@ class ChatingViewController: UIViewController {
                 self.myHatButtonStatus = self.vm.friendsHatStatus
             } else if self.vm.friendsHatStatus == .winner {
                 self.vm.getThierPoints(friendID: self.uid)
+                if !self.vm.isRandom {
+                    self.vm.stopChoosing(friendID: self.uid)
+                }
             } else {
                 self.hatButton.setImage(self.setImage(self.myHatButtonStatus), for: .normal)
             }
+            print("updateChoosingClosure")
             self.enableHatButton()
         }
         vm.updateResetClosure = { [weak self] in
@@ -122,6 +127,7 @@ class ChatingViewController: UIViewController {
             if self.vm.shouldReset {
                 self.vm.cleanUpFBDatabase(friendID: self.uid)
                 self.cleanupLocalVariables()
+                self.myHatButtonStatus = .open
                 self.hatButton.isEnabled = true
             }
         }
@@ -225,8 +231,8 @@ class ChatingViewController: UIViewController {
         switch (myHatButtonStatus, vm.friendsHatStatus) {
         case (.open, .open):
             showChoosingAlert()
-            cleanupLocalVariables()
-            vm.cleanUpFBDatabase(friendID: uid)
+//            cleanupLocalVariables()
+//            vm.cleanUpFBDatabase(friendID: uid)
         case (.poll, .poll), (.rando, .rando):
             performSegue(withIdentifier: "toSearchSettingsVC", sender: self)
         case (.vote, .vote), (.vote, .winner), (.winner, .vote):
@@ -254,7 +260,6 @@ class ChatingViewController: UIViewController {
         case .winner:
             hatButton.isEnabled = (vm.friendsHatStatus == .winner || vm.friendsHatStatus == .open)
         }
-        print("changed status to: \(myHatButtonStatus)")
     }
     
     func showChoosingAlert() {
@@ -340,17 +345,17 @@ class ChatingViewController: UIViewController {
     }
     
     private func cleanupLocalVariables() {
-        vm.mySnapshot = nil
+            vm.mySnapshot = nil
         vm.theirSnapshot = nil
-        vm.winner.removeAll()
-        vm.results.businesses.removeAll()
-        vm.results.selectedBusiness.removeAll()
-        vm.results.businessesToSave.removeAll()
-        vm.results.theirBusinesses.removeAll()
-        restaurantVoteVM.selectedList.removeAll()
-        restaurantVoteVM.restaurantList.removeAll()
-        vm.friendsRestaurants.removeAll()
-        yourWinner.removeAll()
+        vm.winner = ""
+        vm.results.businesses = []
+        vm.results.selectedBusiness = []
+        vm.results.businessesToSave = []
+        vm.results.theirBusinesses = []
+        restaurantVoteVM.selectedList = []
+        restaurantVoteVM.restaurantList = []
+        vm.friendsRestaurants = []
+        yourWinner = ""
         myHatButtonStatus = .open
         vm.shouldReset = false
         vm.isRandom = false
@@ -526,10 +531,12 @@ extension ChatingViewController: RefreshHatProtocol {
             myHatButtonStatus = .vote
             hatButton.setImage(setImage(.vote), for: .normal)
             enableHatButton()
+            print("refresh hat 1")
         } else if myHatButtonStatus == .rando {
             myHatButtonStatus = .winner
             hatButton.setImage(setImage(.winner), for: .normal)
             enableHatButton()
+            print("refresh hat 2")
         }
     }
 }
@@ -541,5 +548,6 @@ extension ChatingViewController: DeclareAWinnerProtocol {
         hatButton.setImage(setImage(.winner), for: .normal)
         self.vm.getMyPoints(friendID: self.uid)
         enableHatButton()
+        print("declare winner")
     }
 }

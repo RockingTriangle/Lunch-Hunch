@@ -217,6 +217,10 @@ class ChatingViewModel {
         FBDatabase.shared.FBStartChoosing(friendID: friendID, status: status)
     }
     
+    func stopChoosing(friendID: String) {
+        FBDatabase.shared.FBEndChoosing(friendID: friendID)
+    }
+    
     func detectChoosing(friendID: String) {
         FBDatabase.shared.FBDetectChoosing(friendID: friendID) { [weak self] (status) in
             guard let self = self else { return }
@@ -342,6 +346,7 @@ class ChatingViewModel {
             guard let self = self, let isSeen = isSeen else { return }
             if isSeen == true {
                 self.shouldReset = true
+                Database.database().reference().child("seen").child(friendID).child(currentUser.id!).removeAllObservers()
             }
         }
     }
