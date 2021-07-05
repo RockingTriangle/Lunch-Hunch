@@ -35,8 +35,8 @@ struct DefaultSettings {
         self.defaults.set(country, forKey: "country")
         
         guard let imageURL = imageURL else { return }
-        let Url = URL(string: imageURL)
-        let data = try? Data(contentsOf: Url!)
+        let Url = URL(string: imageURL)!
+        let data = try? Data(contentsOf: Url)
         self.defaults.set(data, forKey: "image")
     }
     
