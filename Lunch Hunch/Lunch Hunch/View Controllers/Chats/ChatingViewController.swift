@@ -288,7 +288,7 @@ class ChatingViewController: UIViewController {
         case .vote:
             return #imageLiteral(resourceName: "hatIconVote")
         case .winner:
-            return #imageLiteral(resourceName: "logo")
+            return #imageLiteral(resourceName: "Logo")
         }
     }
     
@@ -298,7 +298,30 @@ class ChatingViewController: UIViewController {
             guard let self = self else { return }
             self.vm.ensureBothSeeWinner(friendID: self.uid)
         }
+        let getDirectionsAction = UIAlertAction(title: "Get Directions", style: .default) { [weak self] (action) in
+            guard let self = self else { return }
+            let alert = UIAlertController(title: "Directions", message: "Which would you like to use?", preferredStyle: .alert)
+            let appleMapsAction = UIAlertAction(title: "Apple Maps", style: .default) { _ in
+                let areaLat = 40.589207
+                let areaLon = -111.884242
+                let area = "\(areaLat)\(areaLon)"
+                let parkURL = "http://maps.apple.com/?q="
+                let finalURL = "\(parkURL)\(area)"
+                
+                if (UIApplication.shared.canOpenURL(URL(string:"http://maps.apple.com")!)) {
+                    UIApplication.shared.open(URL(string: "\(finalURL)")!)
+                    print(finalURL)
+                    
+                } else {
+                    NSLog("Can't use Apple Maps");
+                }
+            }
+            alert.addAction(appleMapsAction)
+            self.present(alert, animated: true)
+            
+        }
         alert.addAction(okAction)
+        alert.addAction(getDirectionsAction)
         present(alert, animated: true)
     }
     
