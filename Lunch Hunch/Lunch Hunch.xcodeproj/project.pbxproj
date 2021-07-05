@@ -212,8 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
-				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
-				13FED25326813B5E00D25BC4 /* FBDatabase.swift */,
+				13FED28026813C1D00D25BC4 /* ChatsViewController.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -300,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				13FED25126813B5E00D25BC4 /* FBAuthentication.swift */,
+				13FED25326813B5E00D25BC4 /* FBDatabase.swift */,
 				13FED25426813B5E00D25BC4 /* FBNetworkRequest.swift */,
 				13FED25226813B5E00D25BC4 /* Network.swift */,
 			);
@@ -474,8 +474,8 @@
 		13FED26326813BA300D25BC4 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				13FED28026813C1D00D25BC4 /* ChatsViewController.swift */,
 				13FED26526813BA300D25BC4 /* ChatsViewModel.swift */,
+				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
