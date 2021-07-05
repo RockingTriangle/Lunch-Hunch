@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +13,7 @@
         <!--Signin View Controller-->
         <scene sceneID="BIY-k5-w2H">
             <objects>
-                <viewController id="sMm-f3-kCg" customClass="SigninViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="sMm-f3-kCg" customClass="SigninViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mff-au-SRy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="713"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +114,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oDr-3H-Pde">
                                                 <rect key="frame" x="107" y="35" width="200" height="190"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Logo1-1" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-Fv-dPl">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="q3d-Fv-dPl">
                                                         <rect key="frame" x="40" y="0.0" width="120" height="120"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="120" id="rI1-UQ-dXW"/>
@@ -200,7 +201,7 @@
         <!--Forget Password View Controller-->
         <scene sceneID="dGs-5D-6sz">
             <objects>
-                <viewController id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="gyl-7m-hcD" customClass="ForgetPasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pe4-3v-roK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -276,7 +277,7 @@
         <!--Signup View Controller-->
         <scene sceneID="dEh-Np-QL6">
             <objects>
-                <viewController id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="Ccc-wc-AzM" customClass="SignupViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QcU-6Y-CvA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="735"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,13 +467,13 @@
         <!--Tab Bar Controller-->
         <scene sceneID="VbQ-oi-y1l">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" modalPresentationStyle="fullScreen" id="76g-vf-0sF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" modalPresentationStyle="fullScreen" interfaceStyle="light" id="76g-vf-0sF" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="8ac-dt-Ra6"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Je-bd-QhF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.0" green="0.47058823529999999" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
@@ -487,7 +488,7 @@
         <!--Navigation Controller-->
         <scene sceneID="pHt-Yk-9qg">
             <objects>
-                <navigationController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="CEF-dH-gbo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="CEF-dH-gbo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zmq-xX-MHJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -507,7 +508,9 @@
         <scene sceneID="l8o-OJ-dQs">
             <objects>
                 <viewControllerPlaceholder storyboardName="Chats" id="iFh-rJ-azq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chat" image="Chat" id="yNM-k7-76F"/>
+                    <tabBarItem key="tabBarItem" title="Chat" id="yNM-k7-76F">
+                        <imageReference key="image" image="bubble.left.and.bubble.right.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1vY-l9-PGR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -517,18 +520,19 @@
         <scene sceneID="SYd-9M-9zW">
             <objects>
                 <viewControllerPlaceholder storyboardName="Restaurants" id="O79-EL-ahP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4He-ZK-9Aa"/>
+                    <tabBarItem key="tabBarItem" title="Restaurant" image="map.fill" catalog="system" id="4He-ZK-9Aa"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbZ-Wk-gST" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2830" y="344"/>
         </scene>
     </scenes>
-    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Avatar" width="163.5" height="163.5"/>
-        <image name="Chat" width="33" height="33"/>
-        <image name="Logo1-1" width="3456" height="2416"/>
+        <image name="bubble.left.and.bubble.right.fill" catalog="system" width="128" height="97"/>
+        <image name="logo" width="3456" height="2416"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

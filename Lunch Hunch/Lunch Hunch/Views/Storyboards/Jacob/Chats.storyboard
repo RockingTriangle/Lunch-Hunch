@@ -4,17 +4,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Chats-->
+        <!--Chat-->
         <scene sceneID="xMn-IT-jo0">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="okR-9v-H0V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="Chat" id="MtU-wY-rJB"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="okR-9v-H0V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chat" id="MtU-wY-rJB">
+                        <imageReference key="image" image="bubble.left.and.bubble.right.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="chY-PN-Cde">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -42,7 +45,7 @@
         <!--Chats-->
         <scene sceneID="ja2-zQ-0Bv">
             <objects>
-                <viewController id="z4m-jK-VJf" customClass="ChatsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="z4m-jK-VJf" customClass="ChatsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E7r-5d-yqo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,12 +106,13 @@
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qky-Sd-X2C">
                                                     <rect key="frame" x="375" y="32.5" width="24" height="24"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47058823529999999" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="3z3-fh-cgO"/>
                                                         <constraint firstAttribute="height" constant="24" id="Opf-A4-9kO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="5">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -154,7 +158,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Chats" largeTitleDisplayMode="always" id="VO4-pK-8zv">
                         <barButtonItem key="backBarButtonItem" title=" " id="hEc-5r-5wc"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="5eS-na-5TM">
+                        <barButtonItem key="rightBarButtonItem" id="5eS-na-5TM">
+                            <imageReference key="image" image="pencil.circle.fill" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="friendsPressd:" destination="z4m-jK-VJf" id="ccH-cU-Tcs"/>
                             </connections>
@@ -192,7 +198,7 @@
         <!--Navigation Controller-->
         <scene sceneID="xGL-nk-aTB">
             <objects>
-                <navigationController storyboardIdentifier="friendss" id="RKA-w9-4Lq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="friendss" interfaceStyle="light" id="RKA-w9-4Lq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oMB-KE-mYa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="ElB-7D-oem">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -209,7 +215,7 @@
         <!--Choose People-->
         <scene sceneID="jTp-sR-zvf">
             <objects>
-                <viewController storyboardIdentifier="friends" id="cTk-cP-p00" customClass="FriendsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friends" interfaceStyle="light" id="cTk-cP-p00" customClass="FriendsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q6y-Zc-S01">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,6 +240,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Choose People" id="36t-Xg-lt3">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="6IC-No-KFS">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="cTk-cP-p00" id="1ob-zO-xNb"/>
                             </connections>
@@ -300,7 +307,7 @@
         <!--Requests View Controller-->
         <scene sceneID="dAb-QJ-L8b">
             <objects>
-                <viewController id="L01-zC-Dwg" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="L01-zC-Dwg" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ikD-7W-y51">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,16 +379,18 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VID-3I-xmq">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="25"/>
-                                                            <color key="backgroundColor" red="0.0" green="0.47058823529999999" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Confirm">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Qa-El-kOZ">
                                                             <rect key="frame" x="0.0" y="35" width="80" height="25"/>
-                                                            <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" title="Decline">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
@@ -446,12 +455,13 @@
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-1c-2p0">
                                                     <rect key="frame" x="319" y="34" width="80" height="25"/>
-                                                    <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="805-oR-YKQ"/>
                                                         <constraint firstAttribute="height" constant="25" id="Khd-15-sFo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Cancel">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -506,6 +516,7 @@
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="0eS-eh-sV6">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="donePressed:" destination="L01-zC-Dwg" id="BIX-YQ-KhS"/>
                             </connections>
@@ -523,7 +534,7 @@
         <!--Navigation Controller-->
         <scene sceneID="66p-og-ynJ">
             <objects>
-                <navigationController storyboardIdentifier="requests" automaticallyAdjustsScrollViewInsets="NO" id="EZq-RQ-VEq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="requests" automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="EZq-RQ-VEq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KbV-es-shu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -540,9 +551,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Chat" width="33" height="33"/>
         <image name="Friends" width="400" height="400"/>
         <image name="Request" width="125" height="144.5"/>
+        <image name="bubble.left.and.bubble.right.fill" catalog="system" width="128" height="97"/>
+        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="BasicColor">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -551,9 +563,6 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
