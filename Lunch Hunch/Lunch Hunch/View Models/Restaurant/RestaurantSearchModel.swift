@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 import Firebase
 
-protocol RefreshData {
+protocol RefreshData: AnyObject {
     func refreshData()
 }
 
@@ -22,7 +22,7 @@ class RestaurantSearchModel {
     var selectedBusiness: Set<Int>  = []
     var businessesToSave: [String]  = []
     var theirBusinesses: [String]   = []
-    var delegate: RefreshData?
+    weak var delegate: RefreshData?
     
     enum UserSearchChoice {
         case location
@@ -119,14 +119,18 @@ class RestaurantSearchModel {
         selectedBusiness.removeAll()
     }
     
-    func addRestaurants(friendID: String) {
+    func addRestaurants(friendID: String, isRandom: Bool) {
         getSelectedBusinesses()
         FBDatabase.shared.FBAddRestaurants(friendID: friendID, businesses: businessesToSave)
         FBDatabase.shared.FBDetectRestaurants(friendsID: friendID) { (restaurants) in
             guard let restaurants = restaurants else { return }
             self.theirBusinesses = restaurants
         }
-        FBDatabase.shared.FBStartChoosing(friendID: friendID, status: .vote)
+        if !isRandom {
+            FBDatabase.shared.FBStartChoosing(friendID: friendID, status: .vote)
+        } else {
+            FBDatabase.shared.FBStartChoosing(friendID: friendID, status: .winner)
+        }
     }
     
     func savePoints(friendID: String, restaurants: [Restaurant]) {

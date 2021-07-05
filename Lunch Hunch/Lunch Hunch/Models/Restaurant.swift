@@ -31,7 +31,7 @@ struct Restaurant {
 
 extension Restaurant: Equatable {
     static func == (lhs: Restaurant, rhs: Restaurant) -> Bool {
-        return lhs.uuid == rhs.uuid
+        return lhs.name == rhs.name
     }
 }//End of extension
 

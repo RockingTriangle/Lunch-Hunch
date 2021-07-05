@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol RefreshSentCellProtocol: AnyObject {
+    func refreshCell()
+}
+
 class SentCell: UITableViewCell {
     
     // MARK: - Properties
+    weak var delegate: RefreshSentCellProtocol?
     private let vm   = RequestsViewModel()
     public  var user = UserViewModel() { didSet {
         nameLabel.text      = user.name
@@ -43,6 +48,7 @@ class SentCell: UITableViewCell {
                 self.cancelButton.alpha = 0
             }
         }
+        delegate?.refreshCell()
     }
     
 }

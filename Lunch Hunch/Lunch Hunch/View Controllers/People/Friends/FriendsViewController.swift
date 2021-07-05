@@ -8,7 +8,7 @@
 import UIKit
 
 
-protocol PresentChatingDelegate {
+protocol PresentChatingDelegate: AnyObject {
     func selectedCell(user: UserViewModel)
 }
 
@@ -18,7 +18,7 @@ class FriendsViewController: UIViewController {
     let searchController = UISearchController()
     let vm               = PeopleViewModel()
     var filtred          = [UserViewModel]()
-    var delegate: PresentChatingDelegate?
+    weak var delegate: PresentChatingDelegate?
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -121,20 +121,6 @@ extension FriendsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // MARK:- Search Controller Delegate
 
 extension FriendsViewController: UISearchControllerDelegate, UISearchResultsUpdating {

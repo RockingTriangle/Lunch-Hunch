@@ -5,11 +5,11 @@
 //  Created by Mike Conner on 6/25/21.
 //
 
-protocol CheckSelectionCountDelegate {
+protocol CheckSelectionCountDelegate: AnyObject {
     func checkSelectionCount(_ index: Int)
 }
 
-protocol TooManySelectedDelegate {
+protocol TooManySelectedDelegate: AnyObject {
     func showTooManySelectedMessage()
 }
 
@@ -33,8 +33,8 @@ class RestaurantSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     
     // Mark: - Properties
-    var checkCountDelegate: CheckSelectionCountDelegate?
-    var tooManyDelegate: TooManySelectedDelegate?
+    weak var checkCountDelegate: CheckSelectionCountDelegate?
+    weak var tooManyDelegate: TooManySelectedDelegate?
     var index: Int?
     var fromChat = false
     var business: Business? {

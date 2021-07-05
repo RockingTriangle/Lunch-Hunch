@@ -346,7 +346,6 @@ struct FBDatabase {
             if snapshot.exists() {
                 let values = snapshot.value as! [String: Any]
                 let status = values["type"] as? String ?? "open"
-                
                 switch status {
                 case "open":
                     completion(.open)
@@ -423,13 +422,22 @@ struct FBDatabase {
         }
     }
     
+    func FBSeenWinner(friendID: String, completion: @escaping(Bool?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("seen").child(uid).child(friendID).setValue("true")
+        Database.database().reference().child("seen").child(friendID).child(uid).observe(.value) { snapshot in
+            snapshot.exists() ? completion(true) : completion(false)
+        }
+    }
+    
     func FBCleanUp(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("restaurants").removeValue()
-        Database.database().reference().child("points").removeValue()
-        
-        Database.database().reference().child("choosing").child(uid).child(friendID).setValue(["type": "open"])
-        Database.database().reference().child("choosing").child(friendID).child(uid).setValue(["type": "open"])
+        Database.database().reference().child("choosing").child(uid).removeValue()
+        Database.database().reference().child("restaurants").child(uid).removeValue()
+        Database.database().reference().child("points").child(uid).removeValue()
+        Database.database().reference().child("seen").child(uid).removeValue()
+        Database.database().reference().child("points").removeAllObservers()
+        Database.database().reference().child("seen").removeAllObservers()
     }
     
     //MARK:- Validate kind and Type of Messages

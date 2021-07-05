@@ -11,10 +11,10 @@ import Foundation
 class ChatsViewModel {
     
     // MARK: - Properties
-    public  var isReachable             = true { didSet { updateTableViewClouser?() }}
-    public  var isAnimating             = true { didSet { updateIndicatorClouser?() }}
-    public  var messageViewModel        = [RecentsViewModel]() { didSet { updateTableViewClouser?() }}
-    public  var countUnreadedMessages   = 0 { didSet{ updatebadgeClouser?() }}
+    public  var isReachable             = true { didSet { updateTableViewClosure?() }}
+    public  var isAnimating             = true { didSet { updateIndicatorClosure?() }}
+    public  var messageViewModel        = [RecentsViewModel]() { didSet { updateTableViewClosure?() }}
+    public  var countUnreadedMessages   = 0 { didSet{ updatebadgeClosure?() }}
     private var originalModel           = [RecentsViewModel]()
     
     public var numberOfMessages         : Int { return messageViewModel.count }
@@ -22,10 +22,10 @@ class ChatsViewModel {
     public var prevIndex                : Int?
     public var selectedCell             : RecentsViewModel?
     
-    var updateTableViewClouser: (()->())?
-    var updateIndicatorClouser: (()->())?
-    var updateRequestsClouser:  (()->())?
-    var updatebadgeClouser:  (()->())?
+    var updateTableViewClosure: (()->())?
+    var updateIndicatorClosure: (()->())?
+    var updateRequestsClosure:  (()->())?
+    var updatebadgeClosure:  (()->())?
     
     // MARK: - Initializer
     init() {
@@ -53,7 +53,7 @@ class ChatsViewModel {
         FBNetworkRequest.shared.checkRequestsSent    { (_) in }
         FBNetworkRequest.shared.checkRequestsRecived { [weak self] (requests) in
             guard let self = self else { return }
-            self.updateRequestsClouser?()
+            self.updateRequestsClosure?()
         }
     }
     

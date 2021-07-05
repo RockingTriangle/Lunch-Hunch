@@ -20,7 +20,7 @@ class BlockedUsersTableViewController: UITableViewController {
     
     // MARK:- Fetch users
     func initFetch() {
-        vm.reloadTableViewClouser = { [weak self] in
+        vm.reloadTableViewClosure = { [weak self] in
             guard let self = self else { return }
             self.tableView.reloadData()
         }

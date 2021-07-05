@@ -8,17 +8,18 @@
 import UIKit
 import CoreLocation
 
-protocol RefreshHatProtocol {
+protocol RefreshHatProtocol: AnyObject {
     func refreshHat()
 }
 
 class RestaurantSettingsTableViewController: UITableViewController {
     
     // MARK: - Properties
-    var delegate: RefreshHatProtocol?
+    weak var delegate: RefreshHatProtocol?
     var viewModel = RestaurantSearchModel.shared
     var locationManager = LocationManager.shared
     var endPoint = YELPEndpoint.shared
+    var isRandom = false
     var buttonArray: [UIButton] = []
     public var uid : String?
     
@@ -142,12 +143,12 @@ class RestaurantSettingsTableViewController: UITableViewController {
                 let vc = segue.destination as! RestaurantSearchResultsTableViewController
                 vc.uid = uid
                 vc.delegate = self
+                vc.isRandom = isRandom
             } else {
                 showAlert(with: "Sorry", and: "You must select one or more of the pricing options to proceed.")
             }
         }
     }
-    
 }
 
 // Mark: - Extension
