@@ -48,7 +48,7 @@ class SentCell: UITableViewCell {
                 self.cancelButton.alpha = 0
             }
         }
-        delegate?.refreshCell()
+        //delegate?.refreshCell()
     }
     
 }

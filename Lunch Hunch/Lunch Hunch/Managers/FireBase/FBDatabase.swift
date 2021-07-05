@@ -77,10 +77,10 @@ struct FBDatabase {
                 let data = snapshot.children.allObjects as! [DataSnapshot]
                 for user in data {
                     var userModel = User()
-                    let id = user.childSnapshot(forPath: "id").value as? String
-                    let requestStatus = FBNetworkRequest.shared.requestsRecived.contains(id!)
-                    let friendStatus  = FBNetworkRequest.shared.friendsList.contains(id!)
-                    let blockedList   = FBNetworkRequest.shared.blockedList.contains(id!) || FBNetworkRequest.shared.blockedByList.contains(id!)
+                    guard let id = user.childSnapshot(forPath: "id").value as? String else { return }
+                    let requestStatus = FBNetworkRequest.shared.requestsRecived.contains(id)
+                    let friendStatus  = FBNetworkRequest.shared.friendsList.contains(id)
+                    let blockedList   = FBNetworkRequest.shared.blockedList.contains(id) || FBNetworkRequest.shared.blockedByList.contains(id)
                     if requestStatus || friendStatus || blockedList {}
                     else {
                         userModel.id = id
