@@ -96,6 +96,22 @@ class RestaurantSearchModel {
         fetch(YELPEndpoint.shared)
     }
     
+    func randomBusiness() {
+        fetchRandomly(YELPEndpoint.shared)
+    }
+    
+    private func fetchRandomly(_ endpoint: YELPEndpoint) {
+        yelpService.fetch(Businesses.self, from: endpoint) { [weak self] result in
+            switch result {
+            case .success(let businesses):
+                self?.businesses = businesses.businesses.shuffled()
+                self?.delegate?.refreshData()
+            case .failure(let error):
+                print("Error in \(#function) : \(error.localizedDescription) \n---\n\(error)")
+            }
+        }
+    }
+    
     private func fetch(_ endpoint: YELPEndpoint) {
         yelpService.fetch(Businesses.self, from: endpoint) { [weak self] result in
             switch result {

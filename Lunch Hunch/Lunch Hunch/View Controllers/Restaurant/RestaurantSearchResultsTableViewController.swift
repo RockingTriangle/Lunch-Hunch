@@ -127,6 +127,10 @@ extension RestaurantSearchResultsTableViewController {
             YELPEndpoint.shared.sortingOption = .distance
             self?.results.fetchBusinesses()
         }
+        let sortByRandomAction = UIAlertAction(title: "Random", style: .default) { [weak self] (action) -> Void in
+            
+            self?.results.randomBusiness()
+        }
         let sortByRatingAction = UIAlertAction(title: "Rating", style: .default) { [weak self] (action) -> Void in
             YELPEndpoint.shared.sortingOption = .rating
             self?.results.fetchBusinesses()
@@ -137,6 +141,7 @@ extension RestaurantSearchResultsTableViewController {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(sortByDistanceAction)
+        alert.addAction(sortByRandomAction)
         alert.addAction(sortByRatingAction)
         alert.addAction(sortByBestMatchAction)
         alert.addAction(cancelAction)
