@@ -14,16 +14,16 @@
         <!--Results-->
         <scene sceneID="i0f-yz-dcW">
             <objects>
-                <viewController id="zrV-bp-s07" customClass="RestaurantSearchResultsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="zrV-bp-s07" customClass="RestaurantSearchResultsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zUt-7k-qfn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="leK-Ix-mhs">
-                                <rect key="frame" x="0.0" y="158.5" width="414" height="703.5"/>
+                                <rect key="frame" x="0.0" y="70.5" width="414" height="703.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="MPb-4A-eON" customClass="RestaurantSearchTableViewCell" customModule="Lunch_Hunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="231.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MPb-4A-eON" id="BEr-2H-aZF" userLabel="Outer View">
@@ -217,7 +217,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLN-NR-5xS" userLabel="InnerView">
-                                        <rect key="frame" x="10.5" y="8" width="393" height="54.5"/>
+                                        <rect key="frame" x="10.5" y="-80" width="393" height="54.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -226,7 +226,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5ki-HS-6Xy">
-                                        <rect key="frame" x="20" y="15" width="374" height="41"/>
+                                        <rect key="frame" x="20" y="-73" width="374" height="41"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-eD-8mC">
                                                 <rect key="frame" x="0.0" y="1" width="40" height="39"/>
@@ -270,11 +270,14 @@
                     <navigationItem key="navigationItem" title="Results" id="g2S-OB-pjZ">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="save" id="Ve3-OP-RPL">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="saveButtonTapped:" destination="zrV-bp-s07" id="o5P-jV-jPB"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="arrow.up.arrow.down.circle" catalog="system" id="3JU-NF-IMl">
+                            <barButtonItem id="3JU-NF-IMl">
+                                <imageReference key="image" image="arrow.up.arrow.down.circle.fill" catalog="system" symbolScale="large"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="sortButtonTapped:" destination="zrV-bp-s07" id="X2b-mE-ucu"/>
                                 </connections>
@@ -293,13 +296,13 @@
         <!--Food Types-->
         <scene sceneID="pV4-DT-TNZ">
             <objects>
-                <viewController id="b00-0e-d1I" customClass="FoodTypesViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="b00-0e-d1I" customClass="FoodTypesViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4S-Nk-bsp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwC-19-cLf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAn-fI-zM9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
@@ -721,6 +724,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Food Types" id="3YY-H1-crQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DYh-Ev-rgA">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="doneButtonTapped:" destination="b00-0e-d1I" id="iAb-RY-hlM"/>
                             </connections>
@@ -758,13 +762,13 @@
         <!--Location-->
         <scene sceneID="Kjl-cF-RS1">
             <objects>
-                <viewController id="ldU-kb-EQC" customClass="LocationViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="ldU-kb-EQC" customClass="LocationViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9P0-xf-jao">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W9T-wV-oUJ">
-                                <rect key="frame" x="24" y="215.5" width="366" height="366"/>
+                                <rect key="frame" x="24" y="127.5" width="366" height="366"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="W9T-wV-oUJ" secondAttribute="height" multiplier="1:1" id="yKf-3E-rrs"/>
@@ -776,20 +780,20 @@
                                 </userDefinedRuntimeAttributes>
                             </mapView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="WNz-AW-sRk">
-                                <rect key="frame" x="187" y="345.5" width="40" height="80"/>
+                                <rect key="frame" x="187" y="257.5" width="40" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="6VM-EL-vV6"/>
                                     <constraint firstAttribute="width" secondItem="WNz-AW-sRk" secondAttribute="height" multiplier="1:2" id="ZnP-Ph-sim"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCN-cw-YHC">
-                                <rect key="frame" x="24" y="104" width="366" height="21.5"/>
+                                <rect key="frame" x="24" y="16" width="366" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-Tn-6p6">
-                                <rect key="frame" x="24" y="141.5" width="366" height="60"/>
+                                <rect key="frame" x="24" y="53.5" width="366" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LAR-EK-DC7">
                                         <rect key="frame" x="16" y="10" width="334" height="40"/>
@@ -858,7 +862,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Nd-Um-kCI">
-                                <rect key="frame" x="24" y="605.5" width="366" height="60"/>
+                                <rect key="frame" x="24" y="517.5" width="366" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-kP-cQF">
                                         <rect key="frame" x="16" y="10" width="334" height="40"/>
@@ -914,6 +918,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="Yan-aq-2Ms">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="TFC-fP-RDL">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="setButtonTapped:" destination="ldU-kb-EQC" id="Vaw-Qo-wtY"/>
                             </connections>
@@ -931,13 +936,15 @@
             </objects>
             <point key="canvasLocation" x="3479.7101449275365" y="-185.49107142857142"/>
         </scene>
-        <!--Item-->
+        <!--Restaurants-->
         <scene sceneID="i9p-ml-6aR">
             <objects>
-                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" id="Zed-50-pOe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3wu-dZ-LZg"/>
+                <navigationController storyboardIdentifier="restaurantSettings" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="Zed-50-pOe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Restaurants" id="3wu-dZ-LZg">
+                        <imageReference key="image" image="map.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8f-In-9RF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="I8f-In-9RF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -953,9 +960,9 @@
         <!--Search Settings-->
         <scene sceneID="JlB-Wq-xaV">
             <objects>
-                <tableViewController id="M78-rS-ePV" customClass="RestaurantSettingsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="toSearchSettingsVC" modalPresentationStyle="fullScreen" interfaceStyle="light" id="M78-rS-ePV" customClass="RestaurantSettingsTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="BZf-wX-Dwc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="NiE-Fe-rjP" userLabel="Outer View">
                             <rect key="frame" x="0.0" y="408" width="414" height="70"/>
@@ -1192,7 +1199,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search Settings" id="QVS-ww-SYg">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="dgs-GF-lkE">
+                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass.circle.fill" catalog="system" id="dgs-GF-lkE">
                             <connections>
                                 <segue destination="zrV-bp-s07" kind="show" identifier="toResultsVC" id="Gen-sA-eNl"/>
                             </connections>
@@ -1218,9 +1225,11 @@
         <segue reference="d3r-1a-s6k"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.up.arrow.down.circle.fill" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="pin" width="450" height="600"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="yelpLogo" width="1000" height="647"/>

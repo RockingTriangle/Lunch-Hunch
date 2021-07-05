@@ -14,10 +14,6 @@ enum MessageType {
 
 enum MessageKind {
     case text
-    case photo
-    case video
-    case location
-    case voice
 }
 
 enum RequestType {
@@ -25,3 +21,10 @@ enum RequestType {
     case recived
 }
 
+enum HatStatus: String {
+    case open = "open"
+    case poll = "poll"
+    case rando = "rando"
+    case vote = "vote"
+    case winner = "winner"
+}

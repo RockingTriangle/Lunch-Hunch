@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		108733C3E051D1A23D78A154 /* Pods_Lunch_Hunch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */; };
-		132C894C2683D265002292B1 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C894B2683D265002292B1 /* RestaurantViewModel.swift */; };
+		132C894C2683D265002292B1 /* RestaurantSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C894B2683D265002292B1 /* RestaurantSearchModel.swift */; };
 		132C89C826841E19002292B1 /* RestaurantSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */; };
 		132C89CA2684248D002292B1 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132C89C92684248D002292B1 /* LocationViewController.swift */; };
-		13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */; };
+		13839371268E4D7E006AA673 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
+		13AA39F62686632F006E1F1C /* RestaurantSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F52686632F006E1F1C /* RestaurantSearchTableViewCell.swift */; };
 		13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */; };
 		13AA39FB26868525006E1F1C /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39FA26868525006E1F1C /* Business.swift */; };
 		13AA39FD26868543006E1F1C /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA39FC26868543006E1F1C /* FoodTypes.swift */; };
@@ -29,9 +30,6 @@
 		13FED23626813A6C00D25BC4 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23526813A6C00D25BC4 /* Chats.storyboard */; };
 		13FED23826813A7200D25BC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23726813A7200D25BC4 /* Main.storyboard */; };
 		13FED23A26813A8900D25BC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23926813A8900D25BC4 /* LaunchScreen.storyboard */; };
-		13FED23E26813AF000D25BC4 /* Cancel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23B26813AF000D25BC4 /* Cancel.mp3 */; };
-		13FED23F26813AF000D25BC4 /* Message.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13FED23C26813AF000D25BC4 /* Message.mp3 */; };
-		13FED24026813AF000D25BC4 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED23D26813AF000D25BC4 /* Audio.swift */; };
 		13FED24826813B1000D25BC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED24226813B1000D25BC4 /* Constants.swift */; };
 		13FED24926813B1000D25BC4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED24326813B1000D25BC4 /* Alert.swift */; };
 		13FED24A26813B1000D25BC4 /* System Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED24426813B1000D25BC4 /* System Authorization.swift */; };
@@ -53,7 +51,7 @@
 		13FED27126813BA300D25BC4 /* RequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26426813BA300D25BC4 /* RequestsViewModel.swift */; };
 		13FED27226813BA300D25BC4 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26526813BA300D25BC4 /* ChatsViewModel.swift */; };
 		13FED27326813BA300D25BC4 /* PeopleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26626813BA300D25BC4 /* PeopleViewModel.swift */; };
-		13FED27426813BA300D25BC4 /* EditeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26826813BA300D25BC4 /* EditeProfileViewModel.swift */; };
+		13FED27426813BA300D25BC4 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26826813BA300D25BC4 /* EditProfileViewModel.swift */; };
 		13FED27526813BA300D25BC4 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26926813BA300D25BC4 /* SettingsViewModel.swift */; };
 		13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26A26813BA300D25BC4 /* ChangePasswordViewModel.swift */; };
 		13FED27726813BA300D25BC4 /* BlockedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED26B26813BA300D25BC4 /* BlockedViewModel.swift */; };
@@ -68,7 +66,7 @@
 		13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28726813C1D00D25BC4 /* FriendsViewController.swift */; };
 		13FED2A726813C1E00D25BC4 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28926813C1D00D25BC4 /* ChangePasswordViewController.swift */; };
 		13FED2A826813C1E00D25BC4 /* AvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28A26813C1D00D25BC4 /* AvailableViewController.swift */; };
-		13FED2A926813C1E00D25BC4 /* EditeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28B26813C1D00D25BC4 /* EditeProfileViewController.swift */; };
+		13FED2A926813C1E00D25BC4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28B26813C1D00D25BC4 /* EditProfileViewController.swift */; };
 		13FED2AA26813C1E00D25BC4 /* BlockedUsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */; };
 		13FED2AB26813C1E00D25BC4 /* BlockedUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */; };
 		13FED2AC26813C1E00D25BC4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */; };
@@ -78,28 +76,21 @@
 		13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29526813C1D00D25BC4 /* UserCell.xib */; };
 		13FED2B126813C1E00D25BC4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29626813C1D00D25BC4 /* UserCell.swift */; };
 		13FED2B226813C1E00D25BC4 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29726813C1D00D25BC4 /* PeopleViewController.swift */; };
-		13FED2B326813C1E00D25BC4 /* VoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29926813C1D00D25BC4 /* VoiceTableViewCell.swift */; };
-		13FED2B426813C1E00D25BC4 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29A26813C1D00D25BC4 /* LocationTableViewCell.swift */; };
-		13FED2B526813C1E00D25BC4 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29B26813C1D00D25BC4 /* PhotoDetailViewController.swift */; };
 		13FED2B626813C1E00D25BC4 /* FromCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29C26813C1D00D25BC4 /* FromCell.swift */; };
 		13FED2B726813C1E00D25BC4 /* ToCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29D26813C1D00D25BC4 /* ToCell.swift */; };
-		13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29E26813C1D00D25BC4 /* MapsViewController.swift */; };
-		13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
-		13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */; };
 		392004682684F6DF0098045C /* VoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392004672684F6DF0098045C /* VoteTableViewController.swift */; };
 		3920046C2684FE270098045C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920046B2684FE270098045C /* Restaurant.swift */; };
-		3920046F2684FEBE0098045C /* RestaurantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920046E2684FEBE0098045C /* RestaurantController.swift */; };
-		392004712685005A0098045C /* RestaurantListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39200470268500590098045C /* RestaurantListTableViewCell.swift */; };
+		3920046F2684FEBE0098045C /* RestaurantVoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3920046E2684FEBE0098045C /* RestaurantVoteModel.swift */; };
+		392004712685005A0098045C /* RestaurantVoteListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39200470268500590098045C /* RestaurantVoteListTableViewCell.swift */; };
 		393A97292683EB29007FB295 /* RestaurantVote.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 393A97282683EB29007FB295 /* RestaurantVote.storyboard */; };
 		672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672E06292683C19E002BEEF6 /* Restaurants.storyboard */; };
-		6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		132C894B2683D265002292B1 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		132C894B2683D265002292B1 /* RestaurantSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchModel.swift; sourceTree = "<group>"; };
 		132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSettingsTableViewController.swift; sourceTree = "<group>"; };
 		132C89C92684248D002292B1 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		13AA39F52686632F006E1F1C /* RestaurantSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchTableViewCell.swift; sourceTree = "<group>"; };
 		13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		13AA39FA26868525006E1F1C /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		13AA39FC26868543006E1F1C /* FoodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypes.swift; sourceTree = "<group>"; };
@@ -119,9 +110,6 @@
 		13FED23526813A6C00D25BC4 /* Chats.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		13FED23726813A7200D25BC4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		13FED23926813A8900D25BC4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		13FED23B26813AF000D25BC4 /* Cancel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cancel.mp3; sourceTree = "<group>"; };
-		13FED23C26813AF000D25BC4 /* Message.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Message.mp3; sourceTree = "<group>"; };
-		13FED23D26813AF000D25BC4 /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		13FED24226813B1000D25BC4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		13FED24326813B1000D25BC4 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		13FED24426813B1000D25BC4 /* System Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "System Authorization.swift"; sourceTree = "<group>"; };
@@ -143,7 +131,7 @@
 		13FED26426813BA300D25BC4 /* RequestsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewModel.swift; sourceTree = "<group>"; };
 		13FED26526813BA300D25BC4 /* ChatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 		13FED26626813BA300D25BC4 /* PeopleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewModel.swift; sourceTree = "<group>"; };
-		13FED26826813BA300D25BC4 /* EditeProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditeProfileViewModel.swift; sourceTree = "<group>"; };
+		13FED26826813BA300D25BC4 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		13FED26926813BA300D25BC4 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		13FED26A26813BA300D25BC4 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		13FED26B26813BA300D25BC4 /* BlockedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedViewModel.swift; sourceTree = "<group>"; };
@@ -158,7 +146,7 @@
 		13FED28726813C1D00D25BC4 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		13FED28926813C1D00D25BC4 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		13FED28A26813C1D00D25BC4 /* AvailableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableViewController.swift; sourceTree = "<group>"; };
-		13FED28B26813C1D00D25BC4 /* EditeProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditeProfileViewController.swift; sourceTree = "<group>"; };
+		13FED28B26813C1D00D25BC4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedUsersTableViewCell.swift; sourceTree = "<group>"; };
 		13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedUsersTableViewController.swift; sourceTree = "<group>"; };
 		13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -168,18 +156,13 @@
 		13FED29526813C1D00D25BC4 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		13FED29626813C1D00D25BC4 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		13FED29726813C1D00D25BC4 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
-		13FED29926813C1D00D25BC4 /* VoiceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceTableViewCell.swift; sourceTree = "<group>"; };
-		13FED29A26813C1D00D25BC4 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
-		13FED29B26813C1D00D25BC4 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		13FED29C26813C1D00D25BC4 /* FromCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCell.swift; sourceTree = "<group>"; };
 		13FED29D26813C1D00D25BC4 /* ToCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCell.swift; sourceTree = "<group>"; };
-		13FED29E26813C1D00D25BC4 /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatingViewController.swift; sourceTree = "<group>"; };
-		13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		392004672684F6DF0098045C /* VoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteTableViewController.swift; sourceTree = "<group>"; };
 		3920046B2684FE270098045C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		3920046E2684FEBE0098045C /* RestaurantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantController.swift; sourceTree = "<group>"; };
-		39200470268500590098045C /* RestaurantListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListTableViewCell.swift; sourceTree = "<group>"; };
+		3920046E2684FEBE0098045C /* RestaurantVoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVoteModel.swift; sourceTree = "<group>"; };
+		39200470268500590098045C /* RestaurantVoteListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVoteListTableViewCell.swift; sourceTree = "<group>"; };
 		393A97282683EB29007FB295 /* RestaurantVote.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RestaurantVote.storyboard; sourceTree = "<group>"; };
 		672E06292683C19E002BEEF6 /* Restaurants.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restaurants.storyboard; sourceTree = "<group>"; };
 		BD8D1EA9B696EE7108DBF492 /* Pods_Lunch_Hunch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lunch_Hunch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,35 +182,126 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130B3D7B2690D1FE00DB45A6 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				13AA39F4268662E8006E1F1C /* Cells */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		130B3D7C2690D25500DB45A6 /* Yelp */ = {
+			isa = PBXGroup;
+			children = (
+				13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */,
+				13AA3A02268686A9006E1F1C /* YelpService.swift */,
+				13AA3A0026868674006E1F1C /* YelpServicing.swift */,
+			);
+			path = Yelp;
+			sourceTree = "<group>";
+		};
+		130B3D7D2690D43600DB45A6 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				13E7240E2687928D00834A09 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		130B3D7E2690D95100DB45A6 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
+				13FED28026813C1D00D25BC4 /* ChatsViewController.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		130B3D7F2690D9A400DB45A6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				13FED29026813C1D00D25BC4 /* AboutTableViewController.swift */,
+				13FED28A26813C1D00D25BC4 /* AvailableViewController.swift */,
+				13FED28426813C1D00D25BC4 /* RequestsViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		130B3D802690DAE800DB45A6 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				13FED29426813C1D00D25BC4 /* AddFriendTableViewController.swift */,
+				13FED28726813C1D00D25BC4 /* FriendsViewController.swift */,
+				13FED29726813C1D00D25BC4 /* PeopleViewController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		130B3D812690DC8D00DB45A6 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				13FED26226813BA300D25BC4 /* AboutViewModel.swift */,
+				13FED26626813BA300D25BC4 /* PeopleViewModel.swift */,
+				13FED26426813BA300D25BC4 /* RequestsViewModel.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		130B3D822690DCE800DB45A6 /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				132C894B2683D265002292B1 /* RestaurantSearchModel.swift */,
+				3920046E2684FEBE0098045C /* RestaurantVoteModel.swift */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		130B3D832690DD5000DB45A6 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				130B3D802690DAE800DB45A6 /* Friends */,
+				130B3D7F2690D9A400DB45A6 /* User */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		130B3D842690DEBA00DB45A6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */,
+				13FED28926813C1D00D25BC4 /* ChangePasswordViewController.swift */,
+				13FED28B26813C1D00D25BC4 /* EditProfileViewController.swift */,
+				13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		13AA39F4268662E8006E1F1C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				13AA39F52686632F006E1F1C /* RestaurantTableViewCell.swift */,
+				13FED29326813C1D00D25BC4 /* AddFriendCell.swift */,
+				13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */,
+				13FED28526813C1D00D25BC4 /* ChatsCell.swift */,
+				13FED29C26813C1D00D25BC4 /* FromCell.swift */,
+				13FED28226813C1D00D25BC4 /* RequestsCell.swift */,
+				13AA39F52686632F006E1F1C /* RestaurantSearchTableViewCell.swift */,
+				39200470268500590098045C /* RestaurantVoteListTableViewCell.swift */,
+				13FED28326813C1D00D25BC4 /* SentCell.swift */,
+				13FED29D26813C1D00D25BC4 /* ToCell.swift */,
+				13FED29526813C1D00D25BC4 /* UserCell.xib */,
+				13FED29626813C1D00D25BC4 /* UserCell.swift */,
 			);
 			name = Cells;
 			path = RestaurantVieweModels;
-			sourceTree = "<group>";
-		};
-		13AA39F9268684F6006E1F1C /* Yelp */ = {
-			isa = PBXGroup;
-			children = (
-				13E7240D268790CB00834A09 /* Custom Views */,
-				13E7240C268790A900834A09 /* Networking Code */,
-				13E7240B2687909B00834A09 /* ViewControllers */,
-				13E7240A2687909500834A09 /* ViewModels */,
-				13E724092687908D00834A09 /* Models */,
-				13E7240E2687928D00834A09 /* LocationManager.swift */,
-			);
-			path = Yelp;
 			sourceTree = "<group>";
 		};
 		13AA39FE2686864C006E1F1C /* FireBase */ = {
 			isa = PBXGroup;
 			children = (
 				13FED25126813B5E00D25BC4 /* FBAuthentication.swift */,
-				13FED25226813B5E00D25BC4 /* Network.swift */,
 				13FED25326813B5E00D25BC4 /* FBDatabase.swift */,
 				13FED25426813B5E00D25BC4 /* FBNetworkRequest.swift */,
+				13FED25226813B5E00D25BC4 /* Network.swift */,
 			);
 			path = FireBase;
 			sourceTree = "<group>";
@@ -253,9 +327,11 @@
 		13BB63372679277600AE8CE2 /* Lunch Hunch */ = {
 			isa = PBXGroup;
 			children = (
-				13CD19EA267EBDB1007C5B6F /* Models */,
-				13BB634F267927A700AE8CE2 /* Controllers */,
+				13FED25026813B5E00D25BC4 /* Managers */,
 				13BB634D2679279C00AE8CE2 /* Views */,
+				13CD19EA267EBDB1007C5B6F /* Models */,
+				13BB6350267927AB00AE8CE2 /* View Controllers */,
+				13CD19ED267EBDE0007C5B6F /* View Models */,
 				13CD19F3267EBE22007C5B6F /* Helper and Extensions */,
 				13BB634C2679279600AE8CE2 /* Resources */,
 			);
@@ -270,9 +346,6 @@
 				13BB63412679277800AE8CE2 /* Assets.xcassets */,
 				13BB63462679277800AE8CE2 /* Info.plist */,
 				13FA388B2681495D0036B276 /* GoogleService-Info.plist */,
-				13FED23D26813AF000D25BC4 /* Audio.swift */,
-				13FED23B26813AF000D25BC4 /* Cancel.mp3 */,
-				13FED23C26813AF000D25BC4 /* Message.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -281,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				13BB634E267927A100AE8CE2 /* Storyboards */,
+				130B3D7B2690D1FE00DB45A6 /* Custom Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,32 +362,21 @@
 		13BB634E267927A100AE8CE2 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				672E06272683C007002BEEF6 /* Mike */,
 				13CD19E4267EBD28007C5B6F /* Jacob */,
 				13CD19E3267EBD23007C5B6F /* Jaymond */,
+				672E06272683C007002BEEF6 /* Mike */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		13BB634F267927A700AE8CE2 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				3920046D2684FEB10098045C /* Model Controllers */,
-				13CD19ED267EBDE0007C5B6F /* View Models */,
-				13BB6350267927AB00AE8CE2 /* View Controllers */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		13BB6350267927AB00AE8CE2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				13FED28F26813C1D00D25BC4 /* About */,
-				13FED29826813C1D00D25BC4 /* Chating */,
-				13FED27F26813C1D00D25BC4 /* Chats */,
-				13FED29126813C1D00D25BC4 /* People */,
-				13FED28826813C1D00D25BC4 /* Settings */,
+				130B3D7E2690D95100DB45A6 /* Chats */,
 				13FED27826813BF600D25BC4 /* Login */,
+				130B3D832690DD5000DB45A6 /* People */,
+				13E7240B2687909B00834A09 /* Restaurant */,
+				130B3D842690DEBA00DB45A6 /* Setting */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -341,12 +404,12 @@
 		13CD19EA267EBDB1007C5B6F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3920046A2684FE190098045C /* Models */,
-				13AA39F9268684F6006E1F1C /* Yelp */,
-				13FED25026813B5E00D25BC4 /* Network */,
-				13FED24E26813B5D00D25BC4 /* Message.swift */,
-				13FED24F26813B5D00D25BC4 /* User.swift */,
+				13AA39FA26868525006E1F1C /* Business.swift */,
 				13FED25526813B5E00D25BC4 /* Defaults.swift */,
+				13AA39FC26868543006E1F1C /* FoodTypes.swift */,
+				13FED24E26813B5D00D25BC4 /* Message.swift */,
+				3920046B2684FE270098045C /* Restaurant.swift */,
+				13FED24F26813B5D00D25BC4 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,11 +417,10 @@
 		13CD19ED267EBDE0007C5B6F /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				13FED26226813BA300D25BC4 /* AboutViewModel.swift */,
-				13FED25E26813BA300D25BC4 /* Authentication */,
-				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
-				13FED26326813BA300D25BC4 /* Chats and Requests */,
-				13FED26626813BA300D25BC4 /* PeopleViewModel.swift */,
+				13FED26326813BA300D25BC4 /* Chats */,
+				13FED25E26813BA300D25BC4 /* Login */,
+				130B3D812690DC8D00DB45A6 /* People */,
+				130B3D822690DCE800DB45A6 /* Restaurant */,
 				13FED26726813BA300D25BC4 /* Settings */,
 			);
 			path = "View Models";
@@ -377,86 +439,54 @@
 			path = "Helper and Extensions";
 			sourceTree = "<group>";
 		};
-		13E724092687908D00834A09 /* Models */ = {
+		13E7240B2687909B00834A09 /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				13AA39FA26868525006E1F1C /* Business.swift */,
-				13AA39FC26868543006E1F1C /* FoodTypes.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		13E7240A2687909500834A09 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				132C894B2683D265002292B1 /* RestaurantViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		13E7240B2687909B00834A09 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
-				132C89C92684248D002292B1 /* LocationViewController.swift */,
 				13CD50252685852300DA2F62 /* FoodTypesViewController.swift */,
+				132C89C92684248D002292B1 /* LocationViewController.swift */,
 				13AA39F72686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift */,
+				132C89C726841E19002292B1 /* RestaurantSettingsTableViewController.swift */,
+				392004672684F6DF0098045C /* VoteTableViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Restaurant;
 			sourceTree = "<group>";
 		};
-		13E7240C268790A900834A09 /* Networking Code */ = {
-			isa = PBXGroup;
-			children = (
-				13AA3A0026868674006E1F1C /* YelpServicing.swift */,
-				13AA3A02268686A9006E1F1C /* YelpService.swift */,
-				13AA3A04268686C7006E1F1C /* YelpEndpoint.swift */,
-			);
-			path = "Networking Code";
-			sourceTree = "<group>";
-		};
-		13E7240D268790CB00834A09 /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				13AA39F4268662E8006E1F1C /* Cells */,
-			);
-			path = "Custom Views";
-			sourceTree = "<group>";
-		};
-		13FED25026813B5E00D25BC4 /* Network */ = {
+		13FED25026813B5E00D25BC4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				13AA39FE2686864C006E1F1C /* FireBase */,
+				130B3D7D2690D43600DB45A6 /* Location */,
+				130B3D7C2690D25500DB45A6 /* Yelp */,
 			);
-			path = Network;
+			path = Managers;
 			sourceTree = "<group>";
 		};
-		13FED25E26813BA300D25BC4 /* Authentication */ = {
+		13FED25E26813BA300D25BC4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				13FED25F26813BA300D25BC4 /* SignupViewModel.swift */,
 				13FED26026813BA300D25BC4 /* ResetPasswordViewModel.swift */,
 				13FED26126813BA300D25BC4 /* SigninViewModel.swift */,
+				13FED25F26813BA300D25BC4 /* SignupViewModel.swift */,
 			);
-			path = Authentication;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		13FED26326813BA300D25BC4 /* Chats and Requests */ = {
+		13FED26326813BA300D25BC4 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
-				13FED26426813BA300D25BC4 /* RequestsViewModel.swift */,
 				13FED26526813BA300D25BC4 /* ChatsViewModel.swift */,
+				13FED25D26813BA300D25BC4 /* ChatingViewModel.swift */,
 			);
-			path = "Chats and Requests";
+			path = Chats;
 			sourceTree = "<group>";
 		};
 		13FED26726813BA300D25BC4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				13FED26826813BA300D25BC4 /* EditeProfileViewModel.swift */,
-				13FED26926813BA300D25BC4 /* SettingsViewModel.swift */,
-				13FED26A26813BA300D25BC4 /* ChangePasswordViewModel.swift */,
 				13FED26B26813BA300D25BC4 /* BlockedViewModel.swift */,
+				13FED26A26813BA300D25BC4 /* ChangePasswordViewModel.swift */,
+				13FED26826813BA300D25BC4 /* EditProfileViewModel.swift */,
+				13FED26926813BA300D25BC4 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -464,114 +494,11 @@
 		13FED27826813BF600D25BC4 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				13FED27926813BF600D25BC4 /* SignupViewController.swift */,
 				13FED27A26813BF600D25BC4 /* ForgetPasswordViewController.swift */,
 				13FED27B26813BF600D25BC4 /* SigninViewController.swift */,
+				13FED27926813BF600D25BC4 /* SignupViewController.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		13FED27F26813C1D00D25BC4 /* Chats */ = {
-			isa = PBXGroup;
-			children = (
-				13FED28026813C1D00D25BC4 /* ChatsViewController.swift */,
-				13FED28126813C1D00D25BC4 /* Requests */,
-				13FED28526813C1D00D25BC4 /* ChatsCell.swift */,
-				13FED28626813C1D00D25BC4 /* Friends */,
-			);
-			path = Chats;
-			sourceTree = "<group>";
-		};
-		13FED28126813C1D00D25BC4 /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				13FED28226813C1D00D25BC4 /* RequestsCell.swift */,
-				13FED28326813C1D00D25BC4 /* SentCell.swift */,
-				13FED28426813C1D00D25BC4 /* RequestsViewController.swift */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		13FED28626813C1D00D25BC4 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				13FED28726813C1D00D25BC4 /* FriendsViewController.swift */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		13FED28826813C1D00D25BC4 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				13FED28926813C1D00D25BC4 /* ChangePasswordViewController.swift */,
-				13FED28A26813C1D00D25BC4 /* AvailableViewController.swift */,
-				13FED28B26813C1D00D25BC4 /* EditeProfileViewController.swift */,
-				13FED28C26813C1D00D25BC4 /* BlockedUsersTableViewCell.swift */,
-				13FED28D26813C1D00D25BC4 /* BlockedUsersTableViewController.swift */,
-				13FED28E26813C1D00D25BC4 /* SettingsViewController.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		13FED28F26813C1D00D25BC4 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				13FED29026813C1D00D25BC4 /* AboutTableViewController.swift */,
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
-		13FED29126813C1D00D25BC4 /* People */ = {
-			isa = PBXGroup;
-			children = (
-				13FED29226813C1D00D25BC4 /* Add Friend */,
-				13FED29526813C1D00D25BC4 /* UserCell.xib */,
-				13FED29626813C1D00D25BC4 /* UserCell.swift */,
-				13FED29726813C1D00D25BC4 /* PeopleViewController.swift */,
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
-		13FED29226813C1D00D25BC4 /* Add Friend */ = {
-			isa = PBXGroup;
-			children = (
-				13FED29326813C1D00D25BC4 /* AddFriendCell.swift */,
-				13FED29426813C1D00D25BC4 /* AddFriendTableViewController.swift */,
-			);
-			path = "Add Friend";
-			sourceTree = "<group>";
-		};
-		13FED29826813C1D00D25BC4 /* Chating */ = {
-			isa = PBXGroup;
-			children = (
-				13FED29926813C1D00D25BC4 /* VoiceTableViewCell.swift */,
-				13FED29A26813C1D00D25BC4 /* LocationTableViewCell.swift */,
-				13FED29B26813C1D00D25BC4 /* PhotoDetailViewController.swift */,
-				13FED29C26813C1D00D25BC4 /* FromCell.swift */,
-				13FED29D26813C1D00D25BC4 /* ToCell.swift */,
-				13FED29E26813C1D00D25BC4 /* MapsViewController.swift */,
-				13FED29F26813C1D00D25BC4 /* ChatingViewController.swift */,
-				13FED2A026813C1D00D25BC4 /* PhotoTableViewCell.swift */,
-				392004672684F6DF0098045C /* VoteTableViewController.swift */,
-				39200470268500590098045C /* RestaurantListTableViewCell.swift */,
-			);
-			path = Chating;
-			sourceTree = "<group>";
-		};
-		3920046A2684FE190098045C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3920046B2684FE270098045C /* Restaurant.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3920046D2684FEB10098045C /* Model Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				3920046E2684FEBE0098045C /* RestaurantController.swift */,
-			);
-			path = "Model Controllers";
 			sourceTree = "<group>";
 		};
 		672E06272683C007002BEEF6 /* Mike */ = {
@@ -659,13 +586,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				393A97292683EB29007FB295 /* RestaurantVote.storyboard in Resources */,
-				6779D6A126828EE500B706FD /* ChatingViewController.swift in Resources */,
 				13FED23A26813A8900D25BC4 /* LaunchScreen.storyboard in Resources */,
 				13FED2B026813C1E00D25BC4 /* UserCell.xib in Resources */,
-				13FED23F26813AF000D25BC4 /* Message.mp3 in Resources */,
 				13BB63422679277800AE8CE2 /* Assets.xcassets in Resources */,
 				672E062A2683C19E002BEEF6 /* Restaurants.storyboard in Resources */,
-				13FED23E26813AF000D25BC4 /* Cancel.mp3 in Resources */,
 				13FA388C2681495D0036B276 /* GoogleService-Info.plist in Resources */,
 				13FED23626813A6C00D25BC4 /* Chats.storyboard in Resources */,
 				13FED23226813A4900D25BC4 /* Settings.storyboard in Resources */,
@@ -724,30 +648,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				3920046C2684FE270098045C /* Restaurant.swift in Sources */,
-				13FED2BA26813C1E00D25BC4 /* PhotoTableViewCell.swift in Sources */,
 				392004682684F6DF0098045C /* VoteTableViewController.swift in Sources */,
 				13FED2A426813C1E00D25BC4 /* RequestsViewController.swift in Sources */,
 				13FED2A226813C1E00D25BC4 /* RequestsCell.swift in Sources */,
 				13FED27226813BA300D25BC4 /* ChatsViewModel.swift in Sources */,
 				13FED2AD26813C1E00D25BC4 /* AboutTableViewController.swift in Sources */,
-				13FED24026813AF000D25BC4 /* Audio.swift in Sources */,
 				13FED2B626813C1E00D25BC4 /* FromCell.swift in Sources */,
 				13FED27126813BA300D25BC4 /* RequestsViewModel.swift in Sources */,
 				13FED2AE26813C1E00D25BC4 /* AddFriendCell.swift in Sources */,
 				13FED2A726813C1E00D25BC4 /* ChangePasswordViewController.swift in Sources */,
-				13FED2B826813C1E00D25BC4 /* MapsViewController.swift in Sources */,
 				13BB63392679277600AE8CE2 /* AppDelegate.swift in Sources */,
-				13FED2B526813C1E00D25BC4 /* PhotoDetailViewController.swift in Sources */,
 				13FED24C26813B1000D25BC4 /* ActivityIndicator.swift in Sources */,
 				13FED2A826813C1E00D25BC4 /* AvailableViewController.swift in Sources */,
 				13BB633B2679277600AE8CE2 /* SceneDelegate.swift in Sources */,
 				13FED2A126813C1E00D25BC4 /* ChatsViewController.swift in Sources */,
 				13FED2B126813C1E00D25BC4 /* UserCell.swift in Sources */,
-				392004712685005A0098045C /* RestaurantListTableViewCell.swift in Sources */,
-				13FED2B326813C1E00D25BC4 /* VoiceTableViewCell.swift in Sources */,
+				392004712685005A0098045C /* RestaurantVoteListTableViewCell.swift in Sources */,
 				13FED26C26813BA300D25BC4 /* ChatingViewModel.swift in Sources */,
-				13FED2B426813C1E00D25BC4 /* LocationTableViewCell.swift in Sources */,
 				13FED26D26813BA300D25BC4 /* SignupViewModel.swift in Sources */,
+				13839371268E4D7E006AA673 /* ChatingViewController.swift in Sources */,
 				13FED2AB26813C1E00D25BC4 /* BlockedUsersTableViewController.swift in Sources */,
 				13FED27626813BA300D25BC4 /* ChangePasswordViewModel.swift in Sources */,
 				13AA3A03268686A9006E1F1C /* YelpService.swift in Sources */,
@@ -758,18 +677,18 @@
 				13FED27326813BA300D25BC4 /* PeopleViewModel.swift in Sources */,
 				13FED26F26813BA300D25BC4 /* SigninViewModel.swift in Sources */,
 				13FED25826813B5E00D25BC4 /* FBAuthentication.swift in Sources */,
-				13FED2A926813C1E00D25BC4 /* EditeProfileViewController.swift in Sources */,
+				13FED2A926813C1E00D25BC4 /* EditProfileViewController.swift in Sources */,
 				13FED25A26813B5E00D25BC4 /* FBDatabase.swift in Sources */,
 				13FED25926813B5E00D25BC4 /* Network.swift in Sources */,
 				13AA3A0126868674006E1F1C /* YelpServicing.swift in Sources */,
-				132C894C2683D265002292B1 /* RestaurantViewModel.swift in Sources */,
+				132C894C2683D265002292B1 /* RestaurantSearchModel.swift in Sources */,
 				13FED24926813B1000D25BC4 /* Alert.swift in Sources */,
 				13FED2A626813C1E00D25BC4 /* FriendsViewController.swift in Sources */,
 				13FED24826813B1000D25BC4 /* Constants.swift in Sources */,
 				13FED27E26813BF600D25BC4 /* SigninViewController.swift in Sources */,
 				13FED24B26813B1000D25BC4 /* Enums.swift in Sources */,
-				3920046F2684FEBE0098045C /* RestaurantController.swift in Sources */,
-				13FED27426813BA300D25BC4 /* EditeProfileViewModel.swift in Sources */,
+				3920046F2684FEBE0098045C /* RestaurantVoteModel.swift in Sources */,
+				13FED27426813BA300D25BC4 /* EditProfileViewModel.swift in Sources */,
 				13FED27726813BA300D25BC4 /* BlockedViewModel.swift in Sources */,
 				13FED27D26813BF600D25BC4 /* ForgetPasswordViewController.swift in Sources */,
 				13FED24A26813B1000D25BC4 /* System Authorization.swift in Sources */,
@@ -780,7 +699,7 @@
 				13E7240F2687928D00834A09 /* LocationManager.swift in Sources */,
 				13AA39F82686806D006E1F1C /* RestaurantSearchResultsTableViewController.swift in Sources */,
 				13FED24D26813B1000D25BC4 /* Extensions.swift in Sources */,
-				13AA39F62686632F006E1F1C /* RestaurantTableViewCell.swift in Sources */,
+				13AA39F62686632F006E1F1C /* RestaurantSearchTableViewCell.swift in Sources */,
 				13FED2B226813C1E00D25BC4 /* PeopleViewController.swift in Sources */,
 				13AA39FB26868525006E1F1C /* Business.swift in Sources */,
 				13AA3A05268686C7006E1F1C /* YelpEndpoint.swift in Sources */,
@@ -792,7 +711,6 @@
 				13FED27C26813BF600D25BC4 /* SignupViewController.swift in Sources */,
 				13FED2B726813C1E00D25BC4 /* ToCell.swift in Sources */,
 				13FED27526813BA300D25BC4 /* SettingsViewModel.swift in Sources */,
-				13FED2B926813C1E00D25BC4 /* ChatingViewController.swift in Sources */,
 				13FED2AA26813C1E00D25BC4 /* BlockedUsersTableViewCell.swift in Sources */,
 				13FED2A326813C1E00D25BC4 /* SentCell.swift in Sources */,
 			);
@@ -924,7 +842,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FD53M4BR3B;
+				DEVELOPMENT_TEAM = 3YUN5S2WTZ;
 				INFOPLIST_FILE = "Lunch Hunch/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -944,7 +862,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FD53M4BR3B;
+				DEVELOPMENT_TEAM = 3YUN5S2WTZ;
 				INFOPLIST_FILE = "Lunch Hunch/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
