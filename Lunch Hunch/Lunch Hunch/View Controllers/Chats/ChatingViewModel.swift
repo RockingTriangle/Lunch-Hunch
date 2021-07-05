@@ -11,36 +11,39 @@ import Firebase
 class ChatingViewModel {
     
     // MARK: - Properties
-    public  var friend             : UserViewModel? { didSet { updateUserInfoClouser?() }}
-    public  var friend_image       : UIImage? { didSet { updateUserImageoClouser?() }}
-    public  var messageViewModel   = [MessageViewModel]() { didSet { reloadTableViewClouser?() }}
+    public  var friend             : UserViewModel? { didSet { updateUserInfoClosure?() }}
+    public  var friend_image       : UIImage? { didSet { updateUserImageoClosure?() }}
+    public  var messageViewModel   = [MessageViewModel]() { didSet { reloadTableViewClosure?() }}
     public  var countOfCells       : Int { return messageViewModel.count }
     
     private var queryStart         : Double?
     private var unreadMessages     = [String]()
     public  var selectedCell       : MessageViewModel?
-    public  var friendsHatStatus   = HatStatus.open { didSet { updateChoosingClouser?() }}
+    public  var friendsHatStatus   = HatStatus.open { didSet { updateChoosingClosure?() }}
     public  var friendsRestaurants = [String]()
     public  var friendID           = ""
     public  var mySnapshot         : DataSnapshot?
     public  var theirSnapshot      : DataSnapshot?
     public  var winner             = ""
+    public  var isRandom           = false
+    public  var shouldReset        = false { didSet { updateResetClosure?() }}
     
     private var lastIsReached   = false
     private var isFetching      = false
     public  var isNew           = false
-    public  var isTyping        = false { didSet { updateFriendStatusClouser?() }}
-    public  var isFriendBlocked = false { didSet { updateBottomViewClouser?() }}
-    public  var isYouBlocked    = false { didSet { updateBottomViewClouser?() }}
-    public  var isChoosing      = false { didSet { updateChoosingClouser?() }}
+    public  var isTyping        = false { didSet { updateFriendStatusClosure?() }}
+    public  var isFriendBlocked = false { didSet { updateBottomViewClosure?() }}
+    public  var isYouBlocked    = false { didSet { updateBottomViewClosure?() }}
+    public  var isChoosing      = false { didSet { updateChoosingClosure?() }}
     
-    var updateUserInfoClouser      : (()->())?
-    var updateUserImageoClouser    : (()->())?
-    var reloadTableViewClouser     : (()->())?
-    var updateTableViewClouser     : (()->())?
-    var updateFriendStatusClouser  : (()->())?
-    var updateBottomViewClouser    : (()->())?
-    var updateChoosingClouser      : (()->())?
+    var updateUserInfoClosure      : (()->())?
+    var updateUserImageoClosure    : (()->())?
+    var reloadTableViewClosure     : (()->())?
+    var updateTableViewClosure     : (()->())?
+    var updateFriendStatusClosure  : (()->())?
+    var updateBottomViewClosure    : (()->())?
+    var updateChoosingClosure      : (()->())?
+    var updateResetClosure         : (()->())?
     
     var results = RestaurantSearchModel.shared
     
@@ -194,38 +197,45 @@ class ChatingViewModel {
     }
     
     func detectFriendTyping(friendID: String) {
-        FBDatabase.shared.FBDetectFriendTyping(friendID: friendID) { (isTyping) in
+        FBDatabase.shared.FBDetectFriendTyping(friendID: friendID) { [weak self] (isTyping) in
+            guard let self = self else { return }
             self.isTyping = isTyping
         }
     }
     
-    //MARK: - Handle Choosing Action
+    //MARK: - Handle Restaurants Actions
     func startChoosing(friendID: String, status: HatStatus) {
         FBDatabase.shared.FBStartChoosing(friendID: friendID, status: status)
     }
     
-    func endChoosing(friendID: String) {
-        FBDatabase.shared.FBEndChoosing(friendID: friendID)
-    }
-    
     func detectChoosing(friendID: String) {
-        FBDatabase.shared.FBDetectChoosing(friendID: friendID) { (status) in
+        FBDatabase.shared.FBDetectChoosing(friendID: friendID) { [weak self] (status) in
+            guard let self = self else { return }
             self.friendsHatStatus = status ?? .open
+            if self.friendsHatStatus == .rando {
+                self.isRandom = true
+            }
         }
     }
     
     func detectRestaurants(friendID: String) {
-        FBDatabase.shared.FBDetectRestaurants(friendsID: friendID) { (restaurants) in
+        FBDatabase.shared.FBDetectRestaurants(friendsID: friendID) { [weak self] (restaurants) in
+            guard let self = self else { return }
             guard let restaurants = restaurants else { return }
             self.friendsRestaurants = restaurants
             if self.friendsRestaurants.count > 0 && self.results.businessesToSave.count > 0 {
-                self.startChoosing(friendID: friendID, status: .vote)
+                if self.isRandom == true {
+                    self.startChoosing(friendID: friendID, status: .winner)
+                } else {
+                    self.startChoosing(friendID: friendID, status: .vote)
+                }
             }
         }
     }
     
     func getMyPoints(friendID: String) {
-        FBDatabase.shared.FBGetMyPoints(friendID: friendID) { (snapshot) in
+        FBDatabase.shared.FBGetMyPoints(friendID: friendID) { [weak self] (snapshot) in
+            guard let self = self else { return }
             guard let snapshot = snapshot else { return }
             self.mySnapshot = snapshot
             self.friendID = friendID
@@ -233,7 +243,8 @@ class ChatingViewModel {
     }
     
     func getThierPoints(friendID: String) {
-        FBDatabase.shared.FBGetTheirPoints(friendID: friendID) { (snapshot) in
+        FBDatabase.shared.FBGetTheirPoints(friendID: friendID) { [weak self] (snapshot) in
+            guard let self = self else { return }
             guard let snapshot = snapshot else { return }
             self.theirSnapshot = snapshot
             self.friendID = friendID
@@ -242,8 +253,17 @@ class ChatingViewModel {
     }
     
     func checkForWinner(friendID: String) {
-        guard let uid = Auth.auth().currentUser?.uid, let mySnapshot = mySnapshot, let theirSnapshot = theirSnapshot else { return }
-        declarePollWinner(id: uid, friendID: friendID, mySnapshot: mySnapshot, theirSnapshot: theirSnapshot)
+        if isRandom {
+            declareRandomWinner(friendID: friendID)
+        } else {
+            guard let uid = Auth.auth().currentUser?.uid, let mySnapshot = mySnapshot, let theirSnapshot = theirSnapshot else { return }
+            declarePollWinner(id: uid, friendID: friendID, mySnapshot: mySnapshot, theirSnapshot: theirSnapshot)
+        }
+    }
+    
+    func declareRandomWinner(friendID: String) {
+        let randomChoices = results.businessesToSave + friendsRestaurants
+        winner = randomChoices.randomElement() ?? "Failed to select random winner"
     }
     
     func declarePollWinner(id: String, friendID: String, mySnapshot: DataSnapshot, theirSnapshot: DataSnapshot) {
@@ -295,21 +315,29 @@ class ChatingViewModel {
         
         if restaurantsTied.count > 0 {
             winner = "There was a tie, please try again."
-            return
         } else {
-            winner = " Your winner is \(restaurantWinner) with \(maxPoints)"
-            return
+            winner = "Your winner is \(restaurantWinner) with \(maxPoints) points"
         }
     }
     
-    func cleanUP(friendID: String) {
-        FBDatabase.shared.FBCleanUp(friendID: friendID)
+    func ensureBothSeeWinner(friendID: String) {
+        FBDatabase.shared.FBSeenWinner(friendID: friendID) { [weak self] isSeen in
+            guard let self = self else { return }
+            if isSeen! {
+                self.shouldReset = true
+            }
+        }
+    }
+    
+    func cleanUpFBDatabase(friendID: String) {
+        FBDatabase.shared.FBCleanUp(friendID: friendID) 
     }
  
     // MARK:- Check Blocking
     func checkBlocking(uid: String) {
         if FBNetworkRequest.shared.blockedList.isEmpty {
-            FBNetworkRequest.shared.fetchBlockedList { [unowned self] (_) in
+            FBNetworkRequest.shared.fetchBlockedList { [weak self] (_) in
+                guard let self = self else { return }
                 self.isFriendBlocked = FBNetworkRequest.shared.blockedList.contains(uid)
             }
         } else {
@@ -328,7 +356,6 @@ class ChatingViewModel {
 }
 
 // MARK:- Message View Model
-
 struct MessageViewModel {
     
     var to       : String?

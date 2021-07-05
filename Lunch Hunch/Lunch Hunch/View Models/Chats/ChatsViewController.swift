@@ -57,7 +57,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
     }
     
     private func initVM() {
-        vm.updateIndicatorClouser = { [weak self] in
+        vm.updateIndicatorClosure = { [weak self] in
             guard let self = self else { return }
             if !self.vm.isAnimating {
                 ActivityIndicator.stopAnimating()
@@ -67,7 +67,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
             }
         }
         
-        vm.updateRequestsClouser = { [weak self] in
+        vm.updateRequestsClosure = { [weak self] in
             guard let self = self else { return }
             let numberOfRequests = FBNetworkRequest.shared.requestsRecived.count
             if numberOfRequests == 0 {
@@ -83,7 +83,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
             self.badge.layoutIfNeeded()
         }
         
-        vm.updateTableViewClouser = { [weak self] in
+        vm.updateTableViewClosure = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.2) {
@@ -93,7 +93,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
             }
         }
         
-        vm.updatebadgeClouser = { [weak self] in
+        vm.updatebadgeClosure = { [weak self] in
             guard let self = self else { return }
             let value = self.vm.countUnreadedMessages
             if value == 0 {

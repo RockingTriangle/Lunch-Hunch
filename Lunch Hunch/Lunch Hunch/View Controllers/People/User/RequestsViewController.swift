@@ -71,6 +71,7 @@ extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let Sentcell = tableView.dequeueReusableCell(withIdentifier: "SentCell", for: indexPath) as! SentCell
             Sentcell.user = vm.userViewModel[indexPath.row]
+            Sentcell.delegate = self
             return Sentcell
         }
     }
@@ -79,4 +80,11 @@ extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
+}
+
+extension RequestsViewController: RefreshSentCellProtocol {
+    func refreshCell() {
+        self.initVM()
+        self.tableView.reloadData()
+    }
 }

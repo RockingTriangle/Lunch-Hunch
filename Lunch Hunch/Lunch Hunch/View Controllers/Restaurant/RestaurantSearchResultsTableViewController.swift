@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseDatabase
 
-protocol PopViewController {
+protocol PopViewController: AnyObject {
     func popViewController()
 }
 
@@ -17,7 +17,8 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var results = RestaurantSearchModel.shared
-    var delegate: PopViewController?
+    weak var delegate: PopViewController?
+    var isRandom = false
     @IBOutlet weak var tableView: UITableView!
     
     public var uid: String?
@@ -66,7 +67,7 @@ class RestaurantSearchResultsTableViewController: UIViewController, UITableViewD
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         if let uid = uid {
-            results.addRestaurants(friendID: uid)
+            results.addRestaurants(friendID: uid, isRandom: isRandom)
             navigationController?.popViewController(animated: true)
             delegate?.popViewController()
         } else {

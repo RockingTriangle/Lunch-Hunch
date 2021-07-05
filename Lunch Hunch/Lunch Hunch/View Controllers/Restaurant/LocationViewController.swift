@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-protocol UpdateSettings {
+protocol UpdateSettings: AnyObject {
     func updateSettings()
 }
 
@@ -17,7 +17,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Properties
     var viewModel = RestaurantSearchModel.shared
     var locationManager = LocationManager.shared
-    var updateSettingsDelegate: UpdateSettings?
+    weak var updateSettingsDelegate: UpdateSettings?
     var mapRange: Float = 4000
     var mapSpan: MKCoordinateSpan?
     let categories: [MKPointOfInterestCategory] = [.bakery, .brewery, .cafe, .foodMarket, .nightlife, .restaurant, .winery]

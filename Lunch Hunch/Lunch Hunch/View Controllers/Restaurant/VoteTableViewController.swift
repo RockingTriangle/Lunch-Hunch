@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-protocol DeclareAWinnerProtocol {
+protocol DeclareAWinnerProtocol: AnyObject {
     func declareAWinner()
 }
 
@@ -36,7 +36,7 @@ class VoteTableViewController: UITableViewController {
     var searchModel = RestaurantSearchModel.shared
     var voteModel = RestaurantVoteModel.shared
     var friendID: String?
-    var winnerDelegate: DeclareAWinnerProtocol?
+    weak var winnerDelegate: DeclareAWinnerProtocol?
     
     //MARK: - ACTIONS
     @IBAction func saveButtonTapped(_ sender: Any) {

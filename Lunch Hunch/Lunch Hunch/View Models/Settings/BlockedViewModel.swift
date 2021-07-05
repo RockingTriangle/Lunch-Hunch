@@ -10,10 +10,10 @@ import Foundation
 class BlockedViewModel {
     
     // MARK: - Properties
-    var userViewModel = [UserViewModel]() { didSet { reloadTableViewClouser?() }}
+    var userViewModel = [UserViewModel]() { didSet { reloadTableViewClosure?() }}
     var numberOfCells : Int? { return userViewModel.count}
     
-    var reloadTableViewClouser: (()->())?
+    var reloadTableViewClosure: (()->())?
     
     // MARK:- Fetch Blocked Users
     func initFetch() {
