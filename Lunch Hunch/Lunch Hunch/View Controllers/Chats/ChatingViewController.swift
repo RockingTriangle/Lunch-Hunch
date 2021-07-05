@@ -281,15 +281,15 @@ class ChatingViewController: UIViewController {
     func setImage(_ status: HatStatus) -> UIImage {
         switch status {
         case .open:
-            return #imageLiteral(resourceName: "hatIcon")
+            return UIImage(named: "hatIcon")!
         case .poll:
-            return #imageLiteral(resourceName: "hatIconPoll")
+            return UIImage(named: "hatIconPoll")!
         case .rando:
-            return #imageLiteral(resourceName: "hatIconRando")
+            return UIImage(named: "hatIconRando")!
         case .vote:
-            return #imageLiteral(resourceName: "hatIconVote")
+            return UIImage(named: "hatIconVote")!
         case .winner:
-            return #imageLiteral(resourceName: "logo")
+            return UIImage(named: "winner")!
         }
     }
     
