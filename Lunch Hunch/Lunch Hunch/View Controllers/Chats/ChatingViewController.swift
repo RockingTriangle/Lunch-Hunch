@@ -120,8 +120,8 @@ class ChatingViewController: UIViewController {
         vm.updateResetClosure = { [weak self] in
             guard let self = self else { return }
             if self.vm.shouldReset {
-                self.vm.cleanUpFBDatabase(friendID: self.uid)
                 self.cleanupLocalVariables()
+                self.hatButton.isEnabled = true
             }
         }
         vm.fetchUserInfo(uid: uid)
@@ -252,6 +252,7 @@ class ChatingViewController: UIViewController {
         case .winner:
             hatButton.isEnabled = (vm.friendsHatStatus == .winner || vm.friendsHatStatus == .open)
         }
+        print("changed status to: \(myHatButtonStatus)")
     }
     
     func showChoosingAlert() {
@@ -300,7 +301,8 @@ class ChatingViewController: UIViewController {
         let alert = UIAlertController(title: "Winner", message: winner, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            self.vm.ensureBothSeeWinner(friendID: self.uid)
+            self.vm.setSeeWinner(friendID: self.uid)
+            self.vm.detectSeenWinner(friendID: self.uid)
             self.myHatButtonStatus = .open
         }
         alert.addAction(okAction)

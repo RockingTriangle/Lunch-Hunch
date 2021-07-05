@@ -438,9 +438,13 @@ struct FBDatabase {
         Database.database().reference().child("winner").child(uid).child(friendID).setValue(["winner" : winner])
     }
     
-    func FBSeenWinner(friendID: String, completion: @escaping(Bool?) -> ()) {
+    func FBSeenWinner(friendID: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("seen").child(uid).child(friendID).setValue("true")
+    }
+    
+    func FBDetectSeenWinner(friendID: String, completion: @escaping(Bool?) -> ())  {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("seen").child(friendID).child(uid).observe(.value) { snapshot in
             snapshot.exists() ? completion(true) : completion(false)
         }

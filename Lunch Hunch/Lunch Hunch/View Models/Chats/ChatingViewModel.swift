@@ -333,10 +333,14 @@ class ChatingViewModel {
         }
     }
     
-    func ensureBothSeeWinner(friendID: String) {
-        FBDatabase.shared.FBSeenWinner(friendID: friendID) { [weak self] isSeen in
-            guard let self = self else { return }
-            if isSeen! {
+    func setSeeWinner(friendID: String) {
+        FBDatabase.shared.FBSeenWinner(friendID: friendID)
+    }
+    
+    func detectSeenWinner(friendID: String) {
+        FBDatabase.shared.FBDetectSeenWinner(friendID: friendID)  { [weak self] isSeen in
+            guard let self = self, let isSeen = isSeen else { return }
+            if isSeen == true {
                 self.shouldReset = true
             }
         }
