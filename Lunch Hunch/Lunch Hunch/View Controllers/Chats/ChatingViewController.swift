@@ -120,10 +120,12 @@ class ChatingViewController: UIViewController {
         vm.updateResetClosure = { [weak self] in
             guard let self = self else { return }
             if self.vm.shouldReset {
+                self.vm.cleanUpFBDatabase(friendID: self.uid)
                 self.cleanupLocalVariables()
                 self.hatButton.isEnabled = true
             }
         }
+        
         vm.fetchUserInfo(uid: uid)
         vm.detectFriendTyping(friendID: uid)
         vm.detectChoosing(friendID: uid)
