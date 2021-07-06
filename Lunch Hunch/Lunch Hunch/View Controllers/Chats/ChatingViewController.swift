@@ -159,8 +159,9 @@ class ChatingViewController: UIViewController {
         updateBottomView()
         setupBottomView()
         setupRightButton()
-        textView.text = "..."
-        textView.textColor = .black
+        textView.text = "Enter message here..."
+        
+        textView.textColor = textView.text == "Enter message here..." ? .darkGray : .black
         sendButton.isEnabled = false
         
         let bottom = view.safeAreaInsets.top + 44 + 30

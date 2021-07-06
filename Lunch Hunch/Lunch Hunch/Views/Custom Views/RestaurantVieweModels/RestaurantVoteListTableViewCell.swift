@@ -35,7 +35,7 @@ class RestaurantVoteListTableViewCell: UITableViewCell {
         let image = wasPicked ? UIImage(systemName: "minus") : UIImage(systemName: "plus")
         restaurantNameTextLabel.text = restaurant.name
         isPickedButton.setImage(image, for: .normal)
-        isPickedButton.tintColor = .cyan
+        isPickedButton.tintColor = .black
     }
     
 }
