@@ -223,12 +223,21 @@ class AboutTableViewController: UITableViewController {
     
     func presentAlertForUnfriend() {
         let alertController = UIAlertController(title: "Unfriend", message: "Are you sure that you want to remove this user?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { result in
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self] result in
+            guard let self = self else {return}
             self.vm.unfriendUser(uid: self.uid!)
+            let alert = UIAlertController(title: "Success", message: "User has been removed from your friends, but they can still message you. Use Block to prevent contact from this user", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) {  _ in
+            }
+            alert.addAction(okAction)
+            alert.overrideUserInterfaceStyle = .light
+            self.present(alert, animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
+
         present(alertController, animated: true, completion: nil)
     }
     
