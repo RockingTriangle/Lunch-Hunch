@@ -21,6 +21,7 @@ class PeopleViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         setupNoFriendsView()
         initVM()
@@ -30,6 +31,8 @@ class PeopleViewController: UIViewController {
     private func initView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
+        navigationController?.overrideUserInterfaceStyle = .light
+        searchController.overrideUserInterfaceStyle = .light
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.delegate = self

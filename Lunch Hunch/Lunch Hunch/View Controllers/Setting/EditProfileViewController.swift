@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
         initView()
         initVM()
@@ -67,6 +68,7 @@ class EditProfileViewController: UIViewController {
             self.image = UIImage(named: "Avatar")!
         }))
         alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        alert.overrideUserInterfaceStyle = .light
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }

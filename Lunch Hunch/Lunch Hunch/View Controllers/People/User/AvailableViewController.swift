@@ -18,6 +18,7 @@ class AvailableViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         let status = defaults.bool(forKey: "status")
         statusSwitch.isOn = status
     }

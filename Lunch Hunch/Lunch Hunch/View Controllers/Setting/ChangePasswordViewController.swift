@@ -22,6 +22,7 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         setupCellUI()
         initVM()
     }
