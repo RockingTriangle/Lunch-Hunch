@@ -26,6 +26,7 @@ class AboutTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initVM()
     }
@@ -90,7 +91,7 @@ class AboutTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 4
+            return 3
         } else {
             return 3
         }
@@ -159,6 +160,7 @@ class AboutTableViewController: UITableViewController {
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             }
             successAlert.addAction(okAction)
+            successAlert.overrideUserInterfaceStyle = .light
             self.present(successAlert, animated: true, completion: nil)
         }
         //Hate Speech Button
@@ -171,6 +173,7 @@ class AboutTableViewController: UITableViewController {
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             }
             successAlert.addAction(okAction)
+            successAlert.overrideUserInterfaceStyle = .light
             self.present(successAlert, animated: true, completion: nil)
         }
         //Hate Speech Button
@@ -183,6 +186,7 @@ class AboutTableViewController: UITableViewController {
                 let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
             }
             successAlert.addAction(okAction)
+            successAlert.overrideUserInterfaceStyle = .light
             self.present(successAlert, animated: true, completion: nil)
         }
         //Inappropriate button
@@ -196,6 +200,7 @@ class AboutTableViewController: UITableViewController {
 
             }
             successAlert.addAction(okAction)
+            successAlert.overrideUserInterfaceStyle = .light
             self.present(successAlert, animated: true, completion: nil)
         }
         
@@ -217,8 +222,6 @@ class AboutTableViewController: UITableViewController {
         guard let id = currentUser.id else {return}
         REPORT_REF.child("report").child(uid).updateChildValues([reason : reports])
         REPORT_REF.child("reported_by").child(id).updateChildValues([reason : reports])
-
-        print("User \(uid) has been reported for \(reason)")
     }
     
     func presentAlertForUnfriend() {
@@ -229,6 +232,7 @@ class AboutTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
         present(alertController, animated: true, completion: nil)
     }
     

@@ -17,7 +17,7 @@ struct User {
     var imageURL: String?
     var image: UIImage?
     var isOnline: Bool?
-    var lastOnlineDate: Double?
+    var lastOnlineDate: Double = Date().timeIntervalSince1970
 }
 
 struct currentUser {

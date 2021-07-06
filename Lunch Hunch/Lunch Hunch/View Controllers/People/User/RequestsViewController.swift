@@ -21,6 +21,7 @@ class RequestsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initVM()
     }

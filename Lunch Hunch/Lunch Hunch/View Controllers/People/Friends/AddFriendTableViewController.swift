@@ -16,6 +16,7 @@ class AddFriendTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initFetch()
     }
@@ -24,6 +25,8 @@ class AddFriendTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
+        navigationController?.overrideUserInterfaceStyle = .light
+        searchController.overrideUserInterfaceStyle = .light
         searchController.obscuresBackgroundDuringPresentation = false
     }
     

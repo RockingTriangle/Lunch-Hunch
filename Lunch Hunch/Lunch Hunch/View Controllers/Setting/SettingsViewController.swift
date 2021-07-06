@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initVM()
     }
@@ -78,8 +79,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return "status"
-        } else if section == 2 { // changed line
-            return "user management" // changed line
+        } else if section == 2 {
+            return "user management"
         } else {
             return nil
         }
@@ -88,7 +89,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 180
-        } else if section == 1 || section == 2 || section == 3 { // changed line JWR added section 3
+        } else if section == 1 || section == 2 || section == 3 {
             return 30
         } else {
             return 5
@@ -101,7 +102,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 1 {
             return 1
         } else if section == 2{
-            return 3 // changed line //JWR Commented out below lines
+            return 3
         } else if section == 3 {
             return 1
         } else {
@@ -123,9 +124,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.detailTextLabel?.text = status ? "On" : "Off"
             cell.detailTextLabel?.textColor = .gray
         } else if row == 0 && section == 2 {
-            cell.textLabel?.text = "Friends" // changed line
+            cell.textLabel?.text = "Friends"
         } else if row == 1 && section == 2 {
-            cell.textLabel?.text = "Friend Requests" // changed line JWR added requests
+            cell.textLabel?.text = "Friend Requests" 
         } else if row == 2 && section == 2 {
             cell.textLabel?.text = "Blocked"
         } else if row == 0 && section == 3 {
@@ -139,6 +140,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 3 && indexPath.row == 0 {
             let alert = UIAlertController(title: "Are you sure to sign out?", message: nil, preferredStyle: .actionSheet)
+            alert.overrideUserInterfaceStyle = .light
             alert.addAction(.init(title: "Sign Out", style: .destructive, handler: { [weak self](_) in
                 guard let self = self else { return }
                 FBAuthentication.shared.signOutUser { (isSuccess, error) in
@@ -153,6 +155,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }))
             alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+            alert.overrideUserInterfaceStyle = .light
             DispatchQueue.main.async {
                 self.present(alert, animated: true)
             }

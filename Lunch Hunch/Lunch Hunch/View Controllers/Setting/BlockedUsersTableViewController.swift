@@ -15,6 +15,7 @@ class BlockedUsersTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initFetch()
     }
     

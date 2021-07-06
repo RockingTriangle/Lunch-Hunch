@@ -87,6 +87,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
         }
         alertController.addAction(searchAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
         present(alertController, animated: true, completion: nil)
     }
     
@@ -158,6 +159,7 @@ class LocationViewController: UIViewController, MKMapViewDelegate {
             locationManager.checkLocationServices()
         } else {
             let alert = UIAlertController(title: "User Location Not Enabled", message: "To allow user location, go to Settings -> Privacy -> Location", preferredStyle: .alert)
+            alert.overrideUserInterfaceStyle = .light
             self.present(alert, animated: true, completion: nil)
         }
     }

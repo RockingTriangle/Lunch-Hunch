@@ -27,6 +27,7 @@ class FriendsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         setupNoFriendsView()
         initVM()
@@ -36,6 +37,7 @@ class FriendsViewController: UIViewController {
     private func initView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
+        navigationController?.overrideUserInterfaceStyle = .light
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.delegate = self
         searchController.searchResultsUpdater = self

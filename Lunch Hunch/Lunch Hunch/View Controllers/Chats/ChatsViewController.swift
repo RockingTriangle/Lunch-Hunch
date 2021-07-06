@@ -25,6 +25,7 @@ class ChatsViewController: UIViewController, PresentChatingDelegate {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initVM()
     }

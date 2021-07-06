@@ -119,13 +119,14 @@ class RestaurantSearchTableViewCell: UITableViewCell {
     func fetchimage() {
         guard let url = business?.imageURL else { return }
         service.downloadImage(fromUrlString: url) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .some(let image):
                 DispatchQueue.main.async {
-                    self!.businessImageView.image = image
-                    self!.updateViews()
+                    self.businessImageView.image = image
+                    self.updateViews()
                     UIView.animate(withDuration: 0.5) {
-                        self!.view.alpha = 1
+                        self.view.alpha = 1
                     }
                 }
             case .none:
