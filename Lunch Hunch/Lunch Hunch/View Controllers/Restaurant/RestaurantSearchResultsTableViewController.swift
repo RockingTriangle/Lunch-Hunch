@@ -115,6 +115,7 @@ extension RestaurantSearchResultsTableViewController: TooManySelectedDelegate {
         let alert = UIAlertController(title: "Sorry", message: "You can only select two restaurants. To select this restaurant, please deselect on of your other choices first.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
 }

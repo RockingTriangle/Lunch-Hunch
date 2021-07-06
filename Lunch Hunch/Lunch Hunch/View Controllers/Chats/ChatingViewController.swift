@@ -51,17 +51,20 @@ class ChatingViewController: UIViewController {
     private var keyboardWillShow            = false
     
     var ref : DatabaseReference!
-    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton(); print("hat status changed") }}
+    var myHatButtonStatus = HatStatus.open { didSet { enableHatButton() }}
     var yourWinner = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         initView()
         initUserVM()
         initMessageVM()
         initNotifications()
         ref = Database.database().reference()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,7 +79,6 @@ class ChatingViewController: UIViewController {
         vm.checkBlocking(uid: uid)
         super.viewWillAppear(animated)
         textView.isEditable = true
-        print("viewWillAppear")
         enableHatButton()
     }
     
@@ -119,7 +121,6 @@ class ChatingViewController: UIViewController {
             } else {
                 self.hatButton.setImage(self.setImage(self.myHatButtonStatus), for: .normal)
             }
-            print("updateChoosingClosure")
             self.enableHatButton()
         }
         vm.updateResetClosure = { [weak self] in
@@ -169,6 +170,7 @@ class ChatingViewController: UIViewController {
         
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.titleView = titleView
+        navigationController?.overrideUserInterfaceStyle = .light
     }
     //---------------------------------------------------------------------------------------------
     private func setupBottomView() {
@@ -197,6 +199,11 @@ class ChatingViewController: UIViewController {
         } else { performSegue(withIdentifier: "ChatingToAbout", sender: self) }
         
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     //---------------------------------------------------------------------------------------------
     func hideBottomView() {
         BottomView.isHidden = true
@@ -285,6 +292,7 @@ class ChatingViewController: UIViewController {
         alertController.addAction(pollAction)
         alertController.addAction(randomAction)
         alertController.addAction(cancelAction)
+        alertController.overrideUserInterfaceStyle = .light
         
         present(alertController, animated: true, completion: nil)
     }
@@ -313,6 +321,7 @@ class ChatingViewController: UIViewController {
             self.myHatButtonStatus = .open
         }
         alert.addAction(okAction)
+        alert.overrideUserInterfaceStyle = .light
         present(alert, animated: true)
     }
     
@@ -531,12 +540,10 @@ extension ChatingViewController: RefreshHatProtocol {
             myHatButtonStatus = .vote
             hatButton.setImage(setImage(.vote), for: .normal)
             enableHatButton()
-            print("refresh hat 1")
         } else if myHatButtonStatus == .rando {
             myHatButtonStatus = .winner
             hatButton.setImage(setImage(.winner), for: .normal)
             enableHatButton()
-            print("refresh hat 2")
         }
     }
 }
@@ -548,6 +555,5 @@ extension ChatingViewController: DeclareAWinnerProtocol {
         hatButton.setImage(setImage(.winner), for: .normal)
         self.vm.getMyPoints(friendID: self.uid)
         enableHatButton()
-        print("declare winner")
     }
 }

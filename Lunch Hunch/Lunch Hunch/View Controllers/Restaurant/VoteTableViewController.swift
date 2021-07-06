@@ -20,6 +20,7 @@ class VoteTableViewController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         loadViewIfNeeded()
         tableView.isEditing = true
         

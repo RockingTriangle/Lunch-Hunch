@@ -27,10 +27,7 @@ struct FBDatabase {
                 user.imageURL = values["imageULR"] as? String ?? ""
                 user.country = values["country"] as? String ?? nil
                 user.isOnline = values["status"] as? Bool ?? true
-                user.lastOnlineDate = values["lastOnlineDate"] as? Double
-                if user.lastOnlineDate == nil {
-                    user.lastOnlineDate = Date().timeIntervalSince1970  // Potential bug fix...
-                }
+                user.lastOnlineDate = values["lastOnlineDate"] as? Double ?? Date().timeIntervalSince1970
                 completion(user, nil)
             } else {
                 completion(nil, "The user is not exist")
@@ -51,7 +48,7 @@ struct FBDatabase {
                 user.imageURL = values["imageULR"] as? String ?? ""
                 user.country = values["country"] as? String ?? ""
                 user.isOnline = values["status"] as? Bool ?? true
-                user.lastOnlineDate = values["lastOnlineDate"] as? Double
+                user.lastOnlineDate = values["lastOnlineDate"] as? Double ?? Date().timeIntervalSince1970
                 completion(user, nil)
             } else {
                 completion(nil, "The user is not exist")

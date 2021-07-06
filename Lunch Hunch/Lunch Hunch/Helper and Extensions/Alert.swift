@@ -11,6 +11,7 @@ struct Alert {
     static func showAlert(at viewController: UIViewController, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .cancel, handler: nil))
+        alert.overrideUserInterfaceStyle = .light
         DispatchQueue.main.async {
             viewController.present(alert, animated: true)
         }

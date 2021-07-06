@@ -20,7 +20,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="V2L-a5-eer">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.0" green="0.47058823529999999" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -765,6 +769,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hb1-YA-hQe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cnn-9y-FYw" firstAttribute="leading" secondItem="Bkc-OB-xZf" secondAttribute="leading" id="B0N-Mv-1qF"/>
                             <constraint firstItem="Cnn-9y-FYw" firstAttribute="trailing" secondItem="Bkc-OB-xZf" secondAttribute="trailing" id="VcT-fQ-Kfn"/>
@@ -814,12 +819,14 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dm-wi-4Rl">
                                     <rect key="frame" x="90" y="0.0" width="50" height="50.5"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Y7-Jt-4wr">
                                     <rect key="frame" x="98" y="50.5" width="34.5" height="13.5"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -829,6 +836,7 @@
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="W7f-Tz-VFe"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="t6i-gL-woY" secondAttribute="trailing" constant="5" id="5TW-Pi-ybr"/>
                         <constraint firstItem="t6i-gL-woY" firstAttribute="leading" secondItem="7ca-wp-4bP" secondAttribute="leading" constant="5" id="6BE-le-U8R"/>
@@ -842,7 +850,7 @@
         <!--Group Member view-->
         <scene sceneID="gtW-M4-noX">
             <objects>
-                <viewController title="Group Member view" interfaceStyle="light" id="O99-t4-YQI" sceneMemberID="viewController">
+                <viewController title="Group Member view" modalPresentationStyle="fullScreen" interfaceStyle="light" id="O99-t4-YQI" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="520-yX-eBc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -917,7 +925,7 @@
         <!--About Table View Controller-->
         <scene sceneID="t0H-Xc-wC8">
             <objects>
-                <tableViewController storyboardIdentifier="about" interfaceStyle="light" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="about" modalPresentationStyle="fullScreen" interfaceStyle="light" id="a8w-PE-7Hf" customClass="AboutTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9zc-dz-yY7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1006,7 +1014,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gTQ-qf-Vre">
             <objects>
-                <navigationController storyboardIdentifier="addFriend" automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="72M-fj-yQa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addFriend" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="72M-fj-yQa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JzK-9n-MSf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c3T-4i-VJM">
@@ -1026,6 +1034,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="aWl-t1-Pxa"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Friends" width="400" height="400"/>
         <image name="Groups" width="33" height="33"/>

@@ -18,6 +18,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="E1c-rW-1Z1">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Ydd-ds-cmf" kind="relationship" relationship="rootViewController" id="V35-OJ-GkD"/>
@@ -38,6 +45,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" estimatedRowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Bci-hT-NDj">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" name="BasicColor"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="OE1-fo-F5K" detailTextLabel="8Fv-TS-kCe" style="IBUITableViewCellStyleValue1" id="08d-XG-T7d">
                                         <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
@@ -73,6 +81,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aUR-sy-JB6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Bci-hT-NDj" secondAttribute="bottom" id="TfD-xS-ScI"/>
                             <constraint firstItem="Bci-hT-NDj" firstAttribute="top" secondItem="5Ov-lu-RvL" secondAttribute="top" id="XbM-A4-HFq"/>
@@ -151,7 +160,7 @@
         <!--Blocked Users-->
         <scene sceneID="vpz-KI-AHY">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="eEX-sD-ER3" customClass="BlockedUsersTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="eEX-sD-ER3" customClass="BlockedUsersTableViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rUJ-vM-qQp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,7 +245,7 @@
         <!--Edit Profile-->
         <scene sceneID="EpG-Ur-ggI">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="dJW-QN-Lbi" customClass="EditProfileViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="dJW-QN-Lbi" customClass="EditProfileViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bc3-4y-8za">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -318,7 +327,7 @@
         <!--Change Password View Controller-->
         <scene sceneID="4kc-hn-tAT">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="kcc-7q-XER" customClass="ChangePasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" interfaceStyle="light" id="kcc-7q-XER" customClass="ChangePasswordViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EMg-hM-nO1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,7 +358,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwC-z5-uYu">
                                                 <rect key="frame" x="0.0" y="0.0" width="324" height="55"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47058823529999999" blue="1" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <state key="normal" title="Update Password">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -477,7 +486,7 @@
         <!--Requests View Controller-->
         <scene sceneID="ENc-O9-cgb">
             <objects>
-                <viewController storyboardIdentifier="Requests" interfaceStyle="light" id="Cyv-No-xvh" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Requests" modalPresentationStyle="fullScreen" interfaceStyle="light" id="Cyv-No-xvh" customClass="RequestsViewController" customModule="Lunch_Hunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXc-16-9q3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -674,10 +683,13 @@
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="DE1-vA-xm8">
                             <rect key="frame" x="138.5" y="5" width="137" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <segments>
                                 <segment title="Recived"/>
                                 <segment title="Sent"/>
                             </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="selectedSegmentTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="segmentedPress:" destination="Cyv-No-xvh" eventType="valueChanged" id="q5G-gf-OWR"/>
                             </connections>
@@ -699,7 +711,7 @@
             <point key="canvasLocation" x="3690" y="357"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="labelColor"/>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="Avatar" width="163.5" height="163.5"/>
         <image name="Request" width="125" height="144.5"/>

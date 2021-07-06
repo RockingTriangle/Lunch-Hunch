@@ -28,6 +28,7 @@ class SigninViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overrideUserInterfaceStyle = .light
         setupUI()
         initView()
         initVM()
