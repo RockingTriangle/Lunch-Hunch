@@ -25,6 +25,8 @@ class AddFriendTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.searchController = searchController
+        navigationController?.overrideUserInterfaceStyle = .light
+        searchController.overrideUserInterfaceStyle = .light
         searchController.obscuresBackgroundDuringPresentation = false
     }
     
